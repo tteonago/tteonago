@@ -12,6 +12,7 @@ import lombok.NonNull;
 public class Admin {
 	//test test test
 	// test seongmin
+	// test jy
 	@Id
 	@Column(name = "userName")
 	private String userName;

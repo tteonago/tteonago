@@ -10,7 +10,7 @@ import lombok.NonNull;
 @Entity
 @Table(name="admin")
 public class Admin {
-	
+	//test test test
 	@Id
 	@Column(name = "userName")
 	private String userName;

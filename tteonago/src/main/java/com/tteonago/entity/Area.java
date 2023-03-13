@@ -14,13 +14,8 @@ public class Area {
 	@Id
 	private String aId; 
 	
-	@NonNull
-	@Column(name = "lng")
-	private Double lng;
-	
-	@NonNull
-	@Column(name = "lat")
-	private Double lat;
+	@Embedded
+	private Position localPosition;
 	
 	@NonNull
 	@Column(name = "level")

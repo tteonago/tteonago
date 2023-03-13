@@ -5,10 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Getter
 public class Period {
 	@NonNull
 	@Column(name = "checkIn")
@@ -17,4 +16,13 @@ public class Period {
 	@NonNull
 	@Column(name = "checkOut")
 	private LocalDateTime checkOut;
+	
+	protected Period(){
+
+    	}
+
+    	public Period(LocalDateTime checkIn,LocalDateTime checkOut){
+        	this.checkIn = checkIn;
+        	this.checkOut = checkOut;
+    	}
 }

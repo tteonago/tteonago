@@ -5,10 +5,9 @@ import javax.persistence.Embeddable;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Getter
 public class Position {
 	@NonNull
 	@Column(name = "lng")
@@ -17,5 +16,13 @@ public class Position {
 	@NonNull
 	@Column(name = "lat")
 	private Double lat;
+	protected Position(){
+
+    	}
+
+   	public Position(Double lng,Double lat){
+        	this.lng = lng;
+        	this.lat = lat;
+    	}
 	
 }

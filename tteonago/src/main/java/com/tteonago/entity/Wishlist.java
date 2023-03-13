@@ -27,7 +27,8 @@ public class Wishlist {
 	private Member member;
 	
 	@NonNull
-	@OneToMany
+	//@OneToMany
+	@ManyToOne
 	@JoinColumn(name="hotelId")
 	private Hotel hotel;
 }

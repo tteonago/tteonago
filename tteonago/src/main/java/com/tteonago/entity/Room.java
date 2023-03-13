@@ -20,7 +20,7 @@ public class Room {
 	@NonNull
 	@ManyToOne
 	@JoinColumn(name="hotelId")
-	private String hotelId;
+	private Hotel hotel;
 	
 	@NonNull
 	@Column(name = "roomType")

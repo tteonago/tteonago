@@ -11,6 +11,8 @@ import lombok.NonNull;
 @Table(name="admin")
 public class Admin {
 	//test test test
+	// test seongmin
+	// test jy
 	@Id
 	@Column(name = "userName")
 	private String userName;

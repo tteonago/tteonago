@@ -33,13 +33,8 @@ public class Reservation {
 	@JoinColumn(name="username")
 	private Member member;
 	
-	@NonNull
-	@Column(name = "checkIn")
-	private LocalDateTime checkIn;
-	
-	@NonNull
-	@Column(name = "checkOut")
-	private LocalDateTime checkOut;
+	@Embedded
+	private Period period;
 	
 	@NonNull
 	@Column(name = "payDate")

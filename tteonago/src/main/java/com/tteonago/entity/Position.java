@@ -16,6 +16,7 @@ public class Position {
 	@NonNull
 	@Column(name = "lat")
 	private Double lat;
+	
 	protected Position(){
 
     	}

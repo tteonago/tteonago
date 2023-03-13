@@ -35,13 +35,8 @@ public class Hotel {
 	@Column(name = "hotelInfo")
 	private String hotelInfo;
 	
-	@NonNull
-	@Column(name = "lng")
-	private Double lng;
-	
-	@NonNull
-	@Column(name = "lat")
-	private Double lat;
+	@Embedded
+	private Position hotelPosition;
 	
 	@NonNull
 	@Column(name = "star")

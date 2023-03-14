@@ -8,7 +8,7 @@ import lombok.NonNull;
 import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Getter
 public class Period {
 	@NonNull
 	@Column(name = "checkIn")

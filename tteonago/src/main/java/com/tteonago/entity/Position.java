@@ -7,9 +7,10 @@ import javax.persistence.Embeddable;
 
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 @Embeddable
-@Getter
+@Getter @Setter
 public class Position {
 	@NonNull
 	@Column(name = "lng", precision = 10, scale = 6)

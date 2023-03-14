@@ -1,16 +1,13 @@
 package com.tteonago.entity;
 
 import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Getter
 public class Position {
 	@NonNull
 	@Column(name = "lng", precision = 10, scale = 6)

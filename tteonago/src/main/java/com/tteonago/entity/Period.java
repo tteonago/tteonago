@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
 @Embeddable
 @Getter

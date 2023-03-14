@@ -3,6 +3,7 @@ package com.tteonago.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class Reservation {
 	@JoinColumn(name="username")
 	private Member member;
 	
-	@Embedded
+	@Embedded 
 	private Period period;
 	
 	@NonNull

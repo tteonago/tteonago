@@ -1,6 +1,7 @@
 package com.tteonago.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,7 +15,7 @@ public class Area {
 	@Id
 	private String aId; 
 	
-	@Embedded
+	@Embedded 
 	private Position localPosition;
 	
 	@NonNull

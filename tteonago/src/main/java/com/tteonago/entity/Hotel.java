@@ -1,6 +1,7 @@
 package com.tteonago.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class Hotel {
 	@Column(name = "hotelInfo")
 	private String hotelInfo;
 	
-	@Embedded
+	@Embedded 
 	private Position hotelPosition;
 	
 	@NonNull

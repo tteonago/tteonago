@@ -10,6 +10,7 @@ import lombok.NonNull;
 @Entity
 @Table(name="admin")
 public class Admin {
+	//flow
 	@Id
 	@Column(name = "userName")
 	private String userName;

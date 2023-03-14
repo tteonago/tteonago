@@ -13,7 +13,7 @@ public class Admin {
 	//test test test
 	// test seongmin
 	// test jy
-//test
+//test 11
 	@Id
 	@Column(name = "userName")
 	private String userName;

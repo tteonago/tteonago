@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.hotel.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import lombok.NonNull;
 
 @Entity
-@Table(name="hotelImage")
-public class HotelImage {
+@Table(name="roomImage")
+public class RoomImage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class HotelImage {
 	
 	@NonNull
 	@ManyToOne
-	@JoinColumn(name="hotelId")
-	private Hotel hotel;
+	@JoinColumn(name="roomId")
+	private Room room;
 	
 	@NonNull
 	@Column(name = "address")

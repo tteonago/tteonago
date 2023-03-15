@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.hotel.entity;
 
 import java.math.BigDecimal;
 import javax.persistence.Column;

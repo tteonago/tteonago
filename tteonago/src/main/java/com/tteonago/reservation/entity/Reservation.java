@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.reservation.entity;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.tteonago.hotel.entity.Room;
+import com.tteonago.member.entity.Member;
 
 import lombok.NonNull;
 

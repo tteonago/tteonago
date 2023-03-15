@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.hotel.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;

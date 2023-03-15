@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.reservation.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

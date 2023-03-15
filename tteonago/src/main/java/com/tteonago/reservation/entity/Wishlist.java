@@ -1,4 +1,4 @@
-package com.tteonago.entity;
+package com.tteonago.reservation.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,22 +9,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.member.entity.Member;
+
 import lombok.NonNull;
 
 @Entity
-@Table(name="roomImage")
-public class RoomImage {
+@Table(name="wishlist")
+public class Wishlist {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imgId;
+	@Column(name = "wishindex")
+	private int wishindex;
 	
 	@NonNull
 	@ManyToOne
-	@JoinColumn(name="roomId")
-	private Room room;
+	@JoinColumn(name="username")
+	private Member member;
 	
 	@NonNull
-	@Column(name = "address")
-	private String address;
+	//@OneToMany
+	@ManyToOne
+	@JoinColumn(name="hotelId")
+	private Hotel hotel;
 }

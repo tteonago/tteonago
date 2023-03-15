@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!-- 비동기 -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+	
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	
+	<script type="text/javascript">   
+		$(document).ready( function() {
+		
+		$("#headers").load("header_S.html");  
+		
+		});
+	</script>
+
+</head>
+<body onload="token(); name(); tokenName()">
+
+	<div id="headers"></div>
+	
+
+	<h1>index.html</h1>
+	<h3>이 페이지는 Spring Security 필터에서 제외된 html 입니다.</h3>
+	<h3>Spring Security 로그인시 생성되는 token 쿠키, JWT 토큰의 수명은 30초 입니다.</h3>
+	<h3>*추가 기능+ index.html에 진입 할때마다 인터셉터가 적용됩니다. 쿠키를 확인하고 token 이 없으면 Spring Security에서 logout 을 실행합니다.</h3>
+	
+	 <br><hr><br>
+	 
+	 <form method="post" action="/tteonago/join" id="login-form">
+            <input type="text" name="userName" placeholder="userName">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="회원가입">
+     </form>
+	 
+	 <br><hr><br>
+     
+     <h1>현재 쿠키에 저장된 JWT 토큰값은 다음과 같습니다.</h1>
+     <div id=currentToken></div>
+     <h2>로그인 후 30초가 지나면 이 JWT와 쿠키는 소멸됩니다. 새로고침으로 확인하세요.</h2>
+     <h2>F12 개발자 모드 Application 에서 쿠키를 확인하세요.</h2>
+     
+     <br><hr><br>
+     <h2>Spring Security 에 저장된 username 입니다.</h2>
+     <div id=currentName></div>
+     
+     <br><hr><br>
+     <h2>JWT 에 저장된 username 을 해석합니다.</h2>
+     <div id=currentTokenName></div>
+     
+     <br><hr><br>
+     
+     <a href="/tteonago/valid">이 링크는 Spring Security 접근 권한이 필요합니다. 권한이 없을시 /login 으로 리다이렉트 됩니다.</a>
+     
+     <br><hr><br>
+     
+     <a href="/tteonago/logout">로그아웃</a>
+     
+     <br><hr><br>
+	 
+     <a href="/tteonago/showMe">이 링크는 로그인 상태인지 알려줍니다.</a>
+     
+     <br><hr><br>
+     
+     <img src="images/40_002_2.jpg">
+     
+     <script type="text/javascript">
+	     function token() {
+				axios.post('/tteonago/getToken', {}, {
+				})
+				.then(function(resData) {
+					if(resData['data'].length == 0) {
+						document.getElementById("currentToken").innerHTML = '로그인 상태가 아닙니다! token 쿠키가 존재하지 않습니다.';
+					}else{
+						document.getElementById("currentToken").innerHTML = resData['data'];
+					}
+				})
+			}
+	     function name() {
+				axios.post('/tteonago/getName', {}, {
+				})
+				.then(function(resData) {
+					if(resData['data'].length == 0) {
+						document.getElementById("currentName").innerHTML = '로그인 상태가 아닙니다! Security에 저장된 정보가 없습니다.';
+					}else{
+						document.getElementById("currentName").innerHTML = resData['data'];
+					}
+				})
+			}
+	     function tokenName() {
+				axios.post('/tteonago/getTokenName', {}, {
+				})
+				.then(function(resData) {
+					if(resData['data'].length == 0) {
+						document.getElementById("currentTokenName").innerHTML = '로그인 상태가 아닙니다! 해석할 token 쿠키가 없습니다.';
+					}else{
+						document.getElementById("currentTokenName").innerHTML = resData['data'];
+					}
+				})
+			}
+	  </script>	
+	  
+	
+</body>
+</html>

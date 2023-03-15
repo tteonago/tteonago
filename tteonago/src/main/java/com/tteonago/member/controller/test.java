@@ -11,7 +11,7 @@ public class test {
 	public String welcome(Model model) {
 		System.out.println("test 실행 ---------");
 		
-		return "test";
+		return "index";
 	}
 	
 }

@@ -11,6 +11,7 @@ import lombok.NonNull;
 @Table(name="admin")
 public class Admin {
 	//flow
+//ch
 	@Id
 	@Column(name = "userName")
 	private String userName;

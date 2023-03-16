@@ -17,6 +17,4 @@ public class Admin {
 	@NonNull
 	@Column(name = "passWord")
 	private String passWord;
-	
-	//testestestest
 }

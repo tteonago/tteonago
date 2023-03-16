@@ -10,9 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sample")
 public class SampleController {
 
-    @GetMapping({"", "/"})
-    public String sample() {
-        return "pages/sample";
-    }
+//    @GetMapping({"", "/"})
+//    public String sample() {
+//        return "pages/sample";
+//    }
+	
+	
+//    @GetMapping({"", "/"})
+//    public String sample() {
+//        return "pages/map";
+//    }
+	
+  @GetMapping({"", "/"})
+  public String sample() {
+      return "pages/index";
+  }
+	
 
 }

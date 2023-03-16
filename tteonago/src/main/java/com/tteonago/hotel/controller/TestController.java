@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.service.TestService;
-import com.tteonago.hotel.service.TestService;
 
 @RestController
 public class TestController {
-	
+	//localhost/test?aId=10
 	@Autowired
 	private TestService service;
 	

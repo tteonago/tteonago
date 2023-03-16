@@ -24,7 +24,8 @@ public class SampleController {
 	
     @GetMapping("/home")
     public String home() {
-        return "pages/index_S";
+        //return "pages/index_S";
+        return "pages/index";
     }
 
 	@GetMapping("/showMe")

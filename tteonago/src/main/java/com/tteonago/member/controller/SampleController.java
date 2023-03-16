@@ -11,11 +11,11 @@ import com.tteonago.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@Controller
-@RequiredArgsConstructor
+//@Slf4j
+//@Controller
+//@RequiredArgsConstructor
 public class SampleController {
-	private final UserService userService;
+	//private final UserService userService;
 
 	@GetMapping("/sample")
 	public String sample() {
@@ -49,9 +49,12 @@ public class SampleController {
     }
     
     @PostMapping(value = "/join")
-	public String join(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) {
+	public String join(@RequestParam(value = "userName") String userName,
+					   @RequestParam(value = "password") String password,
+					   @RequestParam(value = "name") String name,
+					   @RequestParam(value = "email") String email) {
     	
-		userService.join(userName, password, "ROLE_USER");
+		//userService.join(userName, password, name, email,"ROLE_USER");
 		
 		return "pages/index_S";
 	}

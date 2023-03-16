@@ -27,7 +27,7 @@ public class UserService {
 	private Long expireTimeMs = 1000 * 30l;
 
 	//회원가입
-	public String join(String userName, String password, String role) {
+	public String join(String userName, String password, String name,String email,String role) {
 		// 중복 check
 		memberRepository.findByUsername(userName).ifPresent(user -> {
 			throw new AppException(ErrorCode.USERNAME_DUPLICATED, userName + " 은/는 이미 존재하는 ID 입니다.");
@@ -43,8 +43,8 @@ public class UserService {
 				.username(userName)
 				.password(passwordEncoder.encode(password))
 				.role(role)
-				.name("홍길동")
-				.email("test@naver.com")
+				.name(name)
+				.email(email)
 				.point(0)
 				.build();
 		memberRepository.save(member);

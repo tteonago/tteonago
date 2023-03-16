@@ -29,15 +29,15 @@ public class MemberController {
 //		return "pages/sample";
 //	}
 	
-	@PostMapping(value = "/join")
-	public ModelAndView join(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) {
-		userService.join(userName, password, "ROLE_USER");
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/index_S.html");
-		
-		return mv;
-	}
+//	@PostMapping(value = "/join")
+//	public ModelAndView join(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) {
+//		userService.join(userName, password, "ROLE_USER");
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("redirect:/index_S.html");
+//		
+//		return mv;
+//	}
 	
 	@PostMapping("/getToken")
 	public ResponseEntity<String> showName(@CookieValue(value = "token", required = false) String token) {

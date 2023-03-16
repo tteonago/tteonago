@@ -56,7 +56,7 @@ public class WebSecurity {
                 .antMatchers("/social").permitAll()
                 .antMatchers("/showMe").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/sample1").permitAll()
+                .antMatchers("/sample").permitAll()
                 .antMatchers("/getToken").permitAll()
                 .antMatchers("/join").permitAll()
                 .antMatchers("/getTokenName").permitAll()

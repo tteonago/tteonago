@@ -1,14 +1,26 @@
 package com.tteonago.hotel.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
+@Data
+@Getter
+@Setter
+@ToString
 
 @Entity
 @Table(name="hotel")
@@ -46,4 +58,7 @@ public class Hotel {
 	@NonNull
 	@Column(name = "profit")
 	private Integer profit ;
+	
+	@OneToMany(mappedBy = "hotel")
+	private List<Room> room;
 }

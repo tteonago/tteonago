@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Test</title>
+</head>
+<body>
+  <div class="search-col">
+    <form th:action="@{/search}" method="get">
+      <input type="text" name="query" placeholder="검색어를 입력하세요" />
+      <button type="submit" class="btn-theme btn-md btn-block">Search</button>
+    </form>
+  </div>
+</body>
+</html>

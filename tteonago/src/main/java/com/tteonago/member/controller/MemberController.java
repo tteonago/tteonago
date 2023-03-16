@@ -29,23 +29,6 @@ public class MemberController {
 		return "pages/signup";
 	}
 
-	@PostMapping(value = "/join")
-	public ModelAndView join(@RequestParam(value = "userName") String userName,
-							 @RequestParam(value = "password") String password,
-							 @RequestParam(value = "name") String name,
-							 @RequestParam(value = "email") String email ){
-
-		System.out.println("userName ="+userName+"password="+password+"name="+name+"email"+email);
-
-		userService.join(userName, password,name,email, "ROLE_USER");
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/index_S.html");
-		//회원가입하고 나면 로그인으로 가야할지
-
-		return mv;
-	}
-	
 	@PostMapping("/getToken")
 	public ResponseEntity<String> showName(@CookieValue(value = "token", required = false) String token) {
 		System.out.println("token-----" + token);

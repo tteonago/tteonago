@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+html
+	
+	<hr>
+	
+	<p th:text="${#authentication.name}"></p>
+	<p th:text="${#authentication.authorities}"></p>
+	<p th:text="${#authentication.authenticated}"></p>
+	
+	<hr>
+	
+	<div sec:authentication="principal"></div>
+	<h1 sec:authorize="hasAuthority('ROLE_USER')">you are a regular member!</h1> 
+	<h1 sec:authorize="hasAuthority('social')">you are a kakao member!</h1> 
+	<h1 sec:authorize="hasAuthority('ROLE_ANONYMOUS')">who are you?</h1> 
+</body>
+</html>

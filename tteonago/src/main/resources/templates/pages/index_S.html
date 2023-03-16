@@ -32,7 +32,7 @@
 	
 	 <br><hr><br>
 	 
-	 <form method="post" action="/tteonago/join" id="login-form">
+	 <form method="post" action="/join" id="login-form">
             <input type="text" name="userName" placeholder="userName">
             <input type="password" name="password" placeholder="password">
             <input type="submit" value="회원가입">
@@ -55,15 +55,15 @@
      
      <br><hr><br>
      
-     <a href="/tteonago/valid">이 링크는 Spring Security 접근 권한이 필요합니다. 권한이 없을시 /login 으로 리다이렉트 됩니다.</a>
+     <a href="/valid">이 링크는 Spring Security 접근 권한이 필요합니다. 권한이 없을시 /login 으로 리다이렉트 됩니다.</a>
      
      <br><hr><br>
      
-     <a href="/tteonago/logout">로그아웃</a>
+     <a href="/logout">로그아웃</a>
      
      <br><hr><br>
 	 
-     <a href="/tteonago/showMe">이 링크는 로그인 상태인지 알려줍니다.</a>
+     <a href="/showMe">이 링크는 로그인 상태인지 알려줍니다.</a>
      
      <br><hr><br>
      
@@ -71,7 +71,7 @@
      
      <script type="text/javascript">
 	     function token() {
-				axios.post('/tteonago/getToken', {}, {
+				axios.post('/getToken', {}, {
 				})
 				.then(function(resData) {
 					if(resData['data'].length == 0) {
@@ -82,7 +82,7 @@
 				})
 			}
 	     function name() {
-				axios.post('/tteonago/getName', {}, {
+				axios.post('/getName', {}, {
 				})
 				.then(function(resData) {
 					if(resData['data'].length == 0) {
@@ -93,7 +93,7 @@
 				})
 			}
 	     function tokenName() {
-				axios.post('/tteonago/getTokenName', {}, {
+				axios.post('/getTokenName', {}, {
 				})
 				.then(function(resData) {
 					if(resData['data'].length == 0) {

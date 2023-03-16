@@ -28,6 +28,21 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl'
+	//mapper
+	implementation 'org.modelmapper:modelmapper:2.4.0'
+	//security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//thymleaf security
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	//jwt webToken
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	//https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+	implementation 'org.springframework.security:spring-security-taglibs'
+	//ouath2
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.4.3'
 }
 
 tasks.named('test') {

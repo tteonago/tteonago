@@ -3,9 +3,11 @@ package com.tteonago.member.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,15 +19,15 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class Controller {
+public class MemberController {
 	private final UserService userService;
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 	
-	@GetMapping("/hello")
-	public String helloworld() {
-		return "hello world!!";
-	}
+//	@GetMapping("/home")
+//	public String helloworld() {
+//		return "pages/sample";
+//	}
 	
 	@PostMapping(value = "/join")
 	public ModelAndView join(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) {
@@ -71,21 +73,20 @@ public class Controller {
 		return ResponseEntity.ok().body(userName);
 	}
 
-	@GetMapping("/valid")
-	public ModelAndView valid() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("valid");
-		
-		return mv;
-	}
+	/*
+	 * @GetMapping("/valid") public ModelAndView valid() { ModelAndView mv = new
+	 * ModelAndView(); mv.setViewName("valid");
+	 * 
+	 * return mv; }
+	 */
 	
-	@GetMapping("/showMe")
-	public ModelAndView showme() {
-		System.out.println("showme--------");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/showMe_S");
-		
-		System.out.println("showme--------11");
-		return mv;
-	}
+//	@GetMapping("/showMe")
+//	public ModelAndView showme() {
+//		System.out.println("showme--------");
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("pages/showMe_S");
+//		
+//		System.out.println("showme--------11");
+//		return mv;
+//	}
 }

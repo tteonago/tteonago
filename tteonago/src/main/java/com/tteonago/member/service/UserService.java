@@ -12,19 +12,22 @@ import com.tteonago.member.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;
 
+/*
+ * 회원가입, 로그인 service 단입니다
+ */
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
 	private final MemberRepository memberRepository;
-//	private final BCryptPasswordEncoder encoder;
+	//private final BCryptPasswordEncoder encoder;
 	private final PasswordEncoder passwordEncoder;
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 	private Long expireTimeMs = 1000 * 30l;
 
-
+	//회원가입
 	public String join(String userName, String password, String role) {
-		System.out.println(userName + " " + password);
 		// 중복 check
 		memberRepository.findByUsername(userName).ifPresent(user -> {
 			throw new AppException(ErrorCode.USERNAME_DUPLICATED, userName + " 은/는 이미 존재하는 ID 입니다.");
@@ -35,7 +38,7 @@ public class UserService {
 			throw new AppException(ErrorCode.NULL, "정상적인 아이디가 아닙니다.");
 		}
 		
-		// 저장
+		// 정상 회원가입시 db저장 --builder 코드는 수정이 필요합니다. 반드시 확인요청하세요
 		Member member = Member.builder()
 				.username(userName)
 				.password(passwordEncoder.encode(password))
@@ -48,12 +51,12 @@ public class UserService {
 
 		return "success";
 	}
-	
+	//로그인
 	public String login(String userName, String password) {
-		// userName 없음
+		//없는 아이디 입력
 		Member selectedUser = memberRepository.findByUsername(userName)
 				.orElseThrow(() -> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + " 은/는 존재하지 않는 ID 입니다."));
-		// password 틀림
+		//틀린 비밀번호 입력
 		if(!passwordEncoder.matches(password, selectedUser.getPassword())) {
 			throw new AppException(ErrorCode.INVALID_PASSWORD, "비밀번호가 틀렸습니다.");
 		}

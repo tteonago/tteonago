@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.tteonago.member.entity.Member;
 import com.tteonago.member.repository.MemberRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 public class UserServiceDetail implements UserDetailsService {
 	@Value("${jwt.token.secret}")
@@ -24,7 +26,7 @@ public class UserServiceDetail implements UserDetailsService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
     private MemberRepository merchantRepository;
-	
+    //////
 	public UserServiceDetail() {
 		this.passwordEncoder = new BCryptPasswordEncoder();
 	}

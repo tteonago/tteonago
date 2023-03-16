@@ -11,7 +11,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.tteonago.member.entity.SocialDTO;
-
+/*
+ * 소셜 로그인 성공시의 행동입니다
+ */
 @Component
 public class AuthenticationSocialSuccess implements AuthenticationSuccessHandler {
 	@Override
@@ -23,10 +25,9 @@ public class AuthenticationSocialSuccess implements AuthenticationSuccessHandler
 		String encodedPw = socialDTO.getPassword();
 		
 		if(socialDTO.getRole().equals("social") && socialDTO.getPassword().equals("1111")) {
-			System.out.println(socialDTO.getRole() + " " + socialDTO.getPassword());
-			response.sendRedirect("/tteonago/checkSocial_S.html");
+			response.sendRedirect("/social");
 		}else {
-			response.sendRedirect("/tteonago/index_S.html");
+			response.sendRedirect("/home");
 		}
 	}
 }

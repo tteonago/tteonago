@@ -8,9 +8,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-
+/*
+ * 인터셉터가 무슨 행동을 할지 지시합니다.
+ */
 @Component
 public class Interceptor implements HandlerInterceptor {
+	//진입 직전 행동
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		Cookie[] cookie = request.getCookies();
@@ -21,12 +24,10 @@ public class Interceptor implements HandlerInterceptor {
 		
 		for(Cookie c : cookie) {
 			if(c.getName().equals("token")) {
-				System.out.println("intercepter 111111: " + SecurityContextHolder.getContext().getAuthentication().getName());
 				return true;
 			}
 		}
 		
-		System.out.println("intercepter 2222222" );
 		new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
 		return true;
 	}

@@ -18,9 +18,12 @@ import com.tteonago.member.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;
 
+/*
+ * spring security 로그인 성공시 행동입니다
+ */
 @Component
 @RequiredArgsConstructor
-public class AuthenticationSuccess implements AuthenticationSuccessHandler{
+public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 	private final MemberRepository memberRepository;
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
@@ -29,15 +32,14 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		System.out.println("handler------" + SecurityContextHolder.getContext().getAuthentication().getName());
-		
+
 		String token = JwtTokenUtil.createToken(authentication.getName(), SecretKey, expireTimeMs);
-		
+
 		Cookie cookie = new Cookie("token", token);
-		cookie.setPath("/tteonago");
-		cookie.setMaxAge(30); 
+		cookie.setPath("/");
+		cookie.setMaxAge(30);
 		response.addCookie(cookie);
-		
-		response.sendRedirect("/tteonago/index_S.html");
+
+		response.sendRedirect("/home");
 	}
 }

@@ -10,6 +10,6 @@ import lombok.ToString;
 public class AreaDTO {
 	private String aId;
 	private String aName;
-	private int level;
+	private Integer level;
 	private Position localPosition;
 }

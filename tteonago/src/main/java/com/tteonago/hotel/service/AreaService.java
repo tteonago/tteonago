@@ -22,15 +22,13 @@ public class AreaService {
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public List<AreaDTO> getAllAreas() throws TteonagoException {
-		
 	    List<Area> areas = areaRepository.findAll();
-	    
 	    List<AreaDTO> areaDTOs = new ArrayList<>();
 	    
 	    for (Area area : areas) {
 	        areaDTOs.add(modelMapper.map(area, AreaDTO.class));
 	    }
-	    
+	
 	    return areaDTOs;
 	}
 }

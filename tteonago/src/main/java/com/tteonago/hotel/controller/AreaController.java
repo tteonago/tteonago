@@ -21,12 +21,11 @@ public class AreaController {
 	
 	private final AreaService areaService;
 	
-	@GetMapping("/all")
+	@GetMapping("/map")
 	public ResponseEntity<List<AreaDTO>> getAllAreas() throws TteonagoException {
 		
 		List<AreaDTO> areaDTOs = areaService.getAllAreas();
 		
 		return new ResponseEntity<>(areaDTOs, HttpStatus.OK);
 	}
-	
 }

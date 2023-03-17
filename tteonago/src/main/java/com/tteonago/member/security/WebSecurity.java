@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.tteonago.member.Handler.AuthenticationFailure;
 import com.tteonago.member.Handler.AuthenticationSocialSuccess;
 import com.tteonago.member.Handler.AuthenticationSuccess;
 
@@ -25,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class WebSecurity {
 	private final AuthenticationSuccess authenticationSuccess;
+	private final AuthenticationFailure authenticationFailure;
 	private final AuthenticationSocialSuccess authenticationSocialSuccess;
 
 	@Bean
@@ -56,7 +58,9 @@ public class WebSecurity {
                 .antMatchers("/mypage").permitAll()
                 .antMatchers("/social").permitAll()
                 .antMatchers("/show").permitAll()
+                .antMatchers("/showMe").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/loginForm").permitAll()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/getToken").permitAll()
                 .antMatchers("/join").permitAll()
@@ -77,6 +81,7 @@ public class WebSecurity {
                 .loginProcessingUrl("/loginChain")	//로그인 form 태그 action 을 명시합니다
                 //.defaultSuccessUrl("/hello")
                 .successHandler(authenticationSuccess)	//로그인 성공시 다음 행동을 지시합니다
+                .failureHandler(authenticationFailure)
               .and()
               	.logout()		//spring security logout 을 설정합니다
                 .logoutUrl("/logout")	//로그아웃 url

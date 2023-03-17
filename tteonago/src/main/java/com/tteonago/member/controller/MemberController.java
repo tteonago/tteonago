@@ -1,5 +1,7 @@
 package com.tteonago.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +33,6 @@ public class MemberController {
 							 @RequestParam(value = "name") String name,
 							 @RequestParam(value = "email") String email ){
 
-		System.out.println("userName ="+userName+"password="+password+"name="+name+"email"+email);
-
 		userService.join(userName, password,name,email, "ROLE_USER");
 
 		return "pages/index";
@@ -46,6 +46,18 @@ public class MemberController {
 	@GetMapping(value = "/mypage")
 	public String mypage() {
 		return "pages/mypage";
+	}
+	
+	@PostMapping("/failure")
+    public String loginForm(Model model, HttpServletRequest request ) {
+		model.addAttribute("error", (String) request.getAttribute("error"));
+        return "pages/login";
+    }
+	
+	@GetMapping(value = "/showMe")
+	public String showMe() {
+		
+		return "pages/wishlist";
 	}
 	
 }

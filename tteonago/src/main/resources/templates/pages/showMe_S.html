@@ -21,5 +21,9 @@ html
 	<h1 sec:authorize="hasAuthority('ROLE_USER')">you are a regular member!</h1> 
 	<h1 sec:authorize="hasAuthority('social')">you are a kakao member!</h1> 
 	<h1 sec:authorize="hasAuthority('ROLE_ANONYMOUS')">who are you?</h1> 
+	
+	<hr>
+	
+	<h1 th:text="${area} + ' 번 지역 코드를 선택하셨습니다.'"></h1>
 </body>
 </html>

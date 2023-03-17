@@ -38,7 +38,7 @@ public class UserService {
 			throw new AppException(ErrorCode.NULL, "정상적인 아이디가 아닙니다.");
 		}
 		
-		// 정상 회원가입시 db저장 --builder 코드는 수정이 필요합니다. 반드시 확인요청하세요
+		// 정상 회원가입시 db저장
 		Member member = Member.builder()
 				.username(userName)
 				.password(passwordEncoder.encode(password))

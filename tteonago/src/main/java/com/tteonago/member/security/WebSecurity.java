@@ -53,8 +53,9 @@ public class WebSecurity {
                 .authorizeRequests()
                 .antMatchers("/header_S.html").permitAll() //security 를 무조건 통과시킵니다
                 .antMatchers("/home").permitAll()
+                .antMatchers("/mypage").permitAll()
                 .antMatchers("/social").permitAll()
-                .antMatchers("/showMe").permitAll()
+                .antMatchers("/show").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/getToken").permitAll()
@@ -63,6 +64,7 @@ public class WebSecurity {
                 .antMatchers("/getName").permitAll()
                 .antMatchers("/showkakao").permitAll()
                 .antMatchers("/kakaologout").permitAll()
+                .antMatchers("/map").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/valid").authenticated()

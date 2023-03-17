@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -39,12 +40,12 @@
 
 </head>
 <body id="top">
+	
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="page_loader"></div>
-
 <!-- main header start -->
 <header class="main-header sticky-header">
     <div class="container">
@@ -121,9 +122,18 @@
                                     <li><a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                            
+							<li class="nav-item">
+                                <a class="nav-link" href="mypage">내 여행</a>
                             </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                                <a class="nav-link" href="login">로그인</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')">
+                                <a class="nav-link" href="logout">로그아웃</a>
+                            </li>
+                            
+                            
                             <li class="nav-item dropdown">
                                 <a href="#full-page-search" class="nav-link h-icon">
                                     <i class="flaticon-search"></i>
@@ -137,81 +147,96 @@
     </div>
 </header>
 <!-- main header end -->
-
+	
 <!-- Banner start -->
-<div class="banner banner-bg" id="particles-banner-wrapper">
-    <div id="particles-banner"></div>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active item-bg active">
-                <div class="carousel-caption banner-slider-inner d-flex text-center">
-                    <div class="carousel-content container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="bi-4">
-                                    <div class="container">
-                                        <div class="text-center">
-                                            <div id="typed-strings">
-                                                <p>Exploring The World</p>
-                                            </div>
-                                            <h1 class="typed-text">&nbsp;
-                                                <span id="typed"></span>
-                                            </h1>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bi-2">
-            <div class="container">
-                <div class="banner-inner-2 b3">
-                    <h3>Find Your Destination</h3>
-                    <form class="row inline-search-area search-area" method="GET">
-                        <div class="search-col">
-                            <select class="selectpicker search-fields btn-block form-control bdr" name="destinaion">
-                                <option>Destinaion</option>
-                                <option>NewYork</option>
-                                <option>Brazil</option>
-                                <option>California</option>
-                                <option>Canada</option>
-                                <option>Italy</option>
-                            </select>
-                            <i class="flaticon-down icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <input type="text" name="dates" placeholder="Check In" class="datetimes form-control"/>
-                            <i class="flaticon-timetable icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <input type="text" name="dates" placeholder="Check Out" class="datetimes form-control"/>
-                            <i class="flaticon-timetable icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <select class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
-                                <option>Travel Type</option>
-                                <option>Adventure</option>
-                                <option>Escorted Tour</option>
-                                <option>River Cruise</option>
-                                <option>Hiking</option>
-                                <option>Suffing</option>
-                            </select>
-                            <i class="flaticon-down icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <button type="submit" class="btn-theme btn-md btn-block">Search</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- banner end -->
+	<div class="banner banner-bg" id="particles-banner-wrapper">
+		<div id="particles-banner"></div>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active item-bg active">
+					<div
+						class="carousel-caption banner-slider-inner d-flex text-center">
+						<div class="carousel-content container">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="bi-4">
+										<div class="container">
+											<div class="text-center">
+												<div id="typed-strings">
+													<p>Exploring The World</p>
+												</div>
+												<h1 class="typed-text">
+													&nbsp; <span id="typed"></span>
+												</h1>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
+													elit. Maecenas in pulvinar neque.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bi-2">
+				<div class="container">
+					<div class="banner-inner-2 b3">
+						<h3>호텔 예약 검색</h3>
+						<form class="row inline-search-area search-area" method="GET">
+							<div class="search-col">
+								<br> <select
+									class="selectpicker search-fields btn-block form-control bdr"
+									name="destinaion" required>
+									<option value="" disabled selected>지역 선택</option>
+									<option value="서울">서울</option>
+									<option value="제주">제주</option>
+									<option value="부산">부산</option>
+									<option value="대전">대전</option>
+								</select> <i class="flaticon-down icon-append"></i>
+							</div>
+							<div class="search-col">
+								<br> <input type="text" name="dates"
+									placeholder="Check In - Check Out"
+									class="datetimes form-control" required /> <i
+									class="flaticon-timetable icon-append"></i>
+							</div>
+							<div class="search-col">
+								<br> <select
+									class="selectpicker search-fields btn-block form-control bdr"
+									name="travel-type" required>
+									<option value="" disabled selected>호텔 등급</option>
+									<option value="5">⭐⭐⭐⭐⭐</option>
+									<option value="4">⭐⭐⭐⭐</option>
+									<option value="3">⭐⭐⭐</option>
+									<option value="2">⭐⭐</option>
+									<option value="1">⭐</option>
+								</select> <i class="flaticon-down icon-append"></i>
+							</div>
+							<div class="search-col">
+								<br> <select
+									class="selectpicker search-fields btn-block form-control bdr"
+									name="guests" required>
+									<option value="" disabled selected>인원 수</option>
+									<option value="1">1명</option>
+									<option value="2">2명</option>
+									<option value="3">3명</option>
+									<option value="4">4명</option>
+									<option value="5">5명 이상</option>
+								</select> <i class="flaticon-down icon-append"></i>
+							</div>
+							<div class="search-col">
+								<br>
+								<button type="submit" class="btn-theme btn-md btn-block">Search</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- banner end -->
 
 <!-- Destination strat -->
 <div class="destination categories content-area-13">
@@ -220,11 +245,13 @@
         <div class="main-title">
             <h1><span class="border2"></span> Must See Places <span class="border2"></span></h1>
         </div>
+        
         <div class="slick-slider-area">
             <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+              
                 <div class="slick-slide-item col-lg-4 col-sm-4">
                     <div class="category">
-                        <div class="category_bg_box category_long_bg cat-1-bg">
+                        <div class="category_bg_box category_long_bg cat-1-bg" onclick="location.href='/map?area=10';">
                             <div class="category-overlay">
                                 <div class="category-content">                                 
                                     <h4 class="category-subtitle"><i class="flaticon-pin"></i> Seoul</h4>
@@ -233,6 +260,7 @@
                         </div>
                     </div>
                 </div>
+              
                 <div class="slick-slide-item col-lg-4 col-sm-4">
                     <div class="category">
                         <div class="category_bg_box category_long_bg cat-2-bg">
@@ -244,6 +272,7 @@
                         </div>
                     </div>
                 </div>
+              
                 <div class="slick-slide-item col-lg-4 col-sm-4">
                     <div class="category">
                         <div class="category_bg_box category_long_bg cat-3-bg">
@@ -255,6 +284,7 @@
                         </div>
                     </div>
                 </div>
+             
                 <div class="slick-slide-item col-lg-4 col-sm-4">
                     <div class="category">
                         <div class="category_bg_box category_long_bg cat-4-bg">
@@ -267,12 +297,14 @@
                     </div>
                 </div>
             </div>
+           
             <div class="slick-prev slick-arrow-buton">
                 <i class="fa fa-angle-left"></i>
             </div>
             <div class="slick-next slick-arrow-buton">
                 <i class="fa fa-angle-right"></i>
             </div>
+       
         </div>
     </div>
 </div>
@@ -373,7 +405,7 @@
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
-                <p class="copy">© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the property of their respective owners.</p>
+                <p class="copy">© 2020 <a href="#">Theme Vessel</a></p>
             </div>
         </div>
     </div>

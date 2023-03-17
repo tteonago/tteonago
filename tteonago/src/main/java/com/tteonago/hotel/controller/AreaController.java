@@ -2,7 +2,6 @@ package com.tteonago.hotel.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +12,20 @@ import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.service.AreaService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/areas")
+@RequestMapping("/area")
+@RequiredArgsConstructor
 public class AreaController {
 	
-	@Autowired
-	private AreaService areaService;
+	private final AreaService areaService;
 	
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<AreaDTO>> getAllAreas() throws TteonagoException {
+		
 		List<AreaDTO> areaDTOs = areaService.getAllAreas();
+		
 		return new ResponseEntity<>(areaDTOs, HttpStatus.OK);
 	}
 	

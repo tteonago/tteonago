@@ -11,7 +11,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Getter
-@Setter
 @Entity
 @Table(name="member")
 public class Member {

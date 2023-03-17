@@ -11,9 +11,9 @@ import com.tteonago.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-//@Slf4j
-//@Controller
-//@RequiredArgsConstructor
+@Slf4j
+@Controller
+@RequiredArgsConstructor
 public class SampleController {
 	//private final UserService userService;
 

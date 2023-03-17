@@ -66,7 +66,7 @@ public class WebSecurity {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/valid").authenticated()
-                .anyRequest().authenticated() //모든 요청을 제어합니다
+//                .anyRequest().authenticated() //모든 요청을 제어합니다
               .and()
                 .formLogin()	//spring security login 을 설정합니다
                 .loginPage("/login")	//다음과 같은 로그인 페이지로 이동합니다

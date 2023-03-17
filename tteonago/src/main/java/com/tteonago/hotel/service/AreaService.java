@@ -1,5 +1,7 @@
 package com.tteonago.hotel.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -15,18 +17,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class TestService {
+public class AreaService {
 	@Autowired
-	private AreaRepository AreaDao;
+	private AreaRepository areaRepository;
 	
-	private ModelMapper mapper= new ModelMapper();
-	
-	public AreaDTO getArea(String aId) throws TteonagoException{
-		Optional<Area> area = AreaDao.findById(aId);
-		
-		Area entity = area.orElseThrow(TteonagoException::new);
-		
-		return mapper.map(entity, AreaDTO.class);
+	private ModelMapper modelMapper = new ModelMapper();
+
+	public List<AreaDTO> getAllAreas() throws TteonagoException {
+	    List<Area> areas = areaRepository.findAll();
+	    List<AreaDTO> areaDTOs = new ArrayList<>();
+	    for (Area area : areas) {
+	        areaDTOs.add(modelMapper.map(area, AreaDTO.class));
+	    }
+	    return areaDTOs;
 	}
 	
 }

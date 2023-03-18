@@ -10,8 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.NonNull;
+import lombok.ToString;
 
 @Entity
+@ToString
 @Table(name="hotelImage")
 public class HotelImage {
 	

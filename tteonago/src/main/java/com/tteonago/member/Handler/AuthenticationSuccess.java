@@ -32,7 +32,6 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-
 		String token = JwtTokenUtil.createToken(authentication.getName(), SecretKey, expireTimeMs);
 
 		Cookie cookie = new Cookie("token", token);

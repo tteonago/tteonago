@@ -1,14 +1,23 @@
 package com.tteonago.member.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tteonago.member.entity.Member;
+import com.tteonago.member.entity.WishlistDTO;
 import com.tteonago.member.exception.AppException;
 import com.tteonago.member.exception.ErrorCode;
 import com.tteonago.member.repository.MemberRepository;
-import com.tteonago.member.utils.JwtTokenUtil;
+import com.tteonago.member.repository.WishlistRepository;
+import com.tteonago.reservation.entity.Wishlist;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,14 +28,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+	
 	private final MemberRepository memberRepository;
-	//private final BCryptPasswordEncoder encoder;
+	private final WishlistRepository wishlistRepository;
 	private final PasswordEncoder passwordEncoder;
+	private ModelMapper modelMapper = new ModelMapper();
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 	private Long expireTimeMs = 1000 * 30l;
 
-	//회원가입
+	//회원가입 insert into member 
 	public String join(String userName, String password, String name,String email,String role) {
 		// 중복 check
 		memberRepository.findByUsername(userName).ifPresent(user -> {
@@ -38,7 +49,7 @@ public class UserService {
 			throw new AppException(ErrorCode.NULL, "정상적인 아이디가 아닙니다.");
 		}
 		
-		// 정상 회원가입시 db저장 --builder 코드는 수정이 필요합니다. 반드시 확인요청하세요
+		// 정상 회원가입시 db저장
 		Member member = Member.builder()
 				.username(userName)
 				.password(passwordEncoder.encode(password))
@@ -51,18 +62,29 @@ public class UserService {
 
 		return "success";
 	}
-	//로그인
-	public String login(String userName, String password) {
-		//없는 아이디 입력
-		Member selectedUser = memberRepository.findByUsername(userName)
-				.orElseThrow(() -> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + " 은/는 존재하지 않는 ID 입니다."));
-		//틀린 비밀번호 입력
-		if(!passwordEncoder.matches(password, selectedUser.getPassword())) {
-			throw new AppException(ErrorCode.INVALID_PASSWORD, "비밀번호가 틀렸습니다.");
-		}
-		//정상 로그인시 토큰 발행
-		String token = JwtTokenUtil.createToken(selectedUser.getUsername(), SecretKey, expireTimeMs);
+	
+	//select * from wishlist where username = ? 
+	public List<Object[]> getwishtlist(String username) throws AppException{
+		Optional<Member> memberOp = memberRepository.findById(username);
+		Member member = memberOp.orElseThrow(AppException::new);
 		
-		return token;
+		List<Object[]> wishlists = wishlistRepository.findByMember(member);
+		
+	    return wishlists;
 	}
+	
+	//로그인  no usage??? -> successHandler 에서 잡아주는것 같음 -> 이 코드는 확인이 필요합니다. 반드시 확인요청 해주세요
+//	public String login(String userName, String password) {
+//		//없는 아이디 입력
+//		Member selectedUser = memberRepository.findByUsername(userName)
+//				.orElseThrow(() -> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + " 은/는 존재하지 않는 ID 입니다."));
+//		//틀린 비밀번호 입력
+//		if(!passwordEncoder.matches(password, selectedUser.getPassword())) {
+//			throw new AppException(ErrorCode.INVALID_PASSWORD, "비밀번호가 틀렸습니다.");
+//		}
+//		//정상 로그인시 토큰 발행
+//		String token = JwtTokenUtil.createToken(selectedUser.getUsername(), SecretKey, expireTimeMs);
+//		
+//		return token;
+//	}
 }

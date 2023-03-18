@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
     <!-- Google Tag Manager -->
@@ -41,12 +42,12 @@
 
 </head>
 <body id="top">
+	
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="page_loader"></div>
-
 <!-- main header start -->
 <header class="main-header sticky-header">
     <div class="container">
@@ -123,9 +124,19 @@
                                     <li><a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+
+							<li class="nav-item">
+                                <a class="nav-link" href="mypage">내 여행</a>
+
                             </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                                <a class="nav-link" href="login">로그인</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')">
+                                <a class="nav-link" href="logout">로그아웃</a>
+                            </li>
+                            
+                            
                             <li class="nav-item dropdown">
                                 <a href="#full-page-search" class="nav-link h-icon">
                                     <i class="flaticon-search"></i>
@@ -139,7 +150,7 @@
     </div>
 </header>
 <!-- main header end -->
-
+	
 <!-- Banner start -->
 <div class="banner banner-bg" id="particles-banner-wrapper">
     <div id="particles-banner"></div>
@@ -365,7 +376,7 @@
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
-                <p class="copy">© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the property of their respective owners.</p>
+                <p class="copy">© 2020 <a href="#">Theme Vessel</a></p>
             </div>
         </div>
     </div>

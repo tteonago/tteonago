@@ -31,7 +31,7 @@ public class MemberController {
 	public String sample() {
 		return "pages/signup";
 	}
-
+	
 	@PostMapping(value = "/join")
 	public String join(@RequestParam(value = "username") String userName,
 							 @RequestParam(value = "password") String password,

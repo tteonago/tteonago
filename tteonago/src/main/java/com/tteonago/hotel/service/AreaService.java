@@ -31,4 +31,11 @@ public class AreaService {
 	
 	    return areaDTOs;
 	}
+	
+	public AreaDTO getAreaById(String areaId) throws TteonagoException {
+	    Area area = areaRepository.findById(areaId)
+	        .orElseThrow(() -> new TteonagoException("Area not found"));
+	    return modelMapper.map(area, AreaDTO.class);
+	}
+	
 }

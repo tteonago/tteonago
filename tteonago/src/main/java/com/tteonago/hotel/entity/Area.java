@@ -6,18 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
 
 @Data
-@Getter
-@Setter
-@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name="area")
@@ -26,15 +22,16 @@ public class Area {
 	@Id
 	private String aId; 
 	
-	@Embedded 
-	private Position localPosition;
+	@NonNull
+	@Column(name = "aName")
+	private String aName;
+	
 	
 	@NonNull
 	@Column(name = "level")
     private Integer level;  
 	
-	@NonNull
-	@Column(name = "aName")
-	private String aName;
-
+	@Embedded 
+	private Position localPosition;
+	
 }

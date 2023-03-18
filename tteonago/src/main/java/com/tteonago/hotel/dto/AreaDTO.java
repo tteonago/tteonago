@@ -2,11 +2,14 @@ package com.tteonago.hotel.dto;
 
 import com.tteonago.hotel.entity.Position;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Data
-@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class AreaDTO {
 	private String aId;
 	private String aName;

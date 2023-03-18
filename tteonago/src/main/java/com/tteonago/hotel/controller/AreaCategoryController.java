@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.service.AreaService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,4 +27,14 @@ public class AreaCategoryController {
       
         return "pages/index";
     }
+    
+    @GetMapping("/map")
+    public String map(@RequestParam String area, Model model) throws TteonagoException {
+        AreaDTO areaDTO = areaService.getAreaById(area);
+        model.addAttribute("area", areaDTO);
+        return "pages/map";
+    }
+    
 }
+    
+   

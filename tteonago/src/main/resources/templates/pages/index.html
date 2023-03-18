@@ -232,37 +232,41 @@
 
 <!-- Destination strat -->
 <div class="destination categories content-area-13">
-    <div class="container">
-      <!-- Main title -->
-      <div class="main-title">
-        <h1><span class="border2"></span> Must See Places <span class="border2"></span></h1>
-      </div>
-      <div class="slick-slider-area">
-        <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-          <!-- 반복문 시작 -->
-          <div th:each="area, iterStat : ${areas}" class="slick-slide-item col-lg-4 col-sm-4">
-            <div class="category">
-              <!-- 이미지 경로를 직접 지정하여 반복문을 통해 출력 -->
-              <div class="category_bg_box category_long_bg" th:style="'background-image: url(/assets/img/destination/img-' + ${iterStat.index + 1} + '.jpg)'">
-                <div class="category-overlay">
-                  <div class="category-content">
-                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> <span th:text="${area.aName}"></span></h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- 반복문 끝 -->
-        </div>
-        <div class="slick-prev slick-arrow-buton">
-          <i class="fa fa-angle-left"></i>
-        </div>
-        <div class="slick-next slick-arrow-buton">
-          <i class="fa fa-angle-right"></i>
+  <div class="container">
+    <!-- Main title -->
+    <div class="main-title">
+      <h1><span class="border2"></span> Must See Places <span class="border2"></span></h1>
+    </div>
+    <div class="slick-slider-area">
+      <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+        <!-- 반복문 시작 -->
+		<div th:each="area, iterStat : ${areas}" class="slick-slide-item col-lg-4 col-sm-4">
+  		<div class="category">
+    		<!-- 이미지 경로를 직접 지정하여 반복문을 통해 출력 -->
+			<div class="category_bg_box category_long_bg" 
+    		 th:style="'background-image: url(/assets/img/destination/img-' + ${iterStat.index + 1} + '.jpg)'"
+   			 th:data-areaid="${area.aId}"
+    		 onclick="location.href='/map?area=' + $(this).data('areaid')"
+			>
+      <div class="category-overlay">
+        <div class="category-content">
+          <h4 class="category-subtitle"><i class="flaticon-pin"></i> <span th:text="${area.aName}"></span></h4>
         </div>
       </div>
     </div>
   </div>
+</div>
+<!-- 반복문 끝 -->
+      </div>
+      <div class="slick-prev slick-arrow-buton">
+        <i class="fa fa-angle-left"></i>
+      </div>
+      <div class="slick-next slick-arrow-buton">
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Destination end -->
 
 

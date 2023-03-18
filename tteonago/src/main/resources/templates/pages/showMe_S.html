@@ -24,6 +24,18 @@ html
 	
 	<hr>
 	
-	<h1 th:text="${area} + ' 번 지역 코드를 선택하셨습니다.'"></h1>
+	<div th:each="wishlist, iterStat : ${wishlist}">
+		<span th:text="${wishlist[0]}"></span>
+		<span th:text="${wishlist[1]}"></span>
+		<span th:text="${wishlist[2]}"></span>
+		<div th:style="'background-image: url(${wishlist[2]})'">
+		<br><hr><br>
+	</div>
+	
+	<br>
+	
+	<img src="images/40_002_2.jpg">
+	
+	
 </body>
 </html>

@@ -1,14 +1,23 @@
 package com.tteonago.member.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tteonago.member.entity.Member;
+import com.tteonago.member.entity.WishlistDTO;
 import com.tteonago.member.exception.AppException;
 import com.tteonago.member.exception.ErrorCode;
 import com.tteonago.member.repository.MemberRepository;
-import com.tteonago.member.utils.JwtTokenUtil;
+import com.tteonago.member.repository.WishlistRepository;
+import com.tteonago.reservation.entity.Wishlist;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,14 +28,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+	
 	private final MemberRepository memberRepository;
-	//private final BCryptPasswordEncoder encoder;
+	private final WishlistRepository wishlistRepository;
 	private final PasswordEncoder passwordEncoder;
+	private ModelMapper modelMapper = new ModelMapper();
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 	private Long expireTimeMs = 1000 * 30l;
 
-	//회원가입
+	//회원가입 insert into member 
 	public String join(String userName, String password, String name,String email,String role) {
 		// 중복 check
 		memberRepository.findByUsername(userName).ifPresent(user -> {
@@ -51,6 +62,17 @@ public class UserService {
 
 		return "success";
 	}
+	
+	//select * from wishlist where username = ? 
+	public List<Object[]> getwishtlist(String username) throws AppException{
+		Optional<Member> memberOp = memberRepository.findById(username);
+		Member member = memberOp.orElseThrow(AppException::new);
+		
+		List<Object[]> wishlists = wishlistRepository.findByMember(member);
+		
+	    return wishlists;
+	}
+	
 	//로그인  no usage??? -> successHandler 에서 잡아주는것 같음 -> 이 코드는 확인이 필요합니다. 반드시 확인요청 해주세요
 //	public String login(String userName, String password) {
 //		//없는 아이디 입력

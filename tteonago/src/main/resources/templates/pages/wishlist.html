@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -39,6 +40,7 @@
 
 </head>
 <body id="top">
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -142,190 +144,72 @@
 <div class="sub-banner">
     <div class="container">
         <div class="breadcrumb-area">
-            <h1>Destination Grid</h1>
-            <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Destination Grid</li>
-            </ul>
+            <h1>나의 찜 목록</h1>
         </div>
     </div>
 </div>
 <!-- Sub banner end -->
 
-<!-- Destination strat -->
+<!-- Destination start -->
 <div class="destination d-2 content-area-2">
     <div class="container">
         <div class="row">
         
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div th:each="wishlist, iterStat : ${wishlist}" class="col-lg-4 col-md-6 col-sm-12">
                 <div class="category">
-                    <div class="category_bg_box cat-1-bg">
+                    <div class="category_bg_box" th:style="'background-image: url(' + ${wishlist[2]} + ')'">
                         <div class="category-overlay">
                             <div class="category-content">
-                                <h5 class="category-title">24 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                                <h5 class="category-title">♥</h5>
+                                <h4 class="category-subtitle"><i class="flaticon-pin"></i><span th:text="${wishlist[0].hotelName}"></span></h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-5-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">77 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="col-lg-12">
-                <div class="pagination-box">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 <!-- Destination end -->
 
-<!-- Footer start -->
-<footer class="footer">
-    <div class="container footer-inner">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer-item">
-                    <h4>Contact Us</h4>
-                    <div class="s-border"></div>
-                    <div class="m-border"></div>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="flaticon-pin"></i>20/F Green Road, Dhanmondi, Dhaka
-                        </li>
-                        <li>
-                            <i class="flaticon-mail"></i><a href="mailto:sales@hotelempire.com">info@themevessel.com</a>
-                        </li>
-                        <li>
-                            <i class="flaticon-phone"></i><a href="tel:+55-417-634-7071">+0477 85X6 552</a>
-                        </li>
-                        <li>
-                            <i class="flaticon-fax"></i>+0477 85X6 552
-                        </li>
-                    </ul>
-                    <ul class="social-list clearfix">
-                        <li><a href="#" class="facebook-color"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="twitter-color"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="google-color"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="rss-color"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" class="linkedin-color"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="footer-item">
-                    <h4>Solutions</h4>
-                    <div class="s-border"></div>
-                    <div class="m-border"></div>
-                    <ul class="links">
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Tours</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Pricing</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>About us</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Destinations</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Testimonials</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="footer-item">
-                    <h4>quick links</h4>
-                    <div class="s-border"></div>
-                    <div class="m-border"></div>
-                    <ul class="links">
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Upcoming Tours</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Contact Us</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Discover</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Payment Options</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>FAQs</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="footer-item">
-                    <h4>Resources</h4>
-                    <div class="s-border"></div>
-                    <div class="m-border"></div>
-                    <ul class="links">
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Security</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Terms of Use</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i>Information</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-8 col-sm-12">
-                <div class="footer-item clearfix">
-                    <h4>Subscribe</h4>
-                    <div class="s-border"></div>
-                    <div class="m-border"></div>
-                    <div class="Subscribe-box">
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
-                        <form class="form-inline" action="#" method="GET">
-                            <input type="text" class="form-control mb-sm-0" id="inlineFormInputName3" placeholder="Email Address">
-                            <button type="submit" class="btn"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <p class="copy">© 2020 <a href="http://themevessel.com/" target="_blank">Theme Vessel</a>. Trademarks and brands are the property of their respective owners.</p>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Footer end -->
+<!-- Footer-6 start -->
+	<footer class="footer-2">
+		<div class="container footer-inner">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-logo">
+						<img src="assets/img/logos/logo.png" alt="logo">
+					</div>
+					<ul class="social-list clearfix">
+						<li><a href="#" class="facebook"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="google"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+						<li><a href="#" class="linkedin"><i
+								class="fa fa-linkedin"></i></a></li>
+					</ul>
+					<div class="nav-inline">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Tours</a></li>
+							<li><a href="#">Destinations</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Blog</a></li>
+						</ul>
+					</div>
+					<p class="copy">
+						© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the
+						property of their respective owners.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+<!-- Footer-6 end -->
 
 <!-- Full page search -->
 <div id="full-page-search">

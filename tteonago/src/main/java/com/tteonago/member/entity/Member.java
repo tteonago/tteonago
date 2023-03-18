@@ -12,6 +12,7 @@ import lombok.*;
 @Builder
 @Getter
 @Entity
+@ToString
 @Table(name="member")
 public class Member {
 	

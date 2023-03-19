@@ -44,6 +44,10 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-taglibs'
 	//ouath2
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.4.3'
+	
+	//thymeleaf 
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 }
 
 tasks.named('test') {

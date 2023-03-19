@@ -1,16 +1,23 @@
 package com.tteonago.hotel.dto;
 
-import com.tteonago.hotel.entity.Position;
-
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
+@Setter
+@Getter
 @ToString
 public class AreaDTO {
 	private String aId;
+	
 	private String aName;
-	private int level;
-	private Position localPosition;
+	
+	private Integer level;
+	
+	private PositionDTO localPosition;
 }

@@ -2,6 +2,7 @@ package com.tteonago.hotel.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -11,15 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Data
-@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Setter
+@Getter
 @ToString
 
 @Entity
@@ -59,6 +63,9 @@ public class Hotel {
 	@Column(name = "profit")
 	private Integer profit ;
 	
-	@OneToMany(mappedBy = "hotel")
-	private List<Room> room;
+	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Room> room;
+    
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HotelImage> images;
 }

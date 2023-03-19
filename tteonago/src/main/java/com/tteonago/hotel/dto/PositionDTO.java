@@ -1,5 +1,7 @@
 package com.tteonago.hotel.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +14,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class RoomDTO {
-	private String roomId;
+public class PositionDTO {
+	private BigDecimal lng;
 	
-	private HotelDTO hotel;
-	
-	private String roomType;
-	
-	private Integer price;
-	
-	private Integer roomSize;
+	private BigDecimal lat;
 }
+

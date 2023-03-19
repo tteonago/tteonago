@@ -82,6 +82,6 @@ public class SearchController {
 		System.out.println("변경된 날짜 포멧 " + LocalDatein);
 		System.out.println("변경된 날짜 포멧 " + LocalDateOut);
 		
-		return "pages/tours-list.html";
+		return "pages/tours-list";
 	}
 }

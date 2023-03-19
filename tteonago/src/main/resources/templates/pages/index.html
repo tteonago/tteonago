@@ -152,28 +152,29 @@
 <!-- main header end -->
 	
 <!-- Banner start -->
-<div class="banner banner-bg" id="particles-banner-wrapper">
-    <div id="particles-banner"></div>
-    <div id="carouselExampleIndicators" class="carousel slide"
-        data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active item-bg active">
-                <div
-                    class="carousel-caption banner-slider-inner d-flex text-center">
-                    <div class="carousel-content container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="bi-4">
-                                    <div class="container">
-                                        <div class="text-center">
-                                            <div id="typed-strings">
-                                                <p>Exploring The World</p>
+    <div class="banner banner-bg" id="particles-banner-wrapper">
+        <div id="particles-banner"></div>
+        <div id="carouselExampleIndicators" class="carousel slide"
+            data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active item-bg active">
+                    <div
+                        class="carousel-caption banner-slider-inner d-flex text-center">
+                        <div class="carousel-content container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="bi-4">
+                                        <div class="container">
+                                            <div class="text-center">
+                                                <div id="typed-strings">
+                                                    <p>Exploring The World</p>
+                                                </div>
+                                                <h1 class="typed-text">
+                                                    &nbsp; <span id="typed"></span>
+                                                </h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Maecenas in pulvinar neque.</p>
                                             </div>
-                                            <h1 class="typed-text">
-                                                &nbsp; <span id="typed"></span>
-                                            </h1>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Maecenas in pulvinar neque.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -182,63 +183,62 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bi-2">
-            <div class="container">
-                <div class="banner-inner-2 b3">
-                    <h3>호텔 예약 검색</h3>
-                    <form class="row inline-search-area search-area" method="GET">
-                        <div class="search-col">
-                            <br> <select
-                                class="selectpicker search-fields btn-block form-control bdr"
-                                name="destination" required>
-                                <option value="" disabled selected>지역 선택</option>
-                                <option value="서울">서울</option>
-                                <option value="제주">제주</option>
-                                <option value="부산">부산</option>
-                                <option value="대전">대전</option>
-                            </select> <i class="flaticon-down icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <br> <input type="text" name="dates"
-                                placeholder="Check In - Check Out"
-                                class="datetimes form-control" required /> <i
-                                class="flaticon-timetable icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <br> <select
-                                class="selectpicker search-fields btn-block form-control bdr"
-                                name="travel-type" required>
-                                <option value="" disabled selected>호텔 등급</option>
-                                <option value="5">⭐⭐⭐⭐⭐</option>
-                                <option value="4">⭐⭐⭐⭐</option>
-                                <option value="3">⭐⭐⭐</option>
-                                <option value="2">⭐⭐</option>
-                                <option value="1">⭐</option>
-                            </select> <i class="flaticon-down icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <br> <select
-                                class="selectpicker search-fields btn-block form-control bdr"
-                                name="guests" required>
-                                <option value="" disabled selected>인원 수</option>
-                                <option value="1">1명</option>
-                                <option value="2">2명</option>
-                                <option value="3">3명</option>
-                                <option value="4">4명</option>
-                                <option value="5">5명 이상</option>
-                            </select> <i class="flaticon-down icon-append"></i>
-                        </div>
-                        <div class="search-col">
-                            <br>
-                            <button type="submit" class="btn-theme btn-md btn-block">Search</button>
-                        </div>
-                    </form>
+            <div class="bi-2">
+                <div class="container">
+                    <div class="banner-inner-2 b3">
+                        <h3>호텔 예약 검색</h3>
+                        <form action="/hotelsearch" class="row inline-search-area search-area" method="GET">
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="destination" required>
+                                    <option value="" disabled selected>지역 선택</option>
+                                    <option value="서울">서울</option>
+                                    <option value="제주">제주</option>
+                                    <option value="부산">부산</option>
+                                    <option value="대전">대전</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <input type="text" name="dates"
+                                    placeholder="Check In - Check Out"
+                                    class="datetimes form-control" required /> <i
+                                    class="flaticon-timetable icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="hotel-grade" required>
+                                    <option value="" disabled selected>호텔 등급</option>
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                    <option value="4">⭐⭐⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="2">⭐⭐</option>
+                                    <option value="1">⭐</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="guests" required>
+                                    <option value="" disabled selected>인원 수</option>
+                                    <option value="1">1명</option>
+                                    <option value="2">2명</option>
+                                    <option value="3">3명</option>
+                                    <option value="4">4명</option>
+                                    <option value="5">5명 이상</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br>
+                                <button type="submit" class="btn-theme btn-md btn-block">Search</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <!-- banner end -->
 
 <!-- Destination strat -->

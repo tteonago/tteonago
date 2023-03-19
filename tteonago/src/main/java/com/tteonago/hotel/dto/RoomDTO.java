@@ -9,8 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Setter
 @Getter
+@Setter
 @ToString
 public class RoomDTO {
 	private String roomId;

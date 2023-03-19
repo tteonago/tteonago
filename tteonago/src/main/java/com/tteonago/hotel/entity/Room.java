@@ -17,13 +17,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Setter
 @Getter
+@Setter
 @ToString
 
 @Entity
 @Table(name="room")
 public class Room {
+	
 	@Id
 	@Column(name = "roomId")
 	private String roomId;

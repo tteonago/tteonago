@@ -12,20 +12,8 @@ import javax.persistence.Table;
 import com.tteonago.hotel.entity.Hotel;
 import com.tteonago.member.entity.Member;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder
-@Getter
-@Setter
 @Entity
 @Table(name="wishlist")
 public class Wishlist {
@@ -33,7 +21,7 @@ public class Wishlist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wishindex")
-	private Integer wishindex;
+	private int wishindex;
 	
 	@NonNull
 	@ManyToOne

@@ -1,7 +1,5 @@
 package com.tteonago.hotel.controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,25 +23,37 @@ public class SearchController {
 	private ModelMapper mapper = new ModelMapper();
 
 	@GetMapping("/hotelsearch")
-	public String getHotelSearch(@RequestParam(value = "destination") String destination,
+	public String getHotelSearch(@RequestParam(value = "destinaion") String destinaion,
 			@RequestParam(value = "dates") String dates, @RequestParam(value = "hotel-grade") int hotelgrade,
 			@RequestParam(value = "guests") int guests, Model model) {
 
 		String aid = null;
 
-		System.out.println("날짜 " + dates);
+		System.out.println(destinaion);
 
-		if (destination.equals("서울")) {
+		if (destinaion.equals("서울")) {
 			aid = "10";
-		} else if (destination.equals("제주")) {
+		} else if (destinaion.equals("제주")) {
 			aid = "20";
-		} else if (destination.equals("부산")) {
+		} else if (destinaion.equals("부산")) {
 			aid = "30";
 		} else { // "대전"
 			aid = "40";
 		}
 
+//		List<Hotel> hotellistentity = hotelService.findHotelsByAddressAndStarAndRoomSize(destinaion, hotelgrade, guests);
+
+//		List<Hotel> hotellistentity = hotelService.findHotelsByAddressAndStar(destinaion, hotelgrade);
+
+//		Hotel hotellistentity = hotelService.findByHotelId("10001");
+
 		List<Hotel> hotellistentity = hotelService.gethotellist(aid, hotelgrade, guests);
+
+//		List<HotelDTO> hotellist = Arrays.asList(mapper.map(hotellistentity, HotelDTO.class));
+
+//		for (HotelDTO hotel : hotellist) {
+//			System.out.println(hotel.getHotelInfo());
+//		}
 		
 		List<HotelDTO> hotellist = new ArrayList<>();
 		for(Hotel hotel : hotellistentity) {
@@ -51,37 +61,15 @@ public class SearchController {
 		    hotellist.add(hotelDTO);
 		}
 		
-		int hotelCount = hotellist.size();
-		
+		for(int i=0; i<hotellist.size(); i++) {
+			//System.out.println(hotellist.get(i).getHotelId());
+			//System.out.println(hotellist.get(i).getImages());
+			//System.out.println(hotellist.get(i).getStar());
+			System.out.println(hotellist.get(i).getHotelPhone());
+		}
+	
 		model.addAttribute("hotellist", hotellist);
-		model.addAttribute("hotelcount", hotelCount);
-		
-		String[] dateArr = dates.split(" - ");
-		String checkin = dateArr[0];
-		String checkout = dateArr[1];
-		
-		System.out.println("기존의 날짜 포멧 " + checkin);
-		System.out.println("기존의 날짜 포멧 " + checkout);
-		
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
-		//DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
-		
-		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
-		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
-		
-		String formattedCheckin = checkinDate.format(outputFormatter);
-		String formattedCheckout = checkoutDate.format(outputFormatter);
-		
-//		System.out.println("변경된 날짜 포멧 " + formattedCheckin); // String
-//		System.out.println("변경된 날짜 포멧 " + formattedCheckout); // String
-		
-		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
-		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
-		
-		System.out.println("변경된 날짜 포멧 " + LocalDatein);
-		System.out.println("변경된 날짜 포멧 " + LocalDateOut);
-		
-		return "pages/tours-list";
+
+		return "pages/tours-list.html";
 	}
 }

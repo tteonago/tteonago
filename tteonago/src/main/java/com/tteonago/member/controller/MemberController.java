@@ -1,81 +1,99 @@
 package com.tteonago.member.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.tteonago.member.entity.WishlistDTO;
 import com.tteonago.member.service.UserService;
+import com.tteonago.member.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class MemberController {
-	
 	private final UserService userService;
-
+	@Value("${jwt.token.secret}")
+	private String SecretKey;
+	
 	@GetMapping("/home")
-	public String home() {
-		return "pages/index";
-	}
-
-	@GetMapping("/signup")
-	public String sample() {
+	public String helloworld() {
 		return "pages/signup";
 	}
-	
-	@PostMapping(value = "/join")
-	public String join(@RequestParam(value = "username") String userName,
-							 @RequestParam(value = "password") String password,
-							 @RequestParam(value = "name") String name,
-							 @RequestParam(value = "email") String email ){
 
-		userService.join(userName, password,name,email, "ROLE_USER");
-
-		return "pages/index";
-	}
+//	@PostMapping(value = "/join")
+//	public ModelAndView join(@RequestParam(value = "userName") String userName,
+//							 @RequestParam(value = "password") String password,
+//							 @RequestParam(value = "name") String name,
+//							 @RequestParam(value = "email") String email ){
+//
+//		System.out.println("userName ="+userName+"password="+password+"name="+name+"email"+email);
+//
+//		userService.join(userName, password,name,email, "ROLE_USER");
+//
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("redirect:/index_S.html");
+//		//회원가입하고 나면 로그인으로 가야할지
+//
+//		return mv;
+//	}
 	
-	@GetMapping(value = "/login")
-	public String login() {
-		return "pages/login";
-	}
-	
-	@GetMapping(value = "/mypage")
-	public String mypage() {
-		return "pages/mypage";
-	}
-	
-	@PostMapping("/failure")
-    public String loginForm(Model model, HttpServletRequest request ) {
-		model.addAttribute("error", (String) request.getAttribute("error"));
-        return "pages/login";
-    }
-	
-	@GetMapping("/wishlist")
-	public String wishlist(Model model, Authentication authentication) {
-		if(authentication == null) {
-			return "pages/login"; 
+	@PostMapping("/getToken")
+	public ResponseEntity<String> showName(@CookieValue(value = "token", required = false) String token) {
+		System.out.println("token-----" + token);
+		
+		if(token == null) {
+			return ResponseEntity.ok().body(token); 
 		}
 		
-		List<Object[]> wishlist = userService.getwishtlist(authentication.getName());
-        model.addAttribute("wishlist", wishlist);
-		
-		return "pages/wishlist";
+		return ResponseEntity.ok().body(token);
 	}
 	
-	//delete
-	@GetMapping(value = "/showMe")
-	public String showMe() {
+	@PostMapping("/getName")
+	public ResponseEntity<String> getName(Authentication authientication) {
 		
-		return "pages/wishlist";
+		if(authientication == null) {
+			return ResponseEntity.ok().body(""); 
+		}
+		System.out.println("getName---------" + authientication.getName());
+		
+		String userName = authientication.getName();
+		return ResponseEntity.ok().body(userName);
 	}
 	
+	@PostMapping("/getTokenName")
+	public ResponseEntity<String> getTokenName(@CookieValue(value = "token", required = false) String token) {
+		System.out.println("gettokenname--------" + token);
+		if(token == null) {
+			return ResponseEntity.ok().body(token); 
+		}
+		
+		String userName = JwtTokenUtil.getUserName(token, SecretKey);
+		return ResponseEntity.ok().body(userName);
+	}
+
+	/*
+	 * @GetMapping("/valid") public ModelAndView valid() { ModelAndView mv = new
+	 * ModelAndView(); mv.setViewName("valid");
+	 * 
+	 * return mv; }
+	 */
+	
+//	@GetMapping("/showMe")
+//	public ModelAndView showme() {
+//		System.out.println("showme--------");
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("pages/showMe_S");
+//		
+//		System.out.println("showme--------11");
+//		return mv;
+//	}
 }

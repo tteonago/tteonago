@@ -11,8 +11,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Setter
 @Getter
+@Setter
 @ToString
 public class PositionDTO {
 	private BigDecimal lng;

@@ -4,6 +4,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 /*
@@ -14,30 +16,19 @@ public class Interceptor implements HandlerInterceptor {
 	//진입 직전 행동
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("filter 1111111");
-		
 		Cookie[] cookie = request.getCookies();
+		
 		if(cookie == null) {
 			return true;
 		}
-		System.out.println("filter 2222222");
+		
 		for(Cookie c : cookie) {
 			if(c.getName().equals("token")) {
 				return true;
 			}
 		}
 		
-		System.out.println("filter 33333333");
-		for (Cookie c : cookie) {
-	        if (c.getName().equals("JSESSIONID")) { // 삭제하려는 쿠키의 이름을 설정
-	            c.setMaxAge(0); // 쿠키 만료 시간을 0으로 설정하여 즉시 삭제
-	            c.setPath("/"); // 쿠키 경로 설정
-	            response.addCookie(c); // 쿠키 삭제
-	            break; // 해당 쿠키를 찾았으므로 더 이상 반복하지 않고 종료
-	        }
-	    }
-		//new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+		new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
 		return true;
 	}
-	
 }

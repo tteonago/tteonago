@@ -165,7 +165,7 @@
                                     <i class="fa fa-caret-right icon-design"></i>
                                     <i class="fa fa-th-list"></i>
                                 </span>
-                                <span class="heading" th:text="${hotelcount + ' 개의 호텔 검색'}"></span>
+                                <span class="heading">20 Result Found</span>
                             </h4>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
@@ -190,7 +190,8 @@
                         <div class="item-thumbnail">
                           <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}" class="item-img">
                             <!-- <div class="tag">세일</div> 사용X 이 부분은 css 정리 할 때 참고용으로 남겨둠 -->
-                            <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                          
+                            <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />
+                            <!-- <img th:src="" /> -->
                             <div class="plan-price"><sup>$</sup>750<sub>/박</sub></div>
                           </a>
                         </div>

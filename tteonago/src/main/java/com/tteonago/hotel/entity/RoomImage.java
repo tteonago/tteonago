@@ -18,14 +18,14 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-
-@Setter
 @Getter
+@Setter
 @ToString
 
 @Entity
 @Table(name="roomImage")
 public class RoomImage {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int imgId;

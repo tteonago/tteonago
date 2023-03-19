@@ -2,21 +2,23 @@
 <html lang="ko"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    
     <title>tteonago sign up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <!-- External CSS libraries -->
-    <link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../static/assets/css/bootstrap.min.css">
+   
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon" >
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
 
     <!-- Google fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
 
     <!-- Custom Stylesheet -->
-    <link type="text/css" rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" id="style_sheet" href="/assets/css/skins/default.css">
+    <link type="text/css" rel="stylesheet" href="../../static/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
+
 </head>
 
 <body id="top">
@@ -36,9 +38,7 @@
 	                
 	                    <!-- Logo -->
 	                    <a href="index.html">
-
-	                        <img src="images/logo_small.jpg" class="cm-logo" alt="logo">
-
+	                        <img src="../../static/images/logo_small.jpg" class="cm-logo" alt="logo">
 	                    </a>
 	                    
 	                    <!-- details -->
@@ -50,16 +50,16 @@
 	                        <!-- Form start -->
 	                        <form id="login-form" action="/join" method="post">
 	                           	<div class="form-group2">
-									<input type="text" class="form-control" name="username" placeholder="아이디" required>
+									<input type="text" class="form-control" name="username" placeholder="아이디">
 								</div>
 								<div class="form-group2">
-									<input type="Password" class="form-control" name="password" placeholder="비밀번호" required>
+									<input type="Password" class="form-control" name="password" placeholder="비밀번호">
 								</div>
 								<div class="form-group2">
-									<input type="text" class="form-control" name="name" placeholder="이름" required>
+									<input type="text" class="form-control" name="name" placeholder="이름">
 								</div>
 								<div class="form-group2">
-									<input type="text" class="form-control" name="email" placeholder="email" required>
+									<input type="text" class="form-control" name="email" placeholder="email">
 								</div>
 
 <!--	                            <div class="checkboxs form-group">-->
@@ -81,10 +81,10 @@
 	                        
 	                    </div>
 	                    
-<!--	                    &lt;!&ndash; Sub Footer &ndash;&gt;-->
-<!--	                    <div class="sub-footer">-->
-<!--	                        <span>계정이 이미 있으신가요? <a href="login">로그인</a></span>-->
-<!--	                    </div>-->
+	                    <!-- Sub Footer -->
+	                    <div class="sub-footer">
+	                        <span>계정이 이미 있으신가요? <a href="login">로그인</a></span>
+	                    </div>
 	                    
 	                </div>
 	            </div>
@@ -96,11 +96,11 @@
 
 
 <!-- External JS libraries -->
-<script src="/assets/js/jquery-2.2.0.min.js"></script>
+<script src="../../static/assets/js/jquery-2.2.0.min.js"></script>
 
 
 <!-- Custom JS Script -->
-<script  src="/assets/js/app.js"></script>
+<script  src="../../static/assets/js/app.js"></script>
 
 </body>
 </html>

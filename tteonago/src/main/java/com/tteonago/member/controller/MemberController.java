@@ -71,6 +71,14 @@ public class MemberController {
 		return "pages/wishlist";
 	}
 	
+	@GetMapping(value = "/wishdelete")
+	public String mypage(@RequestParam(value = "hotel") String hotel, Authentication authentication) {
+		System.out.println("delete----------" + hotel);
+		userService.deleteByHotelId(authentication.getName(), hotel);
+		
+		return "redirect:/wishlist";
+	}
+	
 	//delete
 	@GetMapping(value = "/showMe")
 	public String showMe() {

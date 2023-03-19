@@ -6,14 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Setter
+@Getter
+@ToString
+
+@Embeddable
 public class Position {
 	@NonNull
 	@Column(name = "lat", precision = 10, scale = 6)
@@ -22,5 +29,5 @@ public class Position {
 	@NonNull
 	@Column(name = "lng", precision = 10, scale = 6)
 	private BigDecimal lng;
-	
+
 }

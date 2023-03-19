@@ -1,5 +1,7 @@
 package com.tteonago.hotel.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +14,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class AreaDTO {
-	private String aId;
+public class PositionDTO {
+	private BigDecimal lng;
 	
-	private String aName;
-	
-	private Integer level;
-	
-	private PositionDTO localPosition;
-
+	private BigDecimal lat;
 }
+

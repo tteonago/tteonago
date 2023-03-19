@@ -1,5 +1,7 @@
 package com.tteonago.hotel.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +14,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class AreaDTO {
-	private String aId;
+public class PeriodDTO {
+	private LocalDate checkIn;
 	
-	private String aName;
-	
-	private Integer level;
-	
-	private PositionDTO localPosition;
-
+	private LocalDate checkOut;
 }

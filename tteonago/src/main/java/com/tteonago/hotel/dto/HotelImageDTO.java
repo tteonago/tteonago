@@ -18,26 +18,10 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class HotelDTO {
-	private String hotelId;
+public class HotelImageDTO {
+	private int imgId;
 	
-	private AreaDTO area;
-	
-	private String hotelName;
-	
-	private String hotelAddress;
-	
-	private String hotelPhone;
-	
-	private String hotelInfo;
-	
-	private Position hotelPosition;
-	
-	private Integer star;
-	
-	private Integer profit;
-	
-	private List<RoomDTO> room;
-	
-	private List<HotelImageDTO> images;
+    private String hotelId;
+    
+    private String address;
 }

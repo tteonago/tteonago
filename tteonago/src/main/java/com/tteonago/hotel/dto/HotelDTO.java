@@ -1,15 +1,10 @@
 package com.tteonago.hotel.dto;
 
-import java.util.List;
-
 import com.tteonago.hotel.entity.Position;
-import com.tteonago.hotel.entity.Room;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,16 +17,17 @@ import lombok.ToString;
 @ToString
 @Builder
 public class HotelDTO {
+	
 	private String hotelId;
 	
-	private String hotelAddress;
-	
 	private String hotelName;
+	
+	private String address;
+	
+	private String hotelAddress;
 	
 	private String hotelPhone;
 	
 	private Position hotelPosition;
-	
-	private String address;
 	
 }

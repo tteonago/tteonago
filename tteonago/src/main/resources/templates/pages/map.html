@@ -56,15 +56,15 @@
 			temp.setMap(map);
 
 			// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-			var iwContent = '<div style="padding:5px; color:green;">' + arr[i].name 
+			var iwContent = '<div style="padding:10px; color:green;">' + arr[i].name 
 					      + '</div><hr><br>' 
-					      + '<div style="padding:5px;"> <img width="50%" height="50%" src=" ' + arr[i].img 
+					      + '<div style="padding:5px;"> <img width="100%" height="50%" src=" ' + arr[i].img 
 					      + '" </div>'
-					      + '<div style="padding:5px; font-size:8px;"> 주소: ' + arr[i].address
+					      + '<div style="padding:5px; font-size:20px;"> 주소: ' + arr[i].address
 					      + '</div>'
-					      + '<div style="padding:5px; font-size:8px;"> 연락처: ' + arr[i].phone
+					      + '<div style="padding:5px; font-size:15px;"> 연락처: ' + arr[i].phone
 					      + '</div>'
-					      + '<div style="padding:5px; font-size:8px;"> <a href="/detail?hotelId=' + arr[i].hotelId
+					      + '<div style="padding:5px; font-size:20px;"> <a href="/detail?hotelId=' + arr[i].hotelId
 					      + '">바로가기</a> </div>'
 					      , iwRemoveable = true
 

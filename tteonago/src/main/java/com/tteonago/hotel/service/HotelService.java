@@ -10,9 +10,9 @@ import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class HotelService {
+	
 	@Autowired
 	private HotelRepository hotelRepository;
 
@@ -20,4 +20,5 @@ public class HotelService {
 		List<Hotel> hotels = hotelRepository.findHotelsByAreaIdAndStarAndRoomSize(areaId, star, roomSize);
 		return hotels;
 	}
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.entity.HotelImage;
 
 @Repository 
 public interface HotelRepository extends JpaRepository<Hotel, String>{
@@ -17,8 +18,5 @@ public interface HotelRepository extends JpaRepository<Hotel, String>{
 	
 	@Query("select h from Hotel h where h.area = :area")
 	List<Hotel> findHotelByArea(@Param("area") Area area);
-	
-	@Query("select h.hotelId, h.hotelAddress, h.hotelName, h.hotelPhone, h.hotelPosition, hi.address from Hotel h, HotelImage hi where h = hi.hotel and substr(hi.address , -5) = '1.jpg' and h.area=:area")
-	List<Object[]> findHotelAndImgByArea(@Param("area") Area area);
-	
+
 }

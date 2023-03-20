@@ -39,6 +39,6 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 		cookie.setMaxAge(30);
 		response.addCookie(cookie);
 
-		response.sendRedirect("/home");
+		response.sendRedirect("/category");
 	}
 }

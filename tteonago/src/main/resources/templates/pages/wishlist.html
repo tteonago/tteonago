@@ -160,7 +160,7 @@
                     <div class="category_bg_box" th:style="'background-image: url(' + ${wishlist[2]} + ')'">
                         <div class="category-overlay">
                             <div class="category-content">
-                                <h5 class="category-title"><a th:href="@{/home/details(hotel=${wishlist[0].hotelId})}">♥</a></h5>
+                                <h5 class="category-title"><a th:href="@{/wishdelete/(hotel=${wishlist[0].hotelId})}">♥</a></h5>
                                 <h4 class="category-subtitle"><i class="flaticon-pin"></i><span th:text="${wishlist[0].hotelName}"></span></h4>
                             </div>
                         </div>

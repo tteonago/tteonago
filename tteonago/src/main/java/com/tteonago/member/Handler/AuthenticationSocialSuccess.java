@@ -27,7 +27,7 @@ public class AuthenticationSocialSuccess implements AuthenticationSuccessHandler
 		if(socialDTO.getRole().equals("social") && socialDTO.getPassword().equals("1111")) {
 			response.sendRedirect("/social");
 		}else {
-			response.sendRedirect("/home");
+			response.sendRedirect("/category");
 		}
 	}
 }

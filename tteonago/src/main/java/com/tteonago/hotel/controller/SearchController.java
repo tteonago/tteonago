@@ -1,5 +1,8 @@
 package com.tteonago.hotel.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,37 +26,25 @@ public class SearchController {
 	private ModelMapper mapper = new ModelMapper();
 
 	@GetMapping("/hotelsearch")
-	public String getHotelSearch(@RequestParam(value = "destinaion") String destinaion,
+	public String getHotelSearch(@RequestParam(value = "destination") String destination,
 			@RequestParam(value = "dates") String dates, @RequestParam(value = "hotel-grade") int hotelgrade,
 			@RequestParam(value = "guests") int guests, Model model) {
-
+	
 		String aid = null;
 
-		System.out.println(destinaion);
+		System.out.println("날짜 " + dates);
 
-		if (destinaion.equals("서울")) {
+		if (destination.equals("서울")) {
 			aid = "10";
-		} else if (destinaion.equals("제주")) {
+		} else if (destination.equals("제주")) {
 			aid = "20";
-		} else if (destinaion.equals("부산")) {
+		} else if (destination.equals("부산")) {
 			aid = "30";
 		} else { // "대전"
 			aid = "40";
 		}
 
-//		List<Hotel> hotellistentity = hotelService.findHotelsByAddressAndStarAndRoomSize(destinaion, hotelgrade, guests);
-
-//		List<Hotel> hotellistentity = hotelService.findHotelsByAddressAndStar(destinaion, hotelgrade);
-
-//		Hotel hotellistentity = hotelService.findByHotelId("10001");
-
 		List<Hotel> hotellistentity = hotelService.gethotellist(aid, hotelgrade, guests);
-
-//		List<HotelDTO> hotellist = Arrays.asList(mapper.map(hotellistentity, HotelDTO.class));
-
-//		for (HotelDTO hotel : hotellist) {
-//			System.out.println(hotel.getHotelInfo());
-//		}
 		
 		List<HotelDTO> hotellist = new ArrayList<>();
 		for(Hotel hotel : hotellistentity) {
@@ -61,15 +52,59 @@ public class SearchController {
 		    hotellist.add(hotelDTO);
 		}
 		
-		for(int i=0; i<hotellist.size(); i++) {
-			//System.out.println(hotellist.get(i).getHotelId());
-			//System.out.println(hotellist.get(i).getImages());
-			//System.out.println(hotellist.get(i).getStar());
-			System.out.println(hotellist.get(i).getHotelPhone());
-		}
-	
+		int hotelCount = hotellist.size();
+		
 		model.addAttribute("hotellist", hotellist);
-
-		return "pages/tours-list.html";
+		model.addAttribute("hotelcount", hotelCount);
+		
+		String[] dateArr = dates.split(" - ");
+		String checkin = dateArr[0];
+		String checkout = dateArr[1];
+		
+		System.out.println("기존의 날짜 포멧 " + checkin);
+		System.out.println("기존의 날짜 포멧 " + checkout);
+		
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
+		//DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
+		
+		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
+		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
+		
+		String formattedCheckin = checkinDate.format(outputFormatter);
+		String formattedCheckout = checkoutDate.format(outputFormatter);
+		
+//		System.out.println("변경된 날짜 포멧 " + formattedCheckin); // String
+//		System.out.println("변경된 날짜 포멧 " + formattedCheckout); // String
+		
+		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
+		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
+		
+		System.out.println("변경된 날짜 포멧 " + LocalDatein);
+		System.out.println("변경된 날짜 포멧 " + LocalDateOut);
+		
+		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
+		long nights = daysBetween - 1;
+		
+		String Days = " " + nights + "박 / " + daysBetween + "일";
+		System.out.println(Days); // 출력: 4 Days / 3 Nights
+		
+		for(int i=0; i<hotellist.size(); i++) {
+			//System.out.println(hotellist.get(i).getArea().getAId());
+			System.out.println(hotellist.get(i).getArea().getAName());
+			//System.out.println(hotellist.get(i).getRoom().get(i).getRoomSize());
+		}
+		
+		model.addAttribute("datein", LocalDatein);
+		model.addAttribute("dateout", LocalDateOut);
+		model.addAttribute("days", Days);
+		
+		model.addAttribute("dates", dates);
+		model.addAttribute("destination", destination);
+		model.addAttribute("guests", guests);
+		model.addAttribute("star", hotelgrade);
+		
+		return "pages/tours-list";
+	  
 	}
 }

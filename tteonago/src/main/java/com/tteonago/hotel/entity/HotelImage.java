@@ -1,7 +1,5 @@
 package com.tteonago.hotel.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,8 +19,9 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+
 @Setter
+@Getter
 @ToString
 
 @Entity

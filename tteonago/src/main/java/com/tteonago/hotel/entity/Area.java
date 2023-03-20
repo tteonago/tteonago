@@ -9,39 +9,39 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-@Data
-@Getter
-@Setter
-@ToString
 
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Setter
+@Getter
+@ToString
 
 @Entity
 @Table(name="area")
 public class Area {
-	
 	@Id
 	private String aId; 
-	
-	@Embedded 
-	private Position localPosition;
-	
-	@NonNull
-	@Column(name = "level")
-    private Integer level;  
 	
 	@NonNull
 	@Column(name = "aName")
 	private String aName;
 	
+	
+	@NonNull
+	@Column(name = "level")
+    private Integer level;  
+	
+	@Embedded 
+	private Position localPosition;
+	
 	@OneToMany(mappedBy = "area")
 	private List<Hotel> hotels;
-	
-	public Area() {
-		
-	}
+
 }

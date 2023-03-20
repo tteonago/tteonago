@@ -6,16 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Getter
 @Setter
+@Getter
 @ToString
 public class AreaDTO {
 	private String aId;
+	
 	private String aName;
-	private Integer level;  
+	
+	private Integer level;
+	
 	private PositionDTO localPosition;
+
 }

@@ -21,8 +21,9 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+
 @Setter
+@Getter
 @ToString
 
 @Entity
@@ -67,5 +68,4 @@ public class Hotel {
     
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HotelImage> images;
-	
 }

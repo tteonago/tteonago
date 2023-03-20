@@ -24,8 +24,6 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
-
 @Entity
 @Table(name="hotel")
 public class Hotel {
@@ -63,9 +61,10 @@ public class Hotel {
 	@Column(name = "profit")
 	private Integer profit ;
 	
-	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Room> room;
+//	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Room> room;
+//    
+//    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<HotelImage> images;
     
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HotelImage> images;
 }

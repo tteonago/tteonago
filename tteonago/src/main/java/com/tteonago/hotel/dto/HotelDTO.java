@@ -29,15 +29,8 @@ public class HotelDTO {
 	
 	private String hotelPhone;
 	
-	private String hotelInfo;
-	
 	private Position hotelPosition;
-	
-	private Integer star;
 	
 	private Integer profit;
 	
-	private List<RoomDTO> room;
-	
-	private List<HotelImageDTO> images;
 }

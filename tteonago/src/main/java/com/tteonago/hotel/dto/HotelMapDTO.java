@@ -18,7 +18,7 @@ import lombok.ToString;
 @Builder
 public class HotelMapDTO {
 	
-private String hotelId;
+	private String hotelId;
 	
 	private String hotelName;
 	

@@ -52,6 +52,7 @@ public class SearchController {
 		    hotellist.add(hotelDTO);
 		}
 		
+		
 		int hotelCount = hotellist.size();
 		
 		model.addAttribute("hotellist", hotellist);
@@ -65,7 +66,6 @@ public class SearchController {
 		System.out.println("기존의 날짜 포멧 " + checkout);
 		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
-		//DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
 		
 		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
@@ -73,9 +73,6 @@ public class SearchController {
 		
 		String formattedCheckin = checkinDate.format(outputFormatter);
 		String formattedCheckout = checkoutDate.format(outputFormatter);
-		
-//		System.out.println("변경된 날짜 포멧 " + formattedCheckin); // String
-//		System.out.println("변경된 날짜 포멧 " + formattedCheckout); // String
 		
 		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
 		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
@@ -90,9 +87,7 @@ public class SearchController {
 		System.out.println(Days); // 출력: 4 Days / 3 Nights
 		
 		for(int i=0; i<hotellist.size(); i++) {
-			//System.out.println(hotellist.get(i).getArea().getAId());
 			System.out.println(hotellist.get(i).getArea().getAName());
-			//System.out.println(hotellist.get(i).getRoom().get(i).getRoomSize());
 		}
 		
 		model.addAttribute("datein", LocalDatein);

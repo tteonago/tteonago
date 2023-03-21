@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -189,7 +191,7 @@
                           <a th:href="@{${hotel.images[0].address}}" class="item-img" data-lightbox="example-set">                          
                             <div class="tag">확대</div>
                             <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                          
-                            <!-- <div class="plan-price"><sup>$</sup>750<sub>/박</sub></div> -->
+                            <div class="plan-price"><sup>$</sup>750<sub>/박</sub></div>
                           </a>
                         </div>
                       </div>

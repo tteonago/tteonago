@@ -5,6 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<span th:text="${hotelId} + ' 호텔을 선택하셨습니다.'"></span>
+	<div th:each="hotel : ${hotellist}">
+			<span th:text="${hotel.hotelName}"></span>
+		<div th:each="img : ${hotel.images}">
+			<span th:text="${img.address}"></span>
+			<a>ddd</a>
+		</div>
+	</div>	
+	
+	
 </body>
 </html>

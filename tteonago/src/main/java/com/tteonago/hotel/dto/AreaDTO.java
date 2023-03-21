@@ -13,6 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class AreaDTO {
+	
 	private String aId;
 	
 	private String aName;

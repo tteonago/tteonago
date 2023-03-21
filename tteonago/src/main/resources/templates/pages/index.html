@@ -256,7 +256,7 @@
 			<div class="category_bg_box category_long_bg" 
     		 th:style="'background-image: url(/assets/img/destination/img-' + ${iterStat.index + 1} + '.jpg)'"
    			 th:data-areaid="${area.aId}"
-    		 onclick="location.href='/map?area=' + $(this).data('areaid')"
+    		 th:onclick="|location.href='@{/map(area=${area.aId})}'|"			 
 			>
       <div class="category-overlay">
         <div class="category-content">

@@ -20,14 +20,14 @@ public class HotelDTO {
 	
 	private String hotelId;
 	
-	private String hotelAddress;
-	
 	private String hotelName;
+	
+	private String address;
+	
+	private String hotelAddress;
 	
 	private String hotelPhone;
 	
 	private Position hotelPosition;
-	
-	private String address;
 	
 }

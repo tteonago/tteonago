@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
+import com.tteonago.hotel.dto.HotelDTO;
+import com.tteonago.hotel.entity.Hotel;
 import com.tteonago.hotel.service.AreaService;
 
 import lombok.RequiredArgsConstructor;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,12 +34,27 @@ public class AreaCategoryController {
     }
     
     @GetMapping("/map")
-    public String map(@RequestParam String area, Model model) throws TteonagoException {
+    public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
         AreaDTO areaDTO = areaService.getAreaById(area);
+        List<HotelDTO> hotels = areaService.getHotelByArea(area);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(hotels); // object는 전송하려는 객체
+        
         model.addAttribute("area", areaDTO);
+        model.addAttribute("hotels", json);
+        
         return "pages/map";
-    }
+    } 
     
+    @GetMapping("/detail")
+    public String detail(@RequestParam String hotelId, Model model) {
+    	System.out.println(hotelId);
+    	
+    	model.addAttribute("hotelId", hotelId);
+    	
+    	return "pages/test_S";
+    }
 }
     
    

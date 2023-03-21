@@ -1,17 +1,19 @@
 package com.tteonago.member.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tteonago.member.entity.WishlistDTO;
+import com.tteonago.member.entity.Member;
 import com.tteonago.member.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -49,8 +51,15 @@ public class MemberController {
 	}
 	
 	@GetMapping(value = "/mypage")
-	public String mypage() {
-		return "pages/mypage";
+	public String mypage(Authentication authentication, Model model) {
+		if(authentication == null) {
+			return "pages/login"; 
+		}
+		
+		Member member = userService.findById(authentication.getName());
+		model.addAttribute("member", member);
+		
+		return "pages/profile";
 	}
 	
 	@PostMapping("/failure")
@@ -61,7 +70,8 @@ public class MemberController {
 	
 	@GetMapping("/wishlist")
 	public String wishlist(Model model, Authentication authentication) {
-		if(authentication == null) {
+		if(authentication == null || authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_USER")) == false) {
 			return "pages/login"; 
 		}
 		
@@ -71,11 +81,18 @@ public class MemberController {
 		return "pages/wishlist";
 	}
 	
+	@GetMapping(value = "/wishdelete")
+	public String mypage(@RequestParam(value = "hotel") String hotel, Authentication authentication) {
+		userService.deleteByHotelId(authentication.getName(), hotel);
+		
+		return "redirect:/wishlist";
+	}
+	
 	//delete
 	@GetMapping(value = "/showMe")
-	public String showMe() {
+	public String showMe(Authentication authentication) {
 		
-		return "pages/wishlist";
+		return "pages/mypage_S";
 	}
 	
 }

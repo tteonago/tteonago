@@ -41,7 +41,7 @@ public class Area {
 	@Embedded 
 	private Position localPosition;
 	
-	@OneToMany(mappedBy = "area")
-	private List<Hotel> hotels;
+//	@OneToMany(mappedBy = "area")
+//	private List<Hotel> hotels;
 
 }

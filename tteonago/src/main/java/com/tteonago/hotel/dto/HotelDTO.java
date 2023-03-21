@@ -1,43 +1,33 @@
 package com.tteonago.hotel.dto;
 
-import java.util.List;
-
 import com.tteonago.hotel.entity.Position;
-import com.tteonago.hotel.entity.Room;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 
 @Setter
 @Getter
 @ToString
+@Builder
 public class HotelDTO {
+	
 	private String hotelId;
-	
-	private AreaDTO area;
-	
-	private String hotelName;
 	
 	private String hotelAddress;
 	
-	private String hotelPhone;
+	private String hotelName;
 	
-	private String hotelInfo;
+	private String hotelPhone;
 	
 	private Position hotelPosition;
 	
-	private Integer star;
+	private String address;
 	
-	private Integer profit;
-	
-	private List<RoomDTO> room;
-	
-	private List<HotelImageDTO> images;
 }

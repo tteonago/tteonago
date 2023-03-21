@@ -7,10 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.tteonago.hotel.dto.HotelDTO;
+import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.Hotel;
 
 @Repository 
 public interface HotelRepository extends JpaRepository<Hotel, String>{
 	@Query(value = "SELECT DISTINCT h.* FROM hotel h JOIN area a ON h.a_id = a.a_id JOIN room r ON h.hotel_id = r.hotel_id WHERE a.a_id = :aId AND h.star = :star AND r.room_size = :roomSize", nativeQuery = true)
 	List<Hotel> findHotelsByAreaIdAndStarAndRoomSize(@Param("aId") String aId, @Param("star") int star, @Param("roomSize") int roomSize);
+	
+	@Query("select h from Hotel h where h.area = :area")  
+	List<Hotel> findHotelByArea(@Param("area") Area area);
+	
+	@Query("select h.hotelId, h.hotelAddress, h.hotelName, h.hotelPhone, h.hotelPosition, hi.address from Hotel h, HotelImage hi where h = hi.hotel and substr(hi.address , -5) = '1.jpg' and h.area=:area")
+	List<Object[]> findHotelAndImgByArea(@Param("area") Area area);
+	
 }

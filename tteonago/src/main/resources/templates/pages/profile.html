@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDTWJ3Z');</script>
+    <!-- End Google Tag Manager -->
+    <title>Trego - Travel Tour HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/slick.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/daterangepicker.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/leaflet.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/map.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
+    
+    <!-- 프로필 폼 css -->
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
+
+</head>
+<body id="top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader"></div>
+
+<!-- main header start -->
+<header class="main-header sticky-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="index.html">
+                        <img src="assets/img/logos/black-logo.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="navbar-collapse collapse w-100" id="navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Index
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="index.html">Index 1</a></li>
+                                    <li><a class="dropdown-item" href="index-2.html">Index 2</a></li>
+                                    <li><a class="dropdown-item" href="index-3.html">Index 3</a></li>
+                                    <li><a class="dropdown-item" href="index-4.html">Index 4</a></li>
+                                    <li><a class="dropdown-item" href="index-5.html">Index 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tours
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                                    <li><a class="dropdown-item" href="tours-grid.html">Tours Grid</a></li>
+                                    <li><a class="dropdown-item" href="tours-list.html">Tours List</a></li>
+                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tours Detail</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="tours-detail.html">Tours Detail 1</a></li>
+                                            <li><a class="dropdown-item" href="tours-detail-2.html">Tours Detail 2</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Destinations
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                    <li><a class="dropdown-item" href="destination-grid.html">Destination Grid</a></li>
+                                    <li><a class="dropdown-item" href="destination-mansory.html">Destination Mansory</a></li>
+                                    <li><a class="dropdown-item" href="destination-detail.html">Destination Detail</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link">Pages</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                                    <li><a class="dropdown-item" href="pricing-tables.html">Pricing Tables</a></li>
+                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                                    <li><a class="dropdown-item" href="agent.html">Meet Our Team</a></li>
+                                    <li><a class="dropdown-item" href="faq.html">Faqs</a></li>
+                                    <li><a class="dropdown-item" href="typography.html">Typography</a></li>
+                                    <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+                                    <li><a class="dropdown-item" href="pages-404.html">404 Page</a></li>
+                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Blog
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                                    <li><a class="dropdown-item" href="blog-sidebar.html">Blog Sidebar</a></li>
+                                    <li><a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#full-page-search" class="nav-link h-icon">
+                                    <i class="flaticon-search"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- main header end -->
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>마이 트립</h1>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- Destination start -->
+<div class="destination d-2 content-area-2">
+    <div class="container">
+	    
+	    <div style="font-size:50px">환영합니다!</div><br>
+	    <div style="font-size:30px" th:text="${member.name} + ' 님.'"></div>
+	    <br><hr><br>
+	    
+	    <div class="container">
+    <div class="main-body">
+    
+          <div class="row gutters-sm">
+           
+            <div class="col-md-8">
+            
+              <div class="card mb-3">
+                <div class="card-body">
+                
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 이름</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.name}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.email}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 아이디</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.username}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">보유 포인트</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.point}"></span>&nbsp포인트
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 등급</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.role}"></span><br><br>
+                      <p sec:authorize="hasRole('ROLE_SOCIAL')"><button class="w3-button w3-red w3-round-xlarge ">정회원 회원가입</button></p>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a sec:authorize="hasRole('ROLE_USER')" class="btn btn-info " href="/wishlist">내 찜목록</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+	    
+	    
+    </div>
+</div>
+<!-- Destination end -->
+
+
+
+
+<!-- Footer-6 start -->
+	<footer class="footer-2">
+		<div class="container footer-inner">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-logo">
+						<img src="assets/img/logos/logo.png" alt="logo">
+					</div>
+					<ul class="social-list clearfix">
+						<li><a href="#" class="facebook"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="google"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+						<li><a href="#" class="linkedin"><i
+								class="fa fa-linkedin"></i></a></li>
+					</ul>
+					<div class="nav-inline">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Tours</a></li>
+							<li><a href="#">Destinations</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Blog</a></li>
+						</ul>
+					</div>
+					<p class="copy">
+						© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the
+						property of their respective owners.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+<!-- Footer-6 end -->
+
+<!-- Full page search -->
+<div id="full-page-search">
+    <button type="button" class="close">×</button>
+    <form action="#">
+        <input type="search" value="" placeholder="type keyword(s) here" />
+        <button type="submit" class="btn btn-sm btn-color">Search</button>
+    </form>
+</div>
+
+<!-- External JS libraries -->
+<script src="assets/js/jquery-2.2.0.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.selectBox.js"></script>
+<script src="assets/js/rangeslider.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.filterizr.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.min.js"></script>
+<script src="assets/js/backstretch.js"></script>
+<script src="assets/js/jquery.countdown.js"></script>
+<script src="assets/js/jquery.scrollUp.js"></script>
+<script src="assets/js/particles.min.js"></script>
+<script src="assets/js/typed.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/dropzone.js"></script>
+<script src="assets/js/jquery.mb.YTPlayer.js"></script>
+<script src="assets/js/leaflet.js"></script>
+<script src="assets/js/leaflet-providers.js"></script>
+<script src="assets/js/leaflet.markercluster.js"></script>
+<script src="assets/js/maps.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+<script src="assets/js/ie-emulation-modes-warning.js"></script>
+<!-- Custom JS Script -->
+<script  src="assets/js/app.js"></script>
+
+</body>
+</html>

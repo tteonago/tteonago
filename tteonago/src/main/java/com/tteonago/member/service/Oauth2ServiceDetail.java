@@ -52,15 +52,15 @@ public class Oauth2ServiceDetail extends DefaultOAuth2UserService {
 			Member member = Member.builder()
 					.username(email)
 					.password(passwordEncoder.encode("1111"))
-					.name("홍길동")
+					.name(email)
 					.point(0)
 					.email(email)
-					.role("social")
+					.role("ROLE_SOCIAL")
 					.build();
 			
 			memberRepository.save(member);		
 			
-			SocialDTO socialDTO = new SocialDTO(email, "1111", "social", email, Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+			SocialDTO socialDTO = new SocialDTO(email, "1111", "ROLE_SOCIAL", email, Arrays.asList(new SimpleGrantedAuthority("ROLE_SOCIAL")));
 			socialDTO.setProps(params);
 			
 			return socialDTO;
@@ -73,7 +73,7 @@ public class Oauth2ServiceDetail extends DefaultOAuth2UserService {
 					member.getPassword(),
 					member.getRole(),
 					member.getEmail(),
-					Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+					Arrays.asList(new SimpleGrantedAuthority("ROLE_SOCIAL")));
 			
 			return socialDTO;
 		}

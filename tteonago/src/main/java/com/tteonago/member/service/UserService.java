@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,11 +78,17 @@ public class UserService {
 	@Transactional
 	public void deleteByHotelId(String username, String hotelId) throws AppException{
 		Member member = memberRepository.findById(username).orElseThrow((AppException::new));
-		System.out.println("delete------" + member);
 		Hotel hotel = hotelRepository.findById(hotelId).orElseThrow((AppException::new));
-		System.out.println("delete------" + hotel);
 		
 		wishlistRepository.deleteByHotel(member, hotel);
+	}
+	
+	public Member findById(String username) {
+		Member member = memberRepository.findByUsername(username).orElseThrow(
+                () -> new UsernameNotFoundException("Not Found User")
+        );
+		
+		return member;
 	}
 	
 	//로그인  no usage??? -> successHandler 에서 잡아주는것 같음 -> 이 코드는 확인이 필요합니다. 반드시 확인요청 해주세요

@@ -129,13 +129,12 @@
                                 <a class="nav-link" href="mypage">내 여행</a>
 
                             </li>
-                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                            <li class="nav-item" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                                 <a class="nav-link" href="login">로그인</a>
                             </li>
-                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')">
+                            <li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_SOCIAL')">
                                 <a class="nav-link" href="logout">로그아웃</a>
                             </li>
-                            
                             
                             <li class="nav-item dropdown">
                                 <a href="#full-page-search" class="nav-link h-icon">
@@ -257,7 +256,7 @@
 			<div class="category_bg_box category_long_bg" 
     		 th:style="'background-image: url(/assets/img/destination/img-' + ${iterStat.index + 1} + '.jpg)'"
    			 th:data-areaid="${area.aId}"
-    		 onclick="location.href='/map?area=' + $(this).data('areaid')"
+    		 th:onclick="|location.href='@{/map(area=${area.aId})}'|"			 
 			>
       <div class="category-overlay">
         <div class="category-content">

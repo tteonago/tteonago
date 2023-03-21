@@ -10,9 +10,9 @@ import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class HotelService {
+	
 	@Autowired
 	private HotelRepository hotelRepository;
 
@@ -22,6 +22,7 @@ public class HotelService {
 		return hotels;
 	}
 	
+<<<<<<< HEAD
 	
 	//호텔 detail
 	public Hotel getHotelById(String id) {
@@ -31,4 +32,6 @@ public class HotelService {
     public List<Hotel> getAllHotels() {
         return hotelRepository.findAll();
     }
+=======
+>>>>>>> 3394db27a595953406b182b60449433f76b521c2
 }

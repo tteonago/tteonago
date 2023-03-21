@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -27,6 +28,10 @@
     <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
+    
+    <!-- 프로필 폼 css -->
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- Favicon icon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
@@ -144,7 +149,7 @@
 <div class="sub-banner">
     <div class="container">
         <div class="breadcrumb-area">
-            <h1>나의 찜 목록</h1>
+            <h1>마이 트립</h1>
         </div>
     </div>
 </div>
@@ -153,25 +158,98 @@
 <!-- Destination start -->
 <div class="destination d-2 content-area-2">
     <div class="container">
-        <div class="row">
-        
-            <div th:each="wishlist, iterStat : ${wishlist}" class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box" th:style="'background-image: url(' + ${wishlist[2]} + ')'">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title"><a th:href="@{/wishdelete/(hotel=${wishlist[0].hotelId})}">♥</a></h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i><span th:text="${wishlist[0].hotelName}"></span></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	    
+	    <div style="font-size:50px">환영합니다!</div><br>
+	    <div style="font-size:30px" th:text="${member.name} + ' 님.'"></div>
+	    <br><hr><br>
+	    
+	    <div class="container">
+    <div class="main-body">
+    
+          <div class="row gutters-sm">
+           
+            <div class="col-md-8">
             
+              <div class="card mb-3">
+                <div class="card-body">
+                
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 이름</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.name}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.email}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 아이디</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.username}"></span>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">보유 포인트</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.point}"></span>&nbsp포인트
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">회원 등급</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text="${member.role}"></span><br><br>
+                      <p sec:authorize="hasRole('ROLE_SOCIAL')"><button class="w3-button w3-red w3-round-xlarge ">정회원 회원가입</button></p>
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a sec:authorize="hasRole('ROLE_USER')" class="btn btn-info " href="/wishlist">내 찜목록</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
+    </div>
+	    
+	    
     </div>
 </div>
 <!-- Destination end -->
+
+
+
 
 <!-- Footer-6 start -->
 	<footer class="footer-2">

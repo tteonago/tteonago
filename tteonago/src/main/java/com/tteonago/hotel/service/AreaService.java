@@ -2,14 +2,19 @@ package com.tteonago.hotel.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
+import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.entity.Area;
+import com.tteonago.hotel.entity.HotelImage;
 import com.tteonago.hotel.repository.AreaRepository;
+import com.tteonago.hotel.repository.HotelImageRepository;
+import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class AreaService {
 	
 	private final AreaRepository areaRepository;
+
+	private final HotelImageRepository hotelImageRepository;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
@@ -38,4 +45,13 @@ public class AreaService {
 	    return modelMapper.map(area, AreaDTO.class);
 	}
 	
+	public List<HotelDTO> getHotelByArea(String areaId) throws TteonagoException {
+		Area area = areaRepository.findById(areaId)
+		        .orElseThrow(() -> new TteonagoException("Area not found"));
+		List<HotelImage> hotels = hotelImageRepository.findHotelAndImgByArea(area);
+		
+		return hotels.stream()
+				.map(hotel -> modelMapper.map(hotel, HotelDTO.class))
+				.collect(Collectors.toList());
+	}
 }

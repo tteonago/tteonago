@@ -2,30 +2,61 @@ package com.tteonago.hotel.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
+import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.service.AreaService;
 
-import lombok.RequiredArgsConstructor;
-
-@RestController
-@RequestMapping("/area")
-@RequiredArgsConstructor
+@Controller
 public class AreaController {
 	
-	private final AreaService areaService;
-	
-	@GetMapping("/map")
-	public ResponseEntity<List<AreaDTO>> getAllAreas() throws TteonagoException {
-		
-		List<AreaDTO> areaDTOs = areaService.getAllAreas();
-		
-		return new ResponseEntity<>(areaDTOs, HttpStatus.OK);
-	}
+	@Autowired
+    private AreaService areaService;
+
+    @GetMapping("/category")
+    public String sample(Model model)throws TteonagoException {
+      
+        List<AreaDTO> areaDTOs = areaService.getAllAreas();
+        model.addAttribute("areas", areaDTOs);
+      
+        return "pages/index";
+    }
+    
+    @GetMapping("/map")
+    public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
+    	
+    	System.out.println(area);
+    	
+        AreaDTO areaDTO = areaService.getAreaById(area);
+        List<HotelDTO> hotels = areaService.getHotelByArea(area);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(hotels); // object는 전송하려는 객체
+        
+        model.addAttribute("area", areaDTO);
+        model.addAttribute("hotels", json);
+        
+        return "pages/map";
+    } 
+    
+    @GetMapping("/detail")
+    public String detail(@RequestParam String hotelId, Model model) {
+    	
+    	System.out.println(hotelId);
+    	
+    	model.addAttribute("hotelId", hotelId);
+    	
+    	return "pages/test_S";
+    }
+    
 }
+    
+   

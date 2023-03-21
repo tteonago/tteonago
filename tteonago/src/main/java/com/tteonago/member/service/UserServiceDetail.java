@@ -25,7 +25,7 @@ public class UserServiceDetail implements UserDetailsService {
 	
 	private PasswordEncoder passwordEncoder;
 	@Autowired
-    private MemberRepository merchantRepository;
+    private MemberRepository memberRepository;
     //////
 	public UserServiceDetail() {
 		this.passwordEncoder = new BCryptPasswordEncoder();
@@ -33,7 +33,7 @@ public class UserServiceDetail implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    	Member userDetails=merchantRepository.findByUsername(username).orElseThrow(
+    	Member userDetails=memberRepository.findByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("Not Found User")
         );
     	

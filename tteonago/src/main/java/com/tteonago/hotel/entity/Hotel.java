@@ -17,15 +17,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Setter
 @Getter
-@ToString
-
 @Entity
 @Table(name="hotel")
 public class Hotel {
@@ -61,11 +58,12 @@ public class Hotel {
 	
 	@NonNull
 	@Column(name = "profit")
-	private Integer profit ;
+	private Integer profit;
 	
 	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> room;
     
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HotelImage> images;
+    
 }

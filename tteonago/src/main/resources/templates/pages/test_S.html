@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Hotel Detail</title>
 </head>
 <body>
-	<div th:each="hotel : ${hotellist}">
-			<span th:text="${hotel.hotelName}"></span>
-		<div th:each="img : ${hotel.images}">
-			<span th:text="${img.address}"></span>
-			<a>ddd</a>
-		</div>
-	</div>	
-	
-	
+	<h1>Hotel Detail</h1>
+	<p th:text="${hotelId}"></p>
+	<br><br>
+<div th:each="room : ${rooms}">
+	<p th:text="${room.roomType}"></p>
+	<p th:text="${room.price}"></p>
+	<p th:text="${room.roomSize}"></p>
+</div>
 </body>
-</html>
+</html> 

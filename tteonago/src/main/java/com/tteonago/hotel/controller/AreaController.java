@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.dto.HotelDTO;
+import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.service.AreaService;
 
 @Controller
@@ -36,7 +37,7 @@ public class AreaController {
     	System.out.println(area);
     	
         AreaDTO areaDTO = areaService.getAreaById(area);
-        List<HotelDTO> hotels = areaService.getHotelByArea(area);
+        List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
         
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(hotels); // object는 전송하려는 객체
@@ -46,16 +47,6 @@ public class AreaController {
         
         return "pages/map";
     } 
-    
-    @GetMapping("/detail")
-    public String detail(@RequestParam String hotelId, Model model) {
-    	
-    	System.out.println(hotelId);
-    	
-    	model.addAttribute("hotelId", hotelId);
-    	
-    	return "pages/test_S";
-    }
     
 }
     

@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
-import com.tteonago.hotel.dto.HotelDTO;
+import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.HotelImage;
 import com.tteonago.hotel.repository.AreaRepository;
 import com.tteonago.hotel.repository.HotelImageRepository;
-import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,13 +44,13 @@ public class AreaService {
 	    return modelMapper.map(area, AreaDTO.class);
 	}
 	
-	public List<HotelDTO> getHotelByArea(String areaId) throws TteonagoException {
+	public List<HotelMapDTO> getHotelByArea(String areaId) throws TteonagoException {
 		Area area = areaRepository.findById(areaId)
 		        .orElseThrow(() -> new TteonagoException("Area not found"));
 		List<HotelImage> hotels = hotelImageRepository.findHotelAndImgByArea(area);
 		
 		return hotels.stream()
-				.map(hotel -> modelMapper.map(hotel, HotelDTO.class))
+				.map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
 				.collect(Collectors.toList());
 	}
 }

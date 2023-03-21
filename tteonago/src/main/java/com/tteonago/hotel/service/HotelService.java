@@ -16,8 +16,19 @@ public class HotelService {
 	@Autowired
 	private HotelRepository hotelRepository;
 
+	//호텔 리스트
 	public List<Hotel> gethotellist(String areaId, int star, int roomSize) {
 		List<Hotel> hotels = hotelRepository.findHotelsByAreaIdAndStarAndRoomSize(areaId, star, roomSize);
 		return hotels;
 	}
+	
+	
+	//호텔 detail
+	public Hotel getHotelById(String id) {
+        return hotelRepository.findById(id).orElse(null);
+    }
+    
+    public List<Hotel> getAllHotels() {
+        return hotelRepository.findAll();
+    }
 }

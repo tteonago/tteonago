@@ -11,6 +11,7 @@ import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.Hotel;
 import com.tteonago.hotel.entity.HotelImage;
+import com.tteonago.hotel.entity.Room;
 
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, String>{
@@ -19,5 +20,11 @@ public interface HotelRepository extends JpaRepository<Hotel, String>{
 	
 	@Query("select h from Hotel h where h.area = :area")  
 	List<Hotel> findHotelByArea(@Param("area") Area area);
-
+	
+//	@Query("SELECT DISTINCT * "
+//			+ "FROM room "
+//			+ "JOIN hotel ON room.hotel_id = hotel.hotel_id "
+//			+ "JOIN room_image ON room.room_id = room_image.room_id "
+//			+ "WHERE hotel.hotel_id = :hotelId")
+//		List<Room[]> findRoomsByHotelId(@Param("hotelId") String hotelId);
 }

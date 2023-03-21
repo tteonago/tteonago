@@ -1,7 +1,5 @@
 package com.tteonago.hotel.dto;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +12,12 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class RoomDTO {
-	private String roomId;
+public class RoomImageDTO {
 	
-	private HotelDTO hotel;
+	private int imgId;
 	
-	private String roomType;
-	
-	private Integer price;
-	
-	private Integer roomSize;
-	
-	private List<RoomImageDTO> images;
+    private String roomId;
+    
+    private String address;
+    
 }

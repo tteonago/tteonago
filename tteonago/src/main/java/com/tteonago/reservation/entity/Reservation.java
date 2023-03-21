@@ -46,5 +46,5 @@ public class Reservation {
 	
 	@NonNull
 	@Column(name = "totPrice")
-	private Integer totPirce;
+	private Integer totPrice;
 }

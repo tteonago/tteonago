@@ -201,7 +201,7 @@
                             <a th:href="@{{hotelId}(hotelId=${hotel.hotelId})}" th:text="${hotel.hotelName}"></a>
                           </h1>
                           <div class="location">
-                            <a th:href="@{{hotelId}(hotelId=${hotel.hotelId})}">
+                            <a th:href="@{/detail(hotelId=${hotel.hotelId})}">
                               <i class="flaticon-pin"></i>
                               <span th:text="${hotel.hotelAddress}"></span>
                             </a>

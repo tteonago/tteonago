@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tteonago.hotel.entity.Hotel;
-import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.repository.HotelRepository;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class HotelService {
@@ -27,9 +24,5 @@ public class HotelService {
 	public Hotel getHotelById(String id) { 
 		return hotelRepository.findById(id).orElse(null); 
 	}
-	
-//	public List<Room[]> findRoomsByHotelId(String hotelId) {
-//        return hotelRepository.findRoomsByHotelId(hotelId);
-//    }
 
 }

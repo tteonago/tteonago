@@ -2,6 +2,7 @@ package com.tteonago.hotel.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class SearchController {
 	public String getHotelSearch(@RequestParam(value = "destination") String destination,
 			@RequestParam(value = "dates") String dates, @RequestParam(value = "hotel-grade") int hotelgrade,
 			@RequestParam(value = "guests") int guests, Model model) {
-
+	
 		String aid = null;
 
 		System.out.println("날짜 " + dates);
@@ -82,6 +83,28 @@ public class SearchController {
 		System.out.println("변경된 날짜 포멧 " + LocalDatein);
 		System.out.println("변경된 날짜 포멧 " + LocalDateOut);
 		
+		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
+		long nights = daysBetween - 1;
+		
+		String Days = " " + nights + "박 / " + daysBetween + "일";
+		System.out.println(Days); // 출력: 4 Days / 3 Nights
+		
+		for(int i=0; i<hotellist.size(); i++) {
+			//System.out.println(hotellist.get(i).getArea().getAId());
+			System.out.println(hotellist.get(i).getArea().getAName());
+			//System.out.println(hotellist.get(i).getRoom().get(i).getRoomSize());
+		}
+		
+		model.addAttribute("datein", LocalDatein);
+		model.addAttribute("dateout", LocalDateOut);
+		model.addAttribute("days", Days);
+		
+		model.addAttribute("dates", dates);
+		model.addAttribute("destination", destination);
+		model.addAttribute("guests", guests);
+		model.addAttribute("star", hotelgrade);
+		
 		return "pages/tours-list";
+	  
 	}
 }

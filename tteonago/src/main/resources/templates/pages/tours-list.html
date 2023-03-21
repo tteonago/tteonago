@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -27,6 +27,9 @@
     <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
 
+    <!-- 이미지 클릭시 확대 관련 import  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+
     <!-- Favicon icon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
 
@@ -39,11 +42,11 @@
 
 </head>
 <body id="top">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div class="page_loader"></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="page_loader"></div>
 
 <!-- main header start -->
 <header class="main-header sticky-header">
@@ -51,7 +54,7 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-lg navbar-light rounded">
-                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="index.html">
+                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="/category">
                         <img src="assets/img/logos/black-logo.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,7 +147,7 @@
         <div class="breadcrumb-area">
             <h1>Tours List</h1>
             <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/category">Home</a></li>
                 <li class="active">Tours List</li>
             </ul>
         </div>
@@ -164,23 +167,18 @@
                                 <span class="heading-icon">
                                     <i class="fa fa-caret-right icon-design"></i>
                                     <i class="fa fa-th-list"></i>
-                                </span>
+                                </span>                              
                                 <span class="heading" th:text="${hotelcount + ' 개의 호텔 검색'}"></span>
+                                <script th:inline="javascript">
+								    var hotelcount = /*[[${hotelcount}]]*/0;
+								    if (hotelcount === 0) {
+								        alert("검색 결과가 없습니다.");
+								        history.back();
+								    }
+								</script>
                             </h4>
                         </div>
-                        <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
-                            <div class="sorting-options clearfix">
-                                <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-list"></i></a>
-                                <a href="#" class="change-view-btn"><i class="fa fa-th-large"></i></a>
-                            </div>
-                            <div class="search-area">
-                                <select class="selectpicker search-fields" name="location">
-                                    <option>Default Sorting</option>
-                                    <option>High to Low</option>
-                                    <option>Low to High</option>
-                                </select>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 
@@ -188,29 +186,34 @@
                     <div class="row">
                       <div class="col-lg-5 col-md-5 col-pad">
                         <div class="item-thumbnail">
-                          <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}" class="item-img">
-                            <!-- <div class="tag">세일</div> 사용X 이 부분은 css 정리 할 때 참고용으로 남겨둠 -->
+                          <a th:href="@{${hotel.images[0].address}}" class="item-img" data-lightbox="example-set">                          
+                            <div class="tag">확대</div>
                             <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                          
-                            <div class="plan-price"><sup>$</sup>750<sub>/박</sub></div>
+                            <!-- <div class="plan-price"><sup>$</sup>750<sub>/박</sub></div> -->
                           </a>
                         </div>
                       </div>
                       <div class="col-lg-7 col-md-7 col-pad">
                         <div class="detail">
                           <h1 class="title">
-                            <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}" th:text="${hotel.hotelName}">캠핑 및 산</a>
+                            <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}" th:text="${hotel.hotelName}"></a>
                           </h1>
                           <div class="location">
                             <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}">
                               <i class="flaticon-pin"></i>
-                              <span th:text="${hotel.hotelAddress}">2726 Shinn Street, New York</span>
+                              <span th:text="${hotel.hotelAddress}"></span>
                             </a>
                           </div>
-                          <p th:text="${hotel.hotelInfo}">Lorem Ipsum은 단순히 인쇄 및 조판 업계의 더미 텍스트입니다.Lorem Ipsum은 업계 표준</p>
+                          <p th:text="${hotel.hotelInfo}"></p>
+                          <br>
+                          <br>
+                          <br>
                         </div>
                         <div class="ftr">
                             <div class="pull-left">
-                                <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                <i class="flaticon-calendar" th:text="| ${datein} ~ ${dateout}|"></i> <br>
+                                <i class="flaticon-calendar" th:text="${days}"></i> <br>
+                                <i class="flaticon-phone" th:text="| ${hotel.hotelPhone}|"></i>
                             </div>
                             <div class="pull-right">
                                 <div class="ratings">
@@ -255,233 +258,136 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- <img src="images/10_001_1.jpg"> -->
-
-                <div class="pagination-box">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+
+                       <div class="col-lg-4 col-md-12">
                 <div class="sidebar">
                     <!-- Search area2 start -->
                     <div class="widget search-area2">
-                        <h5 class="sidebar-title">Book This Tours</h5>
-                        <form class="inline-search-area" method="GET">
+                        <h5 class="sidebar-title">호텔 예약 재검색</h5>
+                        <form action="/hotelsearch" class="inline-search-area" method="GET">
                             <div class="form-group search-col">
-                                <input type="text" class="form-control" placeholder="Destination, City.....">
-                                <i class="flaticon-search icon-append"></i>
+                                <select class="selectpicker search-fields btn-block form-control bdr" name="destination" required>
+                                    <span th:if="${destination} == 서울">
+                                        <option value="서울" selected>서울</option>
+                                        <option value="제주">제주</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대전">대전</option>
+                                    </span>
+                                    <span th:if="${destination} == 제주">
+                                        <option value="서울">서울</option>
+                                        <option value="제주" selected>제주</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대전">대전</option>
+                                    </span>
+                                    <span th:if="${destination} == 부산">
+                                        <option value="서울">서울</option>
+                                        <option value="제주">제주</option>
+                                        <option value="부산" selected>부산</option>
+                                        <option value="대전">대전</option>
+                                    </span>
+                                    <span th:if="${destination} == 대전">
+                                        <option value="서울">서울</option>
+                                        <option value="제주">제주</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대전" selected>대전</option>
+                                    </span>                                                        
+                                </select> 
+                                <i class="flaticon-down icon-append"></i>
                             </div>
                             <div class="form-group search-col">
-                                <input type="text" name="dates" placeholder="Check In" class="datetimes-left form-control"/>
+                                <!-- <input type="text" name="dates" th:value="|${datein} ~ ${dateout}|" class="datetimes-left form-control"/> -->
+                                <input type="text" name="dates" th:value="${dates}" class="datetimes-left form-control"/> 
                                 <i class="flaticon-calendar icon-append"></i>
+                            </div>                       
+                            <div class="form-group search-col">
+                                <select class="selectpicker search-fields btn-block form-control bdr" name="hotel-grade" required>     
+                                    <span th:if="${star} == 5">                                     
+                                        <option value="5" selected>⭐⭐⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="1">⭐</option>
+                                    </span>
+                                    <span th:if="${star} == 4">                                     
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <option value="4" selected>⭐⭐⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="1">⭐</option>
+                                    </span>
+                                    <span th:if="${star} == 3">                                       
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="3" selected>⭐⭐⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="1">⭐</option>
+                                    </span>
+                                    <span th:if="${star} == 2">                                      
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="2" selected>⭐⭐</option>
+                                        <option value="1">⭐</option>
+                                    </span>
+                                    <span th:if="${star} == 1">
+                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <option value="4">⭐⭐⭐⭐</option>
+                                        <option value="3">⭐⭐⭐</option>
+                                        <option value="2">⭐⭐</option>
+                                        <option value="1" selected>⭐</option>                                     
+                                    </span>                                                              
+                                </select> <i class="flaticon-down icon-append"></i>                   
                             </div>
                             <div class="form-group search-col">
-                                <input type="text" name="dates" placeholder="Check Out" class="datetimes-left form-control"/>
-                                <i class="flaticon-calendar icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <select class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
-                                    <option>Travel Type</option>
-                                    <option>Adventure</option>
-                                    <option>Escorted Tour</option>
-                                    <option>River Cruise</option>
-                                    <option>Hiking</option>
-                                    <option>Suffing</option>
-                                </select>
-                                <i class="flaticon-download icon-append"></i>
-                            </div>
-                            <div class="form-group clearfix">
-                                <p>Distance</p>
-                                <div class="range-slider">
-                                    <div data-min="0" data-max="100" data-unit="Km" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
-                                    <div class="clearfix"></div>
-                                </div>
+                                <select class="selectpicker search-fields btn-block form-control bdr"name="guests" required>
+                                    <span th:if="${guests} == 5">
+                                        <option value="1">1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4">4명</option>
+                                        <option value="5" selected>5명 이상</option>                         
+                                    </span>
+                                    <span th:if="${guests} == 4">
+                                        <option value="1">1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4" selected>4명</option>
+                                        <option value="5">5명 이상</option>                         
+                                    </span>       
+                                    <span th:if="${guests} == 3">
+                                        <option value="1">1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3" selected>3명</option>
+                                        <option value="4">4명</option>
+                                        <option value="5" >5명 이상</option>                         
+                                    </span>       
+                                    <span th:if="${guests} == 2">
+                                        <option value="1">1명</option>
+                                        <option value="2" selected>2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4">4명</option>
+                                        <option value="5">5명 이상</option>                         
+                                    </span>       
+                                    <span th:if="${guests} == 1">
+                                        <option value="1" selected>1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4">4명</option>
+                                        <option value="5">5명 이상</option>                         
+                                    </span>                                          
+                            </select> <i class="flaticon-down icon-append"></i>
                             </div>
                             <div class="form-group search-col mb-0">
-                                <a href="#" class="btn-theme btn-md btn-block">Search</a>
+                                <!-- <a href="" class="btn-theme btn-md btn-block">Search</a> -->
+                                <button type="submit" class="btn-theme btn-md btn-block">Search</button>
                             </div>
                         </form>
-                    </div>
-                    <!-- Star Rating start -->
-                    <div class="widget duration">
-                        <h5 class="sidebar-title">Star Rating</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star1">
-                                    <label class="form-check-label" for="star1">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star2">
-                                    <label class="form-check-label" for="star2">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star3">
-                                    <label class="form-check-label" for="star3">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star4">
-                                    <label class="form-check-label" for="star4">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="star5">
-                                    <label class="form-check-label" for="star5">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Duration start -->
-                    <div class="widget duration">
-                        <h5 class="sidebar-title">Duration</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour1">
-                                    <label class="form-check-label" for="day-tour1">
-                                        1 Day Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour2">
-                                    <label class="form-check-label" for="day-tour2">
-                                        2 - 5 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour3">
-                                    <label class="form-check-label" for="day-tour3">
-                                        4 - 10 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour4">
-                                    <label class="form-check-label" for="day-tour4">
-                                        8 - 20 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour5">
-                                    <label class="form-check-label" for="day-tour5">
-                                        16 - 40 Days Tour
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Activity type start -->
-                    <div class="widget activity-type">
-                        <h5 class="sidebar-title">Activity Type</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="adventure">
-                                    <label class="form-check-label" for="adventure">
-                                        Adventure
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="camping">
-                                    <label class="form-check-label" for="camping">
-                                        Camping
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="kayaking">
-                                    <label class="form-check-label" for="kayaking">
-                                        Kayaking
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="trekking">
-                                    <label class="form-check-label" for="trekking">
-                                        Trekking
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="skiing">
-                                    <label class="form-check-label" for="skiing">
-                                        Skiing
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Question start -->
-                    <div class="widget question">
-                        <h5 class="sidebar-title">Get a Question?</h5>
-                        <ul class="contact-info">
-                            <li>
-                                <i class="flaticon-pin"></i>20/F Green Road, Dhanmondi
-                            </li>
-                            <li>
-                                <i class="flaticon-mail"></i><a href="mailto:info@themevessel.com">info@themevessel.com</a>
-                            </li>
-                            <li>
-                                <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+0477 85x6 552</a>
-                            </li>
-                        </ul>
-                        <div class="social-list clearfix">
-                            <ul>
-                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!-- Tours list rightside end -->
@@ -621,6 +527,10 @@
 </div>
 
 <!-- External JS libraries -->
+<!-- 이미지 클릭시 확대 관련 import  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+
 <script src="assets/js/jquery-2.2.0.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -648,6 +558,7 @@
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <!-- Custom JS Script -->
 <script  src="assets/js/app.js"></script>
+
 
 </body>
 </html>

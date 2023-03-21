@@ -198,10 +198,10 @@
                       <div class="col-lg-7 col-md-7 col-pad">
                         <div class="detail">
                           <h1 class="title">
-                            <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}" th:text="${hotel.hotelName}"></a>
+                            <a th:href="@{{hotelId}(hotelId=${hotel.hotelId})}" th:text="${hotel.hotelName}"></a>
                           </h1>
                           <div class="location">
-                            <a th:href="@{/hotels/{hotelId}(hotelId=${hotel.hotelId})}">
+                            <a th:href="@{/detail(hotelId=${hotel.hotelId})}">
                               <i class="flaticon-pin"></i>
                               <span th:text="${hotel.hotelAddress}"></span>
                             </a>

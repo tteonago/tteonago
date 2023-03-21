@@ -20,7 +20,7 @@ import lombok.ToString;
 @Builder
 public class HotelDTO {
 	
-private String hotelId;
+	private String hotelId;
 	
 	private AreaDTO area;
 	

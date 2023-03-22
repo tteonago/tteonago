@@ -73,7 +73,7 @@ public class Oauth2ServiceDetail extends DefaultOAuth2UserService {
 					member.getPassword(),
 					member.getRole(),
 					member.getEmail(),
-					Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+					Arrays.asList(new SimpleGrantedAuthority("ROLE_SOCIAL")));
 			
 			return socialDTO;
 		}

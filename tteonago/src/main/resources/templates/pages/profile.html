@@ -244,6 +244,9 @@ p { margin:20px 0px; }
 					                    <div class="col-sm-9 text-secondary">
 					                      <span th:text="${member.role}"></span><br><br>
 					                      <p sec:authorize="hasRole('ROLE_SOCIAL')"><button onclick="location.href='changeRole'"class="w3-button w3-red w3-round-xlarge" >이메일 인증</button></p>
+					                      <p sec:authorize="hasRole('ROLE_SOCIAL')" style="color:red;">*이메일 인증 후에 모든 기능 사용 가능합니다.</p>
+					                    </div>
+					                    <div>
 					                    </div>
 					                  </div>
 					                  
@@ -288,14 +291,13 @@ p { margin:20px 0px; }
 						<td th:text="${res.value.period.checkIn}"></td>
 						<td th:text="${res.value.period.checkOut}"></td>
 						<td th:text="${res.value.payDate}"></td>
-						<td th:text="${res.value.room.roomId} + ' 의 리뷰 쓰기'"></td>
+						<td th:unless="${#lists.contains(resIndex, res.value.resIndex)}" th:text="${res.value.room.roomId} + ' 의 리뷰 쓰기'" ></td>
 					  </tr>
-					</table>					
+					</table>		
 				</p>
 			  </div>
 			</div>
 <!-- small navbar end -->
-	    
     </div>
 </div>
 <!-- Destination end -->

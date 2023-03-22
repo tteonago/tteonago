@@ -48,12 +48,12 @@ class ReviewController {
     }
 
     //룸 id 받아서 리뷰들 조회
-    @GetMapping("/{roomId}")
-    public String findById(@PathVariable String roomId,Model model) throws TteonagoException {
-        List<ReviewDTO> reviewDTOList = reviewService.getReviewByRoom(roomId);
-        model.addAttribute("reviews",reviewDTOList);
-        return "/";
-    }
+//    @GetMapping("/{roomId}")
+//    public String findById(@PathVariable String roomId,Model model) throws TteonagoException {
+//        List<ReviewDTO> reviewDTOList = reviewService.getReviewByRoom(roomId);
+//        model.addAttribute("reviews",reviewDTOList);
+//        return "/";
+//    }
     @GetMapping("/review")
     public String test(){
 

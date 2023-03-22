@@ -2,6 +2,9 @@ package com.tteonago.reservation.service;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.repository.RoomRepository;
+import com.tteonago.member.entity.Member;
+import com.tteonago.member.exception.AppException;
+import com.tteonago.member.repository.MemberRepository;
 import com.tteonago.reservation.dto.ReviewDTO;
 import com.tteonago.reservation.dto.ReviewEnrollDTO;
 import com.tteonago.reservation.entity.Reservation;
@@ -24,6 +27,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
+    private final MemberRepository memberRepository;
 
 
     //리뷰 등록 메서드
@@ -50,6 +54,14 @@ public class ReviewService {
             reviews.add(new ReviewDTO(rev));
         }
         return reviews;
+    }
+    
+    public List<Integer> findReviewByResIndex(String username) {
+    	Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
+    	
+    	List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
+    	
+    	return resIndex;
     }
 
 }

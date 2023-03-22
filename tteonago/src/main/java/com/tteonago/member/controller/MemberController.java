@@ -22,6 +22,8 @@ import com.tteonago.member.entity.Member;
 import com.tteonago.member.service.UserService;
 import com.tteonago.reservation.dto.ReservationDTO;
 import com.tteonago.reservation.service.ReservationService;
+import com.tteonago.reservation.service.ReviewService;
+
 import org.springframework.security.core.userdetails.User;
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +33,7 @@ public class MemberController {
 
 	private final UserService userService;
 	private final ReservationService reservationService;
+	private final ReviewService reviewService;
 
 	@GetMapping("/home")
 	public String home() {
@@ -68,6 +71,10 @@ public class MemberController {
 
 		HashMap<String, ReservationDTO> reservationDTOs = reservationService.findReservationByUsername(member);
 		model.addAttribute("reservation", reservationDTOs);
+		
+		List<Integer> resIndex = reviewService.findReviewByResIndex(authentication.getName());
+		
+		model.addAttribute("resIndex", resIndex);
 
 		return "pages/profile";
 	}

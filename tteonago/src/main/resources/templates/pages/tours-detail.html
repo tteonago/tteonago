@@ -278,20 +278,50 @@
                         </div>
                         <div class="tab-pane fade " id="6" role="tabpanel" aria-labelledby="6-tab">
                             <div class="properties-amenities mb-30">
-                                <h3 class="heading-2">RoomList</h3>
-                                <div class="RoomList-section clearfix">
-                                  <div class="RoomList" th:each="room : ${hotel.room}">
-                                    <div class="RoomList-info">
-                                      <h3 th:text="${room.roomType}"></h3>
-                                      <p th:text="'Price: ' + ${room.price}"></p>
-                                      <p th:text="'Room size: ' + ${room.roomSize} + ' sq.ft'"></p>
+                                <h3 class="heading-2">방 리스트</h3>
+
+                                <div class="row">
+
+                                <div class="col-lg-6 col-md-6" th:each="room : ${hotel.room}">
+                                    <div class="tour-item">
+                                        <div class="item-thumbnail">
+                                            <a th:href="@{${room.images[0].address}}" class="item-img" data-lightbox="example-set">
+                                                <div class="tag">확대</div>
+                                                <div class="plan-price" th:text="${room.price} + '원'"><sup>$</sup><sub>/ night</sub></div>                                             
+                                                <img th:src="@{${room.images[0].address}}" alt="tours" class="img-fluid" />  
+                                            </a>
+                                        </div>
+                                        <div class="detail">
+                                            <h1 class="title">
+                                                <a href="tours-detail.html" th:text="${room.roomType}">Camping and  mountains</a>
+                                            </h1>
+                                            <div class="location">
+                                                <a href="tours-detail.html" th:text=" '최대 수용 인원 : ' + ${room.roomSize}">
+                                                    <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="footer clearfix">
+                                            <div class="search-col">                                           
+                                                <button type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
+                                            </div>
+                                            <!-- <div class="pull-left">
+                                                <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                            </div>
+                                            <div class="pull-right">
+                                                <div class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                            </div> -->
+                                        </div>
                                     </div>
-                                    <div th:each="roomimg : ${room.images}">
-                                      <img th:src="${roomimg.address}"/>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
+
+                            </div>
                         </div>
                      
                         <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">

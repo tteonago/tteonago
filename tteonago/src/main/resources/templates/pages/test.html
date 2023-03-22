@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
 <meta charset="UTF-8">
-<title>test</title>
+<title>Hotel Search Results</title>
 </head>
 <body>
-   <h1 th:text="${hotelId}"></h1>
-   <h1 th:text="${hotel.hotelName}"></h1>
-   <h1 th:text="${hotel.area}"></h1>
-   ====================================================
-   
-   
-   
-   <!-- <img th:src="${hotel.room[0].images[0].address}"></img> -->
-   <!-- hotel.room.images.address로 가는 경로  -->
-   <div th:each="room : ${hotel.room}">
-	   	<h1 th:text="${room.price + '원'}"></h1>
-	   	<h1 th:text="${room.roomType}"></h1>
-	   	<h1 th:text="${room.roomId}"></h1>
-	    <!-- <h1 th:text="${room.index+1}"></h1> -->
-	   <div th:each="roomimg : ${room.images}">
-	   	<img th:src="${roomimg.address}"/>
-	   </div>
-   	<!-- img th:src="${room.images[0].address}"/> -->
-   </div>
-   
-   
 
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+  ANONYMOUS
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+  USER
+</div> 
+ 
+<div sec:authorize="hasRole('ROLE_SOCIAL')">
+  SOCIAL
+</div> 
+
+<p th:text="${member.role}"></p>
+
+<span th:text="${#lists.contains(resIndex, 1)}" />
+
+<span th:if="${#lists.contains(resIndex, 1)}">
+    출력할 문자열
+</span>
+
+<span th:if="${#lists.contains(resIndex, 1)}" th:text="'요소가 리스트 안에 있습니다.'"></span>
+ 
 </body>
-</html>

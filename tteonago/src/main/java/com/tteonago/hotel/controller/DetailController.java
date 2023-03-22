@@ -22,9 +22,18 @@ public class DetailController {
 	    Hotel hotel = hotelService.getHotelById(hotelId);
 	    model.addAttribute("hotel", hotel);
 
-//	    return "pages/tours-detail";
-	    return "pages/test";
+	    return "pages/tours-detail";
+//	    return "pages/test";
+	}
 	
+	
+	
+	
+	@GetMapping("/test22")
+	public String test22() {
+	   return "pages/tours-detail";
     }
+	
+	
 	
 }

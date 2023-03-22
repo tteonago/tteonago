@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
 <meta charset="UTF-8">
 <title>Hotel Search Results</title>
 </head>
 <body>
- <h2>Hotel List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Hotel Name</th>
-        <th>Hotel Id</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>image</th>
-       	
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="hotel : ${hotellist}">
-        <td th:text="${hotel.hotelName}"></td>
-        <td th:text="${hotel.hotelId}"></td>
-        <td th:text="${hotel.hotelAddress}"></td>
-        <td th:text="${hotel.hotelPhone}"></td>
-       	<td>
-      		<img th:src="@{/static/images/__${hotelImageMap[hotel.hotelId]}__}" />
-    	</td>
-		
-      </tr>
-    </tbody>
-  </table>
+
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+  ANONYMOUS
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+  USER
+</div> 
+ 
+<div sec:authorize="hasRole('ROLE_SOCIAL')">
+  SOCIAL
+</div> 
+ 
 </body>

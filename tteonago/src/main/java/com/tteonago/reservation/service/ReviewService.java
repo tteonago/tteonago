@@ -23,11 +23,10 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ReviewService {
-
+    private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
-    private final MemberRepository memberRepository;
 
 
     //리뷰 등록 메서드
@@ -55,13 +54,16 @@ public class ReviewService {
         }
         return reviews;
     }
-    
     public List<Integer> findReviewByResIndex(String username) {
-    	Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
-    	
-    	List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
-    	
-    	return resIndex;
+        Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
+
+        List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
+
+        for(Integer i : resIndex) {
+            System.out.println(i);
+        }
+
+        return resIndex;
     }
 
 }

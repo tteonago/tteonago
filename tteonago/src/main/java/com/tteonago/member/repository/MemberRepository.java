@@ -1,5 +1,6 @@
 package com.tteonago.member.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	@Modifying
 	@Query("update Member m set m.role=:role where m.username=:username")
 	public int updateMemberByUsername(@Param("role") String role, @Param("username") String username);
+
+
 }

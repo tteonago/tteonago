@@ -2,6 +2,9 @@ package com.tteonago.reservation.service;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.repository.RoomRepository;
+import com.tteonago.member.entity.Member;
+import com.tteonago.member.exception.AppException;
+import com.tteonago.member.repository.MemberRepository;
 import com.tteonago.reservation.dto.ReviewDTO;
 import com.tteonago.reservation.dto.ReviewEnrollDTO;
 import com.tteonago.reservation.entity.Reservation;
@@ -20,7 +23,7 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class ReviewService {
-
+    private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
@@ -50,6 +53,17 @@ public class ReviewService {
             reviews.add(new ReviewDTO(rev));
         }
         return reviews;
+    }
+    public List<Integer> findReviewByResIndex(String username) {
+        Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
+
+        List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
+
+        for(Integer i : resIndex) {
+            System.out.println(i);
+        }
+
+        return resIndex;
     }
 
 }

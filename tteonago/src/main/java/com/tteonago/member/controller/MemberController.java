@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.tteonago.reservation.service.ReviewService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-
+	private final ReviewService reviewService;
 	private final UserService userService;
 	private final ReservationService reservationService;
 
@@ -68,7 +69,9 @@ public class MemberController {
 
 		HashMap<String, ReservationDTO> reservationDTOs = reservationService.findReservationByUsername(member);
 		model.addAttribute("reservation", reservationDTOs);
+		List<Integer> resIndex = reviewService.findReviewByResIndex(authentication.getName());
 
+		model.addAttribute("resIndex", resIndex);
 		return "pages/profile";
 	}
 

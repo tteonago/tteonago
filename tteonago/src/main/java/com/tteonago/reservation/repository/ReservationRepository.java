@@ -2,6 +2,7 @@ package com.tteonago.reservation.repository;
 
 import java.util.List;
 
+import com.tteonago.hotel.entity.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +19,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	
 	@Query("select res, h.hotelName from Room rm join Reservation res on rm.roomId = res.room join Hotel h on rm.hotel = h.hotelId where res.member = :member")
 	public List<Object[]> findAllResByMember(@Param("member") Member member);
+
+	@Query("select r from Reservation r where r.room = :room")
+	public List<Reservation> findReservationByRoom(Room room);
 }

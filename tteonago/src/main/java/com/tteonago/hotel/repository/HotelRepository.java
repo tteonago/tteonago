@@ -7,11 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.Hotel;
-import com.tteonago.hotel.entity.HotelImage;
-import com.tteonago.hotel.entity.Room;
 
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, String>{

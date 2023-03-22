@@ -44,8 +44,14 @@ body {
 }
 
 .img-fluid {
-    max-width: 100%;
-    height: auto;
+    /* max-width: 100%;*/
+    height: auto; 
+}
+.img-width {
+   width: 1500px;
+}
+.img-width2 {
+   width: 300px;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {

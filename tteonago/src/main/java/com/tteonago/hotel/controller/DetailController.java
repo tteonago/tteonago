@@ -28,16 +28,9 @@ public class DetailController {
 	    Hotel hotel = hotelService.getHotelById(hotelId);
 	    model.addAttribute("hotel", hotel);
 
-//	    return "pages/tours-detail";
-	    return "pages/test";
-	
-//	@GetMapping("/{hotelId}")
-//    public String getHotelDetail(Model model, @PathVariable("hotelId") String hotelId) {
-//        Hotel hotel = hotelService.getHotelById(hotelId);
-//        List<Object[]> rooms = hotelService.findDistinctRoomsByHotelId(hotelId);
-//        model.addAttribute("hotel", hotel);
-//        model.addAttribute("rooms", rooms);
-//        return "/pages/test";
+	    return "pages/tours-detail";
+//	    return "pages/test";
+
     }
-	
+
 }

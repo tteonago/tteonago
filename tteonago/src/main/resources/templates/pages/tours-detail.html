@@ -166,12 +166,21 @@
                                 <div class="title">
                                     <span class="heading" th:text="${hotel.hotelName}"></span>
                                     <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <span>( 7 Reviews )</span>
+                                        <ui th:if="${hotel.star == 5}" >
+										    <option value="5">⭐⭐⭐⭐⭐</option>
+										</ui>
+                                        <ui th:if="${hotel.star == 4}" >
+										    <option value="4">⭐⭐⭐⭐</option>
+										</ui>
+                                        <ui th:if="${hotel.star == 3}" >
+										    <option value="3">⭐⭐⭐</option>
+										</ui>
+                                        <ui th:if="${hotel.star == 2}" >
+										    <option value="2">⭐⭐</option>
+										</ui>
+                                        <ui th:if="${hotel.star == 1}" >
+										    <option value="1">⭐</option>
+										</ui>
                                     </div>
                                 </div>
                             </div>
@@ -200,16 +209,19 @@
                     
                     
                         <div class="active item carousel-item" data-slide-number="0">
-                            <img th:src="@{${hotel.room[0].images[0].address}}" class="img-fluid" alt="slider">
+                            <img th:src="@{${hotel.images[0].address}}" class="img-fluid img-width" alt="slider">
                         </div>
                         <div class="item carousel-item" data-slide-number="1">
-                            <img th:src="@{${hotel.room[0].images[1].address}}" class="img-fluid" alt="slider">
+                            <img th:src="@{${hotel.images[1].address}}" class="img-fluid img-width" alt="slider">
                         </div>
                         <div class="item carousel-item" data-slide-number="2">
-                            <img th:src="@{${hotel.room[1].images[0].address}}" class="img-fluid" alt="slider">
+                            <img th:src="@{${hotel.images[2].address}}" class="img-fluid img-width" alt="slider">
                         </div>
                         <div class="item carousel-item" data-slide-number="3">
-                            <img th:src="@{${hotel.room[1].images[1].address}}" class="img-fluid" alt="slider">
+                            <img th:src="@{${hotel.images[3].address}}" class="img-fluid img-width" alt="slider">
+                        </div>
+                        <div class="item carousel-item" data-slide-number="4">
+                            <img th:src="@{${hotel.images[4].address}}" class="img-fluid img-width" alt="slider">
                         </div>
 
                     </div>
@@ -217,25 +229,29 @@
                     <ul class="carousel-indicators smail-item list-inline nav nav-justified">
                         <li class="list-inline-item active">
                             <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#itemDetailsSlider">
-                                <img th:src="@{${hotel.room[0].images[0].address}}" class="img-fluid" alt="slider">
+                                <img th:src="@{${hotel.images[0].address}}" class="img-fluid" alt="slider">
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a id="carousel-selector-1" data-slide-to="1" data-target="#itemDetailsSlider">
-                                <img th:src="@{${hotel.room[0].images[1].address}}" class="img-fluid" alt="slider">
+                                <img th:src="@{${hotel.images[1].address}}" class="img-fluid img-width2" alt="slider">
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a id="carousel-selector-2" data-slide-to="2" data-target="#itemDetailsSlider">
-                                <img th:src="@{${hotel.room[1].images[0].address}}" class="img-fluid" alt="slider">
+                                <img th:src="@{${hotel.images[2].address}}" class="img-fluid img-width2" alt="slider">
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a id="carousel-selector-3" data-slide-to="3" data-target="#itemDetailsSlider">
-                                <img th:src="@{${hotel.room[1].images[1].address}}" class="img-fluid" alt="slider">
+                                <img th:src="@{${hotel.images[3].address}}" class="img-fluid img-width2" alt="slider">
                             </a>
                         </li>
-                        
+                        <li class="list-inline-item">
+                            <a id="carousel-selector-4" data-slide-to="4" data-target="#itemDetailsSlider">
+                                <img th:src="@{${hotel.images[4].address}}" class="img-fluid img-width2" alt="slider">
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Tabbing box start -->
@@ -261,7 +277,7 @@
                         <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
                             <div class="properties-description">
                                 <h3 class="heading-2">Information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.</p>
+                                <p th:text="${hotel.hotelInfo}"></p>
                                 <br>
                                 <div class="information-table manage-table">
                                     <ul>

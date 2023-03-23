@@ -91,6 +91,11 @@ public class UserService {
 		return member;
 	}
 	
+	@Transactional
+	public void updateSocialPassword(String username) {
+		int check = memberRepository.updateMemberByUsername("ROLE_USER", username);
+	}
+	
 	//로그인  no usage??? -> successHandler 에서 잡아주는것 같음 -> 이 코드는 확인이 필요합니다. 반드시 확인요청 해주세요
 //	public String login(String userName, String password) {
 //		//없는 아이디 입력

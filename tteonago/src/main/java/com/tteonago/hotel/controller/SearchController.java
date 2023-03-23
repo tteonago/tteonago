@@ -62,9 +62,6 @@ public class SearchController {
 		String checkin = dateArr[0];
 		String checkout = dateArr[1];
 		
-		System.out.println("기존의 날짜 포멧 " + checkin);
-		System.out.println("기존의 날짜 포멧 " + checkout);
-		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
 		
@@ -76,19 +73,11 @@ public class SearchController {
 		
 		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
 		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
-		
-		System.out.println("변경된 날짜 포멧 " + LocalDatein);
-		System.out.println("변경된 날짜 포멧 " + LocalDateOut);
-		
+
 		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 		long nights = daysBetween - 1;
 		
 		String Days = " " + nights + "박 / " + daysBetween + "일";
-		System.out.println(Days); // 출력: 4 Days / 3 Nights
-		
-		for(int i=0; i<hotellist.size(); i++) {
-			System.out.println(hotellist.get(i).getArea().getAName());
-		}
 		
 		model.addAttribute("datein", LocalDatein);
 		model.addAttribute("dateout", LocalDateOut);

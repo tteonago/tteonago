@@ -68,12 +68,11 @@ public class MemberController {
 
 		Member member = userService.findById(authentication.getName());
 		model.addAttribute("member", member);
-
+		
 		HashMap<String, ReservationDTO> reservationDTOs = reservationService.findReservationByUsername(member);
 		model.addAttribute("reservation", reservationDTOs);
 		
 		List<Integer> resIndex = reviewService.findReviewByResIndex(authentication.getName());
-		
 		model.addAttribute("resIndex", resIndex);
 
 		return "pages/profile";

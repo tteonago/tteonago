@@ -21,14 +21,9 @@
   SOCIAL
 </div> 
 
-<p th:text="${member.role}"></p>
+<p th:text="${'체크인 날짜: ' + checkIn}"></p>
+<p th:text="${'체크아웃 날짜: ' + checkOut}"></p>
+<p th:text="${'룸 아이디: ' + roomId}"></p>
 
-<span th:text="${#lists.contains(resIndex, 1)}" />
-
-<span th:if="${#lists.contains(resIndex, 1)}">
-    출력할 문자열
-</span>
-
-<span th:if="${#lists.contains(resIndex, 1)}" th:text="'요소가 리스트 안에 있습니다.'"></span>
  
 </body>

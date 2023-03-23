@@ -17,12 +17,13 @@ public class DetailController {
 	
 	@GetMapping("/detail")
 
-	public String hotelDetail(@RequestParam String hotelId, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
+	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
 		Hotel hotel = hotelService.getHotelById(hotelId);
 			if(hotel == null) {
 				throw new RuntimeException("hotel not found");
 			}
 			model.addAttribute("hotel", hotel);
+			model.addAttribute("dates", dates);
 			model.addAttribute("checkIn", checkIn);
 			model.addAttribute("checkOut", checkOut);
 			return "pages/tours-detail";

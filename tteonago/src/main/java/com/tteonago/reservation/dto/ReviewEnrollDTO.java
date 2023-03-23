@@ -12,14 +12,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ReviewEnrollDTO {
 
-    private Reservation reservation;
+    private int resIndex;
     @NotNull(message="별점을 입력하지 않았습니다.")
     private Double score;
 
     @NotBlank(message="리뷰 내용을 입력하세요.")
     private String context;
 
-    public Review toEntity() {
+    public Review toEntity(Reservation reservation) {
         Review entity = Review.builder()
                 .reservation(reservation)
                 .score(score)

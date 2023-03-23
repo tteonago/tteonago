@@ -15,6 +15,8 @@ import com.tteonago.reservation.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,10 @@ public class ReviewService {
     private final RoomRepository roomRepository;
 
     //리뷰 등록
-    public int reviewing(ReviewEnrollDTO reviewEnrollDTO) {
-
-        Review review = reviewRepository.save(reviewEnrollDTO.toEntity());
+    public int reviewing(ReviewEnrollDTO reviewEnrollDTO,int resIndex) {
+        Reservation reservation = reservationRepository.findById(resIndex)
+                .orElseThrow(EntityNotFoundException::new);
+        Review review = reviewRepository.save(reviewEnrollDTO.toEntity(reservation));
 
         return review.getRevIndex();
     }

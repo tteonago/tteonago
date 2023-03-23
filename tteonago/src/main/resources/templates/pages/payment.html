@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -120,18 +121,17 @@ span.price {
       
         <div class="row">
           <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="예약자 이름">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="이메일예시">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Phone</label>
-            <input type="text" id="adr" name="phone" placeholder="예약자 전화번호">
-
+            <h2>예 약 정 보</h2>
+            
+            <label for="fname"><i class="fa fa-user" th:text="'이름 : ' + ${member.username}"></i></label><br><br>
+            <label for="email"><i class="fa fa-envelope" th:text="'이메일 : ' + ${member.email}"></i></label><br><br>
+<!--             <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
+            <input type="text" id="email" name="email" th:value="${member.email}" readonly>
+ -->
             <div class="row">
               <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
+                <label for="point">point</label>
+                <input type="text" id="point" name="point" th:value="${member.point} + ' 점'" readonly>
               </div>
               <div class="col-50">
                 <label for="zip">Zip</label>
@@ -150,37 +150,34 @@ span.price {
               <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
             <label for="cname">예약호텔명</label>
-            <input type="text" id="cname" name="cardname" placeholder="힐튼호텔">
+            <input type="text" id="cname" name="cardname" th:value="${room.hotel.hotelName}" readonly>
             <label for="ccnum">예약 룸 </label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="룸이름">
+            <input type="text" id="ccnum" name="cardnumber" th:value="${room.roomType}" readonly>
             <label for="expmonth">체크인</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <input type="text" id="expmonth" name="expmonth" th:value="${checkIn}" readonly>
             <label for="expmonth">체크아웃</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <input type="text" id="expmonth" name="expmonth" th:value="${checkOut}" readonly>
             <div class="row">
-              <div class="col-50">
+              <!-- <div class="col-50">
                 <label for="expyear">Exp Year</label>
                 <input type="text" id="expyear" name="expyear" placeholder="2018">
               </div>
               <div class="col-50">
                 <label for="cvv">CVV</label>
                 <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
+              </div> -->
             </div>
           </div>
           
         </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
         <input type="submit" value="Continue to checkout" class="btn">
       </form>
     </div>
   </div>
   <div class="col-25">
     <div class="container">
-      <h4>Price Summary<span class="price" style="color:black"> <b>4</b></span></h4>
-      <p>Product 1<span class="price">$15</span></p>
+      <h4>Price Summary<span class="price" style="color:black"> <b>  </b></span></h4>
+      <p>1박 가격<span class="price" th:text="${room.Price} + '원'"></span></p>
       <p>Product 2<span class="price">$5</span></p>
       <p>Product 3<span class="price">$8</span></p>
       <p>Product 4<span class="price">$2</span></p>

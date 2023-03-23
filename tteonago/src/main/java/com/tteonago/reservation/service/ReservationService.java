@@ -27,7 +27,6 @@ public class ReservationService {
 		
 		for(Object[] res : reservations) {
 			hotelAndReserv.put((String)res[1], modelMapper.map(res[0], ReservationDTO.class));
-			System.out.println(res[0]);
 		}
 		
 		

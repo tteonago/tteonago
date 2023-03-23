@@ -14,17 +14,18 @@ public class DetailController {
 	
 	@Autowired
     private HotelService hotelService;
-
-	//http://localhost/detail?hotelId=10001
+	
 	@GetMapping("/detail")
-	public String hotelDetail(@RequestParam String hotelId, Model model) {
-
-	    Hotel hotel = hotelService.getHotelById(hotelId);
-	    if(hotel == null) {
-	    	throw new RuntimeException("hotel not found");
-	    }
-	    model.addAttribute("hotel", hotel);
-
-	    return "pages/tours-detail";
-	}
+	public String hotelDetail(@RequestParam String hotelId, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
+		Hotel hotel = hotelService.getHotelById(hotelId);
+			if(hotel == null) {
+				throw new RuntimeException("hotel not found");
+			}
+			model.addAttribute("hotel", hotel);
+			model.addAttribute("checkIn", checkIn);
+			model.addAttribute("checkOut", checkOut);
+			return "pages/tours-detail";
+		}
+	
+	
 }

@@ -342,46 +342,42 @@
 
 									<div class="row">
 
-										<form action="" class="row inline-search-area search-area"
-											method="GET">
-											<div class="col-lg-6 col-md-6"
-												th:each="room, iterStat : ${hotel.room}">
-												<div class="tour-item">
-													<div class="item-thumbnail">
-														<img th:src="@{${room.images[0].address}}" alt="tours"
-															class="img-fluid" />
-														<div th:each="img,iterStat : ${room.images}"
-															th:reverse="${true}">
-															<a th:href="@{${img.address}}" class="item-img"
-																th:attr="data-lightbox=${'lightbox-' + room.roomId}">
-																<div class="tag">확대</div>
-															</a>
-														</div>
-														<div class="plan-price" th:text="${room.price} + '원'">
-															<sup>$</sup><sub>/ night</sub>
-														</div>
-													</div>
-													<div class="detail">
-														<h1 class="title">
-															<a href="tours-detail.html" th:text="${room.roomType}">Camping
-																and mountains</a>
-														</h1>
-														<div class="location">
-															<a href="tours-detail.html"
-																th:text=" '최대 수용 인원 : ' + ${room.roomSize}"> <i
-																class="flaticon-pin"></i> 2726 Shinn Street, New York
-															</a>
-														</div>
-													</div>
-													<div class="footer clearfix">
-														<div class="search-col">
-															<button type="submit" class="btn-theme btn-md btn-block">예약
-																하기</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</form>
+										<div class="col-lg-6 col-md-6" th:each="room, iterStat : ${hotel.room}">
+                                 			   <form action="purchase" class="row inline-search-area search-area" method="GET">
+                                            <div class="tour-item">
+                                                <div class="item-thumbnail">
+                                                
+                                                  <img th:src="@{${room.images[0].address}}" alt="tours" class="img-fluid" />
+                                                  
+                                                  <div th:each="img,iterStat : ${room.images}" th:reverse="${true}">
+                                                  <a th:href="@{${img.address}}" class="item-img" th:attr="data-lightbox=${'lightbox-' + room.roomId}">
+                                                    <div class="tag">확대</div>
+                                                  </a>
+                                                  </div>
+                                                  
+                                                  <div class="plan-price" th:text="${room.price} + '원'"><sup>$</sup><sub>/ night</sub></div>
+                                                </div>
+                                                <div class="detail">
+                                                  <h1 class="title">
+                                                    <a href="tours-detail.html" th:text="${room.roomType}">Camping and mountains</a>
+                                                  </h1>
+                                                  <div class="location">
+                                                    <a href="tours-detail.html" th:text=" '최대 수용 인원 : ' + ${room.roomSize}">
+                                                      <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                                    </a>
+                                                  </div>
+                                                </div>
+                                                <div class="footer clearfix">
+                                                  <div class="search-col">
+                                                  	<input type="hidden" name="roomId" th:value="${room.roomId}"/>
+                                                  	<input type="hidden" name="checkIn" th:value="${checkIn}"/>
+                                                  	<input type="hidden" name="checkOut" th:value="${checkOut}"/>
+                                                    <button type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                               			   </form>
+                                        </div>
 									</div>
 								</div>
 							</div>

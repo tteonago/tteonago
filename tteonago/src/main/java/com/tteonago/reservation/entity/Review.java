@@ -15,46 +15,38 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @ToString
+@Getter
+@ToString
 @Entity
 @Table(name="review")
 public class Review {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int revIndex;
-	
+
 	@NonNull
 	@OneToOne
 	@JoinColumn(name="resIndex")
 	private Reservation reservation;
-	
+
 	@NonNull
 	@Column(name = "score")
 	private Double score;
-	
+
 	@NonNull
 	@Column(name = "context")
 	private String context;
-	
+
 	@NonNull
 	@Column(name = "date")
 	private LocalDateTime date;
 
 	@Builder
-	public Review(Reservation reservation,Double score,String context,LocalDateTime date){
+	public Review(Reservation reservation,Double score,String context){
 		this.reservation = reservation;
 		this.score = score;
 		this.context = context;
-		this.date = date;
+		this.date = LocalDateTime.now();
 	}
-
-	//리뷰 수정 메서드
-	public void updateReview(Double score,String context){
-		this.score = score;
-		this.context = context;
-	}
-
-
-
 }

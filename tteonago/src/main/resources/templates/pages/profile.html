@@ -304,7 +304,7 @@ p { margin:20px 0px; }
 											<div class="search-col">
 												<br> <select
 													class="selectpicker search-fields btn-block form-control bdr"
-													name="hotel-grade" required style="width:150px;">
+													name="score" required style="width:150px;">
 												<option value="" disabled selected>별점</option>
 												<option value="5">⭐⭐⭐⭐⭐</option>
 												<option value="4">⭐⭐⭐⭐</option>
@@ -315,8 +315,8 @@ p { margin:20px 0px; }
 												<i class="flaticon-down icon-append"></i>
 											</div>
 											<br>
-											<input type="hidden" id="reservation" name="reservation">
-											<textarea name="content" cols="90" rows="5" placeholder="리뷰를 입력해주세요"></textarea>
+											<input type="hidden" id="reservation" name="reservation" th:value="${reservation}">
+											<textarea name="context" cols="90" rows="5" placeholder="리뷰를 입력해주세요"></textarea>
 											<br>
 											<button type="submit" class="w3-button w3-black w3-round-large" style="float:right;">리뷰 제출</button>
 											<br>

@@ -1,4 +1,5 @@
 package com.tteonago.reservation.service;
+
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.repository.RoomRepository;
@@ -14,7 +15,6 @@ import com.tteonago.reservation.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +28,12 @@ public class ReviewService {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
 
+    //리뷰 등록
+    public int reviewing(ReviewEnrollDTO reviewEnrollDTO) {
 
-    //리뷰 등록 메서드
-    public int saveReview(ReviewEnrollDTO reviewEnrollDTO) throws TteonagoException {
-        // 리뷰 등록
-        Review review = reviewEnrollDTO.toEntity(reviewEnrollDTO);
-        reviewRepository.save(review);
+        Review review = reviewRepository.save(reviewEnrollDTO.toEntity());
 
         return review.getRevIndex();
-
     }
 
     //roomId에 따른 리뷰 조회

@@ -16,6 +16,7 @@ public class DetailController {
     private HotelService hotelService;
 	
 	@GetMapping("/detail")
+
 	public String hotelDetail(@RequestParam String hotelId, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
 		Hotel hotel = hotelService.getHotelById(hotelId);
 			if(hotel == null) {
@@ -26,6 +27,5 @@ public class DetailController {
 			model.addAttribute("checkOut", checkOut);
 			return "pages/tours-detail";
 		}
-	
 	
 }

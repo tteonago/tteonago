@@ -198,7 +198,9 @@
                       <div class="col-lg-7 col-md-7 col-pad">
                         <div class="detail">
                           <h1 class="title">
+
                            <a th:href="@{/detail(hotelId=${hotel.hotelId}, checkIn=${datein}, checkOut=${dateout})}" th:text="${hotel.hotelName}"></a>
+
                           </h1>
                           <div class="location">
                             <a th:href="@{/detail(hotelId=${hotel.hotelId})}">

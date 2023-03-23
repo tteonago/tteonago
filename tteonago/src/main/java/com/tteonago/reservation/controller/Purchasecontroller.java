@@ -1,5 +1,9 @@
 package com.tteonago.reservation.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -22,7 +26,7 @@ public class Purchasecontroller {
 	private UserService memberService;
 
 	@GetMapping("/purchase")
-	public String purchase(@RequestParam(value = "roomId") String roomId, @RequestParam(value = "checkIn") String checkIn, @RequestParam(value = "checkOut") String checkOut, Model model, Authentication authentication) {
+	public String purchase(@RequestParam(value = "roomId") String roomId, @RequestParam(value = "dates") String dates, Model model, Authentication authentication) {
 		
 		Member member = null;
 		
@@ -31,13 +35,35 @@ public class Purchasecontroller {
 	        System.out.println(member);
 	    }
 		
+		String[] dateArr = dates.split(" - ");
+		String checkin = dateArr[0];
+		String checkout = dateArr[1];
+		
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
+		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
+		
+		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
+		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
+		
+		String formattedCheckin = checkinDate.format(outputFormatter);
+		String formattedCheckout = checkoutDate.format(outputFormatter);
+		
+		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
+		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
+		
+		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
+		long nights = daysBetween - 1;
+		
+		String Days = nights + "박";
+		
 		Room room = roomService.getroomById(roomId);
 		
 		model.addAttribute("room", room);
 		model.addAttribute("member", member);
-		model.addAttribute("checkIn", checkIn);
-		model.addAttribute("checkOut", checkOut);
+		model.addAttribute("checkIn", LocalDatein);
+		model.addAttribute("checkOut", LocalDateOut);
+		model.addAttribute("days", Days);
 		
-	return "pages/TestPayment";
+		return "pages/TestPayment";
 	}
 }

@@ -342,7 +342,7 @@
 
 									<div class="row">
 
-										<form action="" class="row inline-search-area search-area"
+										<form action="/purchase" class="row inline-search-area search-area"
 											method="GET">
 											<div class="col-lg-6 col-md-6"
 												th:each="room, iterStat : ${hotel.room}">
@@ -375,6 +375,10 @@
 													</div>
 													<div class="footer clearfix">
 														<div class="search-col">
+															<input type="hidden" name="roomId" th:value="${room.roomId}"/>
+															<input type="hidden" name="checkIn" th:value="${checkIn}"/>
+															<input type="hidden" name="checkOut" th:value="${checkOut}"/>
+															
 															<button type="submit" class="btn-theme btn-md btn-block">예약
 																하기</button>
 														</div>

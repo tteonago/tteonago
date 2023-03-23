@@ -1,7 +1,6 @@
 package com.tteonago.reservation.entity;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@ToString
+@NoArgsConstructor
 @Entity
 @Table(name="review")
 public class Review {

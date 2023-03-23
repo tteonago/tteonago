@@ -1,13 +1,18 @@
 package com.tteonago.reservation.controller;
 
+import com.tteonago.exception.TteonagoException;
+import com.tteonago.member.entity.Member;
+import com.tteonago.reservation.dto.ReviewDTO;
 import com.tteonago.reservation.dto.ReviewEnrollDTO;
+import com.tteonago.reservation.entity.Review;
 import com.tteonago.reservation.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+
+import java.util.HashMap;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -30,13 +35,4 @@ class ReviewController {
 
         return "redirect:/mypage";
     }
-
-    //룸 id 받아서 리뷰들 조회
-//    @GetMapping("/{roomId}")
-//    public String findById(@PathVariable String roomId,Model model) throws TteonagoException {
-//        List<ReviewDTO> reviewDTOList = reviewService.getReviewByRoom(roomId);
-//        model.addAttribute("reviews",reviewDTOList);
-//        return "/";
-//    }
-
 }

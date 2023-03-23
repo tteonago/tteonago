@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -45,8 +46,25 @@
     <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
 
 <style>
-p { margin:20px 0px; }
+p { margin:100px 0px; }
 </style>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
     
 </head>
 <body id="top">
@@ -163,182 +181,100 @@ p { margin:20px 0px; }
 <!-- Destination start -->
 <div class="destination d-2 content-area-2">
     <div class="container">
-
-	    <div style="font-size:50px">환영합니다!</div><br>
-	    <div style="font-size:30px" th:text="${member.name} + ' 님.'"></div>
+	    
+	    <div style="font-size:50px">환영합니다! 관리자님</div><br>
 	    <br><hr><br>
 
-<!-- small navbar start -->
-			<ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <a class="nav-link active" data-toggle="tab" href="#first">내 정보</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" data-toggle="tab" href="#second">예약 영수증</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" data-toggle="tab" href="#zxc">세번째 탭</a>
-			  </li>
-			</ul>
-			<div class="tab-content">
-			  <div class="tab-pane fade show active" id="first">
-			    <p>
-			    	<div class="container">
-					    <div class="main-body">
+        <!-- small navbar start -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#first">내 정보</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#second">예약 영수증</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#zxc">세번째 탭</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="first">
+                <p>
+                <table>
+                    <tr>
+                        <th>예약자이름</th>
+                        <th>예약자ID</th>
+                        <th>예약 번호</th>
+                        <th>결제일</th>
+                    </tr>
+                    <tr th:each="admin:${admin}">
+                        <td th:text="${admin[1].name}"></td>
+                        <td th:text="${admin[1].username}"></td>
+                        <td th:text="${admin[0].resIndex}"></td>
+                        <td th:text="${admin[0].payDate}"></td>
+                    </tr>
+                </table>
+                </p>
+            </div>
 
-					          <div class="row gutters-sm">
+            <div class="tab-pane fade" id="first">
+                <p><th:text="${hotel.hotelName}"></td></p>
+            </div>
 
-					            <div class="col-md-8">
+            <div class="tab-pane fade" id="second">
+                <div>
+                    <p>
+                <div id="chart_div"></div>
+                    </p>
+                </div>
+                </div>
+        </div>
+        <!-- small navbar end -->
 
-					              <div class="card mb-3">
-					                <div class="card-body">
-
-					                  <div class="row">
-					                    <div class="col-sm-3">
-					                      <h6 class="mb-0">회원 이름</h6>
-					                    </div>
-					                    <div class="col-sm-9 text-secondary">
-					                      <span th:text="${member.name}"></span>
-					                    </div>
-					                  </div>
-
-					                  <hr>
-
-					                  <div class="row">
-					                    <div class="col-sm-3">
-					                      <h6 class="mb-0">Email</h6>
-					                    </div>
-					                    <div class="col-sm-9 text-secondary">
-					                      <span th:text="${member.email}"></span>
-					                    </div>
-					                  </div>
-
-					                  <hr>
-
-					                  <div class="row">
-					                    <div class="col-sm-3">
-					                      <h6 class="mb-0">회원 아이디</h6>
-					                    </div>
-					                    <div class="col-sm-9 text-secondary">
-					                      <span th:text="${member.username}"></span>
-					                    </div>
-					                  </div>
-
-					                  <hr>
-
-					                  <div class="row">
-					                    <div class="col-sm-3">
-					                      <h6 class="mb-0">보유 포인트</h6>
-					                    </div>
-					                    <div class="col-sm-9 text-secondary">
-					                      <span th:text="${member.point}"></span>&nbsp포인트
-					                    </div>
-					                  </div>
-
-					                  <hr>
-
-					                  <div class="row">
-					                    <div class="col-sm-3">
-					                      <h6 class="mb-0">회원 등급</h6>
-					                    </div>
-					                    <div class="col-sm-9 text-secondary">
-					                      <span th:text="${member.role}"></span><br><br>
-					                      <p sec:authorize="hasRole('ROLE_SOCIAL')"><button onclick="location.href='changeRole'"class="w3-button w3-red w3-round-xlarge" >이메일 인증</button></p>
-					                    </div>
-					                  </div>
-
-					                  <hr>
-
-					                  <div class="row">
-					                    <div class="col-sm-12">
-					                      <a sec:authorize="hasRole('ROLE_USER')" class="btn btn-info " href="/wishlist">내 찜목록</a>
-					                    </div>
-					                  </div>
-					                </div>
-					              </div>
-
-					            </div>
-					          </div>
-
-					        </div>
-   						 </div>
-   						</p>
-			  </div>
-
-			  <div class="tab-pane fade" id="first">
-			    <p><th:text="${hotel.hotelName}"></td></p>
-			  </div>
-
-			  <div class="tab-pane fade" id="second">
-			    <p>
-					<table style="width:100%" cellpadding="10" cellspacing="10">
-					  <tr>
-					    <th>예약 번호/확인 번호</th>
-					    <th>총 금액</th>
-					    <th>호텔 명</th>
-					    <th>체크인 날짜</th>
-					    <th>체크아웃 날짜</th>
-					    <th>결제일</th>
-					    <th>리뷰 쓰기</th>
-					  </tr>
-					  <tr th:each="res : ${reservation}">
-						<td th:text="${res.value.resIndex}"></td>
-						<td th:text="${res.value.totPrice}"></td>
-						<td th:text="${res.key}"></td>
-						<td th:text="${res.value.period.checkIn}"></td>
-						<td th:text="${res.value.period.checkOut}"></td>
-						<td th:text="${res.value.payDate}"></td>
-						<td th:unless="${#lists.contains(resIndex, res.value.resIndex)}" >
-							<div class="w3-container">
-								<button onclick="document.getElementById('id01').style.display='block'"
-										class="w3-button w3-black w3-round-large">리뷰쓰기
-								</button>
-							</div>
-
-							<div id="id01" class="w3-modal">
-								<div class="w3-modal-content">
-									<form action="review/new" method="post">
-										<div class="w3-container">
-                    					<span onclick="document.getElementById('id01').style.display='none'"
-											  class="w3-button w3-display-topright">&times;</span>
-											<div class="search-col">
-												<br> <select
-													class="selectpicker search-fields btn-block form-control bdr"
-													name="score" required style="width:150px;">
-												<option value="" disabled selected>별점</option>
-												<option value="5">⭐⭐⭐⭐⭐</option>
-												<option value="4">⭐⭐⭐⭐</option>
-												<option value="3">⭐⭐⭐</option>
-												<option value="2">⭐⭐</option>
-												<option value="1">⭐</option>
-											</select>
-												<i class="flaticon-down icon-append"></i>
-											</div>
-											<br>
-											<input type="hidden" id="roomId" name="roomId" th:value="${res.value.room.roomId}">
-											<input type="hidden" id="reservation" name="resIndex" th:value="${res.value.resIndex}">
-											<textarea name="context" cols="90" rows="5" placeholder="리뷰를 입력해주세요"></textarea>
-											<br>
-											<button type="submit" class="w3-button w3-black w3-round-large" style="float:right;">리뷰 제출</button>
-											<br>
-											<br>
-										</div>
-									</form>
-								</div>
-							</div>
-
-						</td>
-					  </tr>
-					</table>
-				</p>
-			  </div>
-			</div>
-<!-- small navbar end -->
-
-    </div>
+</div>
 </div>
 <!-- Destination end -->
+<script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+    function drawBasic() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('timeofday', 'Time of Day');
+        data.addColumn('number', 'Motivation Level');
+        data.addRows([
+            [{v: [8, 0, 0], f: '8 am'}, 1],
+            [{v: [9, 0, 0], f: '9 am'}, 2],
+            [{v: [10, 0, 0], f:'10 am'}, 3],
+            [{v: [11, 0, 0], f: '11 am'}, 4],
+            [{v: [12, 0, 0], f: '12 pm'}, 5],
+            [{v: [13, 0, 0], f: '1 pm'}, 6],
+            [{v: [14, 0, 0], f: '2 pm'}, 7],
+            [{v: [15, 0, 0], f: '3 pm'}, 8],
+            [{v: [16, 0, 0], f: '4 pm'}, 9],
+            [{v: [17, 0, 0], f: '5 pm'}, 10],
+        ]);
+        var options = {
+            title: 'Motivation Level Throughout the Day',
+            hAxis: {
+                title: 'Time of Day',
+                format: 'h:mm a',
+                viewWindow: {
+                    min: [7, 30, 0],
+                    max: [17, 30, 0]
+                }
+            },
+            vAxis: {
+                title: 'Rating (scale of 1-10)'
+            },
+            width: 1000,
+            height: 500
+        };
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
 
+</script>
 <!-- Footer-6 start -->
 	<footer class="footer-2">
 		<div class="container footer-inner">

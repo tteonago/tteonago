@@ -31,4 +31,11 @@ public class ReservationService {
 		
 		return hotelAndReserv;
 	}
+
+	public List<Object[]> findReservationAll(){
+
+		List<Object[]> admin = reservationRepository.findAllReservation();
+
+		return admin;
+	}
 }

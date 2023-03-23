@@ -333,36 +333,30 @@
                                 <!-- Comments section start -->
                                 <div class="comments-section clearfix mb-40">
                                     <ul class="comments">
-                                        <li>
+                                        <div>
+                                        <li th:each="review : ${review}">
                                             <div class="comment">
                                                 <div class="comment-content">
                                                     <div class="comment-meta">
                                                         <h3>
-                                                            Maikel Alisa
+                                                            <p th:text="${review.key.username}"></p>
                                                         </h3>
-                                                        <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
+
+                                                        <div th:text="${review.value.date}" class="comment-meta">
                                                         </div>
+                                                        <th:block th:switch="${review.value.score}">
+                                                            <div th:case="5">⭐⭐⭐⭐⭐</div>
+                                                            <div th:case="4">⭐⭐⭐⭐</div>
+                                                            <div th:case="3">⭐⭐⭐</div>
+                                                            <div th:case="2">⭐⭐</div>
+                                                            <div th:case="1">⭐</div>
+                                                        </th:block>
                                                     </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
+                                                    <p th:text="${review.value.context}"></p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="comment mb-0">                                             
-                                                <div class="comment-content mrg-bdr">
-                                                    <div class="comment-meta">
-                                                        <h3>
-                                                            Anne Brady
-                                                        </h3>
-                                                        <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        </div>
                                     </ul>
                                 </div>
                             </div>

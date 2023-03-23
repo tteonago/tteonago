@@ -54,7 +54,7 @@ public class Purchasecontroller {
 		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 		long nights = daysBetween - 1;
 		
-		String Days = nights + "박";
+		long Days = nights;
 		
 		Room room = roomService.getroomById(roomId);
 		
@@ -64,6 +64,7 @@ public class Purchasecontroller {
 		model.addAttribute("checkOut", LocalDateOut);
 		model.addAttribute("days", Days);
 		
-		return "pages/TestPayment";
+		return "pages/payment";
+//		return "pages/TestPayment";
 	}
 }

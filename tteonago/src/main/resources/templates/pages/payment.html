@@ -123,19 +123,15 @@ span.price {
           <div class="col-50">
             <h2>예 약 정 보</h2>
             
-            <label for="fname"><i class="fa fa-user" th:text="'이름 : ' + ${member.username}"></i></label><br><br>
-            <label for="email"><i class="fa fa-envelope" th:text="'이메일 : ' + ${member.email}"></i></label><br><br>
-<!--             <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
+            <label for="fname"><i class="fa fa-user"></i></label>
+            <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
+            <label for="email"><i class="fa fa-envelope"></i></label>
             <input type="text" id="email" name="email" th:value="${member.email}" readonly>
- -->
+			<input type="hidden" name="roomId" th:value="${room.roomId}"/>
             <div class="row">
               <div class="col-50">
                 <label for="point">point</label>
                 <input type="text" id="point" name="point" th:value="${member.point} + ' 점'" readonly>
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
               </div>
             </div>
           </div>
@@ -144,10 +140,11 @@ span.price {
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <!-- <i class="fa fa-cc-visa" style="color:navy;"></i>
               <i class="fa fa-cc-amex" style="color:blue;"></i>
               <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i> -->
+              <!-- <img th:src="@{${room.images[0].address}}" alt="room image" /> -->
             </div>
             <label for="cname">예약호텔명</label>
             <input type="text" id="cname" name="cardname" th:value="${room.hotel.hotelName}" readonly>
@@ -176,13 +173,11 @@ span.price {
   </div>
   <div class="col-25">
     <div class="container">
-      <h4>Price Summary<span class="price" style="color:black"> <b>  </b></span></h4>
+      <h4>Price Summary<span class="price" style="color:black"> <b></b></span></h4>
       <p>1박 가격<span class="price" th:text="${room.Price} + '원'"></span></p>
-      <p>Product 2<span class="price">$5</span></p>
-      <p>Product 3<span class="price">$8</span></p>
-      <p>Product 4<span class="price">$2</span></p>
+      <p>숙박 일수<span class="price" th:text="${days} + '박'"></span></p><br>
       <hr>
-      <p>Total Price <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total Price <span class="price" style="color:black" th:text="${room.price * days} + '원'"><b></b></span></p>
     </div>
   	<div class="container">
   		<h4>중요 안내</h4>

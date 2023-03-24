@@ -28,6 +28,7 @@ public class Purchasecontroller {
 	@GetMapping("/purchase")
 	public String purchase(@RequestParam(value = "roomId") String roomId, @RequestParam(value = "dates") String dates, Model model, Authentication authentication) {
 		
+		System.out.println("넘어온 날짜 데이터 " + dates);
 		Member member = null;
 		
 		if (authentication != null) {
@@ -39,22 +40,34 @@ public class Purchasecontroller {
 		String checkin = dateArr[0];
 		String checkout = dateArr[1];
 		
+		System.out.println("1 " + checkin);
+		System.out.println("2 " + checkout);
+		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
 		
 		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
 		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
 		
+		System.out.println("3 " + checkinDate);
+		System.out.println("4 " + checkoutDate);
+		
 		String formattedCheckin = checkinDate.format(outputFormatter);
 		String formattedCheckout = checkoutDate.format(outputFormatter);
+		
+		System.out.println("5 " + formattedCheckin);
+		System.out.println("6 " + formattedCheckout);
 		
 		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
 		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
 		
 		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
-		long nights = daysBetween - 1;
+		//long nights = daysBetween - 1;
+		long nights = daysBetween;
 		
 		long Days = nights;
+		
+		System.out.println("숙박 일자 : " + Days);
 		
 		Room room = roomService.getroomById(roomId);
 		

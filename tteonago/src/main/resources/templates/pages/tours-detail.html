@@ -254,9 +254,6 @@
                     			</div>
                     		</div>
                     	</div> -->
-
-
-
 							<div class="active item carousel-item" data-slide-number="0">
 								<img th:src="@{${hotel.images[0].address}}"
 									class="img-fluid img-width" alt="slider">
@@ -342,6 +339,7 @@
 
 									<div class="row">
 										<div class="col-lg-6 col-md-6" th:each="room, iterStat : ${hotel.room}">
+
                                  			   <form action="purchase" class="row inline-search-area search-area" method="GET">
                                             <div class="tour-item">
                                                 <div class="item-thumbnail">
@@ -376,65 +374,52 @@
                                                 <div class="footer clearfix">
                                                   <div class="search-col">
                                                   	<input type="hidden" name="roomId" th:value="${room.roomId}"/>
-                                                  	<!-- <input type="hidden" name="checkIn" th:value="${checkIn}"/>
-                                                  	<input type="hidden" name="checkOut" th:value="${checkOut}"/> -->
                                                     <button type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
                                                   </div>
                                                 </div>
                                             </div>
                                			   </form>
-                                        </div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade " id="three" role="tabpanel"
-								aria-labelledby="three-tab">
-								<div class="property-details mb-30">
-									<h3 class="heading-2">Reviews</h3>
-									<!-- Comments section start -->
-									<div class="comments-section clearfix mb-40">
-										<ul class="comments">
-											<li>
-												<div class="comment">
-													<div class="comment-content">
-														<div class="comment-meta">
-															<h3>Maikel Alisa</h3>
-															<div class="comment-meta">
-																8:42 PM 1/28/2022<a href="#">Reply</a>
-															</div>
-														</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-															elit. Donec luctus tincidunt aliquam. Aliquam gravida
-															massa at sem vulputate interdum et vel eros.</p>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="comment mb-0">
-													<div class="comment-content mrg-bdr">
-														<div class="comment-meta">
-															<h3>Anne Brady</h3>
-															<div class="comment-meta">
-																8:42 PM 1/28/2022<a href="#">Reply</a>
-															</div>
-														</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-															elit. Donec luctus tincidunt aliquam. Aliquam gravida
-															massa at sem vulputate interdum et vel eros.</p>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
+                                        </div>  
+                                	</div>
+                            	</div>
+                        	</div>
+                     
+                        <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">
+                            <div class="property-details mb-30">
+                                <h3 class="heading-2">Reviews</h3>                              
+                                <!-- Comments section start -->
+                                <div class="comments-section clearfix mb-40">
+                                    <ul class="comments">
+                                        <div>
+                                        <li th:each="review : ${review}">
+                                            <div class="comment">
+                                                <div class="comment-content">
+                                                    <div class="comment-meta">
+                                                        <h3>
+                                                            <p th:text="${review.key.username}"></p>
+                                                        </h3>
+
+                                                        <div th:text="${review.value.date}" class="comment-meta">
+                                                        </div>
+                                                        <th:block th:switch="${review.value.score}">
+                                                            <div th:case="5">⭐⭐⭐⭐⭐</div>
+                                                            <div th:case="4">⭐⭐⭐⭐</div>
+                                                            <div th:case="3">⭐⭐⭐</div>
+                                                            <div th:case="2">⭐⭐</div>
+                                                            <div th:case="1">⭐</div>
+                                                        </th:block>
+                                                    </div>
+                                                    <p th:text="${review.value.context}"></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 						</div>
 					</div>
-
-
-
-
-
 				</div>
 			</div>
 		</div>

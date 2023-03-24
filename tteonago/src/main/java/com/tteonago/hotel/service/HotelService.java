@@ -25,7 +25,5 @@ public class HotelService {
 	public Hotel getHotelById(String id) { 
 		return hotelRepository.findById(id).orElse(null); 
 	}
-	
 
-	
 }

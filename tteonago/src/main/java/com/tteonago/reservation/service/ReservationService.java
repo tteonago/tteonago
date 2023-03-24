@@ -49,11 +49,18 @@ public class ReservationService {
 	}
    
    public void addProfit(String roomId, int totPrice) {
+	   
        Room room = roomRepository.findById(roomId).orElse(null);
        Hotel hotel = hotelRepository.findById(room.getHotel().getHotelId()).orElse(null);
        hotel.setProfit(hotel.getProfit() + totPrice);
        hotelRepository.save(hotel);
    }
-	   
-   
+
+	public List<Object[]> findReservationAll(){
+
+		List<Object[]> admin = reservationRepository.findAllReservation();
+
+		return admin;
+	}
+
 }

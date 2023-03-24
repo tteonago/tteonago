@@ -22,7 +22,7 @@ public class ReservationController {
 	private ReservationService reservationservice;
 
 	@PostMapping("/posttest")
-	public void ReservationInsert(@RequestParam(value = "roomId") String roomid,
+	public String ReservationInsert(@RequestParam(value = "roomId") String roomid,
 			@RequestParam(value = "firstname") String username, @RequestParam(value = "checkIn") String checkin,
 			@RequestParam(value = "checkOut") String checkout, @RequestParam(value = "totPrice") int totPrice,
 			Reservation reservation) {
@@ -54,7 +54,9 @@ public class ReservationController {
 		reservation.setRoom(room);
 		
 		reservationservice.addReservation(reservation);
-
+		reservationservice.addProfit(roomid, totPrice);
+		
+		return "page/mypage";
 	}
 
 }

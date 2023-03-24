@@ -6,6 +6,10 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.entity.Room;
+import com.tteonago.hotel.repository.HotelRepository;
+import com.tteonago.hotel.repository.RoomRepository;
 import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.dto.ReservationDTO;
 import com.tteonago.reservation.entity.Reservation;
@@ -18,6 +22,11 @@ import lombok.RequiredArgsConstructor;
 public class ReservationService {
 	
 	private final ReservationRepository reservationRepository;
+	
+	private final RoomRepository roomRepository;
+	
+	private final HotelRepository hotelRepository;
+	
 	private ModelMapper modelMapper = new ModelMapper();
 	
 	//select * from reservation where username = ? 
@@ -38,4 +47,13 @@ public class ReservationService {
 	   System.out.println(reservation.toString());
 	   reservationRepository.save(reservation);
 	}
+   
+   public void addProfit(String roomId, int totPrice) {
+       Room room = roomRepository.findById(roomId).orElse(null);
+       Hotel hotel = hotelRepository.findById(room.getHotel().getHotelId()).orElse(null);
+       hotel.setProfit(hotel.getProfit() + totPrice);
+       hotelRepository.save(hotel);
+   }
+	   
+   
 }

@@ -52,7 +52,6 @@ public class SearchController {
 		    hotellist.add(hotelDTO);
 		}
 		
-		
 		int hotelCount = hotellist.size();
 		
 		model.addAttribute("hotellist", hotellist);

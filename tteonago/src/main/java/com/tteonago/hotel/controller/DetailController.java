@@ -64,12 +64,9 @@ public class DetailController {
 		LocalDate checkOut = LocalDate.now();
 		
 		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
-		System.out.println("1일 뒤: " + twentyAfterLocalDate);
 		
 		String checkout = twentyAfterLocalDate.toString();
 		
-		System.out.println("현재 날짜 1 " + checkIn);
-		System.out.println("현재 날짜 2 " + checkOut);
 		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //기존의 String 날짜 포멧 데이터 형식 지정
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //변경할 String 날짜 포멧 데이터 형식 지정
@@ -77,14 +74,8 @@ public class DetailController {
 		LocalDate checkinDate = LocalDate.parse(checkIn, inputFormatter);
 		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
 		
-		System.out.println("현재 날짜 3 " + checkinDate);
-		System.out.println("현재 날짜 4 " + checkoutDate);
-		
 		String formattedCheckin = checkinDate.format(outputFormatter);
 		String formattedCheckout = checkoutDate.format(outputFormatter);
-		
-		System.out.println("현재 날짜 5 " + formattedCheckin);
-		System.out.println("현재 날짜 6 " + formattedCheckout);
 		
 		String dates = formattedCheckin + " - " + formattedCheckout;
 		System.out.println("최종 현재 날짜 " + dates);
@@ -95,11 +86,5 @@ public class DetailController {
 
 	    return "pages/tours-detail";
 	}
-	
-	
-	@GetMapping("/test22")
-	public String test22() {
-	   return "pages/tours-detail";
-    }	
 	
 }

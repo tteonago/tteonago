@@ -143,11 +143,4 @@ public class MemberController {
 		return "redirect:/mypage";
 	}
 
-	// delete
-	@GetMapping(value = "/showMe")
-	public String showMe() {
-
-		return "pages/test";
-	}
-
 }

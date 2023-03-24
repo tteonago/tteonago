@@ -1,43 +1,14 @@
 <!DOCTYPE html>
 <html lang="zxx"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PDTWJ3Z');</script>
-    <!-- End Google Tag Manager -->
-    <title>Trego - Travel Tour HTML Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <!-- External CSS libraries -->
-    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/jquery.selectBox.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/dropzone.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/slick.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/rangeslider.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/animate.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/daterangepicker.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/leaflet.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/map.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
-    <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
-
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
-
     <!-- Google fonts -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
-
     <!-- Custom Stylesheet -->
-    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
-
 </head>
 <body id="top">
 
@@ -48,96 +19,7 @@
 <div class="page_loader"></div>
 
 <!-- main header start -->
-<header class="main-header sticky-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-expand-lg navbar-light rounded">
-                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="index.html">
-                        <img src="assets/img/logos/black-logo.png" alt="logo">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fa fa-bars"></span>
-                    </button>
-                    <div class="navbar-collapse collapse w-100" id="navbar">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Index
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="index.html">Index 1</a></li>
-                                    <li><a class="dropdown-item" href="index-2.html">Index 2</a></li>
-                                    <li><a class="dropdown-item" href="index-3.html">Index 3</a></li>
-                                    <li><a class="dropdown-item" href="index-4.html">Index 4</a></li>
-                                    <li><a class="dropdown-item" href="index-5.html">Index 5</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Tours
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                                    <li><a class="dropdown-item" href="tours-grid.html">Tours Grid</a></li>
-                                    <li><a class="dropdown-item" href="tours-list.html">Tours List</a></li>
-                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tours Detail</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="tours-detail.html">Tours Detail 1</a></li>
-                                            <li><a class="dropdown-item" href="tours-detail-2.html">Tours Detail 2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Destinations
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                                    <li><a class="dropdown-item" href="destination-grid.html">Destination Grid</a></li>
-                                    <li><a class="dropdown-item" href="destination-mansory.html">Destination Mansory</a></li>
-                                    <li><a class="dropdown-item" href="destination-detail.html">Destination Detail</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link">Pages</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                                    <li><a class="dropdown-item" href="pricing-tables.html">Pricing Tables</a></li>
-                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
-                                    <li><a class="dropdown-item" href="agent.html">Meet Our Team</a></li>
-                                    <li><a class="dropdown-item" href="faq.html">Faqs</a></li>
-                                    <li><a class="dropdown-item" href="typography.html">Typography</a></li>
-                                    <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-                                    <li><a class="dropdown-item" href="pages-404.html">404 Page</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Blog
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
-                                    <li><a class="dropdown-item" href="blog-sidebar.html">Blog Sidebar</a></li>
-                                    <li><a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#full-page-search" class="nav-link h-icon">
-                                    <i class="flaticon-search"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
+	<!-- common/header.html -->
 <!-- main header end -->
 
 <!-- Sub banner start -->

@@ -54,39 +54,45 @@ public class WebSecurity {
         		.cors().disable()
                 .authorizeRequests()
                 .antMatchers("/header_S.html").permitAll() //security 를 무조건 통과시킵니다
-                .antMatchers("/home").permitAll()
-                .antMatchers("/mypage").permitAll()
+                .antMatchers("/category").permitAll()  //AreaC. 
+                .antMatchers("/map").permitAll()  //AreaC. 
+                .antMatchers("/detail").permitAll()  //DetailC. 
+                .antMatchers("/mapdetail").permitAll()  //DetailC. 
+                .antMatchers("/hotelsearch").permitAll()  //SearchC. 
+                .antMatchers("/home").permitAll()  //MemberC. 
+                .antMatchers("/signup").permitAll()  //MemberC. 
+                .antMatchers("/join").anonymous()  //MemberC. 
+                .antMatchers("/admin").authenticated()  //AdminC. 
+                //.antMatchers("/admin").hasRole(null)  //AdminC. 
+                .antMatchers("/login").permitAll() //MemberC.
+                .antMatchers("/mypage").authenticated() //MemberC.
+                .antMatchers("/failure").permitAll() //MemberC.
+                .antMatchers("/wishlist").authenticated() //MemberC.
+                .antMatchers("/wishdelete").authenticated() //MemberC.
+                .antMatchers("/authNum").authenticated() //MemberC.
+                .antMatchers("/auth").authenticated() //MemberRestC.
+                .antMatchers("/purchase").authenticated() //PurchaseC.
+                .antMatchers("/posttest").authenticated() //ReservationC.
+                .antMatchers("/review/new").authenticated() //ReviewC.
                 .antMatchers("/social").permitAll()
-                .antMatchers("/show").permitAll()
-                .antMatchers("/showMe").permitAll()
-                .antMatchers("/wishlist").permitAll()
-                .antMatchers("/login").permitAll()
                 .antMatchers("/loginForm").permitAll()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/getToken").permitAll()
-                .antMatchers("/join").permitAll()
-                .antMatchers("/getTokenName").permitAll()
-                .antMatchers("/getName").permitAll()
                 .antMatchers("/showkakao").permitAll()
                 .antMatchers("/kakaologout").permitAll()
-                .antMatchers("/map").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/valid").authenticated()
-//                .anyRequest().authenticated() //모든 요청을 제어합니다
+                .anyRequest().authenticated() //모든 요청을 제어합니다
               .and()
                 .formLogin()	//spring security login 을 설정합니다
                 .loginPage("/login")	//다음과 같은 로그인 페이지로 이동합니다
                 .usernameParameter("username")	//form 태그의 username 파라미터를 명시합니다
                 .passwordParameter("password")	//form 태그의 password 파라미터를 명시합니다
                 .loginProcessingUrl("/loginChain")	//로그인 form 태그 action 을 명시합니다
-                //.defaultSuccessUrl("/hello")
                 .successHandler(authenticationSuccess)	//로그인 성공시 다음 행동을 지시합니다
                 .failureHandler(authenticationFailure)
               .and()
               	.logout()		//spring security logout 을 설정합니다
                 .logoutUrl("/logout")	//로그아웃 url
-                .logoutSuccessUrl("/home")	//로그아웃 성공시 다음으로 이동합니다
+                .logoutSuccessUrl("/category")	//로그아웃 성공시 다음으로 이동합니다
                 .invalidateHttpSession(true)	//로그아웃시 세션을 종료합니다
                 .deleteCookies("token");	//로그아웃시 다음의 토큰을 삭제합니다
         

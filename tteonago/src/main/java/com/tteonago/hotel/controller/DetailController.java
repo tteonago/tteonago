@@ -55,40 +55,23 @@ public class DetailController {
 
 		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
 
-		for(Member key : review.keySet()) {
-			System.out.println(key.getUsername() + " 유저가 작성한 리뷰는 : " + review.get(key).getContext());
-		}
-		
 		String checkIn = LocalDate.now().toString();
 		String checkOut = LocalDate.now().toString();
-		System.out.println(checkIn);
-		System.out.println(checkOut);
 		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //기존의 String 날짜 포멧 데이터 형식 지정
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //변경할 String 날짜 포멧 데이터 형식 지정
 	
 		LocalDate checkinDate = LocalDate.parse(checkIn, inputFormatter);
 		LocalDate checkoutDate = LocalDate.parse(checkOut, inputFormatter);
-		System.out.println(checkinDate);
-		System.out.println(checkoutDate);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		
 		String formattedCheckin = checkinDate.format(outputFormatter);
 		String formattedCheckout = checkoutDate.format(outputFormatter);
-		System.out.println(formattedCheckin);
-		System.out.println(formattedCheckout);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		
-		
 		String LocalDatein = LocalDate.parse(formattedCheckin,formatter).toString();
 		String LocalDateOut = LocalDate.parse(formattedCheckout,formatter).toString();
-		System.out.println("-----------------------------");
-		System.out.println(LocalDatein);
-		System.out.println(LocalDateOut);
-		System.out.println("-----------------------------");
 		String dates = LocalDatein + " - " + LocalDateOut;
-		System.out.println(dates);
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);
@@ -97,11 +80,5 @@ public class DetailController {
 
 	    return "pages/tours-detail";
 	}
-	
-	
-	@GetMapping("/test22")
-	public String test22() {
-	   return "pages/tours-detail";
-    }	
 	
 }

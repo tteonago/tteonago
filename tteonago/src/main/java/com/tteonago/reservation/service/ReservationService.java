@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.dto.ReservationDTO;
+import com.tteonago.reservation.entity.Reservation;
 import com.tteonago.reservation.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -28,9 +29,13 @@ public class ReservationService {
 		for(Object[] res : reservations) {
 			hotelAndReserv.put((String)res[1], modelMapper.map(res[0], ReservationDTO.class));
 		}
-		
-		
-		
+
 		return hotelAndReserv;
+	}
+	
+   // 예약 insert
+   public void addReservation(Reservation reservation) {
+	   System.out.println(reservation.toString());
+	   reservationRepository.save(reservation);
 	}
 }

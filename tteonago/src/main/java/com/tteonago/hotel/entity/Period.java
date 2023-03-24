@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString
 
 @Embeddable
-public class Period {
+public class Period { 
 	@NonNull
 	@Column(name = "checkIn")
 	private LocalDate checkIn;

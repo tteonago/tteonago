@@ -354,7 +354,7 @@
                                                   </a>
                                                   </div>
                                                   
-                                                  <div class="plan-price" th:text="${room.price} + '원'"><sup>$</sup><sub>/ night</sub></div>
+                                                  <div class="plan-price"  th:text="'1박 - ' + ${#numbers.formatInteger(room.price, 0, 'COMMA')} + '원'" style="font-size: 1.5rem;"><sup>$</sup><sub>/1박</sub></div>												 
                                                 </div>
                                                 <div class="detail">
                                                   <h1 class="title">

@@ -22,4 +22,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
 	@Query("select r from Reservation r where r.room = :room")
 	public List<Reservation> findReservationByRoom(Room room);
+	
 }

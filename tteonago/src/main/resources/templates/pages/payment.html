@@ -117,8 +117,8 @@ span.price {
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
-      
+
+      <form action="/posttest" method="post">
         <div class="row">
           <div class="col-50">
             <h2>예 약 정 보</h2>
@@ -127,11 +127,11 @@ span.price {
             <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
             <label for="email"><i class="fa fa-envelope"></i></label>
             <input type="text" id="email" name="email" th:value="${member.email}" readonly>
-			<input type="hidden" name="roomId" th:value="${room.roomId}"/>
+			      <input type="hidden" name="roomId" th:value="${room.roomId}"/>
             <div class="row">
               <div class="col-50">
                 <label for="point">point</label>
-                <input type="text" id="point" name="point" th:value="${member.point} + ' 점'" readonly>
+                <input type="text" id="point" name="point" th:value="${#numbers.formatInteger(member.point, 0, 'COMMA')} + '점'" readonly>               
               </div>
             </div>
           </div>
@@ -151,9 +151,10 @@ span.price {
             <label for="ccnum">예약 룸 </label>
             <input type="text" id="ccnum" name="cardnumber" th:value="${room.roomType}" readonly>
             <label for="expmonth">체크인</label>
-            <input type="text" id="expmonth" name="expmonth" th:value="${checkIn}" readonly>
+            <input type="text" id="expmonth" name="checkIn" th:value="${checkIn}" readonly>
             <label for="expmonth">체크아웃</label>
-            <input type="text" id="expmonth" name="expmonth" th:value="${checkOut}" readonly>
+            <input type="text" id="expmonth" name="checkOut" th:value="${checkOut}" readonly>
+
             <div class="row">
               <!-- <div class="col-50">
                 <label for="expyear">Exp Year</label>
@@ -168,16 +169,19 @@ span.price {
           
         </div>
         <input type="submit" value="Continue to checkout" class="btn">
+        <input type="hidden" name="totPrice" th:value="${room.Price * days}"/>
       </form>
+
     </div>
   </div>
   <div class="col-25">
     <div class="container">
       <h4>Price Summary<span class="price" style="color:black"> <b></b></span></h4>
-      <p>1박 가격<span class="price" th:text="${room.Price} + '원'"></span></p>
+      <p>1박 가격<span class="price"  th:text="${#numbers.formatInteger(room.Price, 0, 'COMMA')} + '원'"></span></p>  
       <p>숙박 일수<span class="price" th:text="${days} + '박'"></span></p><br>
       <hr>
-      <p>Total Price <span class="price" style="color:black" th:text="${room.price * days} + '원'"><b></b></span></p>
+      <p>Total Price <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
+     
     </div>
   	<div class="container">
   		<h4>중요 안내</h4>
@@ -189,3 +193,5 @@ span.price {
 
 </body>
 </html>
+
+<!-- th:value="${room.Price}"       -->

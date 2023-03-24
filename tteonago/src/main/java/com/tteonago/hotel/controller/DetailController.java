@@ -24,7 +24,7 @@ public class DetailController {
 	private ReviewService reviewService;
 
 	@GetMapping("/detail")
-	public String hotelDetail(@RequestParam String hotelId, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
+	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
 	    Hotel hotel = hotelService.getHotelById(hotelId);
 	    if(hotel == null) {
 	    	throw new RuntimeException("hotel not found");
@@ -36,8 +36,8 @@ public class DetailController {
 			System.out.println(key.getUsername() + " 유저가 작성한 리뷰는 : " + review.get(key).getContext());
 		}
 		model.addAttribute("review",review);
-
 	    model.addAttribute("hotel", hotel);
+	    model.addAttribute("dates", dates);
 	    model.addAttribute("checkIn", checkIn);
 	    model.addAttribute("checkOut", checkOut);
 

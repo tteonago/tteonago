@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -54,6 +55,7 @@ public class ReviewService {
         }
         return reviews;
     }
+    
     public List<Integer> findReviewByResIndex(String username) {
         Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
 
@@ -64,6 +66,17 @@ public class ReviewService {
         }
 
         return resIndex;
+    }
+    
+    public HashMap<Member, Review> findReviewByHotelId(String hotelId) { 
+    	List<Object[]> context = reviewRepository.findReviewByHotelId(hotelId);
+    	
+    	HashMap<Member, Review> map = new HashMap<>();
+    	for(Object[] arr : context) {
+    		map.put((Member)arr[1], (Review)arr[0]);
+    	}
+    	
+    	return map;
     }
 
 }

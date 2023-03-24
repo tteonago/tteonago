@@ -329,42 +329,34 @@
                      
                         <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">
                             <div class="property-details mb-30">
-                                <h3 class="heading-2">Reviews</h3>                              
+                                <h3 class="heading-2">Reviews</h3>  
+                                                            
                                 <!-- Comments section start -->
+                                
+                                
                                 <div class="comments-section clearfix mb-40">
+                                
                                     <ul class="comments">
-                                        <li>
-                                            <div class="comment">
-                                                <div class="comment-content">
-                                                    <div class="comment-meta">
-                                                        <h3>
-                                                            Maikel Alisa
-                                                        </h3>
-                                                        <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="comment mb-0">                                             
-                                                <div class="comment-content mrg-bdr">
-                                                    <div class="comment-meta">
-                                                        <h3>
-                                                            Anne Brady
-                                                        </h3>
-                                                        <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    
+	                                        <li th:each="review : ${review}">
+	                                            <div class="comment">
+	                                                <div class="comment-content">
+	                                                    <div class="comment-meta">
+	                                                        <h2 th:text="${review.key.username}"></h2>
+	                                                        <div class="comment-meta">
+	                                                            <p th:text="${review.value.date}"></p>
+	                                                        </div>
+	                                                    </div>
+	                                                    <p th:text="${review.value.context}"></p>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+                                        
+                                     </ul>
+                                    
                                 </div>
+                                
+                                
                             </div>
                         </div>
 

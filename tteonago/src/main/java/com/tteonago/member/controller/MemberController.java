@@ -142,5 +142,12 @@ public class MemberController {
 
 		return "redirect:/mypage";
 	}
+	
+	@GetMapping(value = "/createAdmin")
+	public String createAdmin() {
+		
+		
+		return null;
+	}
 
 }

@@ -27,7 +27,7 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 	private final MemberRepository memberRepository;
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
-	private Long expireTimeMs = 1000 * 30l;
+	private Long expireTimeMs = 1000 * 3000l;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -36,7 +36,7 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 
 		Cookie cookie = new Cookie("token", token);
 		cookie.setPath("/");
-		cookie.setMaxAge(30);
+		cookie.setMaxAge(3000);
 		response.addCookie(cookie);
 
 		response.sendRedirect("/category");

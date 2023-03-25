@@ -14,20 +14,17 @@ public class Interceptor implements HandlerInterceptor {
 	//진입 직전 행동
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("filter 1111111");
 		
 		Cookie[] cookie = request.getCookies();
 		if(cookie == null) {
 			return true;
 		}
-		System.out.println("filter 2222222");
 		for(Cookie c : cookie) {
 			if(c.getName().equals("token")) {
 				return true;
 			}
 		}
 		
-		System.out.println("filter 33333333");
 		for (Cookie c : cookie) {
 	        if (c.getName().equals("JSESSIONID")) { // 삭제하려는 쿠키의 이름을 설정
 	            c.setMaxAge(0); // 쿠키 만료 시간을 0으로 설정하여 즉시 삭제

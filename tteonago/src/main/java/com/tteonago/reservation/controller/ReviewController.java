@@ -10,8 +10,8 @@ import com.tteonago.reservation.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 class ReviewController {
 
     private final ReviewService reviewService;

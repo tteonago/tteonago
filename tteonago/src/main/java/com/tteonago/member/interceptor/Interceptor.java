@@ -26,14 +26,13 @@ public class Interceptor implements HandlerInterceptor {
 		}
 		
 		for (Cookie c : cookie) {
-	        if (c.getName().equals("JSESSIONID")) { // 삭제하려는 쿠키의 이름을 설정
-	            c.setMaxAge(0); // 쿠키 만료 시간을 0으로 설정하여 즉시 삭제
-	            c.setPath("/"); // 쿠키 경로 설정
-	            response.addCookie(c); // 쿠키 삭제
-	            break; // 해당 쿠키를 찾았으므로 더 이상 반복하지 않고 종료
+	        if (c.getName().equals("JSESSIONID")) { 
+	            c.setMaxAge(0); 
+	            c.setPath("/"); 
+	            response.addCookie(c); 
+	            break; 
 	        }
 	    }
-		//new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
 		return true;
 	}
 	

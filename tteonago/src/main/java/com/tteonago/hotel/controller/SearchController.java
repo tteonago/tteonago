@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +16,13 @@ import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.entity.Hotel;
 import com.tteonago.hotel.service.HotelService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class SearchController {
 
-	@Autowired
-	private HotelService hotelService;
+	private final HotelService hotelService;
 
 	private ModelMapper mapper = new ModelMapper();
 
@@ -31,8 +32,6 @@ public class SearchController {
 			@RequestParam(value = "guests") int guests, Model model) {
 	
 		String aid = null;
-
-		System.out.println("날짜 " + dates);
 
 		if (destination.equals("서울")) {
 			aid = "10";
@@ -61,8 +60,8 @@ public class SearchController {
 		String checkin = dateArr[0];
 		String checkout = dateArr[1];
 		
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //기존의 String 날짜 포멧 데이터 형식 지정
-		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //변경할 String 날짜 포멧 데이터 형식 지정
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); 
+		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
 		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);

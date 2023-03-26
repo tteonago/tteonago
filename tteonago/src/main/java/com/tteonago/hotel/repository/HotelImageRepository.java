@@ -13,7 +13,6 @@ import com.tteonago.hotel.entity.HotelImage;
 @Repository
 public interface HotelImageRepository extends JpaRepository<HotelImage, String> {
 	
-//	@Query("select hi from Hotel h join HotelImage hi on hi.address like '%1.jpg' where h.area=:area")
 	@Query("select hi from Hotel h join HotelImage hi on h.hotelId = hi.hotel and hi.address like '%1.jpg' where h.area = :area")
 	List<HotelImage> findHotelAndImgByArea(@Param("area")Area area);
 	

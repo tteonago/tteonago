@@ -96,18 +96,4 @@ public class UserService {
 		int check = memberRepository.updateMemberByUsername("ROLE_USER", username);
 	}
 	
-	//로그인  no usage??? -> successHandler 에서 잡아주는것 같음 -> 이 코드는 확인이 필요합니다. 반드시 확인요청 해주세요
-//	public String login(String userName, String password) {
-//		//없는 아이디 입력
-//		Member selectedUser = memberRepository.findByUsername(userName)
-//				.orElseThrow(() -> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + " 은/는 존재하지 않는 ID 입니다."));
-//		//틀린 비밀번호 입력
-//		if(!passwordEncoder.matches(password, selectedUser.getPassword())) {
-//			throw new AppException(ErrorCode.INVALID_PASSWORD, "비밀번호가 틀렸습니다.");
-//		}
-//		//정상 로그인시 토큰 발행
-//		String token = JwtTokenUtil.createToken(selectedUser.getUsername(), SecretKey, expireTimeMs);
-//		
-//		return token;
-//	}
 }

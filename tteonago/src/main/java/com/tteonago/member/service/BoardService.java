@@ -13,8 +13,8 @@ import com.tteonago.reservation.dto.BoardDTO;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class BoardService {
 	
 	private final BoardRepository boardRepository;

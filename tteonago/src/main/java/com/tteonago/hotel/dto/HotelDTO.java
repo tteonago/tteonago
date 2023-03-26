@@ -17,7 +17,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-@Builder
 public class HotelDTO {
 	
 	private String hotelId;

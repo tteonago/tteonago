@@ -13,16 +13,6 @@ import com.tteonago.member.entity.Board;
 public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	@Query(value = "SELECT b.article_no, b.parent_no, b.title, b.content, b.username, b.writedate " +
-	        "FROM board b " +
-	        "LEFT JOIN ( " +
-	        "   SELECT article_no, IFNULL(parent_no, 0) AS parent_no, COUNT(*) AS depth " +
-	        "   FROM board " +
-	        "   GROUP BY article_no, parent_no " +
-	        ") p ON b.article_no = p.article_no " +
-	        "ORDER BY IF(b.parent_no = 0, b.article_no, b.parent_no), b.article_no", nativeQuery = true)
-	List<Object[]> getBoardList();
-	
-	@Query(value = "SELECT b.article_no, b.parent_no, b.title, b.content, b.username, b.writedate " +
             "FROM board b " +
             "LEFT JOIN ( " +
             "  SELECT article_no, IFNULL(parent_no, 0) AS parent_no, COUNT(*) AS depth " +

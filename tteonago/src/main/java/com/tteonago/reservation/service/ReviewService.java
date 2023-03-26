@@ -1,26 +1,23 @@
 package com.tteonago.reservation.service;
 
-import com.tteonago.exception.TteonagoException;
-import com.tteonago.hotel.entity.Room;
-import com.tteonago.hotel.repository.HotelRepository;
-import com.tteonago.hotel.repository.RoomRepository;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.tteonago.member.entity.Member;
 import com.tteonago.member.exception.AppException;
 import com.tteonago.member.repository.MemberRepository;
-import com.tteonago.reservation.dto.ReviewDTO;
 import com.tteonago.reservation.dto.ReviewEnrollDTO;
 import com.tteonago.reservation.entity.Reservation;
 import com.tteonago.reservation.entity.Review;
 import com.tteonago.reservation.repository.ReservationRepository;
 import com.tteonago.reservation.repository.ReviewRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 
 @Service
@@ -30,10 +27,7 @@ public class ReviewService {
     private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
     private final ReservationRepository reservationRepository;
-    private final RoomRepository roomRepository;
-    private final HotelRepository hotelRepository;
 
-    //리뷰 등록
     public int reviewing(ReviewEnrollDTO reviewEnrollDTO,int resIndex) {
         Reservation reservation = reservationRepository.findById(resIndex)
                 .orElseThrow(EntityNotFoundException::new);
@@ -56,10 +50,6 @@ public class ReviewService {
         Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
 
         List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
-
-        for(Integer i : resIndex) {
-            System.out.println(i);
-        }
 
         return resIndex;
     }

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.tteonago.chatGPT.ChatGptConfig;
 import com.tteonago.chatGPT.entity.BotRequest;
 import com.tteonago.chatGPT.entity.ChatGptRequest;
 import com.tteonago.chatGPT.entity.ChatGptResponse;

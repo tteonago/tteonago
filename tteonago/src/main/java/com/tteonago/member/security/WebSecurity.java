@@ -77,6 +77,8 @@ public class WebSecurity {
                 .antMatchers("/board").permitAll() //BoardC.
                 .antMatchers("/question").permitAll() //BoardC. -> 막아야됨
                 .antMatchers("/answer").permitAll() //BoardC. -> 막아야됨
+                .antMatchers("/send").permitAll() //ChatC.
+                .antMatchers("/chat").permitAll() //ChatC.
                 .antMatchers("/social").permitAll()
                 .antMatchers("/loginForm").permitAll()
                 .antMatchers("/showkakao").permitAll()

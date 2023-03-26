@@ -54,7 +54,6 @@ p { margin:20px 0px; }
 		<table style="width:100%" cellpadding="10" cellspacing="10">
 					  <tr>
 					    <th>글 번호</th>
-					    <th>부모글 번호</th>
 					    <th>글 제목</th>
 					    <th>작성자</th>
 					    <th>작성일</th>
@@ -62,7 +61,6 @@ p { margin:20px 0px; }
 					  </tr>
 					  	<tr>
 					  		<th>공지</th>
-					  		<th>-</th>
 					  		<th>글 이쁘게 쓰세요</th>
 					  		<th>admin</th>
 					  		<th>2023-01-01</th>
@@ -70,8 +68,6 @@ p { margin:20px 0px; }
 					 <tr th:each="list : ${list}">
 					 
 						  <td th:text="${list[0]}"/>
-						  
-						  <td th:text="${list[1]}"/>
 						  
 						  <td>
 						  	<a th:text="${list[2]}" th:if="${list[1] == 0}" data-toggle="modal" th:data-target="'#show' + ${listStat.index}" href="#"></a>
@@ -82,7 +78,7 @@ p { margin:20px 0px; }
 							    <div class="modal-dialog modal-lg" role="document">
 								    <div class="modal-content">
 								      <div class="modal-header">
-								        <h5>조회</h5>
+								        <h5>내용</h5>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								          <span aria-hidden="true">&times;</span>
 								        </button>
@@ -165,7 +161,7 @@ p { margin:20px 0px; }
 		<br><hr><br>
 		
 		<div style="text-align: right;">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">문의 하기</button>
+			<button sec:authorize="hasRole('ROLE_USER')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">문의 하기</button>
 		</div>
 		
 		

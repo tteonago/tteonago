@@ -1,0 +1,19 @@
+package com.tteonago.hotel.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.tteonago.hotel.entity.Area;
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.entity.HotelImage;
+
+
+public interface HotelImageRepository extends JpaRepository<HotelImage, String> {
+	
+	@Query("select h.hotelId, h.hotelAddress, h.hotelName, h.hotelPhone, h.hotelPosition, hi.address from Hotel h join HotelImage hi on hi.address like '%1.jpg' where h.area=:area")
+	List<Hotel> findHotelAndImgByArea(@Param("area")Area area);
+	
+}

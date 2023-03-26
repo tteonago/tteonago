@@ -1,0 +1,27 @@
+package com.tteonago.hotel.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.repository.HotelRepository;
+
+@Service
+public class HotelService {
+	
+	@Autowired
+	private HotelRepository hotelRepository;
+
+	public List<Hotel> gethotellist(String areaId, int star, int roomSize) {
+		List<Hotel> hotels = hotelRepository.findHotelsByAreaIdAndStarAndRoomSize(areaId, star, roomSize);
+		return hotels;
+	}
+	
+	public Hotel getHotelById(String id) { 
+		return hotelRepository.findById(id).orElse(null); 
+	}
+
+}

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content"
+	  >
+<head>
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<!-- External CSS libraries -->
+
+<!-- 이미지 클릭시 확대 관련 import  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+
+<!-- Favicon icon -->
+<!-- Google fonts -->
+<!-- Custom Stylesheet -->
+
+</head>
+<body id="top">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+			height="0" width="0" style="display: none; visibility: hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<div class="page_loader"></div>
+
+	<!-- main header start -->
+		<!-- common/header.html -->
+	<!-- main header end -->
+
+	<!-- Sub banner start -->
+	<div class="sub-banner">
+		<div class="container">
+			<div class="breadcrumb-area">
+				<h1>Tours Detail</h1>
+				<ul class="breadcrumbs">
+					<li><a href="/category">Home</a></li>
+					<li class="active">Tours Detail</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Sub banner end -->
+
+	<!-- Tour details page start -->
+	<div class="tour-details-page content-area-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div id="itemDetailsSlider"
+						class="carousel item-details-sliders slide mb-40">
+						<div class="heading-item">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="title">
+										<span class="heading" th:text="${hotel.hotelName}"></span>
+										<div class="ratings">
+											<ui th:if="${hotel.star == 5}">
+											<option value="5">⭐⭐⭐⭐⭐</option>
+											</ui>
+											<ui th:if="${hotel.star == 4}">
+											<option value="4">⭐⭐⭐⭐</option>
+											</ui>
+											<ui th:if="${hotel.star == 3}">
+											<option value="3">⭐⭐⭐</option>
+											</ui>
+											<ui th:if="${hotel.star == 2}">
+											<option value="2">⭐⭐</option>
+											</ui>
+											<ui th:if="${hotel.star == 1}">
+											<option value="1">⭐</option>
+											</ui>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="tour-infomation">
+										<ul>
+											<!-- <li><i class="flaticon-calendar" th:text="| ${datein} ~ ${dateout}|"></i> 3 Days 2 Nights</li> -->
+											<!-- <li><i class="flaticon-team"></i> Group: 5 - 10 People</li> -->
+											<li><i class="flaticon-pin"
+												th:text="${hotel.hotelAddress}"></i></li>
+											<!-- <li><i class="flaticon-user"></i> Min Age: 18+</li> -->
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- main slider carousel items -->
+						<div class="carousel-inner">
+							<!-- <div th:each="room, : ${hotel.room}">
+                    		<div th:each="roomimg : ${room.images}">
+                    			<div class="active item carousel-item" th:data-slide-number="${room.index * room.images.size() + roomimg.index}">
+                    				<img th:src="${roomimg.address}" class="img-fluid" alt="slider"/>
+                    			</div>
+                    		</div>
+                    	</div> -->
+							<div class="active item carousel-item" data-slide-number="0">
+								<img th:src="@{${hotel.images[0].address}}"
+									class="img-fluid img-width" alt="slider">
+							</div>
+							<div class="item carousel-item" data-slide-number="1">
+								<img th:src="@{${hotel.images[1].address}}"
+									class="img-fluid img-width" alt="slider">
+							</div>
+							<div class="item carousel-item" data-slide-number="2">
+								<img th:src="@{${hotel.images[2].address}}"
+									class="img-fluid img-width" alt="slider">
+							</div>
+							<div class="item carousel-item" data-slide-number="3">
+								<img th:src="@{${hotel.images[3].address}}"
+									class="img-fluid img-width" alt="slider">
+							</div>
+							<div class="item carousel-item" data-slide-number="4">
+								<img th:src="@{${hotel.images[4].address}}"
+									class="img-fluid img-width" alt="slider">
+							</div>
+
+						</div>
+						<!-- main slider carousel nav controls -->
+						<ul
+							class="carousel-indicators smail-item list-inline nav nav-justified">
+							<li class="list-inline-item active"><a
+								id="carousel-selector-0" class="selected" data-slide-to="0"
+								data-target="#itemDetailsSlider"> <img
+									th:src="@{${hotel.images[0].address}}" class="img-fluid"
+									alt="slider">
+							</a></li>
+							<li class="list-inline-item"><a id="carousel-selector-1"
+								data-slide-to="1" data-target="#itemDetailsSlider"> <img
+									th:src="@{${hotel.images[1].address}}"
+									class="img-fluid img-width2" alt="slider">
+							</a></li>
+							<li class="list-inline-item"><a id="carousel-selector-2"
+								data-slide-to="2" data-target="#itemDetailsSlider"> <img
+									th:src="@{${hotel.images[2].address}}"
+									class="img-fluid img-width2" alt="slider">
+							</a></li>
+							<li class="list-inline-item"><a id="carousel-selector-3"
+								data-slide-to="3" data-target="#itemDetailsSlider"> <img
+									th:src="@{${hotel.images[3].address}}"
+									class="img-fluid img-width2" alt="slider">
+							</a></li>
+							<li class="list-inline-item"><a id="carousel-selector-4"
+								data-slide-to="4" data-target="#itemDetailsSlider"> <img
+									th:src="@{${hotel.images[4].address}}"
+									class="img-fluid img-width2" alt="slider">
+							</a></li>
+						</ul>
+					</div>
+					<!-- Tabbing box start -->
+					<div class="tabbing tabbing-box">
+						<ul class="nav nav-tabs mb-40" id="carTab" role="tablist">
+							<li class="nav-item"><a class="nav-link active show"
+								id="one-tab" data-toggle="tab" href="#one" role="tab"
+								aria-controls="one" aria-selected="false"><i
+									class="flaticon-see"></i> Information</a></li>
+							<li class="nav-item"><a class="nav-link" id="6-tab"
+								data-toggle="tab" href="#6" role="tab" aria-controls="6"
+								aria-selected="true"><i class="flaticon-map"></i> RoomList</a></li>
+							<li class="nav-item"><a class="nav-link" id="three-tab"
+								data-toggle="tab" href="#three" role="tab" aria-controls="three"
+								aria-selected="true"><i class="flaticon-comment"></i>
+									Reviews</a></li>
+						</ul>
+						<div class="tab-content" id="carTabContent">
+							<div class="tab-pane fade active show" id="one" role="tabpanel"
+								aria-labelledby="one-tab">
+								<div class="properties-description">
+									<h3 class="heading-2">Information</h3>
+									<p th:text="${hotel.hotelInfo}"></p>
+									<br>
+
+								</div>
+							</div>
+							<div class="tab-pane fade " id="6" role="tabpanel"
+								aria-labelledby="6-tab">
+								<div class="properties-amenities mb-30">
+									<h3 class="heading-2">방 리스트</h3>
+
+									<div class="row">
+										<div class="col-lg-6 col-md-6" th:each="room : ${hotel.room}">
+
+                                 			   <form action="purchase" class="row inline-search-area search-area" method="GET">
+                                            <div class="tour-item">
+                                                <div class="item-thumbnail">
+                                                
+                                                  <img th:src="@{${room.images[0].address}}" alt="tours" class="img-fluid" />
+                                                  
+                                                  <div th:each="img : ${room.images}">
+                                                  <a th:href="@{${img.address}}" class="item-img" th:attr="data-lightbox=${'lightbox-' + room.roomId}">
+                                                    <div class="tag">확대</div>
+                                                  </a>
+                                                  </div>
+                                                  
+                                                  <div class="plan-price"  th:text="'1박 - ' + ${#numbers.formatInteger(room.price, 0, 'COMMA')} + '원'" style="font-size: 1.5rem;"><sup>$</sup><sub>/1박</sub></div>												 
+                                                </div>
+                                                <div class="detail">
+                                                  <h1 class="title">
+                                                    <a href="tours-detail.html" th:text="${room.roomType}">Camping and mountains</a>
+                                                  </h1>
+                                                  <div class="location">
+                                                    <a href="tours-detail.html" th:text=" '최대 수용 인원 : ' + ${room.roomSize}">
+                                                      <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                                    </a>
+                                                  </div>
+                                                  	<hr>
+														<div class="form-group search-col" style="margin-bottom: -10px;">
+															<!-- <input type="text" name="dates" th:value="|${datein} ~ ${dateout}|" class="datetimes-left form-control"/>															 -->
+															예약 날짜 선택
+															<input type="text" name="dates" th:value="${dates}" class="datetimes-left form-control"/>
+															<i class="flaticon-calendar icon-append"></i>
+														</div>
+                                                </div>
+                                                <div class="footer clearfix">
+                                                  <div class="search-col">
+                                                  	<input type="hidden" name="roomId" th:value="${room.roomId}"/>
+                                                    <button type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                               			   </form>
+                                        </div>  
+                                	</div>
+                            	</div>
+                        	</div>
+                     
+                        <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">
+                            <div class="property-details mb-30">
+                                <h3 class="heading-2">Reviews</h3>                              
+                                <!-- Comments section start -->
+                                <div class="comments-section clearfix mb-40">
+                                    <ul class="comments">
+                                        <div>
+                                        <li th:each="review : ${review}">
+                                            <div class="comment">
+                                                <div class="comment-content">
+                                                    <div class="comment-meta">
+                                                        <h3>
+                                                            <p th:text="${review.key.username}"></p>
+                                                        </h3>
+
+                                                        <div th:text="${review.value.date}" class="comment-meta">
+                                                        </div>
+                                                        <th:block th:switch="${review.value.score}">
+                                                            <div th:case="5">⭐⭐⭐⭐⭐</div>
+                                                            <div th:case="4">⭐⭐⭐⭐</div>
+                                                            <div th:case="3">⭐⭐⭐</div>
+                                                            <div th:case="2">⭐⭐</div>
+                                                            <div th:case="1">⭐</div>
+                                                        </th:block>
+                                                    </div>
+                                                    <p th:text="${review.value.context}"></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Tour details page end -->
+
+	<!-- Footer start -->
+	<footer class="footer">
+		<div class="container footer-inner">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer-item">
+						<h4>Contact Us</h4>
+						<div class="s-border"></div>
+						<div class="m-border"></div>
+						<ul class="contact-info">
+							<li><i class="flaticon-pin"></i>20/F Green Road, Dhanmondi,
+								Dhaka</li>
+							<li><i class="flaticon-mail"></i><a
+								href="mailto:sales@hotelempire.com">info@themevessel.com</a></li>
+							<li><i class="flaticon-phone"></i><a
+								href="tel:+55-417-634-7071">+0477 85X6 552</a></li>
+							<li><i class="flaticon-fax"></i>+0477 85X6 552</li>
+						</ul>
+						<ul class="social-list clearfix">
+							<li><a href="#" class="facebook-color"><i
+									class="fa fa-facebook"></i></a></li>
+							<li><a href="#" class="twitter-color"><i
+									class="fa fa-twitter"></i></a></li>
+							<li><a href="#" class="google-color"><i
+									class="fa fa-google-plus"></i></a></li>
+							<li><a href="#" class="rss-color"><i class="fa fa-rss"></i></a></li>
+							<li><a href="#" class="linkedin-color"><i
+									class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="footer-item">
+						<h4>Solutions</h4>
+						<div class="s-border"></div>
+						<div class="m-border"></div>
+						<ul class="links">
+							<li><a href="#"><i class="fa fa-angle-right"></i>Tours</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Pricing</a>
+							</li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>About
+									us</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Destinations</a>
+							</li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Testimonials</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="footer-item">
+						<h4>quick links</h4>
+						<div class="s-border"></div>
+						<div class="m-border"></div>
+						<ul class="links">
+							<li><a href="#"><i class="fa fa-angle-right"></i>Upcoming
+									Tours</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Contact
+									Us</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Discover</a>
+							</li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Payment
+									Options</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>FAQs</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="footer-item">
+						<h4>Resources</h4>
+						<div class="s-border"></div>
+						<div class="m-border"></div>
+						<ul class="links">
+							<li><a href="#"><i class="fa fa-angle-right"></i>Privacy
+									Policy</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Security</a>
+							</li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Terms
+									of Use</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i>Information</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-8 col-sm-12">
+					<div class="footer-item clearfix">
+						<h4>Subscribe</h4>
+						<div class="s-border"></div>
+						<div class="m-border"></div>
+						<div class="Subscribe-box">
+							<p>Excepteur sint occaecat cupidatat non proident, sunt in
+								culpa qui officia deserunt.</p>
+							<form class="form-inline" action="#" method="GET">
+								<input type="text" class="form-control mb-sm-0"
+									id="inlineFormInputName3" placeholder="Email Address">
+								<button type="submit" class="btn">
+									<i class="fa fa-paper-plane"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-12">
+					<p class="copy">
+						© 2020 <a href="http://themevessel.com/" target="_blank">Theme
+							Vessel</a>. Trademarks and brands are the property of their
+						respective owners.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer end -->
+
+	<!-- Full page search -->
+	<div id="full-page-search">
+		<button type="button" class="close">×</button>
+		<form action="#">
+			<input type="search" value="" placeholder="type keyword(s) here" />
+			<button type="submit" class="btn btn-sm btn-color">Search</button>
+		</form>
+	</div>
+
+	<!-- External JS libraries -->
+	<!-- 이미지 클릭시 확대 관련 import  -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+
+	<script src="assets/js/jquery-2.2.0.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.selectBox.js"></script>
+	<script src="assets/js/rangeslider.js"></script>
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="assets/js/jquery.filterizr.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/moment.min.js"></script>
+	<script src="assets/js/daterangepicker.min.js"></script>
+	<script src="assets/js/backstretch.js"></script>
+	<script src="assets/js/jquery.countdown.js"></script>
+	<script src="assets/js/jquery.scrollUp.js"></script>
+	<script src="assets/js/particles.min.js"></script>
+	<script src="assets/js/typed.min.js"></script>
+	<script src="assets/js/slick.min.js"></script>
+	<script src="assets/js/dropzone.js"></script>
+	<script src="assets/js/jquery.mb.YTPlayer.js"></script>
+	<script src="assets/js/leaflet.js"></script>
+	<script src="assets/js/leaflet-providers.js"></script>
+	<script src="assets/js/leaflet.markercluster.js"></script>
+	<script src="assets/js/maps.js"></script>
+	<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+	<script src="assets/js/ie-emulation-modes-warning.js"></script>
+	<!-- Custom JS Script -->
+	<script src="assets/js/app.js"></script>
+
+</body>
+</html>

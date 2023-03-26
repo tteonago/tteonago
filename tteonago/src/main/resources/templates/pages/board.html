@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zxx"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content">
+<head>
+    <!-- Google Tag Manager -->
+    <!-- profile.html 필요 css -->
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- Favicon icon -->
+    <!-- Google fonts -->
+    <!-- Custom Stylesheet -->
+    <!-- board.html 필수 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+p { margin:20px 0px; }
+</style>
+    
+</head>
+<body id="top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader"></div>
+
+<!-- main header start -->
+	<!-- common/header.html -->
+<!-- main header end -->
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>마이 트립</h1>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- Destination start -->
+<div class="destination d-2 content-area-2">
+    <div class="container">
+
+	    <div style="font-size:50px">질문 게시판</div><br>
+	    <br><hr><br>
+		
+		<!-- table start -->
+		<table style="width:100%" cellpadding="10" cellspacing="10">
+					  <tr>
+					    <th>글 번호</th>
+					    <th>글 제목</th>
+					    <th>작성자</th>
+					    <th>작성일</th>
+					    <th></th>
+					  </tr>
+					  	<tr>
+					  		<th>공지</th>
+					  		<th>글 이쁘게 쓰세요</th>
+					  		<th>admin</th>
+					  		<th>2023-01-01</th>
+					 
+					 <tr th:each="list : ${list}">
+					 
+						  <td th:text="${list[0]}"/>
+						  
+						  <td>
+						  	<a th:text="${list[2]}" th:if="${list[1] == 0}" data-toggle="modal" th:data-target="'#show' + ${listStat.index}" href="#"></a>
+						  	<a th:text="${'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[답글]' + list[2]}" th:if="${list[1] != 0}" data-toggle="modal" th:data-target="'#show' + ${listStat.index}" href="#"></a>
+						  </td>
+						  
+							   <div th:id="'show' + ${listStat.index}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							    <div class="modal-dialog modal-lg" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5>내용</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								          <div class="form-group">
+								            <label for="recipient-name" class="col-form-label">질문자 아이디</label>
+								            <input type="text" class="form-control" th:value="${list[4]}" readonly>
+								          </div>
+								          
+										 <div class="form-group">
+										     <label class="col-form-label">제목</label>
+										     <input type="text" class="form-control" th:value="${list[2]}" readonly >
+									     </div>			   
+										         
+								          <div class="form-group">
+								            <label for="message-text" class="col-form-label">문의 내용:</label>
+								            <textarea class="form-control" id="message-text" readonly th:text="${list[3]}"></textarea>
+								          </div>
+								        <input type="hidden" name="username" th:value="${username}">  
+								      </div>
+								      <div class="modal-footer">
+								      </div>
+								    </div>
+				  				</div>
+							  </div>
+						  
+						  <td th:text="${list[4]}"/>
+						  
+						  <td th:text="${list[5]}"/>
+						  
+						  <td sec:authorize="hasRole('ROLE_ADMIN')"> 
+						  	<button type="button" th:if="${list[1] == 0}" class="btn btn-primary" data-toggle="modal" th:data-target="'#answer' + ${listStat.index}">답변 하기</button>
+						  </td>
+						  
+						  	<div th:id="'answer' + ${listStat.index}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							    <div class="modal-dialog modal-lg" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5>문의 하기</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								      
+								      	<form action="/question" method="post" >
+								      
+								          <div class="form-group">
+								            <label for="recipient-name" class="col-form-label">답변자 아이디</label>
+								            <input type="text" class="form-control" th:value="${username}" readonly>
+								          </div>
+								          
+										 <div class="form-group">
+										     <label class="col-form-label">제목</label>
+										     <input type="text" name="title" class="form-control" >
+									     </div>			   
+										         
+								          <div class="form-group">
+								            <label for="message-text" class="col-form-label">답변 내용</label>
+								            <textarea class="form-control" name="content" id="message-text"></textarea>
+								          </div>
+								        <input type="hidden" name="username" th:value="${username}">  
+								        <input type="hidden" name="parent_no" th:value="${list[0]}">  
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								        <button type="submit" class="btn btn-primary">답변 등록</button>								        
+								        </form>
+								        
+								      </div>
+								      <div class="modal-footer">
+								      </div>
+								    </div>
+				  				</div>
+							  </div>
+					 </tr>
+					 
+		</table>
+		<!-- table end -->
+		
+		<br><hr><br>
+		
+		<div style="text-align: right;">
+			<button sec:authorize="hasRole('ROLE_USER')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">문의 하기</button>
+		</div>
+		
+		
+			<!-- 문의 작성 modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5>문의 하기</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      
+			        <form action="/question" method="post" >
+			        
+			          <div class="form-group">
+			            <label for="recipient-name" class="col-form-label">질문자 아이디</label>
+			            <input type="text" class="form-control" th:value="${username}" readonly>
+			          </div>
+			          
+					 <div class="form-group">
+					     <label class="col-form-label">제목</label>
+					     <input type="text" class="form-control" name="title" >
+				     </div>			   
+					         
+			          <div class="form-group">
+			            <label for="message-text" class="col-form-label">문의 내용:</label>
+			            <textarea class="form-control" id="message-text" name="content"></textarea>
+			          </div>
+			        <input type="hidden" name="username" th:value="${username}">  
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary">작성 완료</button>
+			        </form>
+			        
+			      </div>
+			      <div class="modal-footer">
+			      </div>
+			    </div>
+			  </div>
+			</div>	
+			
+		
+    </div>
+</div>
+<!-- Destination end -->
+	<script>
+		$(document).ready(function() {
+			$('#exampleModal').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget)
+			  var modal = $(this)
+			  modal.find('.modal-title').text('New message to ' + recipient)
+			  modal.find('.modal-body input').val(recipient)
+			})
+		});
+		
+	</script>
+
+<!-- Footer-6 start -->
+	<footer class="footer-2">
+		<div class="container footer-inner">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-logo">
+						<img src="assets/img/logos/logo.png" alt="logo">
+					</div>
+					<ul class="social-list clearfix">
+						<li><a href="#" class="facebook"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="google"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+						<li><a href="#" class="linkedin"><i
+								class="fa fa-linkedin"></i></a></li>
+					</ul>
+					<div class="nav-inline">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Tours</a></li>
+							<li><a href="#">Destinations</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Blog</a></li>
+						</ul>
+					</div>
+					<p class="copy">
+						© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the
+						property of their respective owners.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+<!-- Footer-6 end -->
+
+<!-- Full page search -->
+<div id="full-page-search">
+    <button type="button" class="close">×</button>
+    <form action="#">
+        <input type="search" value="" placeholder="type keyword(s) here" />
+        <button type="submit" class="btn btn-sm btn-color">Search</button>
+    </form>
+</div>
+
+<!-- profile.html 필요 JS 라이브러리 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<!-- External JS libraries -->
+<script src="assets/js/jquery-2.2.0.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.selectBox.js"></script>
+<script src="assets/js/rangeslider.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.filterizr.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.min.js"></script>
+<script src="assets/js/backstretch.js"></script>
+<script src="assets/js/jquery.countdown.js"></script>
+<script src="assets/js/jquery.scrollUp.js"></script>
+<script src="assets/js/particles.min.js"></script>
+<script src="assets/js/typed.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/dropzone.js"></script>
+<script src="assets/js/jquery.mb.YTPlayer.js"></script>
+<script src="assets/js/leaflet.js"></script>
+<script src="assets/js/leaflet-providers.js"></script>
+<script src="assets/js/leaflet.markercluster.js"></script>
+<script src="assets/js/maps.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+<script src="assets/js/ie-emulation-modes-warning.js"></script>
+<!-- Custom JS Script -->
+<script  src="assets/js/app.js"></script>
+
+
+
+</body>
+</html>

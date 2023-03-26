@@ -1,0 +1,23 @@
+package com.tteonago.hotel.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.tteonago.hotel.service.HotelImageService;
+
+@Controller
+public class HotelImageComtroller {
+	
+	@Autowired
+	HotelImageService hotelimagservice ;
+	
+	public String hotelImg() {
+		
+	}
+	
+	
+	
+}
+
+
+

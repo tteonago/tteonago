@@ -1,0 +1,35 @@
+package com.tteonago.reservation.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.tteonago.hotel.entity.Room;
+import com.tteonago.hotel.service.RoomService;
+import com.tteonago.member.entity.Member;
+import com.tteonago.member.service.UserService;
+
+@Controller
+public class Purchasecontroller {
+	
+	@Autowired
+	private RoomService roomService;
+	
+	@Autowired
+	private UserService memberService;
+
+	@GetMapping("/purchase")
+	public String purchase(@RequestParam(value = "roomId") String roomId, @RequestParam(value = "checkIn") String checkIn, @RequestParam(value = "checkOut") String checkOut, Model model,String authentication) {
+		
+		Room room = roomService.getroomById(roomId);
+		Member member = memberService.findById(authentication);
+		model.addAttribute("room", room);
+		model.addAttribute("checkIn", checkIn);
+		model.addAttribute("checkOut", checkOut);
+		
+	return "pages/TestPayment";
+	}
+}

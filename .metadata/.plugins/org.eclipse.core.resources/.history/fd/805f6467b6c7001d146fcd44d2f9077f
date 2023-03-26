@@ -1,0 +1,29 @@
+package com.tteonago.hotel.service;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tteonago.hotel.dto.RoomDTO;
+import com.tteonago.hotel.repository.RoomRepository;
+
+@Service
+public class HotelDetailServise {
+
+	@Autowired
+	private RoomRepository roomRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+	
+	public List<RoomDTO> getRoomByHotel(String hotelId) {
+		
+		
+		
+		return null;
+		
+	}
+	
+	
+}

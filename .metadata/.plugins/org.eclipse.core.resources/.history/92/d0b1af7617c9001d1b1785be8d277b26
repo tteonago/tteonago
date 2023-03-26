@@ -1,0 +1,16 @@
+package com.tteonago.hotel.service;
+
+import org.springframework.stereotype.Service;
+
+import com.tteonago.hotel.entity.Room;
+import com.tteonago.hotel.repository.RoomRepository;
+
+@Service
+public class RoomService {
+
+	private RoomRepository roomRepository;
+	
+	public Room getroomById(String id) {
+		return roomRepository.findById(id).orElse(null);
+	}
+}

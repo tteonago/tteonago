@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+</head>
+<body>
+   <h1 th:text="${hotelId}"></h1>
+   <h1 th:text="${hotel.hotelName}"></h1>
+   <h1 th:text="${hotel.area}"></h1>
+   ====================================================
+   
+   
+   
+   <!-- <img th:src="${hotel.room[0].images[0].address}"></img> -->
+   <!-- hotel.room.images.address로 가는 경로  -->
+   <div th:each="room : ${hotel.room}">
+	   	<h1 th:text="${room.price}"></h1>
+	   	<h1 th:text="${room.roomType}"></h1>
+	   	<h1 th:text="${room.roomId}"></h1>
+	    <!-- <h1 th:text="${room.index+1}"></h1> -->
+	   <div th:each="roomimg : ${room.images}">
+	   	<img th:src="${roomimg.address}"/>
+	   </div>
+   	<<!-- img th:src="${room.images[0].address}"/> -->
+   </div>
+   
+   
+
+</body>
+</html>

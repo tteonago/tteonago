@@ -1,0 +1,53 @@
+package com.tteonago.hotel.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tteonago.exception.TteonagoException;
+import com.tteonago.hotel.dto.HotelDTO;
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.repository.HotelRepository;
+
+
+@Service
+public class HotelService {
+	
+	@Autowired
+	private HotelRepository hotelRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+
+	public List<HotelDTO> getAllHotels() throws TteonagoException {
+		
+		List<Hotel> hotels = hotelRepository.findAll();
+		List<HotelDTO> hotelDTOs = new ArrayList<>();
+		
+		for (Hotel hotel : hotels) {
+			hotelDTOs.add(modelMapper.map(hotel, HotelDTO.class));
+		}
+		
+		return hotelDTOs;
+	}
+	
+	
+	
+    public List<HotelDTO> getHotelsByAreaId(String areaId) throws TteonagoException {
+
+        List<Hotel> hotels = hotelRepository.findByAreaAId(areaId);
+
+        return hotels.stream().map(hotel -> modelMapper.map(hotel, HotelDTO.class)).collect(Collectors.toList());
+
+    }
+	
+	
+
+	public List<Hotel> gethotellist(String areaId, int star, int roomSize) {
+		List<Hotel> hotels = hotelRepository.findHotelsByAreaIdAndStarAndRoomSize(areaId, star, roomSize);
+		return hotels;
+	}
+}

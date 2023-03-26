@@ -1,0 +1,53 @@
+package com.tteonago.reservation.service;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import com.tteonago.member.entity.Member;
+import com.tteonago.reservation.dto.ReservationDTO;
+import com.tteonago.reservation.dto.ReservationSaveDTO;
+import com.tteonago.reservation.entity.Period;
+import com.tteonago.reservation.entity.Reservation;
+import com.tteonago.reservation.repository.ReservationRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class ReservationService {
+	
+	private final ReservationRepository reservationRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+	
+	//select * from reservation where username = ? 
+	public HashMap<String, ReservationDTO> findReservationByUsername(Member member) {
+		List<Object[]> reservations = reservationRepository.findAllResByMember(member);
+		
+		HashMap<String, ReservationDTO> hotelAndReserv = new HashMap<>();
+		
+		for(Object[] res : reservations) {
+			hotelAndReserv.put((String)res[1], modelMapper.map(res[0], ReservationDTO.class));
+		}
+		
+		return hotelAndReserv;
+	}
+	
+	  public void saveReservation(ReservationSaveDTO reservationSaveDTO) {
+		  Reservation reservation = new Reservation();
+		  reservation.setRoom(reservationSaveDTO.getRoomId());
+		  reservation.setMember(reservationSaveDTO.getUserName());
+		  reservation.setPeriod(reservationSaveDTO.getPeriod());
+		  reservation.setPayDate(LocalDateTime.now());
+		  reservation.setTotPrice(reservationSaveDTO.getTotPrice());
+		    
+		  reservationRepository.save(reservation);
+	}
+	
+	
+	
+}

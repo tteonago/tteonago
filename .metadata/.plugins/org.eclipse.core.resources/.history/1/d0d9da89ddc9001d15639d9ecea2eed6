@@ -1,0 +1,51 @@
+package com.tteonago.reservation.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.tteonago.member.entity.Member;
+import com.tteonago.reservation.dto.ReservationDTO;
+import com.tteonago.reservation.entity.Reservation;
+import com.tteonago.reservation.repository.ReservationRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class ReservationService {
+	
+	private final ReservationRepository reservationRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+	
+	//select * from reservation where username = ? 
+	public HashMap<String, ReservationDTO> findReservationByUsername(Member member) {
+		List<Object[]> reservations = reservationRepository.findAllResByMember(member);
+		
+		HashMap<String, ReservationDTO> hotelAndReserv = new HashMap<>();
+		
+		for(Object[] res : reservations) {
+			hotelAndReserv.put((String)res[1], modelMapper.map(res[0], ReservationDTO.class));
+		}
+		
+		return hotelAndReserv;
+	}
+	
+	public void saveReservation(@ModelAttribute ReservationDTO reservationDTO) {
+		
+		 Reservation reservation = new Reservation();
+//		 reservation.setRoomId(reservationDTO.getRoomId());
+//		 reservation.setUsername(reservationDTO.getUsername());
+		 reservation.setPeriod(reservationDTO.getPeriod());
+		 reservation.setTotPrice(reservationDTO.getTotPrice());
+
+		 reservationRepository.save(reservation);
+	}
+	
+	
+	
+}

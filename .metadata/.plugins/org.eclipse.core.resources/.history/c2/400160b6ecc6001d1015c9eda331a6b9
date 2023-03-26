@@ -1,0 +1,30 @@
+package com.tteonago.hotel.service;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tteonago.exception.TteonagoException;
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.entity.HotelImage;
+import com.tteonago.hotel.repository.HotelImageRepository;
+
+@Service
+public class HotelImageService {
+	
+	@Autowired
+	private HotelImageRepository hotelImageRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+	
+	public HotelImage getimgByHotelId(Hotel hotelId) throws TteonagoException {
+		List<HotelImage> hotelImage = hotelImageRepository.getHotelByArea(hotelId);
+	    
+	    return modelMapper.map(hotelImage, HotelImage.class);
+	}
+	
+	
+	
+}

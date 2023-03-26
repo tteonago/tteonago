@@ -1,0 +1,35 @@
+package com.tteonago.hotel.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.service.HotelService;
+
+@Controller
+public class DetailController {
+	
+	@Autowired
+    private HotelService hotelService;
+
+	
+	@GetMapping("/{hotelId}")
+	public String hotelDetail(@PathVariable String hotelId, Model model) {
+
+	    Hotel hotel = hotelService.getHotelById(hotelId);
+	    model.addAttribute("hotel", hotel);
+
+	    return "pages/tours-detail";
+	}
+	
+	@GetMapping("/payment")
+	public String payment(@RequestParam String hotelId, @RequestParam String roomId, Model model) {
+		
+		return "pages/TestPayment";
+	}
+	
+}

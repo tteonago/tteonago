@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- jquery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 아임포트(kg이니시스) 결제 api -->
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2>Responsive Checkout Form</h2>
+<p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other.</p>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+
+     
+        <div class="row">
+          <div class="col-50">
+            <h2>예 약 정 보</h2>
+            
+            <label for="fname"><i class="fa fa-user"></i></label>
+            <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
+            <label for="email"><i class="fa fa-envelope"></i></label>
+            <input type="text" id="email" name="email" th:value="${member.email}" readonly>
+			      <input type="hidden" id="roomId" th:value="${room.roomId}"/>
+            <div class="row">
+              <div class="col-50">
+                <label for="point">point</label>
+                <input type="text" id="point" name="point" th:value="${#numbers.formatInteger(member.point, 0, 'COMMA')} + '점'" readonly>               
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <!-- <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i> -->
+              <!-- <img th:src="@{${room.images[0].address}}" alt="room image" /> -->
+            </div>
+            <label for="cname">예약호텔명</label>
+            <input type="text" id="cname" name="cardname" th:value="${room.hotel.hotelName}" readonly>
+            <label for="ccnum">예약 룸 </label>
+            <input type="text" id="ccnum" name="cardnumber" th:value="${room.roomType}" readonly>
+            <label for="expmonth">체크인</label>
+            <input type="text"  id="checkIn" th:value="${checkIn}" readonly>
+            <label for="expmonth">체크아웃</label>
+            <input type="text"  id="checkOut" th:value="${checkOut}" readonly>
+
+            <div class="row">
+              <!-- <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div> -->
+            </div>
+          </div>
+          
+        </div>
+        <input type="submit" value="결제 하기" class="btn" id="check_module">
+        <input type="hidden" id="totPrice" th:value="${room.Price * days}"/>
+        <!-- <input type="hidden" name="roomtype" th:value="${room.roomType}"/> -->
+      <script th:inline="javascript">
+        $("#check_module").click(function () {
+               var IMP = window.IMP; // 생략가능
+               IMP.init("imp55078373"); 
+               // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+               // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+                             
+               var hotelName = /*[[${room.hotel.hotelName}]]*/
+               var totPrice = /*[[${room.price * days}]]*/      //변수 타입에 빨간 밑줄 무시 상관없음 에러아님
+               var useremail = /*[[${member.email}]]*/
+               var username = /*[[${member.username}]]*/
+            
+               IMP.request_pay({
+                pg : 'html5_inicis',
+                pay_method: 'card',
+                merchant_uid : 'merchant_' + new Date().getTime(),
+                amount : 1000, //테스트용 가격 ${room.price * days} | 추후에 var totPrice 로 대체함. amount : totPrice,
+                name: hotelName,
+                buyer_email: useremail,
+                buyer_name: username,
+                buyer_tel: "010-4753-7397",  //본인 휴대폰번호 넣기 테스트번호X        
+                buyer_postcode : '123-456'                       
+              }, function (rsp) { // callback
+                  if (rsp.success) {
+                    // 결제 성공 시 로직
+                    var msg = '결제가 완료되었습니다.';
+                    alert(msg);
+                    //location.href = "결제 완료 후 이동할 페이지 url"
+                    $.ajax({
+                      type : "POST",
+                      url : "/addreservation",
+                      contentType: "application/json; charset=UTF-8",                   
+                      dateType:'json',
+                      data: JSON.stringify({
+                              roomId: $('#roomId').val(),
+                              firstname: $('#fname').val(),
+                              checkIn: $('#checkIn').val(),
+                              checkOut: $('#checkOut').val(),
+                              totPrice: $('#totPrice').val()
+                          }),
+                    }).done(function(data){
+                      location.href='${pageContext.request.contextPath}/reservation/reservationList'+data
+                    })
+                  } else {
+                    // 결제 실패 시 로직
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '\n에러 내용 : ' + rsp.error_msg;
+                    alert(msg);
+                  }
+          });
+  });
+
+       </script>
+
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+      <h4>Price Summary<span class="price" style="color:black"> <b></b></span></h4>
+      <p>1박 가격<span class="price"  th:text="${#numbers.formatInteger(room.Price, 0, 'COMMA')} + '원'"></span></p>  
+      <p>숙박 일수<span class="price" th:text="${days} + '박'"></span></p><br>
+      <hr>
+      <p>Total Price <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
+     
+    </div>
+  	<div class="container">
+  		<h4>중요 안내</h4>
+  		<h5> * 체크인 시간 14:00~00:00(다음날) 사이, 체크아웃 시간 : 12:00 이전, 투숙객은 체크인& 체크아웃시간을 준수해주시길 바랍니다</h5>
+  </div>
+  </div>
+
+</div>
+
+</body>
+</html>
+
+<!-- th:value="${room.Price}"       -->

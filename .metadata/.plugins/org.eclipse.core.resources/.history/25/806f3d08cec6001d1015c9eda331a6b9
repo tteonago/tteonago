@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDTWJ3Z');</script>
+    <!-- End Google Tag Manager -->
+    <title>Trego - Travel Tour HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/slick.css}" />
+    <link type="text/css" rel="stylesheet" href="assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/daterangepicker.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/leaflet.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/map.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/fonts/linearicons/style.css}">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
+
+</head>
+<body id="top">
+	
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader"></div>
+<!-- main header start -->
+<header class="main-header sticky-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="index.html">
+                        <img src="assets/img/logos/black-logo.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="navbar-collapse collapse w-100" id="navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Index
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="index.html">Index 1</a></li>
+                                    <li><a class="dropdown-item" href="index-2.html">Index 2</a></li>
+                                    <li><a class="dropdown-item" href="index-3.html">Index 3</a></li>
+                                    <li><a class="dropdown-item" href="index-4.html">Index 4</a></li>
+                                    <li><a class="dropdown-item" href="index-5.html">Index 5</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tours
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                                    <li><a class="dropdown-item" href="tours-grid.html">Tours Grid</a></li>
+                                    <li><a class="dropdown-item" href="tours-list.html">Tours List</a></li>
+                                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tours Detail</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="tours-detail.html">Tours Detail 1</a></li>
+                                            <li><a class="dropdown-item" href="tours-detail-2.html">Tours Detail 2</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Destinations
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                    <li><a class="dropdown-item" href="destination-grid.html">Destination Grid</a></li>
+                                    <li><a class="dropdown-item" href="destination-mansory.html">Destination Mansory</a></li>
+                                    <li><a class="dropdown-item" href="destination-detail.html">Destination Detail</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link">Pages</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                                    <li><a class="dropdown-item" href="pricing-tables.html">Pricing Tables</a></li>
+                                    <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                                    <li><a class="dropdown-item" href="agent.html">Meet Our Team</a></li>
+                                    <li><a class="dropdown-item" href="faq.html">Faqs</a></li>
+                                    <li><a class="dropdown-item" href="typography.html">Typography</a></li>
+                                    <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+                                    <li><a class="dropdown-item" href="pages-404.html">404 Page</a></li>
+                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Blog
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                                    <li><a class="dropdown-item" href="blog-sidebar.html">Blog Sidebar</a></li>
+                                    <li><a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
+                                </ul>
+                            </li>
+
+							<li class="nav-item">
+                                <a class="nav-link" href="mypage">내 여행</a>
+
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                                <a class="nav-link" href="login">로그인</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAuthority('ROLE_USER')">
+                                <a class="nav-link" href="logout">로그아웃</a>
+                            </li>
+                            
+                            
+                            <li class="nav-item dropdown">
+                                <a href="#full-page-search" class="nav-link h-icon">
+                                    <i class="flaticon-search"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- main header end -->
+	
+<!-- Banner start -->
+    <div class="banner banner-bg" id="particles-banner-wrapper">
+        <div id="particles-banner"></div>
+        <div id="carouselExampleIndicators" class="carousel slide"
+            data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active item-bg active">
+                    <div
+                        class="carousel-caption banner-slider-inner d-flex text-center">
+                        <div class="carousel-content container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="bi-4">
+                                        <div class="container">
+                                            <div class="text-center">
+                                                <div id="typed-strings">
+                                                    <p>Exploring The World</p>
+                                                </div>
+                                                <h1 class="typed-text">
+                                                    &nbsp; <span id="typed"></span>
+                                                </h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Maecenas in pulvinar neque.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bi-2">
+                <div class="container">
+                    <div class="banner-inner-2 b3">
+                        <h3>호텔 예약 검색</h3>
+                        <form action="/hotelsearch" class="row inline-search-area search-area" method="GET">
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="destination" required>
+                                    <option value="" disabled selected>지역 선택</option>
+                                    <option value="서울">서울</option>
+                                    <option value="제주">제주</option>
+                                    <option value="부산">부산</option>
+                                    <option value="대전">대전</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <input type="text" name="dates"
+                                    placeholder="Check In - Check Out"
+                                    class="datetimes form-control" required /> <i
+                                    class="flaticon-timetable icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="hotel-grade" required>
+                                    <option value="" disabled selected>호텔 등급</option>
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                    <option value="4">⭐⭐⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="2">⭐⭐</option>
+                                    <option value="1">⭐</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br> <select
+                                    class="selectpicker search-fields btn-block form-control bdr"
+                                    name="guests" required>
+                                    <option value="" disabled selected>인원 수</option>
+                                    <option value="1">1명</option>
+                                    <option value="2">2명</option>
+                                    <option value="3">3명</option>
+                                    <option value="4">4명</option>
+                                    <option value="5">5명 이상</option>
+                                </select> <i class="flaticon-down icon-append"></i>
+                            </div>
+                            <div class="search-col">
+                                <br>
+                                <button type="submit" class="btn-theme btn-md btn-block">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- banner end -->
+
+<!-- Destination strat -->
+<div class="destination categories content-area-13">
+  <div class="container">
+    <!-- Main title -->
+  <div class="main-title">
+    <h1><span class="border2"></span> Must See Places <span class="border2"></span></h1>
+  </div>
+    <div class="slick-slider-area">
+    	<div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+        <!-- 반복문 시작 -->
+		<div th:each="area, iterStat : ${areas}" class="slick-slide-item col-lg-4 col-sm-4">
+			<div class="category">
+				<!-- 이미지 경로를 직접 지정하여 반복문을 통해 출력 -->
+				<div class="category_bg_box category_long_bg" 
+					th:style="'background-image: url(/assets/img/destination/img-' + ${iterStat.index + 1} + '.jpg)'"
+					th:data-areaid="${area.aId}"
+					th:data-hotelid="${hotels[iterStat.index].id}"
+					onclick="location.href='/map?area=' + $(this).data('areaid') + '&amp;hotelId=' + $(this).data('hotelid')">
+			<div class="category-overlay">
+				<div class="category-content">
+					<h4 class="category-subtitle"><i class="flaticon-pin"></i> <span th:text="${area.aName}"></span></h4>
+				</div>
+		    </div>
+				</div>
+			</div>
+		</div>
+<!-- 반복문 끝 -->
+     </div>
+      <div class="slick-prev slick-arrow-buton">
+        <i class="fa fa-angle-left"></i>
+      </div>
+      <div class="slick-next slick-arrow-buton">
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Destination end -->
+
+
+<!-- partner start -->
+<div class="container partner">
+    <div class="main-title">
+        <h1>Partners</h1>
+    </div>
+    <div class="row">
+        <div class="multi-carousel" data-items="1,3,5,6" data-slide="1" id="multiCarousel"  data-interval="1000">
+            <div class="multi-carousel-inner">
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-1.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-2.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-3.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-4.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-5.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-1.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-2.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-3.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-4.png" alt="brand">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <img src="assets/img/brands/brand-5.png" alt="brand">
+                    </div>
+                </div>
+            </div>
+            <a class="multi-carousel-indicator leftLst" aria-hidden="true">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="multi-carousel-indicator rightLst" aria-hidden="true">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- partner end -->
+
+<!-- Footer-6 start -->
+<footer class="footer-2">
+    <div class="container footer-inner">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-logo">
+                    <img src="assets/img/logos/logo.png" alt="logo">
+                </div>
+                <ul class="social-list clearfix">
+                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+                <div class="nav-inline">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Tours</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <p class="copy">© 2020 <a href="#">Theme Vessel</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer-6 end -->
+
+<!-- Full page search -->
+<div id="full-page-search">
+    <button type="button" class="close">×</button>
+    <form action="#">
+        <input type="search" value="" placeholder="type keyword(s) here" />
+        <button type="submit" class="btn btn-sm btn-color">Search</button>
+    </form>
+</div>
+
+<!-- External JS libraries -->
+<script src="assets/js/jquery-2.2.0.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.selectBox.js"></script>
+<script src="assets/js/rangeslider.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.filterizr.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.min.js"></script>
+<script src="assets/js/backstretch.js"></script>
+<script src="assets/js/jquery.countdown.js"></script>
+<script src="assets/js/jquery.scrollUp.js"></script>
+<script src="assets/js/particles.min.js"></script>
+<script src="assets/js/typed.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/dropzone.js"></script>
+<script src="assets/js/jquery.mb.YTPlayer.js"></script>
+<script src="assets/js/leaflet.js"></script>
+<script src="assets/js/leaflet-providers.js"></script>
+<script src="assets/js/leaflet.markercluster.js"></script>
+<script src="assets/js/maps.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+<script src="assets/js/ie-emulation-modes-warning.js"></script>
+<!-- Custom JS Script -->
+<script  src="assets/js/app.js"></script>
+
+</body>
+</html>

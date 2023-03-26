@@ -1,0 +1,40 @@
+package com.tteonago.reservation.dto;
+
+import java.time.LocalDateTime;
+
+import com.tteonago.hotel.entity.Room;
+import com.tteonago.member.entity.Member;
+import com.tteonago.reservation.entity.Period;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Setter
+@Getter
+@ToString
+public class ReservationSaveDTO {
+	
+	private Period period;
+	
+	private Integer totPrice;
+	
+	private String roomId;
+	
+	private Member userName;
+	
+	
+
+    public LocalDateTime getCheckIn() {
+        return period.getCheckIn();
+    }
+
+    public LocalDateTime getCheckOut() {
+        return period.getCheckOut();
+    }
+}

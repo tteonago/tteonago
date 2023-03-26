@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Kakao 지도 시작하기</title>
+
+</head>
+<body>
+	<div id="map" style="width: 100%; height: 900px;"
+     th:attr="data-lat=${area.localPosition.lat}, data-lng=${area.localPosition.lng}, data-level=${area.level}, data-hotels=${hotels}">
+	
+	<script type="text/javascript"
+		th:src="'//dapi.kakao.com/v2/maps/sdk.js?appkey=' + bad2312ffcb2c3e1eef6908fa8571488"></script>
+	<script th:inline="javascript">
+		var mapContainer = document.getElementById('map') // 지도를 표시할 div 
+		var lat = mapContainer.getAttribute('data-lat');
+		var lng = mapContainer.getAttribute('data-lng');
+		var level = mapContainer.getAttribute('data-level');
+		var mapOption = {center : new kakao.maps.LatLng(lat, lng), level : level};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커를 표시할 위치입니다 
+		var arr = [ ];
+		
+		var msg= /*[[${area.localPosition}]]*/ null;
+		var msg1 = JSON.parse(document.getElementById("map").getAttribute("data-hotels"));
+		
+		for(var i = 0; i < msg1.length; i++) {
+			var name = msg1[i].hotelName;
+			var hotelLat = msg1[i].hotelPosition.lat;
+			var hotelLng = msg1[i].hotelPosition.lng;
+			var hotelAddress = msg1[i].hotelAddress;
+			var phone = msg1[i].hotelPhone;
+			var img = msg1[i].address
+			var hotelId = msg1[i].hotelId
+			
+			arr.push({
+				  name: name,
+				  position: new kakao.maps.LatLng(hotelLat, hotelLng),
+				  address: hotelAddress,
+				  phone : phone,
+				  img : img,
+				  hotelId : hotelId
+				});
+		}
+
+		for (var i = 0; i < arr.length; i++) {
+			// 마커를 생성합니다
+			var temp = new kakao.maps.Marker({
+				position : arr[i].position,
+				clickable : true
+			});
+
+			// 마커를 지도에 표시합니다.
+			temp.setMap(map);
+
+			// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+			var iwContent = '<div style="padding:5px; color:green;">' + arr[i].name 
+					      + '</div><hr><br>' 
+					      + '<div style="padding:5px;"> <img width="70%" height="50%" src=" ' + arr[i].img 
+					      + '" </div>'
+					      + '<div style="padding:5px; font-size:8px;"> 주소: ' + arr[i].address
+					      + '</div>'
+					      + '<div style="padding:5px; font-size:8px;"> 연락처: ' + arr[i].phone
+					      + '</div>'
+					      + '<div style="padding:5px; font-size:8px;"> <a href="/detail?hotelId=' + arr[i].hotelId
+					      + '">바로가기</a> </div>'
+					      , iwRemoveable = true
+
+			// 인포윈도우를 생성합니다
+			var infowindow = new kakao.maps.InfoWindow({
+				content : iwContent,
+				removable : iwRemoveable
+			});
+
+			// 마커에 클릭이벤트를 등록합니다
+			kakao.maps.event.addListener(temp, 'click', makeOverListener(map,
+					temp, infowindow));
+		}
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, temp, infowindow) {
+			return function() {
+				infowindow.open(map, temp);
+			};
+		}
+		// 인포윈도우를 닫는 클로저를 만드는 함수
+		function makeOutListener(infowindow) {
+			return function() {
+				infowindow.close();
+			};
+		}
+	</script>
+	</div>
+	
+</body>
+</html>

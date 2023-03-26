@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Hotel Detail</title>
+</head>
+<body>
+	<h1>Hotel Detail</h1>
+	<p th:text="${hotelId}"></p>
+	<p th:text="${rooms.roomType}"></p>
+	<p th:text="${rooms.price}"></p>
+	<p th:text="${rooms.roomSize}"></p>
+</body>
+</html> 

@@ -4,6 +4,13 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- jquery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 아임포트(kg이니시스) 결제 api -->
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+
 <style>
 body {
   font-family: Arial;
@@ -118,7 +125,7 @@ span.price {
   <div class="col-75">
     <div class="container">
 
-      <form action="/posttest" method="post">
+     
         <div class="row">
           <div class="col-50">
             <h2>예 약 정 보</h2>
@@ -127,7 +134,7 @@ span.price {
             <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
             <label for="email"><i class="fa fa-envelope"></i></label>
             <input type="text" id="email" name="email" th:value="${member.email}" readonly>
-			      <input type="hidden" name="roomId" th:value="${room.roomId}"/>
+			      <input type="hidden" id="roomId" th:value="${room.roomId}"/>
             <div class="row">
               <div class="col-50">
                 <label for="point">point</label>
@@ -151,9 +158,9 @@ span.price {
             <label for="ccnum">예약 룸 </label>
             <input type="text" id="ccnum" name="cardnumber" th:value="${room.roomType}" readonly>
             <label for="expmonth">체크인</label>
-            <input type="text" id="expmonth" name="checkIn" th:value="${checkIn}" readonly>
+            <input type="text"  id="checkIn" th:value="${checkIn}" readonly>
             <label for="expmonth">체크아웃</label>
-            <input type="text" id="expmonth" name="checkOut" th:value="${checkOut}" readonly>
+            <input type="text"  id="checkOut" th:value="${checkOut}" readonly>
 
             <div class="row">
               <!-- <div class="col-50">
@@ -168,9 +175,62 @@ span.price {
           </div>
           
         </div>
-        <input type="submit" value="Continue to checkout" class="btn">
-        <input type="hidden" name="totPrice" th:value="${room.Price * days}"/>
-      </form>
+        <input type="submit" value="결제 하기" class="btn" id="check_module">
+        <input type="hidden" id="totPrice" th:value="${room.Price * days}"/>
+        <!-- <input type="hidden" name="roomtype" th:value="${room.roomType}"/> -->
+      <script th:inline="javascript">
+        $("#check_module").click(function () {
+               var IMP = window.IMP; // 생략가능
+               IMP.init("imp55078373"); 
+               // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+               // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+                             
+               var hotelName = /*[[${room.hotel.hotelName}]]*/
+               var totPrice = /*[[${room.price * days}]]*/      //변수 타입에 빨간 밑줄 무시 상관없음 에러아님
+               var useremail = /*[[${member.email}]]*/
+               var username = /*[[${member.username}]]*/
+            
+               IMP.request_pay({
+                pg : 'html5_inicis',
+                pay_method: 'card',
+                merchant_uid : 'merchant_' + new Date().getTime(),
+                amount : 1000, //테스트용 가격 ${room.price * days} | 추후에 var totPrice 로 대체함. amount : totPrice,
+                name: hotelName,
+                buyer_email: useremail,
+                buyer_name: username,
+                buyer_tel: "010-4753-7397",  //본인 휴대폰번호 넣기 테스트번호X        
+                buyer_postcode : '123-456'                       
+              }, function (rsp) { // callback
+                  if (rsp.success) {
+                    // 결제 성공 시 로직
+                    var msg = '결제가 완료되었습니다.';
+                    alert(msg);
+                    //location.href = "결제 완료 후 이동할 페이지 url"
+                    $.ajax({
+                      type : "POST",
+                      url : "/addreservation",
+                      contentType: "application/json; charset=UTF-8",                   
+                      dateType:'json',
+                      data: JSON.stringify({
+                              roomId: $('#roomId').val(),
+                              firstname: $('#fname').val(),
+                              checkIn: $('#checkIn').val(),
+                              checkOut: $('#checkOut').val(),
+                              totPrice: $('#totPrice').val()
+                          }),
+                    }).done(function(data){
+                      location.href='${pageContext.request.contextPath}/reservation/reservationList'+data
+                    })
+                  } else {
+                    // 결제 실패 시 로직
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '\n에러 내용 : ' + rsp.error_msg;
+                    alert(msg);
+                  }
+          });
+  });
+
+       </script>
 
     </div>
   </div>

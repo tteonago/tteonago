@@ -7,10 +7,11 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tteonago.hotel.entity.Room;
 import com.tteonago.member.entity.Member;
+import com.tteonago.reservation.dto.ReservationRequestDTO;
 import com.tteonago.reservation.entity.Period;
 import com.tteonago.reservation.entity.Reservation;
 import com.tteonago.reservation.service.ReservationService;
@@ -21,12 +22,15 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationservice;
 
-	@PostMapping("/posttest")
-	public String ReservationInsert(@RequestParam(value = "roomId") String roomid,
-			@RequestParam(value = "firstname") String username, @RequestParam(value = "checkIn") String checkin,
-			@RequestParam(value = "checkOut") String checkout, @RequestParam(value = "totPrice") int totPrice,
-			Reservation reservation) {
+	@PostMapping("/addreservation")
+	public String ReservationInsert(@RequestBody ReservationRequestDTO reservationRequest, Reservation reservation) {
 		
+		String roomid = reservationRequest.getRoomId();
+	    String username = reservationRequest.getFirstname();
+	    String checkin = reservationRequest.getCheckIn();
+	    String checkout = reservationRequest.getCheckOut();
+	    int totPrice = reservationRequest.getTotPrice();
+	    
 		//Reservation 엔티티에 Member 객체 값 세팅
 		Member member = new Member(); 
 		member.setUsername(username);
@@ -53,10 +57,13 @@ public class ReservationController {
 		room.setRoomId(roomid);
 		reservation.setRoom(room);
 		
+		//Reservation 엔티티에 totPrice 값 세팅
+		reservation.setTotPrice(totPrice);
+		
 		reservationservice.addReservation(reservation);
 		reservationservice.addProfit(roomid, totPrice);
 		
-		return "page/mypage";
+		return "pages/mypage";
 	}
 
 }

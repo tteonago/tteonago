@@ -1,10 +1,14 @@
 package com.tteonago.member.service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
@@ -67,13 +71,14 @@ public class Oauth2ServiceDetail extends DefaultOAuth2UserService {
 		//최초 소셜 로그인이 아님	
 		}else {
 			Member member = result.get();
+			List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(member.getRole()));
 			
 			SocialDTO socialDTO = new SocialDTO(
 					member.getUsername(),
 					member.getPassword(),
 					member.getRole(),
 					member.getEmail(),
-					Arrays.asList(new SimpleGrantedAuthority("ROLE_SOCIAL")));
+					authorities);
 			
 			return socialDTO;
 		}

@@ -27,6 +27,10 @@ public class Purchasecontroller {
 
 	@GetMapping("/purchase")
 	public String purchase(@RequestParam(value = "roomId") String roomId, @RequestParam(value = "dates") String dates, Model model, Authentication authentication) {
+		if (authentication == null || authentication.getAuthorities().stream()
+				.anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_USER")) == false) {
+			return "pages/login";
+		}
 		
 		System.out.println("넘어온 날짜 데이터 " + dates);
 		Member member = null;

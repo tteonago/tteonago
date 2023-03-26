@@ -74,6 +74,11 @@ public class WebSecurity {
                 .antMatchers("/purchase").authenticated() //PurchaseC.
                 .antMatchers("/posttest").authenticated() //ReservationC.
                 .antMatchers("/review/new").authenticated() //ReviewC.
+                .antMatchers("/board").permitAll() //BoardC.
+                .antMatchers("/question").permitAll() //BoardC. -> 막아야됨
+                .antMatchers("/answer").permitAll() //BoardC. -> 막아야됨
+                .antMatchers("/send").permitAll() //ChatC.
+                .antMatchers("/chat").permitAll() //ChatC.
                 .antMatchers("/social").permitAll()
                 .antMatchers("/loginForm").permitAll()
                 .antMatchers("/showkakao").permitAll()
@@ -88,7 +93,7 @@ public class WebSecurity {
                 .passwordParameter("password")	//form 태그의 password 파라미터를 명시합니다
                 .loginProcessingUrl("/loginChain")	//로그인 form 태그 action 을 명시합니다
                 .successHandler(authenticationSuccess)	//로그인 성공시 다음 행동을 지시합니다
-                .failureHandler(authenticationFailure)
+                .failureHandler(authenticationFailure)	//로그인 실패시 다음 행동을 지시합니다
               .and()
               	.logout()		//spring security logout 을 설정합니다
                 .logoutUrl("/logout")	//로그아웃 url

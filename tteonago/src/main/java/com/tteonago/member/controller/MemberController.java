@@ -1,6 +1,7 @@
 package com.tteonago.member.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +27,6 @@ import com.tteonago.reservation.dto.ReservationDTO;
 import com.tteonago.reservation.service.ReservationService;
 import com.tteonago.reservation.service.ReviewService;
 
-import org.springframework.security.core.userdetails.User;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -34,6 +36,7 @@ public class MemberController {
 	private final UserService userService;
 	private final ReservationService reservationService;
 	private final ReviewService reviewService;
+	private final PasswordEncoder passwordEncoder;
 
 	@GetMapping("/home")
 	public String home() {
@@ -142,5 +145,4 @@ public class MemberController {
 
 		return "redirect:/mypage";
 	}
-
 }

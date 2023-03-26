@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class AuthenticationSuccess implements AuthenticationSuccessHandler {
-	private final MemberRepository memberRepository;
+
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 	private Long expireTimeMs = 1000 * 3000l;

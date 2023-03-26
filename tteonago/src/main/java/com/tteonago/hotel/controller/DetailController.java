@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +15,15 @@ import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.entity.Review;
 import com.tteonago.reservation.service.ReviewService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class DetailController {
 	
-	@Autowired
-    private HotelService hotelService;
+    private final HotelService hotelService;
 	
-	@Autowired
-	private ReviewService reviewService;
+	private final ReviewService reviewService;
 
 	@GetMapping("/detail")
 	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
@@ -54,40 +54,24 @@ public class DetailController {
 	    }
 
 		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
-
-		for(Member key : review.keySet()) {
-			System.out.println(key.getUsername() + " 유저가 작성한 리뷰는 : " + review.get(key).getContext());
-		}
-		
 		
 		String checkIn = LocalDate.now().toString();
 		LocalDate checkOut = LocalDate.now();
 		
 		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
-		System.out.println("1일 뒤: " + twentyAfterLocalDate);
 		
 		String checkout = twentyAfterLocalDate.toString();
 		
-		System.out.println("현재 날짜 1 " + checkIn);
-		System.out.println("현재 날짜 2 " + checkOut);
-		
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //기존의 String 날짜 포멧 데이터 형식 지정
-		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); //변경할 String 날짜 포멧 데이터 형식 지정
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); 
 		
 		LocalDate checkinDate = LocalDate.parse(checkIn, inputFormatter);
 		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
 		
-		System.out.println("현재 날짜 3 " + checkinDate);
-		System.out.println("현재 날짜 4 " + checkoutDate);
-		
 		String formattedCheckin = checkinDate.format(outputFormatter);
 		String formattedCheckout = checkoutDate.format(outputFormatter);
 		
-		System.out.println("현재 날짜 5 " + formattedCheckin);
-		System.out.println("현재 날짜 6 " + formattedCheckout);
-		
 		String dates = formattedCheckin + " - " + formattedCheckout;
-		System.out.println("최종 현재 날짜 " + dates);
 		
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
@@ -95,11 +79,5 @@ public class DetailController {
 
 	    return "pages/tours-detail";
 	}
-	
-	
-	@GetMapping("/test22")
-	public String test22() {
-	   return "pages/tours-detail";
-    }	
-	
+
 }

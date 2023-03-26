@@ -23,11 +23,9 @@ import com.tteonago.member.entity.SocialDTO;
 import com.tteonago.member.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
-/*
- * 카카오 소셜로그인을 제어합니다
- */
-@RequiredArgsConstructor
+
 @Service
+@RequiredArgsConstructor
 public class Oauth2ServiceDetail extends DefaultOAuth2UserService {
 	
 	private final MemberRepository memberRepository;

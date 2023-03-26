@@ -17,8 +17,8 @@ import com.tteonago.reservation.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class ReservationService {
 	
 	private final ReservationRepository reservationRepository;
@@ -29,7 +29,6 @@ public class ReservationService {
 	
 	private ModelMapper modelMapper = new ModelMapper();
 	
-	//select * from reservation where username = ? 
 	public HashMap<String, ReservationDTO> findReservationByUsername(Member member) {
 		List<Object[]> reservations = reservationRepository.findAllResByMember(member);
 		
@@ -42,14 +41,11 @@ public class ReservationService {
 		return hotelAndReserv;
 	}
 	
-   // 예약 insert
    public void addReservation(Reservation reservation) {
-	   System.out.println(reservation.toString());
 	   reservationRepository.save(reservation);
 	}
    
    public void addProfit(String roomId, int totPrice) {
-	   
        Room room = roomRepository.findById(roomId).orElse(null);
        Hotel hotel = hotelRepository.findById(room.getHotel().getHotelId()).orElse(null);
        hotel.setProfit(hotel.getProfit() + totPrice);

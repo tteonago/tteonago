@@ -39,8 +39,6 @@ public class AuthenticationSocialSuccess implements AuthenticationSuccessHandler
 		
 		SocialDTO socialDTO = (SocialDTO) authentication.getPrincipal();
 		
-		String encodedPw = socialDTO.getPassword();
-		
 		if(socialDTO.getRole().equals("social") && socialDTO.getPassword().equals("1111")) {
 			response.sendRedirect("/category");
 		}else {

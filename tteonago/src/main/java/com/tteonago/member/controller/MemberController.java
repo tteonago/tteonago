@@ -36,15 +36,9 @@ public class MemberController {
 	private final UserService userService;
 	private final ReservationService reservationService;
 	private final ReviewService reviewService;
-	private final PasswordEncoder passwordEncoder;
-
-	@GetMapping("/home")
-	public String home() {
-		return "pages/index";
-	}
 
 	@GetMapping("/signup")
-	public String sample() {
+	public String signup() {
 		return "pages/signup";
 	}
 

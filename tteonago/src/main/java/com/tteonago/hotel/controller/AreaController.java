@@ -2,7 +2,6 @@ package com.tteonago.hotel.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +11,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
-import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.service.AreaService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class AreaController {
 	
-	@Autowired
-    private AreaService areaService;
+    private final AreaService areaService;
 
     @GetMapping("/category")
-    public String sample(Model model)throws TteonagoException {
+    public String home(Model model)throws TteonagoException {
       
         List<AreaDTO> areaDTOs = areaService.getAllAreas();
         model.addAttribute("areas", areaDTOs);
@@ -40,7 +40,7 @@ public class AreaController {
         List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
         
         ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(hotels); // object는 전송하려는 객체
+        String json = mapper.writeValueAsString(hotels); 
         
         model.addAttribute("area", areaDTO);
         model.addAttribute("hotels", json);

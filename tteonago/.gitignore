@@ -1,14 +1,3 @@
-*.yml
-
-**/*.gradle
-.gradle/
-/gradle/wrapper/*.properties
-/gradle/wrapper/*.jar
-gradle-wrapper.jar
-
-**/gradlew
-**/gradlew.bat
-
 HELP.md
 .gradle
 build/
@@ -46,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Secret ###
+application-db.yml

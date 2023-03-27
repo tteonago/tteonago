@@ -31,20 +31,22 @@ public class AdminController {
     
     @GetMapping("/admin")
     public String admin(Model model) throws JsonProcessingException {
+    	ObjectMapper mapper = new ObjectMapper();
 
         List<Object[]> admin = reservationService.findReservationAll();
         model.addAttribute("admin",admin);
 
         List<Object[]> hotels = hotelRepository.findHotelInfo();
-        ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(hotels);
         model.addAttribute("hoteldata",json);
 
+        
         List<Object[]> totprofit = areaService.getProfitByArea();
         for (Object[] row : totprofit) {
-			log.info("Area : {},Profit : {}",row[0],row[1]);
+			log.info("Controller-- Area : {},Profit : {}",row[0],row[1]);
 		}
-        model.addAttribute("totprofit",totprofit);
+        String totprofitJson = mapper.writeValueAsString(totprofit);
+        model.addAttribute("totprofit",totprofitJson);
         
         return "pages/admin";
     }

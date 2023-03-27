@@ -63,7 +63,7 @@ public class AreaService {
 	public List<Object[]> getProfitByArea(){
 		List<Object[]> profit = hotelRepository.getProfitByArea();
 		for (Object[] row : profit) {
-			log.info("Area : {},Profit : {}",row[0],row[1]);
+			log.info("Service-- Area : {},Profit : {}",row[0],row[1]);
 		}
 		return profit;
 	}

@@ -7,7 +7,7 @@
       layout:fragment="Content">
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+	
     <!-- profile.html 필요 css -->
     <link rel="stylesheet" type="text/css" href="css/profile.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -57,24 +57,6 @@ p { margin:100px 0px; }
 </div>
 <!-- Sub banner end -->
 
- <h1>Profit by Area</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Area ID</th>
-          <th>Total Profit</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Loop through the result list and display each row in a table -->
-        <!-- Each row is an Object array containing two elements: a_id and total_profit -->
-        <tr th:each="row : ${totprofit}">
-          <td th:text="${row[0]}"></td>
-          <td th:text="${row[1]}"></td>
-        </tr>
-      </tbody>
-    </table>
-
 <!-- Destination start -->
 <div class="destination d-2 content-area-2">
     <div class="container">
@@ -100,7 +82,7 @@ p { margin:100px 0px; }
                 <a class="nav-link" data-toggle="tab" href="#fifth">대전호텔별매출</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="sixth">지역별매출</a>
+                <a class="nav-link" data-toggle="tab" href="#sixth">지역별매출</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -158,7 +140,7 @@ p { margin:100px 0px; }
             <div class="tab-pane fade" id="sixth">
                 <div>
                     <p>
-                    <div id="chart_div5"></div>
+                    <div id="chart_div5"></div>              
                     </p>
                 </div>
             </div>
@@ -167,6 +149,7 @@ p { margin:100px 0px; }
 
 </div>
 </div>
+
 <!-- Destination end -->
 <script id="chart" th:attr="data-hoteldata=${hoteldata}" th:inline="javascript">
     google.charts.load('current', {'packages':['corechart']});
@@ -229,7 +212,31 @@ p { margin:100px 0px; }
     }
 </script>
 
+ <script type="text/javascript" id="pie" th:attr="data-totprofit=${totprofit}" th:inline="javascript" >
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+        var totprofit = JSON.parse(document.getElementById("pie").getAttribute("data-totprofit"));
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Area');
+        data.addColumn('number', 'Profit');
+        
+        for (var i = 0; i < totprofit.length; i++) {
+            data.addRow([totprofit[i][0],totprofit[i][1]]);
+        }
+
+        var options = {
+            width: 1200,
+            height: 700
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div5'));
+
+        chart.draw(data, options);
+    }
+    
+</script>
 
 <!-- Footer-6 start -->
 	<footer class="footer-2">
@@ -311,8 +318,6 @@ p { margin:100px 0px; }
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <!-- Custom JS Script -->
 <script  src="assets/js/app.js"></script>
-
-
 
 </body>
 </html>

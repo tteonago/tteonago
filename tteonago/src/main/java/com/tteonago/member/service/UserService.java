@@ -17,6 +17,7 @@ import com.tteonago.member.exception.AppException;
 import com.tteonago.member.exception.ErrorCode;
 import com.tteonago.member.repository.MemberRepository;
 import com.tteonago.member.repository.WishlistRepository;
+import com.tteonago.reservation.entity.Wishlist;
 
 import lombok.RequiredArgsConstructor;
 
@@ -94,6 +95,28 @@ public class UserService {
 	@Transactional
 	public void updateSocialPassword(String username) {
 		int check = memberRepository.updateMemberByUsername("ROLE_USER", username);
+	}
+	
+	@Transactional
+	public void insertWishlist(String username, String hotelId) {
+		Optional<Member> memberOp = memberRepository.findById(username);
+		Member member = memberOp.orElseThrow(AppException::new);
+		
+		Optional<Hotel> hotelOp =  hotelRepository.findById(hotelId);
+		Hotel hotel = hotelOp.orElseThrow();
+		
+		Wishlist exist = wishlistRepository.findByMemberAndHotel(member, hotel);
+		
+		if(exist == null) {
+			Wishlist wishlist = Wishlist.builder()
+					.member(member)
+					.hotel(hotel)
+					.build();
+			wishlistRepository.save(wishlist);
+			return;
+		}else {
+			wishlistRepository.deleteByHotel(member, hotel);
+		}
 	}
 	
 }

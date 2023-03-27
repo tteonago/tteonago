@@ -21,5 +21,8 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
 	@Modifying
 	@Query("delete from Wishlist w where w.member = :member and w.hotel = :hotel")
 	public void deleteByHotel(@Param("member") Member member, @Param("hotel") Hotel hotel);
+	
+	@Query("select w from Wishlist w where w.member = :member and w.hotel = :hotel")
+	public Wishlist findByMemberAndHotel(@Param("member") Member member, @Param("hotel") Hotel hotel);
 
 }

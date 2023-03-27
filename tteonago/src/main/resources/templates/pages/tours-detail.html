@@ -12,10 +12,33 @@
 
 <!-- 이미지 클릭시 확대 관련 import  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<!-- axios 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <!-- Favicon icon -->
 <!-- Google fonts -->
 <!-- Custom Stylesheet -->
+<style>
+.heart-button {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.heart-button:before {
+  content: "\2661";
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.heart-button.filled:before {
+  content: "\2665";
+  color: red;
+}
+</style>
 
 </head>
 <body id="top">
@@ -57,6 +80,10 @@
 								<div class="col-md-12">
 									<div class="title">
 										<span class="heading" th:text="${hotel.hotelName}"></span>
+											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right;">
+												<button id="heartButton" class="heart-button"></button>
+												<input type="hidden" id="hotelId" th:value="${hotel.hotelId}">
+											</div>
 										<div class="ratings">
 											<ui th:if="${hotel.star == 5}">
 											<option value="5">⭐⭐⭐⭐⭐</option>
@@ -269,6 +296,26 @@
 		</div>
 	</div>
 	<!-- Tour details page end -->
+
+<script>
+	const heartButton = document.getElementById("heartButton");
+	const hotelId = document.getElementById("hotelId").value;
+	
+	heartButton.addEventListener("click", function() {
+	  heartButton.classList.toggle("filled");
+	  
+	  axios.post('http://localhost:80/heart', {}, {
+		  params: {
+			  hotelId : hotelId
+	      }
+	    })
+	    .then(function () {
+	    })
+	    .catch(function (error) {
+	      console.log(error);
+	    });
+	  });
+</script>
 
 	<!-- Footer start -->
 	<footer class="footer">

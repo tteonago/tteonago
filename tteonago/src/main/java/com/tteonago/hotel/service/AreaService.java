@@ -14,9 +14,12 @@ import com.tteonago.hotel.entity.Area;
 import com.tteonago.hotel.entity.HotelImage;
 import com.tteonago.hotel.repository.AreaRepository;
 import com.tteonago.hotel.repository.HotelImageRepository;
+import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AreaService {
@@ -24,6 +27,8 @@ public class AreaService {
 	private final AreaRepository areaRepository;
 
 	private final HotelImageRepository hotelImageRepository;
+	
+	private final HotelRepository hotelRepository;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
@@ -52,5 +57,14 @@ public class AreaService {
 		return hotels.stream()
 				.map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
 				.collect(Collectors.toList());
+	}
+	
+	
+	public List<Object[]> getProfitByArea(){
+		List<Object[]> profit = hotelRepository.getProfitByArea();
+		for (Object[] row : profit) {
+			log.info("Area : {},Profit : {}",row[0],row[1]);
+		}
+		return profit;
 	}
 }

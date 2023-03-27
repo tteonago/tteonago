@@ -21,4 +21,6 @@ public interface HotelRepository extends JpaRepository<Hotel, String>{
 	@Query("select h.hotelId,h.profit from Hotel h")
 	List<Object[]> findHotelInfo();
 	
+	@Query("select a.aName, SUM(h.profit) as totProfit from Hotel h join Area a on h.area = a.aId group by a.aId")
+	public List<Object[]> getProfitByArea();
 }

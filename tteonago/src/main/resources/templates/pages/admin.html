@@ -70,19 +70,22 @@ p { margin:100px 0px; }
                 <a class="nav-link active" data-toggle="tab" href="#first">예약 현황</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#second">서울호텔별매출</a>
+                <a class="nav-link" data-toggle="tab" href="#second">서울매출</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#third">제주호텔별매출</a>
+                <a class="nav-link" data-toggle="tab" href="#third">제주매출</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#forth">부산호텔별매출</a>
+                <a class="nav-link" data-toggle="tab" href="#forth">부산매출</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#fifth">대전호텔별매출</a>
+                <a class="nav-link" data-toggle="tab" href="#fifth">대전매출</a>
             </li>
              <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#sixth">지역별매출</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#seventh">선호도TOP5</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -143,6 +146,13 @@ p { margin:100px 0px; }
                     <div id="chart_div5"></div>              
                     </p>
                 </div>
+            </div>
+            <div class="tab-pane fade" id="seventh">
+                
+					
+                  <div id="chart_div6"></div>              
+					
+               
             </div>
         </div>
         <!-- small navbar end -->
@@ -236,6 +246,35 @@ p { margin:100px 0px; }
         chart.draw(data, options);
     }
     
+</script>
+
+
+<script id="preference" th:attr="data-preference=${preference}" th:inline="javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+
+    	 var preference = JSON.parse(document.getElementById("preference").getAttribute("data-preference"));
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'hoteName');
+         data.addColumn('number', 'preference');
+
+         for (var i = 0; i < preference.length; i++) {
+             data.addRow([preference[i][0],preference[i][1]]);
+         }
+         
+        var options = {
+            title: 'hotel Preference',
+            width: 1400,
+            height: 400,
+            legend: { position: 'top', maxLines: 3 },
+            hAxis: { title: 'hoteName' },
+            vAxis: { title: 'preference' }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div6'));
+        chart.draw(data, options);
+    }
 </script>
 
 <!-- Footer-6 start -->

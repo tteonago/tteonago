@@ -34,8 +34,6 @@ public class AreaController {
     @GetMapping("/map")
     public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
     	
-    	System.out.println(area);
-    	
         AreaDTO areaDTO = areaService.getAreaById(area);
         List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
         
@@ -47,6 +45,7 @@ public class AreaController {
         
         return "pages/map";
     } 
+    
     
 }
     

@@ -245,7 +245,8 @@
                                                 <div class="footer clearfix">
                                                   <div class="search-col">
                                                   	<input type="hidden" name="roomId" th:value="${room.roomId}"/>
-                                                    <button type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
+                                                    <button th:if="${available[iterStat.index] == 0}" type="submit" class="btn-theme btn-md btn-block">예약 하기</button>
+                                                    <button th:if="${available[iterStat.index] != 0}" type="button" class="btn-theme btn-md btn-block" style="background-color: grey; color: white;">만실</button>
                                                   </div>
                                                 </div>
                                             </div>

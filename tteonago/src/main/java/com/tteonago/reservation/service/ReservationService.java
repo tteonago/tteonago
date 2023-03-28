@@ -1,5 +1,7 @@
 package com.tteonago.reservation.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,6 +59,20 @@ public class ReservationService {
 		List<Object[]> admin = reservationRepository.findAllReservation();
 
 		return admin;
+	}
+	
+	public List<Integer> findReservationDate(String checkIn, String checkOut, List<Room> roomList) {
+		LocalDate checkInParse = LocalDate.parse(checkIn);
+		LocalDate checkOutParse = LocalDate.parse(checkOut);
+		
+		List<Integer> available = new ArrayList<>();
+		
+		for(Room r : roomList) {
+			List<Reservation> resIn =  reservationRepository.findReservationByDate(checkInParse, r);
+			List<Reservation> resOut =  reservationRepository.findReservationByDate(checkOutParse, r);
+			available.add(resIn.size() + resOut.size());
+		}
+		return available;
 	}
 
 }

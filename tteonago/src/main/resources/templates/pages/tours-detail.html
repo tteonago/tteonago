@@ -106,11 +106,8 @@
 								<div class="col-md-12">
 									<div class="tour-infomation">
 										<ul>
-											<!-- <li><i class="flaticon-calendar" th:text="| ${datein} ~ ${dateout}|"></i> 3 Days 2 Nights</li> -->
-											<!-- <li><i class="flaticon-team"></i> Group: 5 - 10 People</li> -->
 											<li><i class="flaticon-pin"
 												th:text="${hotel.hotelAddress}"></i></li>
-											<!-- <li><i class="flaticon-user"></i> Min Age: 18+</li> -->
 										</ul>
 									</div>
 								</div>
@@ -118,13 +115,6 @@
 						</div>
 						<!-- main slider carousel items -->
 						<div class="carousel-inner">
-							<!-- <div th:each="room, : ${hotel.room}">
-                    		<div th:each="roomimg : ${room.images}">
-                    			<div class="active item carousel-item" th:data-slide-number="${room.index * room.images.size() + roomimg.index}">
-                    				<img th:src="${roomimg.address}" class="img-fluid" alt="slider"/>
-                    			</div>
-                    		</div>
-                    	</div> -->
 							<div class="active item carousel-item" data-slide-number="0">
 								<img th:src="@{${hotel.images[0].address}}"
 									class="img-fluid img-width" alt="slider">
@@ -236,7 +226,6 @@
                                                   </div>
                                                   	<hr>
 														<div class="form-group search-col" style="margin-bottom: -10px;">
-															<!-- <input type="text" name="dates" th:value="|${datein} ~ ${dateout}|" class="datetimes-left form-control"/>															 -->
 															예약 날짜 선택
 															<input type="text" name="dates" th:value="${dates}" class="datetimes-left form-control"/>
 															<i class="flaticon-calendar icon-append"></i>

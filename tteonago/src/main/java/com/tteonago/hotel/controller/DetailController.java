@@ -55,6 +55,16 @@ public class DetailController {
 		addReviewAndHotelToModel(model, hotelId, hotel);
 
 		String dates = generateDefaultDates();
+		
+		String checkIn = LocalDate.now().toString();
+		LocalDate checkOut = LocalDate.now();
+		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
+		String checkout = twentyAfterLocalDate.toString();
+		    
+		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
+		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
+		    
+		model.addAttribute("available", available);
 		model.addAttribute("dates", dates);
 
 		return "pages/tours-detail";

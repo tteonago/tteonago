@@ -41,13 +41,12 @@
                                         <div class="container">
                                             <div class="text-center">
                                                 <div id="typed-strings">
-                                                    <p>T T E O N A G O</p>
+                                                    <p>나의 여행 비서, tteonago</p>
                                                 </div>
                                                 <h1 class="typed-text">
                                                     &nbsp; <span id="typed"></span>
                                                 </h1>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit. Maecenas in pulvinar neque.</p>
+                                                <p>여행의 모든 것, 한 눈에 쉽게</p>
                                             </div>
                                         </div>
                                     </div>
@@ -60,12 +59,12 @@
             <div class="bi-2">
                 <div class="container">
                     <div class="banner-inner-2 b3">
-                        <h3 style= "font-weight: bold;">호텔 예약 검색</h3>
+                        <h3>호텔 예약 검색</h3>
                         <form action="/hotelsearch" class="row inline-search-area search-area" method="GET">
                             <div class="search-col">
                                 <br> <select
                                     class="selectpicker search-fields btn-block form-control bdr"
-                                    name="destination" required>
+                                    name="destination" required >
                                     <option value="" disabled selected>지역 선택</option>
                                     <option value="서울" th:selected="${destination == '서울'}">서울</option>
                                     <option value="제주" th:selected="${destination == '제주'}">제주</option>
@@ -76,7 +75,7 @@
                             <div class="search-col">
                                 <br> <input type="text" name="dates"
                                     placeholder="Check In - Check Out"
-                                    class="datetimes form-control" required /> <i
+                                    class="datetimes form-control" required autocomplete="off"/> <i
                                     class="flaticon-timetable icon-append"></i>
                             </div>
                             <div class="search-col">

@@ -3,6 +3,7 @@ package com.tteonago.hotel.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.service.HotelService;
+import com.tteonago.hotel.service.RoomService;
 import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.entity.Review;
+import com.tteonago.reservation.service.ReservationService;
 import com.tteonago.reservation.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,8 +26,9 @@ import lombok.RequiredArgsConstructor;
 public class DetailController {
 	
     private final HotelService hotelService;
-	
+	private final ReservationService reservationService;
 	private final ReviewService reviewService;
+	private final RoomService roomService;
 
 	@GetMapping("/detail")
 	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
@@ -31,12 +36,13 @@ public class DetailController {
 	    if(hotel == null) {
 	    	throw new RuntimeException("hotel not found");
 	    }
-
+	    
+	    List<Room> roomList = roomService.getRoomByHotelId(hotelId);
+	    List<Integer> available = reservationService.findReservationDate(checkIn, checkOut, roomList);
+	    
 		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
-
-		for(Member key : review.keySet()) {
-			System.out.println(key.getUsername() + " 유저가 작성한 리뷰는 : " + review.get(key).getContext());
-		}
+		
+		model.addAttribute("available", available);
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);

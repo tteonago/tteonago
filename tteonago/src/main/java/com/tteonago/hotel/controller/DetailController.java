@@ -46,8 +46,8 @@ public class DetailController {
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);
-	    model.addAttribute("checkIn", checkIn);
-	    model.addAttribute("checkOut", checkOut);
+//	    model.addAttribute("checkIn", checkIn);
+//	    model.addAttribute("checkOut", checkOut);
 
 	    return "pages/tours-detail";
 	}
@@ -82,6 +82,7 @@ public class DetailController {
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);
+	    
 
 	    return "pages/tours-detail";
 	}

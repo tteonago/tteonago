@@ -17,6 +17,10 @@
     <title>Trego - Travel Tour HTML Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
     <!-- External CSS libraries -->
     <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
@@ -65,22 +69,119 @@
 </div>
 <!-- Sub banner end -->
 
+<div class="sidebar">
+  <ul>
+    <li><a href="/board" class='ask'>문의하기</a></li>
+    <br />
+    <li><a href="#section2">예약 관련</a></li>
+    <li><a href="#section3">방 관련</a></li>
+  </ul>
+</div>
+
+<style>
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: left 0.3s ease;
+    font-weight: bold;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sidebar li {
+    margin: 10px;
+    font-size: 20px;
+  }
+  
+  .sidebar .ask {
+  	padding-bottom: 5px;
+  }
+
+  .sidebar li a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .sidebar-open {
+    left: 0;
+  }
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 360px;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    top: 360px;
+    left: -200px;
+    width: 200px;
+    height: 100%;
+    background-color: #ffffff;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar-open {
+    left: 0;
+  }
+ }
+</style>
+<script>
+const sidebar = document.querySelector('.sidebar');
+const sidebarToggle = document.querySelector('.sidebar-toggle');
+
+sidebarToggle.addEventListener('click', function() {
+  sidebar.classList.toggle('sidebar-open');
+});
+
+window.addEventListener('scroll', function() {
+  const scrollPosition = window.scrollY;
+  sidebar.style.top = scrollPosition + 50 + 'px';
+});
+</script>
+<!-- side end-->
+
 <!-- Typography start -->
 <div class="typography content-area-6">
     <div class="container">
         <div class="row">
             <div class="col-md-12 sd">
-                <h1 class="text-center heading">무엇을 도와드릴까요?</h3><br><hr><br>
+                <h1 class="text-center heading"><section id="section2"/>무엇을 도와드릴까요?</h3><br><hr><br>
                 <h3 class="heading">예약을 변경/취소하고 싶습니다.</h3>
-                <p class="text-left">떠나고는 가격 비교 서비스만 제공해 드리며, 각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 예약을 관리하지 않습니다.
-예약 변경/취소는 저희 사이트가 아닌 실제 예약이 진행된 사이트를 통해서만 가능하며, 받으신 예약메일 상에서 변경/취소 처리하시거나 해당 사이트의 고객센터 로 문의하시는 방법이 있습니다.
-항상 최종 예약을 진행하신 예약 사이트의 취소 규정이 적용되며, 취소 전 무료 취소 및 환불이 가능한지 취소 규정을 확인해 주십시오.</p>
+                <p class="text-left">
+                떠나고는 가격 비교 서비스만 제공해 드리며, 각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 예약을 관리하지 않습니다.
+				예약 변경/취소는 저희 사이트가 아닌 실제 예약이 진행된 사이트를 통해서만 가능하며, 받으신 예약메일 상에서 변경/취소 처리하시거나 해당 사이트의 고객센터 로 문의하시는 방법이 있습니다.
+				항상 최종 예약을 진행하신 예약 사이트의 취소 규정이 적용되며, 취소 전 무료 취소 및 환불이 가능한지 취소 규정을 확인해 주십시오.</p>
                 <h3 class="text-right heading">예약 확인은 어떻게 하나요?</h3>
                 <p class="text-right">떠나고는 예약 사이트들의 가격을 비교하여 최저가를 찾아드리는 검색 엔진 입니다.
-각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 전체 예약을 조회/관리하는 마이페이지 기능이 없습니다.
-예약 확인은 실제 예약한 사이트에서 가능합니다. 예약 24시간 후에도 예약 확인서를 받지 못했다면 예약을 진행한 사이트로 문의 및 재발송 요청을 주셔야 합니다. 스팸 메일함도 함께 확인해 주십시오.</p>
-                <h3 class="text-justify heading">호텔 등급 출처는 어디인가요?</h3>
-                <p class="text-justify">호텔 등급은 호텔 자체적으로 정하거나 호텔 상품을 판매하는 여행 업체가 결정합니다. 떠나고에서는 그 정보를 가져와 가장 정확한 정보를 표시합니다. 저희는 업체간 신뢰도의 차이를 인지하고 있고 이를 고려하여 평점을 표시합니다.</p>
+				각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 전체 예약을 조회/관리하는 마이페이지 기능이 없습니다.
+				예약 확인은 실제 예약한 사이트에서 가능합니다. 예약 24시간 후에도 예약 확인서를 받지 못했다면 예약을 진행한 사이트로 문의 및 재발송 요청을 주셔야 합니다. 스팸 메일함도 함께 확인해 주십시오.</p>
+                <h3><section id="section3"/>호텔 등급 출처는 어디인가요?</h3>
+                <p>호텔 등급은 호텔 자체적으로 정하거나 호텔 상품을 판매하는 여행 업체가 결정합니다. 떠나고에서는 그 정보를 가져와 가장 정확한 정보를 표시합니다. 저희는 업체간 신뢰도의 차이를 인지하고 있고 이를 고려하여 평점을 표시합니다.</p>
             </div>
         </div>
         <div class="row">

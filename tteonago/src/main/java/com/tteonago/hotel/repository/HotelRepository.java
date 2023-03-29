@@ -2,6 +2,7 @@ package com.tteonago.hotel.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +24,10 @@ public interface HotelRepository extends JpaRepository<Hotel, String>{
 	
 	@Query("select max(h.hotelId) from Hotel h where h.area = :area")  
 	String findMaxHotelIdByAId(@Param("area") Area area);
+	
+	@Query("select a.aName, SUM(h.profit) as totProfit from Hotel h join Area a on h.area = a.aId group by a.aId")
+	List<Object[]> getProfitByArea();
+	
+	@Query("select h.hotelName as hotelName, count(w.hotel) as wishCount from Wishlist w join Hotel h on w.hotel = h.hotelId group by h.hotelName order by wishCount desc")
+	List<Object[]> findWhish(PageRequest pageRequest);
 }

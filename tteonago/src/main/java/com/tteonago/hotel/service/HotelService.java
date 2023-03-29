@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +23,9 @@ import com.tteonago.hotel.repository.RoomImageRepository;
 import com.tteonago.hotel.repository.RoomRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class HotelService {
@@ -93,5 +96,12 @@ public class HotelService {
 					.build();
 			roomImageRepository.save(roomImage);
 		}
+	}
+	public List<Object[]>findWhish(){
+		List<Object[]> findTopWhish = hotelRepository.findWhish(PageRequest.of(0, 5));
+		for (Object[] top : findTopWhish) {
+			log.info("Service{}, {}",top[0],top[1]);
+		}
+		return findTopWhish;
 	}
 }

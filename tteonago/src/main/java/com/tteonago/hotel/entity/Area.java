@@ -30,12 +30,10 @@ public class Area {
 	@Column(name = "aName")
 	private String aName;
 	
-	
 	@NonNull
 	@Column(name = "level")
     private Integer level;  
 	
 	@Embedded 
 	private Position localPosition;
-
 }

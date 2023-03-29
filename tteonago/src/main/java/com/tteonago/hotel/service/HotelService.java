@@ -3,11 +3,14 @@ package com.tteonago.hotel.service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.dto.HotelRegisterDTO;
 import com.tteonago.hotel.dto.RoomDTO;
 import com.tteonago.hotel.entity.Area;
@@ -23,26 +26,30 @@ import com.tteonago.hotel.repository.RoomImageRepository;
 import com.tteonago.hotel.repository.RoomRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class HotelService {
 	
+
 	private final HotelRepository hotelRepository;
 	private final AreaRepository areaRepository;
 	private final HotelImageRepository hotelImageRepository;
 	private final RoomRepository roomRepository;
 	private final RoomImageRepository roomImageRepository;
 
-	public List<Hotel> gethotellist(String areaId, int star, int roomSize) {
+	private ModelMapper modelMapper = new ModelMapper();
+
+	public List<HotelDTO> getHotelList(String areaId, int star, int roomSize) {
 		List<Hotel> hotels = hotelRepository.findHotelsByAreaIdAndStarAndRoomSize(areaId, star, roomSize);
-		return hotels;
+		return hotels.stream()
+                .map(hotel -> modelMapper.map(hotel, HotelDTO.class))
+                .collect(Collectors.toList());
 	}
 	
-	public Hotel getHotelById(String id) { 
-		return hotelRepository.findById(id).orElse(null); 
+	public HotelDTO getHotelById(String id) { 
+		Hotel hotel = hotelRepository.findById(id).orElse(null);		
+		return modelMapper.map(hotel, HotelDTO.class); 
 	}
 	
 	public void insertHotel(HotelRegisterDTO hotelRegisterDTO, RoomDTO roomDTO, MultipartFile[] hotelfiles, MultipartFile[] roomfiles) {
@@ -99,9 +106,6 @@ public class HotelService {
 	}
 	public List<Object[]>findWhish(){
 		List<Object[]> findTopWhish = hotelRepository.findWhish(PageRequest.of(0, 5));
-		for (Object[] top : findTopWhish) {
-			log.info("Service{}, {}",top[0],top[1]);
-		}
 		return findTopWhish;
 	}
 }

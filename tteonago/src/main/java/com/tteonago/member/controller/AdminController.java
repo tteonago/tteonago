@@ -16,7 +16,6 @@ import com.tteonago.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AdminController {
@@ -33,7 +32,7 @@ public class AdminController {
     public String admin(Model model) throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
 
-        List<Object[]> admin = reservationService.findReservationAll();
+    	List<Object[]> admin = reservationService.findReservationAll();
         model.addAttribute("admin",admin);
 
         List<Object[]> hotels = hotelRepository.findHotelInfo();
@@ -49,8 +48,5 @@ public class AdminController {
         model.addAttribute("preference",preferenceJson);
         
         return "pages/admin";
-    }
-
-
-    
+    }   
 }

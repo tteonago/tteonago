@@ -7,8 +7,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 //리뷰 조회 DTO
 @Getter
+@ToString
 public class ReviewDTO {
-
     private Reservation reservation;
 
     private Double score;
@@ -18,7 +18,7 @@ public class ReviewDTO {
     private LocalDateTime date;
 
     @Builder
-    public ReviewDTO(Reservation reservation,Double score,String context,LocalDateTime date){
+    public ReviewDTO(Reservation reservation,Double score,String context,LocalDateTime date) {
         this.reservation = reservation;
         this.score = score;
         this.context = context;

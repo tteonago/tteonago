@@ -13,7 +13,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class AreaDTO {
-	
 	private String aId;
 	
 	private String aName;
@@ -21,5 +20,4 @@ public class AreaDTO {
 	private Integer level;
 	
 	private PositionDTO localPosition;
-
 }

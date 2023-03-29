@@ -12,23 +12,18 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-class ReviewController {
+public class ReviewController { // 리뷰 등록 컨트롤러
 
-    private final ReviewService reviewService;
+	private final ReviewService reviewService;
 
-    //리뷰 등록 컨트롤러
-    @PostMapping(value = "/review/new")
-    public String reviewNew(@ModelAttribute ReviewEnrollDTO reviewEnrollDTO, Model model) {
-
-        try {
-
-            reviewService.reviewing(reviewEnrollDTO, reviewEnrollDTO.getResIndex());
-
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "리뷰 등록 중 오류 발생");
-            return "pages/profile";
-        }
-
-        return "redirect:/mypage";
-    }
+	@PostMapping(value = "/review/new")
+	public String reviewNew(@ModelAttribute ReviewEnrollDTO reviewEnrollDTO, Model model) {
+		try {
+			reviewService.reviewing(reviewEnrollDTO, reviewEnrollDTO.getResIndex());
+		} catch (Exception e) {
+			model.addAttribute("errorMessage", "리뷰 등록 중 오류 발생");
+			return "pages/profile";
+		}
+		return "redirect:/mypage";
+	}
 }

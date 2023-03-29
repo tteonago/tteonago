@@ -2,6 +2,7 @@ package com.tteonago.reservation.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -19,39 +20,33 @@ import com.tteonago.reservation.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
 
-
-@Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional
+@Service
 public class ReviewService {
-    private final MemberRepository memberRepository;
-    private final ReviewRepository reviewRepository;
-    private final ReservationRepository reservationRepository;
 
-    public int reviewing(ReviewEnrollDTO reviewEnrollDTO,int resIndex) {
-        Reservation reservation = reservationRepository.findById(resIndex)
-                .orElseThrow(EntityNotFoundException::new);
-        Review review = reviewRepository.save(reviewEnrollDTO.toEntity(reservation));
+	private final MemberRepository memberRepository;
+	private final ReviewRepository reviewRepository;
+	private final ReservationRepository reservationRepository;
 
-        return review.getRevIndex();
-    }
+	public int reviewing(ReviewEnrollDTO reviewEnrollDTO, int resIndex) {
+		Reservation reservation = reservationRepository.findById(resIndex).orElseThrow(EntityNotFoundException::new);
+		Review review = reviewRepository.save(reviewEnrollDTO.toEntity(reservation));
 
-    public HashMap<Member, Review> findReviewByHotelId(String hotelId) {
-        List<Object[]> context = reviewRepository.findReviewByHotelId(hotelId);
+		return review.getRevIndex();
+	}
 
-        HashMap<Member, Review> map = new HashMap<>();
-        for(Object[] arr : context) {
-            map.put((Member)arr[1], (Review)arr[0]);
-        }
+	public HashMap<Member, Review> findReviewByHotelId(String hotelId) {
+		List<Object[]> context = reviewRepository.findReviewByHotelId(hotelId);
 
-        return map;
-    }
-    public List<Integer> findReviewByResIndex(String username) {
-        Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
+		return context.stream().collect(Collectors.toMap(arr -> (Member) arr[1], arr -> (Review) arr[0],
+				(oldValue, newValue) -> oldValue, HashMap::new));
+	}
 
-        List<Integer> resIndex = reviewRepository.findResIndexByUsername(member);
+	public List<Integer> findReviewByResIndex(String username) {
+		Member member = memberRepository.findByUsername(username).orElseThrow((AppException::new));
 
-        return resIndex;
-    }
+		return reviewRepository.findResIndexByUsername(member);
+	}
 
 }

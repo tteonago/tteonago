@@ -20,33 +20,27 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AreaController {
 	
-    private final AreaService areaService;
+	private final AreaService areaService;
 
-    @GetMapping("/category")
-    public String home(Model model)throws TteonagoException {
-      
-        List<AreaDTO> areaDTOs = areaService.getAllAreas();
-        model.addAttribute("areas", areaDTOs);
-      
-        return "pages/index";
-    }
-    
-    @GetMapping("/map")
-    public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
-    	
-        AreaDTO areaDTO = areaService.getAreaById(area);
-        List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
-        
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(hotels); 
-        
-        model.addAttribute("area", areaDTO);
-        model.addAttribute("hotels", json);
-        
-        return "pages/map";
-    } 
-    
-    
+	@GetMapping("/category")
+	public String home(Model model) throws TteonagoException {
+		List<AreaDTO> areaDTOs = areaService.getAllAreas();
+		model.addAttribute("areas", areaDTOs);
+
+		return "pages/index";
+	}
+
+	@GetMapping("/map")
+	public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
+		AreaDTO areaDTO = areaService.getAreaById(area);
+		List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
+
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(hotels);
+
+		model.addAttribute("area", areaDTO);
+		model.addAttribute("hotels", json);
+
+		return "pages/map";
+	}
 }
-    
-   

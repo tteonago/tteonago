@@ -15,7 +15,6 @@ import com.tteonago.reservation.entity.Reservation;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
-	
 	@Query("select r from Reservation r where r.member = :member")
 	public List<Reservation> findReservationByMember(@Param("member") Member member);
 	
@@ -30,5 +29,4 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	
 	@Query("select r from Reservation r where :date between r.period.checkIn and r.period.checkOut and r.room = :room")
 	public List<Reservation> findReservationByDate(@Param("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate localDate, @Param("room") Room room);
-
 }

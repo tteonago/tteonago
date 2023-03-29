@@ -5,7 +5,6 @@ import java.util.List;
 import com.tteonago.hotel.entity.Position;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class HotelDTO {
-	
 	private String hotelId;
 	
 	private AreaDTO area;
@@ -42,5 +40,4 @@ public class HotelDTO {
 	private List<HotelImageDTO> images;
 	
 	private String address;
-
 }

@@ -73,18 +73,19 @@
                         <div class="item-thumbnail">
                           <a th:href="@{${hotel.images[0].address}}" class="item-img" data-lightbox="example-set">                          
                             <div class="tag">확대</div>
-                            <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                          
-                            <div class="plan-price"></div>
+
+                            <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                                                     
+
                           </a>
                         </div>
                       </div>
                       <div class="col-lg-7 col-md-7 col-pad">
                         <div class="detail">
                           <h1 class="title">                        
-                           <a th:href="@{/detail(hotelId=${hotel.hotelId}, checkIn=${datein}, checkOut=${dateout}, dates=${dates})}" th:text="${hotel.hotelName}"></a>
+                           <a style="color: black;" th:href="@{/detail(hotelId=${hotel.hotelId}, checkIn=${datein}, checkOut=${dateout}, dates=${dates})}" th:text="${hotel.hotelName}"></a>
                           </h1>
                           <div class="location">
-                            <a th:href="@{/detail(hotelId=${hotel.hotelId})}">
+                            <a th:href="@{#}" onclick="return false;">
                               <i class="flaticon-pin"></i>
                               <span th:text="${hotel.hotelAddress}"></span>
                             </a>
@@ -96,9 +97,9 @@
                         </div>
                         <div class="ftr">
                             <div class="pull-left">
-                                <i class="flaticon-calendar" th:text="| ${datein} ~ ${dateout}|"></i> <br>
-                                <i class="flaticon-calendar" th:text="${days}"></i> <br>
-                                <i class="flaticon-phone" th:text="| ${hotel.hotelPhone}|"></i>
+                                <i class="flaticon-calendar" style="color: black;" th:text="| ${datein} ~ ${dateout}|"></i> <br>
+                                <i class="flaticon-calendar" style="color: black;" th:text="${days}"></i> <br>
+                                <i class="flaticon-phone" style="color: black;" th:text="| ${hotel.hotelPhone}|"></i>
                             </div>
                             <div class="pull-right">
                                 <div class="ratings">

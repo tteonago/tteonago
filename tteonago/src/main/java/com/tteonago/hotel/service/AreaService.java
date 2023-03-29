@@ -1,6 +1,5 @@
 package com.tteonago.hotel.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,15 +16,12 @@ import com.tteonago.hotel.repository.HotelImageRepository;
 import com.tteonago.hotel.repository.HotelRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AreaService {
 	
 	private final AreaRepository areaRepository;
-
 	private final HotelImageRepository hotelImageRepository;
 	
 	private final HotelRepository hotelRepository;
@@ -34,13 +30,9 @@ public class AreaService {
 
 	public List<AreaDTO> getAllAreas() throws TteonagoException {
 	    List<Area> areas = areaRepository.findAll();
-	    List<AreaDTO> areaDTOs = new ArrayList<>();
-	    
-	    for (Area area : areas) {
-	        areaDTOs.add(modelMapper.map(area, AreaDTO.class));
-	    }
-	
-	    return areaDTOs;
+	    return areas.stream()
+	            .map(area -> modelMapper.map(area, AreaDTO.class))
+	            .collect(Collectors.toList());
 	}
 	
 	public AreaDTO getAreaById(String areaId) throws TteonagoException {
@@ -58,13 +50,9 @@ public class AreaService {
 				.map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
 				.collect(Collectors.toList());
 	}
-	
-	
+		
 	public List<Object[]> getProfitByArea(){
-		List<Object[]> profit = hotelRepository.getProfitByArea();
-		for (Object[] row : profit) {
-			log.info("Service-- Area : {},Profit : {}",row[0],row[1]);
-		}
+		List<Object[]> profit = hotelRepository.getProfitByArea();		
 		return profit;
 	}
 }

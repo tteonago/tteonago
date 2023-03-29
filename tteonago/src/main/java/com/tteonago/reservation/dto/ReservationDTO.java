@@ -2,7 +2,6 @@ package com.tteonago.reservation.dto;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tteonago.hotel.entity.Room;
 import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.entity.Period;
@@ -33,5 +32,4 @@ public class ReservationDTO {
 	private Integer totPrice;
 	
 	private String roomType;
-	
 }

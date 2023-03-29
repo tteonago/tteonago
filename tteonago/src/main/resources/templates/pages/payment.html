@@ -218,14 +218,15 @@ span.price {
                               checkOut: $('#checkOut').val(),
                               totPrice: $('#totPrice').val()
                           }),
-                    }).done(function(data){
-                      location.href='${pageContext.request.contextPath}/reservation/reservationList'+data
+                    }).done(function(data){                      
+                      location.replace("/mypages");                                      
                     })
                   } else {
                     // 결제 실패 시 로직
                     var msg = '결제에 실패하였습니다.';
                     msg += '\n에러 내용 : ' + rsp.error_msg;
                     alert(msg);
+                    document.location.href = document.location.href;
                   }
           });
   });

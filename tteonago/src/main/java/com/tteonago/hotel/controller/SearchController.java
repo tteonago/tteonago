@@ -3,17 +3,16 @@ package com.tteonago.hotel.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tteonago.hotel.dto.HotelDTO;
-import com.tteonago.hotel.entity.Hotel;
 import com.tteonago.hotel.service.HotelService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,69 +23,43 @@ public class SearchController {
 
 	private final HotelService hotelService;
 
-	private ModelMapper mapper = new ModelMapper();
-
 	@GetMapping("/hotelsearch")
 	public String getHotelSearch(@RequestParam(value = "destination") String destination,
 			@RequestParam(value = "dates") String dates, @RequestParam(value = "hotel-grade") int hotelgrade,
 			@RequestParam(value = "guests") int guests, Model model) {
-	
-		String aid = null;
 
-		if (destination.equals("서울")) {
-			aid = "10";
-		} else if (destination.equals("제주")) {
-			aid = "20";
-		} else if (destination.equals("부산")) {
-			aid = "30";
-		} else { // "대전"
-			aid = "40";
-		}
+		Map<String, String> destinationMap = new HashMap<>();
+		destinationMap.put("서울", "10");
+		destinationMap.put("제주", "20");
+		destinationMap.put("부산", "30");
+		destinationMap.put("대전", "40");
 
-		List<Hotel> hotellistentity = hotelService.gethotellist(aid, hotelgrade, guests);
-		
-		List<HotelDTO> hotellist = new ArrayList<>();
-		for(Hotel hotel : hotellistentity) {
-		    HotelDTO hotelDTO = mapper.map(hotel, HotelDTO.class);
-		    hotellist.add(hotelDTO);
-		}
-		
-		int hotelCount = hotellist.size();
-		
-		model.addAttribute("hotellist", hotellist);
-		model.addAttribute("hotelcount", hotelCount);
-		
+		String aid = destinationMap.get(destination);
+
+		List<HotelDTO> hotellist = hotelService.getHotelList(aid, hotelgrade, guests);
+
 		String[] dateArr = dates.split(" - ");
-		String checkin = dateArr[0];
-		String checkout = dateArr[1];
-		
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); 
-		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
-		LocalDate checkinDate = LocalDate.parse(checkin, inputFormatter);
-		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
-		
-		String formattedCheckin = checkinDate.format(outputFormatter);
-		String formattedCheckout = checkoutDate.format(outputFormatter);
-		
-		LocalDate LocalDatein = LocalDate.parse(formattedCheckin);
-		LocalDate LocalDateOut = LocalDate.parse(formattedCheckout);
+		LocalDate checkinDate = LocalDate.parse(dateArr[0], DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+		LocalDate checkoutDate = LocalDate.parse(dateArr[1], DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
-		long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
-		long nights = daysBetween - 1;
-		
+        long daysBetween = ChronoUnit.DAYS.between(checkinDate, checkoutDate);
+        long nights = daysBetween - 1;
+
 		String Days = " " + nights + "박 / " + daysBetween + "일";
-		
-		model.addAttribute("datein", LocalDatein);
-		model.addAttribute("dateout", LocalDateOut);
+
+		model.addAttribute("hotellist", hotellist);
+		model.addAttribute("hotelcount", hotellist.size());
+
+		model.addAttribute("datein", checkinDate);
+        model.addAttribute("dateout", checkoutDate);
 		model.addAttribute("days", Days);
-		
+
 		model.addAttribute("dates", dates);
 		model.addAttribute("destination", destination);
 		model.addAttribute("guests", guests);
 		model.addAttribute("star", hotelgrade);
-		
+
 		return "pages/tours-list";
-	  
 	}
+	
 }

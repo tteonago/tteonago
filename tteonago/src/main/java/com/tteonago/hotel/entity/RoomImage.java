@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -22,13 +23,13 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-
+@Builder
 @Entity
 @Table(name="roomImage")
 public class RoomImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imgId;
+	private Integer imgId;
 	
 	@NonNull
 	@ManyToOne

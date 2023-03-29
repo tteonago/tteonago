@@ -21,4 +21,6 @@ public interface HotelRepository extends JpaRepository<Hotel, String>{
 	@Query("select h.hotelId,h.profit from Hotel h")
 	List<Object[]> findHotelInfo();
 	
+	@Query("select max(h.hotelId) from Hotel h where h.area = :area")  
+	String findMaxHotelIdByAId(@Param("area") Area area);
 }

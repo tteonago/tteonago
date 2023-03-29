@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,6 +24,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
+@Builder
 @Entity
 @Table(name="hotel")
 public class Hotel {

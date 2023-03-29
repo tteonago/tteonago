@@ -36,8 +36,8 @@ public class DetailController {
 	    if(hotel == null) {
 	    	throw new RuntimeException("hotel not found");
 	    }
-	    
 	    List<Room> roomList = roomService.getRoomByHotelId(hotelId);
+	    
 	    List<Integer> available = reservationService.findReservationDate(checkIn, checkOut, roomList);
 	    
 		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
@@ -46,8 +46,6 @@ public class DetailController {
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);
-	    model.addAttribute("checkIn", checkIn);
-	    model.addAttribute("checkOut", checkOut);
 
 	    return "pages/tours-detail";
 	}
@@ -68,6 +66,9 @@ public class DetailController {
 		
 		String checkout = twentyAfterLocalDate.toString();
 		
+		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
+		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
+		
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); 
 		
@@ -79,6 +80,7 @@ public class DetailController {
 		
 		String dates = formattedCheckin + " - " + formattedCheckout;
 		
+		model.addAttribute("available", available);
 		model.addAttribute("review",review);
 	    model.addAttribute("hotel", hotel);
 	    model.addAttribute("dates", dates);

@@ -13,7 +13,6 @@ import com.tteonago.reservation.entity.Reservation;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
-	
 	@Query("select r from Reservation r where r.member = :member")
 	public List<Reservation> findReservationByMember(@Param("member") Member member);
 	
@@ -25,5 +24,4 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
 	@Query("select r,m from Reservation r ,Member m where r.member = m.username")
 	public List<Object[]> findAllReservation();
-
 }

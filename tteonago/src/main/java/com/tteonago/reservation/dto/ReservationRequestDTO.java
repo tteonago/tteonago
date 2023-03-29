@@ -13,9 +13,13 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ReservationRequestDTO {
-	 private String roomId;
-	 private String firstname;
-	 private String checkIn;
-	 private String checkOut;
-	 private int totPrice;
+	private String roomId;
+
+	private String firstname;
+
+	private String checkIn;
+
+	private String checkOut;
+
+	private int totPrice;
 }

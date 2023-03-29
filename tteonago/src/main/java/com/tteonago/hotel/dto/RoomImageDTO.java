@@ -13,11 +13,9 @@ import lombok.ToString;
 @Getter
 @ToString
 public class RoomImageDTO {
-	
 	private int imgId;
 	
     private String roomId;
     
-    private String address;
-    
+    private String address;  
 }

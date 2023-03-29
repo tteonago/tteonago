@@ -72,15 +72,16 @@
 	<div class="tour-details-page content-area-2">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-md-12">
+				<div class="col-lg-8 col-md-12" style="margin: 0 auto;">
 					<div id="itemDetailsSlider"
 						class="carousel item-details-sliders slide mb-40">
 						<div class="heading-item">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="title">
-										<span class="heading" th:text="${hotel.hotelName}"></span>
-											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right;">
+										<h3 th:text="${hotel.hotelName}"></h3>										
+											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right; color: black;">
+												찜 하기												
 												<button id="heartButton" class="heart-button"></button>
 												<input type="hidden" id="hotelId" th:value="${hotel.hotelId}">
 											</div>
@@ -108,8 +109,9 @@
 										<ul>
 											<!-- <li><i class="flaticon-calendar" th:text="| ${datein} ~ ${dateout}|"></i> 3 Days 2 Nights</li> -->
 											<!-- <li><i class="flaticon-team"></i> Group: 5 - 10 People</li> -->
-											<li><i class="flaticon-pin"
-												th:text="${hotel.hotelAddress}"></i></li>
+											<li><i class="flaticon-pin">
+												<span style="color: black;" th:text="${hotel.hotelAddress}"></span>
+											</i></li>											
 											<!-- <li><i class="flaticon-user"></i> Min Age: 18+</li> -->
 										</ul>
 									</div>
@@ -227,7 +229,7 @@
                                                 </div>
                                                 <div class="detail">
                                                   <h1 class="title">
-                                                    <a href="tours-detail.html" th:text="${room.roomType}">Camping and mountains</a>
+                                                    <a th:href="@{#}" onclick="return false;" th:text="${room.roomType}">Camping and mountains</a>
                                                   </h1>
                                                   <div class="location">
                                                     <a href="tours-detail.html" th:text=" '최대 수용 인원 : ' + ${room.roomSize}">
@@ -235,7 +237,7 @@
                                                     </a>
                                                   </div>
                                                   	<hr>
-														<div class="form-group search-col" style="margin-bottom: -10px;">
+														<div class="form-group search-col" style="margin-bottom: -10px; color: black;" >
 															<!-- <input type="text" name="dates" th:value="|${datein} ~ ${dateout}|" class="datetimes-left form-control"/>															 -->
 															예약 날짜 선택
 															<input type="text" name="dates" th:value="${dates}" class="datetimes-left form-control"/>

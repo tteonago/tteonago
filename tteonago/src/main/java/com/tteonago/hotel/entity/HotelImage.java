@@ -27,7 +27,6 @@ import lombok.ToString;
 @Entity
 @Table(name="hotel_image")
 public class HotelImage {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "img_id")

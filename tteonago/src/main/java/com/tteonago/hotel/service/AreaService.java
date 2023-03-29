@@ -1,6 +1,5 @@
 package com.tteonago.hotel.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,20 +21,15 @@ import lombok.RequiredArgsConstructor;
 public class AreaService {
 	
 	private final AreaRepository areaRepository;
-
 	private final HotelImageRepository hotelImageRepository;
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
 	public List<AreaDTO> getAllAreas() throws TteonagoException {
 	    List<Area> areas = areaRepository.findAll();
-	    List<AreaDTO> areaDTOs = new ArrayList<>();
-	    
-	    for (Area area : areas) {
-	        areaDTOs.add(modelMapper.map(area, AreaDTO.class));
-	    }
-	
-	    return areaDTOs;
+	    return areas.stream()
+	            .map(area -> modelMapper.map(area, AreaDTO.class))
+	            .collect(Collectors.toList());
 	}
 	
 	public AreaDTO getAreaById(String areaId) throws TteonagoException {
@@ -53,4 +47,5 @@ public class AreaService {
 				.map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
 				.collect(Collectors.toList());
 	}
+	
 }

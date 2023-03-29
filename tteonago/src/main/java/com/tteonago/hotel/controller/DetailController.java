@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tteonago.hotel.entity.Hotel;
+import com.tteonago.hotel.dto.HotelDTO;
 import com.tteonago.hotel.service.HotelService;
 import com.tteonago.member.entity.Member;
 import com.tteonago.reservation.entity.Review;
@@ -20,64 +20,59 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class DetailController {
-	
-    private final HotelService hotelService;
-	
+
+	private final HotelService hotelService;
 	private final ReviewService reviewService;
 
 	@GetMapping("/detail")
-	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates, @RequestParam String checkIn, @RequestParam String checkOut, Model model) {
-	    Hotel hotel = hotelService.getHotelById(hotelId);
-	    if(hotel == null) {
-	    	throw new RuntimeException("hotel not found");
-	    }
+	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates,
+			@RequestParam String checkIn, @RequestParam String checkOut, Model model) {
 
-		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
+		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
+		addReviewAndHotelToModel(model, hotelId, hotel);
 
-		for(Member key : review.keySet()) {
-			System.out.println(key.getUsername() + " 유저가 작성한 리뷰는 : " + review.get(key).getContext());
+		model.addAttribute("dates", dates);
+		model.addAttribute("checkIn", checkIn);
+		model.addAttribute("checkOut", checkOut);
+
+		return "pages/tours-detail";
+	}
+
+	@GetMapping("/mapdetail")
+	public String hotelMapDetail(@RequestParam String hotelId, Model model) {
+		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
+		addReviewAndHotelToModel(model, hotelId, hotel);
+
+		String dates = generateDefaultDates();
+		model.addAttribute("dates", dates);
+
+		return "pages/tours-detail";
+	}
+
+	private HotelDTO getHotelByIdOrThrow(String hotelId) {
+		HotelDTO hotel = hotelService.getHotelById(hotelId);
+		if (hotel == null) {
+			throw new RuntimeException("hotel not found");
 		}
-		model.addAttribute("review",review);
-	    model.addAttribute("hotel", hotel);
-	    model.addAttribute("dates", dates);
-	    model.addAttribute("checkIn", checkIn);
-	    model.addAttribute("checkOut", checkOut);
+		return hotel;
+	}
 
-	    return "pages/tours-detail";
+	private void addReviewAndHotelToModel(Model model, String hotelId, HotelDTO hotel) {
+		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
+		model.addAttribute("review", review);
+		model.addAttribute("hotel", hotel);
+	}
+
+	private String generateDefaultDates() {
+		LocalDate checkIn = LocalDate.now();
+		LocalDate checkOut = checkIn.plusDays(1);
+
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+		String formattedCheckin = checkIn.format(dateFormatter);
+		String formattedCheckout = checkOut.format(dateFormatter);
+
+		return formattedCheckin + " - " + formattedCheckout;
 	}
 	
-	@GetMapping("/mapdetail")
-	public String hotelDetail(@RequestParam String hotelId, Model model) {
-	    Hotel hotel = hotelService.getHotelById(hotelId);
-	    if(hotel == null) {
-	    	throw new RuntimeException("hotel not found");
-	    }
-
-		HashMap<Member, Review> review = reviewService.findReviewByHotelId(hotelId);
-		
-		String checkIn = LocalDate.now().toString();
-		LocalDate checkOut = LocalDate.now();
-		
-		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
-		
-		String checkout = twentyAfterLocalDate.toString();
-		
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
-		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy"); 
-		
-		LocalDate checkinDate = LocalDate.parse(checkIn, inputFormatter);
-		LocalDate checkoutDate = LocalDate.parse(checkout, inputFormatter);
-		
-		String formattedCheckin = checkinDate.format(outputFormatter);
-		String formattedCheckout = checkoutDate.format(outputFormatter);
-		
-		String dates = formattedCheckin + " - " + formattedCheckout;
-		
-		model.addAttribute("review",review);
-	    model.addAttribute("hotel", hotel);
-	    model.addAttribute("dates", dates);
-
-	    return "pages/tours-detail";
-	}
-
 }

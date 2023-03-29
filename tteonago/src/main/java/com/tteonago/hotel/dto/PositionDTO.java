@@ -19,4 +19,3 @@ public class PositionDTO {
 	
 	private BigDecimal lat;
 }
-

@@ -2,6 +2,7 @@ package com.tteonago.reservation.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,46 +18,38 @@ import com.tteonago.reservation.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class ReservationService {
-	
+
 	private final ReservationRepository reservationRepository;
-	
 	private final RoomRepository roomRepository;
-	
 	private final HotelRepository hotelRepository;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
-	
+
 	public HashMap<String, ReservationDTO> findReservationByUsername(Member member) {
 		List<Object[]> reservations = reservationRepository.findAllResByMember(member);
-		
-		HashMap<String, ReservationDTO> hotelAndReserv = new HashMap<>();
-		
-		for(Object[] res : reservations) {
-			hotelAndReserv.put((String)res[1], modelMapper.map(res[0], ReservationDTO.class));
-		}
 
-		return hotelAndReserv;
+		return reservations.stream().collect(Collectors.toMap(res -> (String) res[1],
+				res -> modelMapper.map(res[0], ReservationDTO.class), (oldValue, newValue) -> oldValue, HashMap::new));
 	}
-	
-   public void addReservation(Reservation reservation) {
-	   reservationRepository.save(reservation);
+
+	public void addReservation(Reservation reservation) {
+		reservationRepository.save(reservation);
 	}
-   
-   public void addProfit(String roomId, int totPrice) {
-       Room room = roomRepository.findById(roomId).orElse(null);
-       Hotel hotel = hotelRepository.findById(room.getHotel().getHotelId()).orElse(null);
-       hotel.setProfit(hotel.getProfit() + totPrice);
-       hotelRepository.save(hotel);
-   }
 
-	public List<Object[]> findReservationAll(){
+	public void addProfit(String roomId, int totPrice) {
+		hotelRepository
+				.findById(roomRepository.findById(roomId).map(Room::getHotel).map(Hotel::getHotelId).orElse(null))
+				.ifPresent(hotel -> {
+					hotel.setProfit(hotel.getProfit() + totPrice);
+					hotelRepository.save(hotel);
+				});
+	}
 
-		List<Object[]> admin = reservationRepository.findAllReservation();
-
-		return admin;
+	public List<Object[]> findReservationAll() {
+		return reservationRepository.findAllReservation();
 	}
 
 }

@@ -48,5 +48,13 @@ public class ReviewService {
 
 		return reviewRepository.findResIndexByUsername(member);
 	}
+	public List<Review> getAllReviews() {
+		return reviewRepository.findAll();
+	   
+	}
+
+	public void deleteReviewById(int id) {
+		reviewRepository.deleteById(id);
+	}
 
 }

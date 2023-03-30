@@ -87,6 +87,9 @@ p { margin:100px 0px; }
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#seventh">선호도TOP5</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#eighth">review list</a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="first">
@@ -154,6 +157,37 @@ p { margin:100px 0px; }
 					
                
             </div>
+            
+            <div class="tab-pane fade" id="eighth">
+              <p>
+					<table>
+					  <thead>
+					    <tr>
+					      <th>리뷰내용</th>
+					      <th>적용날짜</th>
+					      <th>별점</th>
+					      <th>예약번호</th>
+					      <th>Action</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="review : ${reviews}">
+					      <td th:text="${review.context}">리뷰내용</td>
+					      <td th:text="${review.date}">날짜</td>
+					      <td th:text="${review.score}">스코어</td>
+					      <td th:text="${review.reservation.resIndex}">예약 인덱스</td>
+					      <td>
+					        <form th:action="@{/reviews/{id}(id=${review.revIndex})}" method="post">
+							    <input type="hidden" name="_method" value="delete" />
+							    <button type="submit">삭제</button>
+							</form>
+					      </td>
+					    </tr>
+					  </tbody>
+					</table>
+                </p> 
+            </div>
+            
         </div>
         <!-- small navbar end -->
 

@@ -24,5 +24,4 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query("select rw, rn.member from Review rw , Reservation rn, Room rm, Hotel h where rw.reservation = rn.resIndex and rn.room = rm.roomId and rm.hotel = h.hotelId and h.hotelId = :hotelId")
     List<Object[]> findReviewByHotelId(@Param("hotelId") String hotelId);
     
-//    void deleteById(int id);
 }

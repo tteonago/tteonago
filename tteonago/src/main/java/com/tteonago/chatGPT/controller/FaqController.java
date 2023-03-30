@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FaqController {
 	@GetMapping("/faq")
 	public String sendMessage() {
-		return "pages/faq";
+		return "pages/FAQpage";
 	}
 }

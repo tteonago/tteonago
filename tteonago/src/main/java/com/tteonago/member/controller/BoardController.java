@@ -49,8 +49,7 @@ public class BoardController {
 		
 		return "redirect:/board";
 	}
-	
-	@Secured("ROLE_ADMIN")
+
 	@PostMapping("/questions/{id}")
 	public String deleteQuestion(@PathVariable Long id) {
 	    boardService.deleteQuestion(id);

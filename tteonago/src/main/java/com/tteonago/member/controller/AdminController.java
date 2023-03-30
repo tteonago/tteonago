@@ -2,6 +2,8 @@ package com.tteonago.member.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,10 @@ public class AdminController {
     private final ReviewService reviewservice;
     
     @GetMapping("/admin")
-    public String admin(Model model) throws JsonProcessingException {
+    public String admin(Model model, Authentication authentication) throws JsonProcessingException {
+    	if (authentication == null || authentication.getAuthorities().stream()
+				.anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_USER")) == false) {
+     	
     	ObjectMapper mapper = new ObjectMapper();
     	
     	List<Review> reviews = reviewservice.getAllReviews();
@@ -56,7 +61,11 @@ public class AdminController {
         model.addAttribute("preference",preferenceJson);
         
         return "pages/admin";
-    }   
+    	}else {
+    		return null;
+    	}
+    } 
+
     @PostMapping("/reviews/{id}")
     public String deleteReview(@PathVariable("id") int id) {
         reviewservice.deleteReviewById(id);

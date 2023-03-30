@@ -104,6 +104,7 @@ public class HotelService {
 			roomImageRepository.save(roomImage);
 		}
 	}
+	
 	public List<Object[]>findWhish(){
 		List<Object[]> findTopWhish = hotelRepository.findWhish(PageRequest.of(0, 5));
 		return findTopWhish;

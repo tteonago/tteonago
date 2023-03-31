@@ -139,4 +139,9 @@ public class MemberController {
 
 		return "redirect:/mypage";
 	}
+	
+	@GetMapping(value = "/deny")
+	public String deny() {
+		return "pages/test1";
+	}
 }

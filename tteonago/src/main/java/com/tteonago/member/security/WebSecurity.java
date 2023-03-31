@@ -2,7 +2,6 @@ package com.tteonago.member.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.tteonago.member.Handler.AuthenticationFailure;
 import com.tteonago.member.Handler.AuthenticationSocialSuccess;
 import com.tteonago.member.Handler.AuthenticationSuccess;
+import com.tteonago.member.Handler.CustomAccessDeniedHandler;
 
 import lombok.RequiredArgsConstructor;
 /*
@@ -62,8 +62,7 @@ public class WebSecurity {
                 .antMatchers("/home").permitAll()  //MemberC. 
                 .antMatchers("/signup").permitAll()  //MemberC. 
                 .antMatchers("/join").anonymous()  //MemberC. 
-                .antMatchers("/admin").authenticated()  //AdminC. 
-                //.antMatchers("/admin").hasRole(null)  //AdminC. 
+                .antMatchers("/admin").hasAnyRole("ADMIN")  //AdminC. 
                 .antMatchers("/login").permitAll() //MemberC.
                 .antMatchers("/mypage").authenticated() //MemberC.
                 .antMatchers("/failure").permitAll() //MemberC.
@@ -86,6 +85,9 @@ public class WebSecurity {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 //.anyRequest().authenticated() //모든 요청을 제어합니다
+              .and()
+              	.exceptionHandling()
+              		.accessDeniedHandler(new CustomAccessDeniedHandler())
               .and()
                 .formLogin()	//spring security login 을 설정합니다
                 .loginPage("/login")	//다음과 같은 로그인 페이지로 이동합니다

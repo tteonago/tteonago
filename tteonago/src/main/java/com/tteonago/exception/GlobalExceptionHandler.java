@@ -3,6 +3,7 @@ package com.tteonago.exception;
 import java.time.format.DateTimeParseException;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,11 @@ public class GlobalExceptionHandler {
         model.addAttribute("message", "잘못된 지역 요청입니다.");
     	return "pages/error";
     }
+    
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public String handleHttpMessageNotReadableException() {
+        return "redirect:/error/404";
+    } 
     
     //메소드에 전달된 인수가 잘못되었거나 부적절한 경우에 발생하는 예외
     @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})

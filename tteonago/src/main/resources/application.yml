@@ -1,5 +1,10 @@
 server:
   port: 80
+  error:
+    whitelabel:
+      enabled: false # Whitelabel Error Page 비활성화
+  servlet:
+    context-path: / # 서블릿 컨텍스트 경로 지정
 
 ---
 spring:

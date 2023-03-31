@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     @ExceptionHandler(TteonagoException.class)
     public String handleTteonagoException(TteonagoException e, Model model) {
-        model.addAttribute("message", e.getMessage());
+        model.addAttribute("message", "잘못된 지역 요청입니다.");
     	return "pages/error";
     }
     

@@ -85,7 +85,7 @@ public class WebSecurity {
                 .antMatchers("/kakaologout").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
-                //.anyRequest().authenticated() //모든 요청을 제어합니다
+                .anyRequest().authenticated() //모든 요청을 제어합니다
               .and()
               	.exceptionHandling()
               		.accessDeniedHandler(new CustomAccessDeniedHandler())

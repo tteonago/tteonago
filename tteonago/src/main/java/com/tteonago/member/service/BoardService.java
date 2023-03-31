@@ -37,8 +37,4 @@ public class BoardService {
 	public void deleteQuestion(Long id) {
 		boardRepository.deleteById(id);
 	}
-
-	public void deleteQuestion(Long id) {
-		boardRepository.deleteById(id);
-	}
 }

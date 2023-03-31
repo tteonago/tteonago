@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tteonago.hotel.repository.HotelRepository;
 import com.tteonago.hotel.service.AreaService;
 import com.tteonago.hotel.service.HotelService;
+import com.tteonago.reservation.entity.Review;
 import com.tteonago.reservation.service.ReservationService;
 import com.tteonago.reservation.service.ReviewService;
 
@@ -36,6 +37,9 @@ public class AdminController {
         List<Object[]> admin = reservationService.findReservationAll();
         model.addAttribute("admin", admin);
         
+    	List<Review> reviews = reviewservice.getAllReviews();
+    	model.addAttribute("reviews", reviews);
+        
         addJsonAttribute(model, "hoteldata", hotelRepository.findHotelInfo(), mapper);
         addJsonAttribute(model, "totprofit", areaService.getProfitByArea(), mapper);
         addJsonAttribute(model, "preference", hotelService.findWhish(), mapper);
@@ -43,6 +47,7 @@ public class AdminController {
         return "pages/admin";        
     }
 
+    
     @PostMapping("/reviews/{id}")
     public String deleteReview(@PathVariable("id") int id) {
         reviewservice.deleteReviewById(id);

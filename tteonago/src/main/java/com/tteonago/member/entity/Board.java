@@ -26,10 +26,10 @@ import lombok.ToString;
 
 @Setter
 @Getter
-
 @ToString
-@Entity
+
 @DynamicInsert
+@Entity
 public class Board {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

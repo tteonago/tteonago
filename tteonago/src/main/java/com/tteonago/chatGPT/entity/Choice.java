@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-public class Choice implements Serializable{
+@Setter
+@Getter
+@ToString
+public class Choice implements Serializable {
 	private String text;
-	private Integer index;
+	
+	private Integer index;	
+	
 	@JsonProperty("finish_reason")
 	private String finishReason;
 }

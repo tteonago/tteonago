@@ -1,13 +1,14 @@
-package com.tteonago.member.entity;
+package com.tteonago.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
+
 @Getter
 public class AdminDTO {
 	private String userName;

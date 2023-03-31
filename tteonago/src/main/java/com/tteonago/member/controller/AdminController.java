@@ -14,39 +14,32 @@ import com.tteonago.hotel.service.HotelService;
 import com.tteonago.reservation.service.ReservationService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @RequiredArgsConstructor
+@Controller
 public class AdminController {
 
     private final ReservationService reservationService;
-
-    private final HotelRepository hotelRepository;
-    
-    private final AreaService areaService;
-    
-    private final HotelService hotelservice;
+    private final HotelRepository hotelRepository;  
+    private final AreaService areaService;  
+    private final HotelService hotelService;
     
     @GetMapping("/admin")
     public String admin(Model model) throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
 
-    	List<Object[]> admin = reservationService.findReservationAll();
-        model.addAttribute("admin",admin);
-
-        List<Object[]> hotels = hotelRepository.findHotelInfo();
-        String json = mapper.writeValueAsString(hotels);
-        model.addAttribute("hoteldata",json);
-
-        List<Object[]> totprofit = areaService.getProfitByArea();
-        String totprofitJson = mapper.writeValueAsString(totprofit);
-        model.addAttribute("totprofit",totprofitJson);
+        List<Object[]> admin = reservationService.findReservationAll();
+        model.addAttribute("admin", admin);
         
-        List<Object[]> preference = hotelservice.findWhish();
-        String preferenceJson = mapper.writeValueAsString(preference);
-        model.addAttribute("preference",preferenceJson);
-        
-        return "pages/admin";
-    }   
+        addJsonAttribute(model, "hoteldata", hotelRepository.findHotelInfo(), mapper);
+        addJsonAttribute(model, "totprofit", areaService.getProfitByArea(), mapper);
+        addJsonAttribute(model, "preference", hotelService.findWhish(), mapper);
+
+        return "pages/admin";        
+    }
+    
+    private void addJsonAttribute(Model model, String attributeName, List<Object[]> data, ObjectMapper mapper) throws JsonProcessingException {
+        String json = mapper.writeValueAsString(data);
+        model.addAttribute(attributeName, json);
+    }
 }

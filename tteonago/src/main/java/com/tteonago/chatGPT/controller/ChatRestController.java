@@ -13,12 +13,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 public class ChatRestController {
+	
 	private final BotServiceImpl botService;
 	
 	@PostMapping("/send")
 	public ChatGptResponse sendMessage(@RequestParam("message") String message) {
-	    BotRequest botRequest = new BotRequest();
-	    botRequest.setMessage(message);
-	    return botService.askQuestion(botRequest);
+		return botService.askQuestion(new BotRequest(message));
 	}
 }

@@ -1,4 +1,4 @@
-package com.tteonago.member.entity;
+package com.tteonago.member.dto;
 
 import java.util.Collection;
 import java.util.Map;
@@ -10,18 +10,22 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
-public class SocialDTO extends User implements OAuth2User{
+@Getter
+public class SocialDTO extends User implements OAuth2User {
 	private String userName;
+	
 	private String password;
+	
 	private String role;
+	
 	private String email;
 	
 	private Map<String, Object> props;
 	
 	public SocialDTO(String username, String password, String role, String email,
 			Collection<? extends GrantedAuthority> authorities) {
+		
 		super(username, password, authorities);
 		
 		this.userName = username;

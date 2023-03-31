@@ -13,13 +13,11 @@ import lombok.*;
 
 @Setter
 @Getter
-
 @ToString
 
 @Entity
 @Table(name="member")
-public class Member {
-	
+public class Member {	
 	@Id
 	@Column(name = "username")
 	private String username;

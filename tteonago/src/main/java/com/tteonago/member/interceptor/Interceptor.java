@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 /*
  * 인터셉터가 무슨 행동을 할지 지시합니다.
  */
@@ -13,19 +14,20 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class Interceptor implements HandlerInterceptor {
 	//진입 직전 행동
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {		
+		Cookie[] cookies = request.getCookies();
 		
-		Cookie[] cookie = request.getCookies();
-		if(cookie == null) {
+		if(cookies == null) {
 			return true;
 		}
-		for(Cookie c : cookie) {
+		
+		for(Cookie c : cookies) {
 			if(c.getName().equals("token")) {
 				return true;
 			}
 		}
 		
-		for (Cookie c : cookie) {
+		for (Cookie c : cookies) {
 	        if (c.getName().equals("JSESSIONID")) { 
 	            c.setMaxAge(0); 
 	            c.setPath("/"); 
@@ -33,7 +35,7 @@ public class Interceptor implements HandlerInterceptor {
 	            break; 
 	        }
 	    }
+		
 		return true;
 	}
-	
 }

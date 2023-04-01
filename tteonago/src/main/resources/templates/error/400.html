@@ -45,31 +45,28 @@
 <!-- End Google Tag Manager (noscript) -->
 <div class="page_loader"></div>
 
-<!-- pages-404 start -->
+<!-- pages-400 start -->
 <div class="pages-404 overview-bgi">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="pages-404-inner">
                     <h1>400</h1>
-                    <h5>Page Not Found</h5>
-                    <p class="lead">Sorry, the page you requested may have been moved or deleted</p>
+                    <h5>bad request</h5>
+                    <p class="lead">Sorry, Invalid character found in the request target</p>
                     <a class="btn btn-light btn-sm" href="/category" role="button">home page</a>
+                    <button class="btn btn-light btn-sm" onclick="goBack()">Back</button>
+                    <script>
+					function goBack() {
+					  window.history.back();
+					}
+					</script>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- pages-404 end -->
-
-<!-- Full page search -->
-<div id="full-page-search">
-    <button type="button" class="close">×</button>
-    <form action="#">
-        <input type="search" value="" placeholder="type keyword(s) here" />
-        <button type="submit" class="btn btn-sm btn-color">Search</button>
-    </form>
-</div>
+<!-- pages-400 end -->
 
 <!-- External JS libraries -->
 <script src="assets/js/jquery-2.2.0.min.js"></script>

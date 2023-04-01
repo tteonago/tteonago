@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.service.AreaService;
@@ -23,7 +22,7 @@ public class AreaController {
 	private final AreaService areaService;
 
 	@GetMapping("/category")
-	public String home(Model model) throws TteonagoException {
+	public String home(Model model){
 		List<AreaDTO> areaDTOs = areaService.getAllAreas();
 		model.addAttribute("areas", areaDTOs);
 
@@ -31,7 +30,7 @@ public class AreaController {
 	}
 
 	@GetMapping("/map")
-	public String map(@RequestParam String area, Model model) throws TteonagoException, JsonProcessingException {
+	public String map(@RequestParam String area, Model model)throws JsonProcessingException {
 		AreaDTO areaDTO = areaService.getAreaById(area);
 		List<HotelMapDTO> hotels = areaService.getHotelByArea(area);
 

@@ -8,30 +8,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(TteonagoException.class)
-    public String handleTteonagoException(TteonagoException e, Model model) {
-        model.addAttribute("message", "잘못된 지역 요청입니다.");
-    	return "pages/error";
-    }
-    
+   
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public String handleHttpMessageNotReadableException() {
         return "redirect:/error/404";
-    } 
+    }
+    
+    @ExceptionHandler(HttpClientErrorException.class)
+    public String handleHttpClientBadRequestException() {
+        return "redirect:/error/400";
+    }
     
     //메소드에 전달된 인수가 잘못되었거나 부적절한 경우에 발생하는 예외
     @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
-    public String handleException(Exception e, Model model) {
+    public String handleException(Model model) {
         model.addAttribute("message", "잘못된 호텔요청 입니다.");
         return "pages/error";
     }
-    
+
     //날짜 에러
     @ExceptionHandler({DateTimeParseException.class})
-    public String handleDateTimeParseException(Exception e, Model model) {
+    public String handleDateTimeParseException(Model model) {
         model.addAttribute("message", "잘못된 날짜 데이터입니다.");
         return "pages/error";
     }

@@ -40,11 +40,4 @@ public class GlobalExceptionHandler {
     public String handleHttpMessageNotReadableException() {
         return "redirect:/error/404";
     }
-    
-    @ExceptionHandler(HttpClientErrorException.class)
-    public String handleHttpClientBadRequestException() {
-        return "redirect:/error/400";
-    }
-
-
 }

@@ -186,13 +186,48 @@
                     </div>
                 </div>
                 <br><hr><br>
-                <a class="nav-link" href="board">그 외 궁금한 사항은 문의하기를 클릭해주세요.</a>           
+                <a class="nav-link" href="board">그 외 궁금한 사항은 문의하기를 클릭해주세요.</a>
+                <br>
+                <script>
+                    // 모든 HTML이 그려지고 난 뒤에 스크립트 실행됨.
+                    $(function (){
+                        // axios는 nord 기반으로 만들 때 사용하는 거라, jQuery 쓸 때는 굳이 안써도 됨.
+                        // then은 성공했을 때, catch는 실패 했을 때, done은 성공/실패 했을 때 다 실행 됨.
+                        $.get("/terms").then(function (terms){
+                            console.log(terms);
+                            const contents = terms.contents;
+                            $("#terms1").html(contents);
+                        });
+                    });
+                </script>
+
+                <div id="terms" class="faq-accordion">
+                    <div class="card m-b-0">
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#terms" href="#terms1" style="font-weight:bold; font-size:1.2em;">
+                                이용약관
+                            </a>
+                        </div>
+                        <div id="terms1" class="card-block collapse">
+                        </div>
+
             </div>
         </div>
     </div>
 </div>
 <!-- faq end -->
-
+<!--restful api로 http 요청을 보내고 응답 데이터를 받을 수 있음-->
+<!--<script>-->
+<!--    async function handleClick(event) {-->
+<!--        event.preventDefault(); // 기본 링크 동작 방지-->
+<!--        try {-->
+<!--            alert('sss'); // 응답 데이터 처리-->
+<!--        } catch (error) {-->
+<!--            console.error(error); // handle any errors-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--onclick="handleClick(event)"-->
 <!-- Footer start -->
 
 <!-- Footer end -->

@@ -2,17 +2,44 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{common/layouts/defaultLayout}"
-      layout:fragment="Content"
+
 >
 <head>
     <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDTWJ3Z');</script>
     <!-- End Google Tag Manager -->
+    <title>Trego - Travel Tour HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
     <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/slick.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/daterangepicker.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/leaflet.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/map.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
+
     <!-- Favicon icon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
+
     <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+
     <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
 
 </head>
 <body id="top">
@@ -23,7 +50,54 @@
 <!-- End Google Tag Manager (noscript) -->
 <div class="page_loader"></div>
 <!-- main header start -->
+<header class="main-header sticky-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light rounded">
+                    <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="category">
+                        <img src="assets/img/logos/black-logo.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="navbar-collapse collapse w-100" id="navbar">
+                        <ul class="navbar-nav ml-auto">
 
+                            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a class="nav-link" href="admin">관리자 페이지</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="chat">실시간 상담</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="board">문의하기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="mypage">내 여행</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasRole('ROLE_ANONYMOUS')">
+                                <a class="nav-link" href="login">로그인</a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_SOCIAL', 'ROLE_ADMIN')">
+                                <a class="nav-link" href="logout">로그아웃</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a href="#full-page-search" class="nav-link h-icon">
+                                    <i class="flaticon-search"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 <!-- main header end -->
 	<!-- common/header.html -->
 <!-- Banner start -->
@@ -262,7 +336,7 @@
 <div id="full-page-search">
     <button type="button" class="close">×</button>
     <form action="#">
-        <input type="search" value="" placeholder="type keyword(s) here" />
+        <input type="search" value="" placeholder="지역 및 호텔 검색"/>
         <button type="submit" class="btn btn-sm btn-color">Search</button>
     </form>
 </div>

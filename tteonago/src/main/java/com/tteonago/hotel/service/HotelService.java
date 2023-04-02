@@ -31,7 +31,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HotelService {
 	
-
 	private final HotelRepository hotelRepository;
 	private final AreaRepository areaRepository;
 	private final HotelImageRepository hotelImageRepository;
@@ -105,8 +104,8 @@ public class HotelService {
 		}
 	}
 	
-	public List<Object[]>findWhish(){
-		List<Object[]> findTopWhish = hotelRepository.findWhish(PageRequest.of(0, 5));
-		return findTopWhish;
+	public List<Object[]> findWhish() {
+		return hotelRepository.findWhish(PageRequest.of(0, 5));
+
 	}
 }

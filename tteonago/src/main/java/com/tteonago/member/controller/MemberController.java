@@ -1,9 +1,8 @@
 package com.tteonago.member.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +27,8 @@ import com.tteonago.reservation.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
 @RequiredArgsConstructor
+@Controller
 public class MemberController {
 
 	private final UserService userService;
@@ -48,7 +46,6 @@ public class MemberController {
 			@RequestParam(value = "email") String email) {
 
 		userService.join(userName, password, name, email, "ROLE_USER");
-
 		return "pages/index";
 	}
 
@@ -65,10 +62,10 @@ public class MemberController {
 
 		Member member = userService.findById(authentication.getName());
 		model.addAttribute("member", member);
-		
+
 		HashMap<String, ReservationDTO> reservationDTOs = reservationService.findReservationByUsername(member);
 		model.addAttribute("reservation", reservationDTOs);
-		
+
 		List<Integer> resIndex = reviewService.findReviewByResIndex(authentication.getName());
 		model.addAttribute("resIndex", resIndex);
 
@@ -88,7 +85,7 @@ public class MemberController {
 			return "pages/login";
 		}
 
-		List<Object[]> wishlist = userService.getwishtlist(authentication.getName());
+		List<Object[]> wishlist = userService.getWishtlist(authentication.getName());
 		model.addAttribute("wishlist", wishlist);
 
 		return "pages/wishlist";
@@ -97,7 +94,6 @@ public class MemberController {
 	@GetMapping(value = "/wishdelete")
 	public String mypage(@RequestParam(value = "hotel") String hotel, Authentication authentication) {
 		userService.deleteByHotelId(authentication.getName(), hotel);
-
 		return "redirect:/wishlist";
 	}
 
@@ -110,7 +106,6 @@ public class MemberController {
 	public String authNum(@RequestParam(value = "authnum") String authnum, Authentication authentication, Model model) {
 		if (Integer.parseInt(authnum) != 56) {
 			model.addAttribute("error", "인증번호가 틀렸습니다.");
-
 			return "pages/socialAuth";
 		}
 
@@ -122,13 +117,12 @@ public class MemberController {
 		if (principal instanceof UserDetails) {
 			UserDetails userDetails = (UserDetails) principal;
 
-			List<GrantedAuthority> authorities = new ArrayList<>(userDetails.getAuthorities());
-			for (int i = 0; i < authorities.size(); i++) {
-				GrantedAuthority authority = authorities.get(i);
-				if (authority.getAuthority().equals("ROLE_SOCIAL")) {
-					authorities.set(i, new SimpleGrantedAuthority("ROLE_USER"));
-				}
-			}
+			List<GrantedAuthority> authorities = userDetails.getAuthorities().stream()
+					.map(authority -> authority.getAuthority().equals("ROLE_SOCIAL")
+							? new SimpleGrantedAuthority("ROLE_USER")
+							: authority)
+					.collect(Collectors.toList());
+
 			UserDetails modifiedUserDetails = new User(userDetails.getUsername(), userDetails.getPassword(),
 					authorities);
 
@@ -136,7 +130,12 @@ public class MemberController {
 					authentication.getCredentials(), modifiedUserDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(newAuthentication);
 		}
-
+		
 		return "redirect:/mypage";
+	}
+	
+	@GetMapping(value = "/deny")
+	public String deny() {
+		return "pages/test1";
 	}
 }

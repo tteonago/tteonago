@@ -1,4 +1,3 @@
-
 package com.tteonago.member.repository;
 
 import java.util.Optional;
@@ -13,13 +12,11 @@ import com.tteonago.member.entity.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
-	Optional<Member> findByUsername(String username);
-	
-	Optional<Member> findByEmail(String email);
-	
 	@Modifying
 	@Query("update Member m set m.role=:role where m.username=:username")
 	public int updateMemberByUsername(@Param("role") String role, @Param("username") String username);
-
-
+	
+	Optional<Member> findByUsername(String username);
+	
+	Optional<Member> findByEmail(String email);
 }

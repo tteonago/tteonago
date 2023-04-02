@@ -80,26 +80,26 @@
 								<div class="col-md-12">
 									<div class="title">
 										<h3 th:text="${hotel.hotelName}"></h3>										
-											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right; color: black;">
+											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right; color: black; font-weight: bold; font-size: 20px;">
 												찜 하기												
 												<button id="heartButton" class="heart-button"></button>
 												<input type="hidden" id="hotelId" th:value="${hotel.hotelId}">
 											</div>
 										<div class="ratings">
 											<ui th:if="${hotel.star == 5}">
-											<option value="5">⭐⭐⭐⭐⭐</option>
+											<option value="5" style="color: black; font-weight: bold; font-size: 19px;">호텔 등급 - ⭐⭐⭐⭐⭐</option>
 											</ui>
 											<ui th:if="${hotel.star == 4}">
-											<option value="4">⭐⭐⭐⭐</option>
+											<option value="4" style="color: black; font-weight: bold; font-size: 19px;">호텔 등급 - ⭐⭐⭐⭐</option>
 											</ui>
 											<ui th:if="${hotel.star == 3}">
-											<option value="3">⭐⭐⭐</option>
+											<option value="3" style="color: black; font-weight: bold; font-size: 19px;">호텔 등급 - ⭐⭐⭐</option>
 											</ui>
 											<ui th:if="${hotel.star == 2}">
-											<option value="2">⭐⭐</option>
+											<option value="2" style="color: black; font-weight: bold; font-size: 19px;">호텔 등급 - ⭐⭐</option>
 											</ui>
 											<ui th:if="${hotel.star == 1}">
-											<option value="1">⭐</option>
+											<option value="1" style="color: black; font-weight: bold; font-size: 19px;">호텔 등급 - ⭐</option>
 											</ui>
 										</div>
 									</div>
@@ -109,7 +109,7 @@
 										<ul>
 
 											<li><i class="flaticon-pin">
-												<span style="color: black;" th:text="${hotel.hotelAddress}"></span>
+												<span style="color: black; font-weight: bold;" th:text="${hotel.hotelAddress}"></span>
 											</i></li>											
 										</ul>
 									</div>

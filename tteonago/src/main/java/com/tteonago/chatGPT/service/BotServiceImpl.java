@@ -13,13 +13,15 @@ import com.tteonago.chatGPT.entity.ChatGptResponse;
 
 @Service
 public class BotServiceImpl {
+	
 	private static RestTemplate restTemplate = new RestTemplate();
 
-	public HttpEntity<ChatGptRequest> buildHttpEntity (ChatGptRequest chatRequest) {
+	public HttpEntity<ChatGptRequest> buildHttpEntity(ChatGptRequest chatRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType (MediaType.parseMediaType (ChatGptConfig.MEDIA_TYPE));
 		headers.add(ChatGptConfig.AUTHORIZATION, ChatGptConfig.BEARER + ChatGptConfig.API_KEY);
-		return new HttpEntity<> (chatRequest, headers);
+		
+		return new HttpEntity<>(chatRequest, headers);
 	}
 
 	public ChatGptResponse getResponse(HttpEntity<ChatGptRequest> chatRequestHttpEntity) { 
@@ -28,10 +30,10 @@ public class BotServiceImpl {
 				chatRequestHttpEntity,
 				ChatGptResponse.class);
 		
-				return responseEntity.getBody();
+		return responseEntity.getBody();
 	}
 	
-	public ChatGptResponse askQuestion (BotRequest botRequest) {
+	public ChatGptResponse askQuestion(BotRequest botRequest) {
 		return this.getResponse(
 				this.buildHttpEntity(
 						new ChatGptRequest(

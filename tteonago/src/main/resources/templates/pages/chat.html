@@ -20,41 +20,82 @@
 
 
 <style>
-/* 채팅창 전체 스타일 */
-.chatbox {
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  height: 400px;
-  overflow-y: scroll;
-}
+	/* 사용자 메시지 오른쪽 정렬 */
+	.user-message {
+	  text-align: right;
+	}
+	
+	/* 봇 메시지 왼쪽 정렬 */
+	.bot-message {
+	  text-align: left;
+	}
 
-/* 사용자 입력창 스타일 */
-#message {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+ /* 채팅창 전체 스타일 */
+  .chatbox {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 400px;
+    overflow-y: scroll;
+  }
 
-/* 채팅내용 스타일 */
-.chat-message {
-  margin-bottom: 10px;
-}
+  /* 사용자 입력창 스타일 */
+  #message {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
 
-/* 사용자 메시지 스타일 */
-.user-message {
-  text-align: right;
-  color: #007bff;
-}
+  /* 채팅내용 스타일 */
+  .chat-message {
+    margin-bottom: 10px;
+  }
 
-/* 봇 메시지 스타일 */
-.bot-message {
-  text-align: left;
-  color: #28a745;
-}
+  /* 사용자 메시지 풍선 스타일 */
+  .user-balloon {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px 20px 0 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  /* 봇 메시지 풍선 스타일 */
+  .bot-balloon {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px 20px 20px 0;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  /* 채팅창 안의 내용 스타일 */
+  .chat-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 채팅 내용에서 사용자 이름 스타일 */
+  .chat-username {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  /* 전송 버튼 스타일 */
+  #send-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
 </style>
 
 </head>
@@ -88,35 +129,49 @@
 	    <div style="font-size:50px">무엇이든 물어보세요</div><br>
 	    <br><hr><br>
 	    
-	    <div id="chatbox" style="background-color: #f5f5f5; color: black; font-family: Arial, sans-serif; width: 400px; height: 500px; padding: 10px; border: 1px solid black; overflow-y: scroll;"></div>
-  	 	<textarea id="message" name="message" style="width: 400px; margin-top: 10px;"></textarea><br>
-    	<button onclick="sendMessage()" style="margin-top: 10px;">전송</button>
+			<div class="chatbox">
+			  <div class="chat-content" id="chatbox"></div>
+			</div>
+			
+			<textarea id="message" name="message" placeholder="메시지를 입력하세요"></textarea>
+			<button id="send-button" onclick="sendMessage()">전송</button>
 	    
  </div>
 </div>
 <!-- Destination end -->
 
   <script>
-    var chatbox = document.getElementById("chatbox");
+  var chatbox = document.getElementById("chatbox");
 
-    function sendMessage() {
-      var message = document.getElementById("message").value;
-      axios.post('http://localhost:80/send', {}, {
-        params: {
-          message: message
-        }
-      })
-      .then(function (response) {
-        var text = response.data.choices[0].text;
-        chatbox.innerHTML += "<div style='background-color: #dbf5b4; margin-bottom: 5px; padding: 5px;'><strong>User:</strong> " + message + "</div>";
-        chatbox.innerHTML += "<div style='background-color: #f7f7f7; margin-bottom: 5px; padding: 5px;'><strong>떠나고 요정:</strong> " + text + "</div>";
-        chatbox.scrollTop = chatbox.scrollHeight;
-        document.getElementById("message").value = "";
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
+  function sendMessage() {
+    var message = document.getElementById("message").value;
+    axios.post('http://localhost:80/send', {}, {
+      params: {
+        message: message
+      }
+    })
+    .then(function (response) {
+      var text = response.data.choices[0].text;
+
+      var userMessage = document.createElement("div");
+      userMessage.classList.add("chat-message");
+      userMessage.classList.add("user-message");
+      userMessage.innerHTML = "<span class='user-balloon'>" + message + "</span>";
+      chatbox.appendChild(userMessage);
+
+      var botMessage = document.createElement("div");
+      botMessage.classList.add("chat-message");
+      botMessage.classList.add("bot-message");
+      botMessage.innerHTML = "<span class='bot-balloon'>" + text + "</span>";
+      chatbox.appendChild(botMessage);
+
+      chatbox.scrollTop = chatbox.scrollHeight;
+      document.getElementById("message").value = "";
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   </script>
   
 <!-- Footer-6 start -->

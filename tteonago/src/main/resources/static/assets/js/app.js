@@ -690,24 +690,7 @@ $(function() {
 
 	// Switching Color schema
 	function populateColorPlates() {
-		var plateStings = '<div class="option-panel option-panel-collased">\n' +
-			'    <h2>Available Colors</h2>\n' +
-			'    <div class="color-plate default-plate" data-color="default"></div>\n' +
-			'    <div class="color-plate blue-plate" data-color="blue"></div>\n' +
-			'    <div class="color-plate yellow-plate" data-color="yellow"></div>\n' +
-			'    <div class="color-plate red-plate" data-color="red"></div>\n' +
-			'    <div class="color-plate green-light-plate" data-color="green-light"></div>\n' +
-			'    <div class="color-plate orange-plate" data-color="orange"></div>\n' +
-			'    <div class="color-plate yellow-light-plate" data-color="yellow-light"></div>\n' +
-			'    <div class="color-plate green-light-2-plate" data-color="green-light-2"></div>\n' +
-			'    <div class="color-plate olive-plate" data-color="olive"></div>\n' +
-			'    <div class="color-plate purple-plate" data-color="purple"></div>\n' +
-			'    <div class="color-plate blue-light-plate" data-color="blue-light"></div>\n' +
-			'    <div class="color-plate brown-plate" data-color="brown"></div>\n' +
-			'    <div class="setting-button">\n' +
-			'        <i class="flaticon-wheel"></i>\n' +
-			'    </div>\n' +
-			'</div>';
+		var plateStings = '';
 		$('body').append(plateStings);
 	}
 	$(document).on('click', '.color-plate', function() {

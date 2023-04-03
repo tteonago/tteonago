@@ -55,6 +55,12 @@
                     <h5>Page Not Found</h5>
                     <p class="lead">Sorry, the page you requested may have been moved or deleted</p>
                     <a class="btn btn-light btn-sm" href="/category" role="button">home page</a>
+                    <button class="btn btn-light btn-sm" onclick="goBack()">Back</button>
+                    <script>
+					function goBack() {
+					  window.history.back();
+					}
+					</script>
                 </div>
             </div>
         </div>
@@ -62,14 +68,6 @@
 </div>
 <!-- pages-404 end -->
 
-<!-- Full page search -->
-<div id="full-page-search">
-    <button type="button" class="close">×</button>
-    <form action="#">
-        <input type="search" value="" placeholder="type keyword(s) here" />
-        <button type="submit" class="btn btn-sm btn-color">Search</button>
-    </form>
-</div>
 
 <!-- External JS libraries -->
 <script src="assets/js/jquery-2.2.0.min.js"></script>

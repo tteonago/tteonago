@@ -38,3 +38,5 @@ out/
 
 ### Secret ###
 application-db.yml
+oauth2-config.yml
+src/main/java/com/tteonago/chatGPT/service/ChatGptConfig.java

@@ -72,9 +72,6 @@ public class DetailController {
 
 	private HotelDTO getHotelByIdOrThrow(String hotelId) {
 		HotelDTO hotel = hotelService.getHotelById(hotelId);
-		if (hotel == null) {
-			throw new RuntimeException("hotel not found");
-		}
 		return hotel;
 	}
 

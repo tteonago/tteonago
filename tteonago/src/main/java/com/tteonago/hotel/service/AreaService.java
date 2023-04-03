@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.tteonago.exception.TteonagoException;
 import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.entity.Area;
@@ -28,27 +27,26 @@ public class AreaService {
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
-	public List<AreaDTO> getAllAreas() throws TteonagoException {
+	public List<AreaDTO> getAllAreas() {
 	    List<Area> areas = areaRepository.findAll();
 	    return areas.stream()
 	            .map(area -> modelMapper.map(area, AreaDTO.class))
 	            .collect(Collectors.toList());
 	}
-	
-	public AreaDTO getAreaById(String areaId) throws TteonagoException {
+
+	public AreaDTO getAreaById(String areaId) {
 	    Area area = areaRepository.findById(areaId)
-	        .orElseThrow(() -> new TteonagoException("Area not found"));
+	            .orElse(null);
 	    return modelMapper.map(area, AreaDTO.class);
 	}
-	
-	public List<HotelMapDTO> getHotelByArea(String areaId) throws TteonagoException {
-		Area area = areaRepository.findById(areaId)
-		        .orElseThrow(() -> new TteonagoException("Area not found"));
-		List<HotelImage> hotels = hotelImageRepository.findHotelAndImgByArea(area);
-		
-		return hotels.stream()
-				.map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
-				.collect(Collectors.toList());
+
+	public List<HotelMapDTO> getHotelByArea(String areaId) {
+	    Area area = areaRepository.findById(areaId)
+	            .orElse(null);
+	    List<HotelImage> hotels = hotelImageRepository.findHotelAndImgByArea(area);
+	    return hotels.stream()
+	            .map(hotel -> modelMapper.map(hotel, HotelMapDTO.class))
+	            .collect(Collectors.toList());
 	}
 		
 	public List<Object[]> getProfitByArea(){

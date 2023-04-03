@@ -44,7 +44,7 @@ public class MemberController {
 	public String join(@RequestParam(value = "username") String userName,
 			@RequestParam(value = "password") String password, @RequestParam(value = "name") String name,
 			@RequestParam(value = "email") String email) {
-
+		System.out.println("join");
 		userService.join(userName, password, name, email, "ROLE_USER");
 		return "pages/index";
 	}

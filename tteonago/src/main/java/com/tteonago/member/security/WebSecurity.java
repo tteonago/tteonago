@@ -61,6 +61,7 @@ public class WebSecurity {
                 .antMatchers("/mapdetail").permitAll()  //DetailC. 
                 .antMatchers("/hotelsearch").permitAll()  //SearchC. 
                 .antMatchers("/home").permitAll()  //MemberC. 
+                .antMatchers("/doubleCheck").permitAll()  //MemberC. 
                 .antMatchers("/signup").permitAll()  //MemberC. 
                 .antMatchers("/join").anonymous()  //MemberC. 
                 .antMatchers("/admin").hasAnyRole("ADMIN")  //AdminC. 

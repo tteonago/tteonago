@@ -18,19 +18,19 @@ public class GlobalExceptionHandler {
 		return "pages/error";
 	}	
 	 
-	  @ExceptionHandler({DateTimeParseException.class})
-	    public String handleDateTimeParseException(Model model) {
-	        model.addAttribute("message", "유효하지 않은 날짜입니다");
-	        return "pages/error";
-	    }
+	@ExceptionHandler(DateTimeParseException.class)
+	public String handleDateTimeParseException(Model model) {
+	     model.addAttribute("message", "유효하지 않은 날짜입니다");
+	     return "pages/error";
+	}
 	
-    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
     public String handleException(Model model) {
         model.addAttribute("message", "요청 값이 유효하지 않습니다");
         return "pages/error";
     }
   
-    @ExceptionHandler({MissingServletRequestParameterException.class})
+    @ExceptionHandler(MissingServletRequestParameterException.class)
     public String handleMissingServletRequestParameterException(Model model) {
         model.addAttribute("message", "유효하지 않은 요청 입니다");
         return "pages/error";
@@ -39,10 +39,5 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public String handleHttpMessageNotReadableException() {
         return "redirect:/error/404";
-    }
-    
-    @ExceptionHandler(HttpClientErrorException.class)
-    public String handleHttpClientBadRequestException() {
-        return "redirect:/error/400";
     }
 }

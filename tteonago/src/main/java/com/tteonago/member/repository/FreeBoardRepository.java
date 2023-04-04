@@ -1,0 +1,12 @@
+package com.tteonago.member.repository;
+
+import com.tteonago.member.entity.Freeboard;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface FreeBoardRepository extends JpaRepository<Freeboard, Long> {
+    Page<Freeboard> findAllByDeletedIsFalse(Pageable pageable);
+}

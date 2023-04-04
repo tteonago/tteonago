@@ -52,7 +52,7 @@ Name|GitHub Address|
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)
 <br><br>
 
-
+![검색 움짤](https://user-images.githubusercontent.com/122413012/229733830-d878f9b3-1afe-485f-979d-f1c5030f7069.gif)
 
 
 <br/><br/>

@@ -82,7 +82,7 @@
 										<h3 th:text="${hotel.hotelName}"></h3>										
 											<div sec:authorize="hasRole('ROLE_USER')" style="text-align: right; color: black; font-weight: bold; font-size: 20px;">
 												찜 하기												
-												<button id="heartButton" class="heart-button"></button>
+												<button id="heartButton" th:class="${exist} ? 'heart-button filled' : 'heart-button'"></button>
 												<input type="hidden" id="hotelId" th:value="${hotel.hotelId}">
 											</div>
 										<div class="ratings">

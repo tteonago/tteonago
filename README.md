@@ -3,7 +3,7 @@
 <br/><br/>
 
 ## :hourglass: 개발 기간
-*개발 기간을 적어주세요*
+23.03.14 ~ 23.04.10
 
 <br/><br/>
 
@@ -14,7 +14,15 @@
 <br/><br/>
 
 ## :runner: 참여 인원
-*참여 인원을 적어주세요*
+|   이름   |                        깃허브 주소                         | 
+| :------: | :--------------------------------------------------------: | 
+|  Sung hwan Cho 🐈  | [https://github.com/CSHcode](https://github.com/CSHcode)   | 
+|  Joo young Kim 🦅  | [https://github.com/11000db](https://github.com/11000db) |
+|  Won woo Seo 🐸  | [https://github.com/wonuseo](https://github.com/wonuseo) | 
+|  Shinae Lee 👽  | [https://github.com/alpapago](https://github.com/alpapago) |
+|  Jun soo Lee ⚽️  | [https://github.com/Junsoo71](https://github.com/Junsoo71) |
+|  Seong min Cho 🧸  | [https://github.com/Seongmin2018](https://github.com/Seongmin2018) |
+
 
 <br/><br/>
 

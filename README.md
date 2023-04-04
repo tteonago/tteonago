@@ -25,11 +25,11 @@
 ## :runner: 참여 인원
 Name|GitHub Address|
 |------|---|
-|김주영|테스트2|
+|:eagle:김주영|https://github.com/11000db|
 |:frog:서원우|https://github.com/wonuseo|
-|이신애|테스트2|
-|이준수|테스트2|
-|조성민|테스트2|
+|:alien:이신애|https://github.com/alpapago|
+|:soccer:이준수|https://github.com/Junsoo71|
+|:teddy_bear:조성민|https://github.com/Seongmin2018|
 |:cat2:조성환|https://github.com/CSHcode|
 
 

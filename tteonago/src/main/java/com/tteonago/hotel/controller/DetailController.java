@@ -44,7 +44,10 @@ public class DetailController {
 	    
 	    List<Integer> available = reservationService.findReservationDate(checkIn, checkOut, roomList);
 	    
-	    boolean exist = userService.findWishlist(authentication.getName(), hotelId);
+	    boolean exist = false;
+	    if(authentication != null) {
+	    	exist = userService.findWishlist(authentication.getName(), hotelId);
+	    }
 	    
 	    model.addAttribute("exist", exist);
 	    model.addAttribute("available", available);
@@ -70,7 +73,10 @@ public class DetailController {
 		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
 		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
 		
-	    boolean exist = userService.findWishlist(authentication.getName(), hotelId);
+		boolean exist = false;
+	    if(authentication != null) {
+	    	exist = userService.findWishlist(authentication.getName(), hotelId);
+	    }
 	    
 	    model.addAttribute("exist", exist);
 		model.addAttribute("available", available);

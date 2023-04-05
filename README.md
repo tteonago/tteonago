@@ -52,27 +52,53 @@ Name|GitHub Address|
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)
 <br><br>
 
-## :memo: 회원가입:cat2:
-<br><br>
-:cat2:
+## :memo: 회원가입
+<img src="https://user-images.githubusercontent.com/116073413/230073771-e58cd554-d425-4c7a-9e72-68cdf53855d1.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
 
-<br><br>
+<br>
 
-## :computer: 로그인/소셜 로그인:cat2:
-<br><br>
-:cat2:
+* 회원가입시 ‘아이디’, ‘비밀번호‘, ‘이름‘, ‘이메일’ 이 요구됩니다.
+* ‘아이디‘ 는 ‘중복확인’기능을 사용하여 사용 가능한 아이디 인지 확인합니다. 
+* ‘비밀번호‘는 한번 더 입력하여 오타나 잘못된 입력을 사전에 방지하고, 입력한 비밀번호가 일치하지 않으면 경고 문구가 출력됩니다.
+* 위의 모든 조건을 만족하기 전까지는 ‘회원가입‘ 버튼은 비활성화 상태로 유지됩니다. 
+<img src="https://user-images.githubusercontent.com/116073413/230077557-ec1694e3-2d97-44c3-afbe-f22643e5a32d.jpg">
 
-<br/><br/>
-
-## :shopping_cart: 찜 하기:cat2:
-<br><br>
-:cat2:
+* 회원가입시 입력한 비밀번호는 암호화 되어 저장되기 때문에 비밀번호 유출 등의 보안 문제를 방지할 수 있습니다. 
 
 <br/><br/>
 
-## :file_cabinet: 질문 게시판:cat2:
-<br><br>
-:cat2:
+## :computer: 로그인/소셜 로그인
+<img src="https://user-images.githubusercontent.com/116073413/230076109-5a7a08f2-5836-470c-8ae6-90245915a893.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
+<br>
+
+* 로그인은 Spring Security에서 관리됩니다.
+* 로그인은 두가지의 방법이 있으며 첫번째는 일반적인 Spring Security 폼 인증, 두번째는 OAuth2 의 소셜 로그인 인증입니다.
+* 최초로 소셜 로그인을 한 사용자는 ‘소셜 등급‘ 의 권한을 부여 받으며 추후에 이메일 인증을 해야 사이트의 모든 기능을 사용할 수 있습니다. 
+
+<br/><br/>
+
+## :shopping_cart: 찜 하기
+<img src="https://user-images.githubusercontent.com/116073413/230077975-ec4b8b8c-d3f9-4f71-b5d6-64d27bfcb1e4.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
+
+<br>
+
+* 사용자는 마음에 드는 호텔을 '찜하기' 기능을 통해 즐겨찾기에 추가할수 있습니다. 
+* 하트의 색깔이 채워져 있으면 이미 찜 목록에 추가된 상태이고, 한번 더 눌러 찜 목록에서 삭제할 수 있습니다.
+* '찜 목록' 에서 직접 삭제할 수도 있습니다.
+
+<br/><br/>
+
+## :file_cabinet: 질문 게시판
+<img src="https://user-images.githubusercontent.com/116073413/230085088-bff10365-aa8f-4199-a448-9d734ce70ac3.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
+<br>
+
+* 질문 게시판을 사용하여 관리자는 사용자와 소통하고 사용자의 다양한 의견을 수렴하여 편의를 제공합니다.
+* 글 제목을 클릭하여 내용을 열람할 수 있고, 로그인을 한 유저만 게시판에 글을 작성할 수 있습니다.
+
+<img src="https://user-images.githubusercontent.com/116073413/230085527-1dfee8e8-f4dd-4cd7-b52d-efd0f287db74.jpg" width="50%" height="40%">
+
+* 관리자는 사용자의 글에 답변과 삭제할 수 있는 권한이 있습니다. 
+ 
 
 <br/><br/>
 

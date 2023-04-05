@@ -219,11 +219,11 @@
                                                 </div>
                                                 <div class="detail">
                                                   <h1 class="title">
-                                                    <a th:href="@{#}" onclick="return false;" th:text="${room.roomType}">Camping and mountains</a>
+                                                    <a onclick="return false;" th:text="${room.roomType}"></a>
                                                   </h1>
                                                   <div class="location">
-                                                    <a href="tours-detail.html" th:text=" '최대 수용 인원 : ' + ${room.roomSize}">
-                                                      <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                                    <a th:text=" '최대 인원 : ' + ${room.roomSize}">
+                                                      <i class="flaticon-pin"></i>
                                                     </a>
                                                   </div>
                                                   	<hr>
@@ -242,6 +242,7 @@
                                                 </div>
                                             </div>
                                			   </form>
+                               			    <hr style="margin-top: 20px; margin-bottom: 20px; border: 1px solid #ccc;">
                                         </div>  
                                 	</div>
                             	</div>

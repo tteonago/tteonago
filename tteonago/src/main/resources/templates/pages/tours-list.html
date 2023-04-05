@@ -67,11 +67,11 @@
                     </div>
                 </div>
                 
-                <div th:each="hotel : ${hotellist}" class="tour-item-3">
+                <div th:each="hotel, iterStat : ${hotellist}" class="tour-item-3">
                     <div class="row">
                       <div class="col-lg-5 col-md-5 col-pad">
                         <div class="item-thumbnail">
-                          <a th:href="@{${hotel.images[0].address}}" class="item-img" data-lightbox="example-set">                          
+                          <a th:href="@{${hotel.images[0].address}}" class="item-img" th:data-lightbox="${'hotel' + iterStat.index}">                          
                             <div class="tag">확대</div>
 
                             <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                                                     

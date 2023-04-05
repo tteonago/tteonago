@@ -205,16 +205,16 @@
 										<div class="col-lg-6 col-md-6" th:each="room, iterStat : ${hotel.room}">
                                  			   <form action="purchase" class="row inline-search-area search-area" method="GET">
                                             <div class="tour-item">
-                                                <div class="item-thumbnail">
-                                                
-                                                  <img th:src="@{${room.images[0].address}}" alt="tours" class="img-fluid" />
-                                                  
-                                                  <div th:each="img,iterStat : ${room.images}" th:reverse="${true}">
-                                                  <a th:href="@{${img.address}}" class="item-img" th:attr="data-lightbox=${'lightbox-' + room.roomId}">
+                                                <div class="item-thumbnail">                                                
+                                                  <img th:src="@{${room.images[0].address}}" alt="tours" class="img-fluid" />   												                                                                                                 
+                                                  <a th:href="@{${room.images[0].address}}" class="item-img" th:attr="data-lightbox=${'lightbox-' + room.roomId}">
                                                     <div class="tag">확대</div>
                                                   </a>
-                                                  </div>
-                                                  
+												  <div th:each="img, iterStat : ${room.images}" th:if="${iterStat.index > 0}">
+													<a th:href="@{${img.address}}" class="item-img" th:attr="data-lightbox=${'lightbox-' + room.roomId}">
+													</a>
+												 </div>
+                                                                                              
                                                   <div class="plan-price"  th:text="'1박 - ' + ${#numbers.formatInteger(room.price, 0, 'COMMA')} + '원'" style="font-size: 1.5rem;"><sup>$</sup><sub>/1박</sub></div>												 
                                                 </div>
                                                 <div class="detail">

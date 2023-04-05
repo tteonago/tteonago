@@ -38,13 +38,9 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
 		cookie.setMaxAge(3000);
 		response.addCookie(cookie);
 		
-		SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
-		if (savedRequest != null) {
-			request.getSession().setAttribute("prevPage", savedRequest.getRedirectUrl());
-		}
-
 		// 로그인 성공 후 이전 페이지로 Redirect
 		String prevPage = (String) request.getSession().getAttribute("prevPage");
+		System.out.println(prevPage);
 		if (prevPage != null) {
 			response.sendRedirect(prevPage);
 		} else {

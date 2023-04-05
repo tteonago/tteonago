@@ -48,10 +48,34 @@ Name|GitHub Address|
 마커를 클릭하면 호텔 정보 창이 출력되며, 바로가기를 클릭 시 상세페이지로 이동합니다.<br><br>
 <br><br>
 
+
 ## :necktie: 관리자_통계차트
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)<br><br>
 원형 차트는 지역별 총 매출, 열 차트는 가장 많이 찜을 받은 선호도 상위 호텔 5개를 조회 할 수 있습니다.
 <br><br>
+
+## :memo: 회원가입:cat2:
+<br><br>
+:cat2:
+
+<br><br>
+
+## :computer: 로그인/소셜 로그인:cat2:
+<br><br>
+:cat2:
+
+<br/><br/>
+
+## :shopping_cart: 찜 하기:cat2:
+<br><br>
+:cat2:
+
+<br/><br/>
+
+## :file_cabinet: 질문 게시판:cat2:
+<br><br>
+:cat2:
+<br/><br/>
 
 ## :face_with_head_bandage: Trouble Shooting
  :world_map: 검색방법 : 지도<br><br>

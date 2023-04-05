@@ -42,7 +42,7 @@ Name|GitHub Address|
 
 # :gear: 주요 기능 
 * [:moneybag: 결제](#moneybag-결제)
-* [:mag_right: 조건 검색](#mag_right-조건 검색)
+* [:mag_right: 조건 검색](#mag_right-검색방법 : 조건 검색)
 <br><br>
 
 # :gear: 주요 기능 

@@ -41,7 +41,7 @@ Name|GitHub Address|
 <br/><br/>
 
 # :gear: 주요 기능 
-* [:money_bag: 결제](#:money_bag:-결제)
+* [:moneybag: 결제](#:moneybag:-결제)
 <br><br>
 
 # :gear: 주요 기능 
@@ -74,7 +74,7 @@ Name|GitHub Address|
 
 <br/><br/>
 
-## :money_bag: 결제
+## :moneybag: 결제
 ![최종 결제 움짤](https://user-images.githubusercontent.com/122413012/229999045-872c5b42-846b-4b20-bffc-d82e0a2ec93e.gif)
 호텔 상세 페이지에서 방 리스트 탭에 최종 예약 날짜 선택 후 예약하기 버튼 클릭 시 결제 페이지로 이동합니다.
 <br/><br/>

@@ -58,10 +58,11 @@ Name|GitHub Address|
 <br><br>
 
 ## <a name="mag_right-검색방법"></a>:mag_right: 검색방법 : 조건 검색
-메인 페이지에서 검색 조건으로 해당 조건에 부합하는 호텔 리스트를 출력해줍니다.<br><br>
-호텔리스트페이지에서도 재검색이 가능합니다.<br><br>
-호텔리스트에서 호텔 클릭시 상세페이지로 이동합니다.<br><br>
-![검색_조건검색](https://user-images.githubusercontent.com/113893324/229992333-f2bd960c-60bd-4b94-9e11-50397d1fd852.gif)
+메인 페이지의 호텔 검색 조건(지역, 체크인/체크아웃, 인원(객실)수, 등급)을 설정하고 검색 버튼을 누르면 검색조건에 해당하는 호텔 정보 리스트가 출력됩니다. <br/><br/>
+호텔 이름 클릭 시 해당 호텔 세부정보 페이지로 이동합니다. <br/><br/>
+호텔 예약 재검색 기능으로 메인페이지에서 되돌아가 다시 호텔을 검색하지 않고 이미 호텔이 검색된 목록 페이지에서 동기 방식으로 재검색하여 검색조건에 맞는 호텔목록을 보여줍니다. <br/><br/>
+![검색](https://user-images.githubusercontent.com/122413012/230009947-5d286592-7ab8-497e-9b5e-38a24ec94c4e.gif)
+![재검색](https://user-images.githubusercontent.com/122413012/230009921-7103cf78-3ed3-4d06-9fcf-72ee616f0e8d.gif)
 <br><br>
 
 ## :necktie: 관리자 : 통계차트
@@ -92,9 +93,8 @@ Name|GitHub Address|
 결제하기 버튼 클릭 시 KG이니시스 결제 API 사용하여 실제처럼 결제가 가능합니다. 사용자는 상세 페이지에서 입력받은 데이터를 토대로 결제 페이지에서 자신의 정보를 확인하고, 결제를 완료할 수 있게 됩니다. <br/><br/>
 결제 완료 시 마이페이지로 즉시 이동하여 구매내역 확인이 가능하고 취소 시 취소 알림창을 띄워 페이지 이동은 하지 않고 다시 결제 가능 및 홈으로 버튼 클릭 시 메인페이지로 이동합니다. <br/><br/>
 ![결제](https://user-images.githubusercontent.com/122413012/230001516-9fb6f90a-57c6-4649-999a-ad2dc88b85b2.gif)
-![재검색](https://user-images.githubusercontent.com/122413012/230009921-7103cf78-3ed3-4d06-9fcf-72ee616f0e8d.gif)
-![검색](https://user-images.githubusercontent.com/122413012/230009947-5d286592-7ab8-497e-9b5e-38a24ec94c4e.gif)
 
+<br><br>
 
 ## :file_cabinet: 질문 게시판:cat2:
 <br><br>

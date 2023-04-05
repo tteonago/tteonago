@@ -46,7 +46,7 @@ Name|GitHub Address|
 <br><br>
 
 # :gear: 주요 기능 
-* [:world map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
+* [:world_map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
 * [:necktie: 관리자_통계차트](#necktie-관리자_통계차트)
 <br><br>
 

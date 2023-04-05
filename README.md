@@ -1,10 +1,8 @@
 # Spring Boot project: 나의 여행 비서, tteonago
-*프로젝트 한줄 설명을 적어주세요*
 <br/><br/>
 
 ## :hourglass: 개발 기간
 03/14/23 ~ 04/06/23
-
 <br/><br/>
 
 ## :hammer_and_wrench: 기술 스택 
@@ -32,24 +30,28 @@ Name|GitHub Address|
 |:teddy_bear:조성민|https://github.com/Seongmin2018|
 |:cat2:조성환|https://github.com/CSHcode|
 
-
 <br/><br/>
 
 ## :open_book: 프로젝트 요약
 *프로젝트 간단 요약을 적어주세요*
-
 <br/><br/>
 
 # :gear: 주요 기능 
-## :world_map: 검색방법 : 지도
-메인 페이지의 이미지카테고리(지역)을 조건으로 해당 지역의 호텔을 마커로 표시해줍니다.<br><br>
-마커를 클릭하면 호텔 정보 창이 출력되며, 바로가기를 클릭시 상세페이지로 이동합니다.<br><br>
-![검색_지도](https://user-images.githubusercontent.com/87034370/229581639-96dc01db-0aef-4355-9f1f-355e09aa2c56.gif)
+* [:world_map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
+* [:necktie: 관리자_통계차트](#necktie-관리자_통계차트)
+* [:face_with_head_bandage: Trouble Shooting](#face_with_head_bandage-trouble-shooting)
 <br><br>
 
-## :necktie: 관리자 : 통계차트
-원형 차트로 지역별 총 매출, 가장 많이 찜을 받은 선호도 상위 호텔 5개를 조회 할 수 있습니다.<br><br>
-![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)
+## :world_map: 호텔검색_지도
+![검색_지도](https://user-images.githubusercontent.com/87034370/229581639-96dc01db-0aef-4355-9f1f-355e09aa2c56.gif)<br><br>
+메인 페이지의 이미지 카테고리(지역)을 조건으로 해당 지역의 호텔을 마커로 표시해줍니다.<br><br>
+마커를 클릭하면 호텔 정보 창이 출력되며, 바로가기를 클릭 시 상세페이지로 이동합니다.<br><br>
+<br><br>
+
+
+## :necktie: 관리자_통계차트
+![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)<br><br>
+원형 차트는 지역별 총 매출, 열 차트는 가장 많이 찜을 받은 선호도 상위 호텔 5개를 조회 할 수 있습니다.
 <br><br>
 
 ## :memo: 회원가입
@@ -98,36 +100,42 @@ Name|GitHub Address|
 <img src="https://user-images.githubusercontent.com/116073413/230085527-1dfee8e8-f4dd-4cd7-b52d-efd0f287db74.jpg" width="50%" height="40%">
 
 * 관리자는 사용자의 글에 답변과 삭제할 수 있는 권한이 있습니다. 
- 
 
 <br/><br/>
 
 ## :face_with_head_bandage: Trouble Shooting
-> 
  :world_map: 검색방법 : 지도<br><br>
->  :dart:onclick속성을 이용해 스크립트 함수를 구현해 위도와 경로를 포함하는url을 구성  →  url encoding 문제에 봉착.
-> *  스크립트를 사용 폐기,  기존 컨트롤러의 반환값 **AreaDTO** 사용해 사진마다 areaId를 세팅하고 **th:onclick**를 통해 areaId으로 값을 추가해서 url 만듬.
-> * 새로운 컨트롤러를 사용해서 셋팅된 areaId값으로 **AreaDTO** 반환.
-> * map 구현 코드는 js. Thymeleaf Template에서 읽을수 있도록 script 내부에 주석으로 AreaDTO사용. (or **th:attr** 사용)<br>
+ 
+> :rotating_light:이미지 카테고리에 onclick속성을 이용해 해당 지역 위도와 경도값을 map.html로 넘겨 주는 스크립트 함수를 구현해 위도와 경도 값을 포함하는url을 구성  → url encoding 문제에 봉착.
+> * 기존 위도와 경도 값을 사용하는 코드 폐기, Thymeleaf 반복문으로 프로젝트 내부의 지역 사진을 가져오고 있는 코드를 수정하는 방향 선정.
+> * -> 사진을 가져오는 반복문에서, 지역의 pk를 파라미터로 받는 새로운 컨트롤러를 호출해 해당 지역의 데이터와 해당 지역을 조건으로 호텔과 호텔 이미지의 데이터를 담고 있는 DTO 두가지를 model로 전달한다.
 
->:dart:마커를 찍기위해 호텔의 위경도 값을 가져와야하며, 해당 지역을 클릭하면 그 지역에 관련된 호텔만 불러와야한다. 
+> :rotating_light: Script 내부에서 Thymeleaf 표현식을 사용 못함.
+> * Thymeleaf는 서버 측에서 HTML 템플릿을 생성하는 데 사용.
+> * 주석(/**/)을 사용하거나, script를 감싸는 태그에 **th:attr** 속성을 사용해 할당된 변수를 사용한다.
+
+> :rotating_light:마커를 찍기위해 호텔의 위경도 값을 가져와야하며, 해당 지역을 클릭하면 그 지역에 관련된 호텔만 불러와야한다. 
 > * 지역을 조건으로 해당 호텔만 추출하도록 쿼리 작성.
+> * 호텔 entity에 @Embedded로 선언된 필드에있는 위경도 값을 사용한다.
+> * 가져온 hotel객체에서 대부분의 정보를 사용할 수 있다.
 
->:dart:사진은 1번째 사진만 필요하고, HotelImage 테이블과 Hotel테이블의 정보가 필요하며, 기존의 area도 유지되어야함. 
-> * 조건에 맞는 쿼리문을 작성하고, 매핑연관 관계를 이용해 조건에 맞는 검색 결과를 HotelMapDTO을  json으로 보냄.
-> * HotelMapDTO은 hotelDTO에 hotelimage의 address 추가.
+> :rotating_light:사진은 1번째 사진만 필요하고, HotelImage 테이블과 Hotel테이블의 정보가 필요하며, 기존의 area도 유지되어야함. 
+> * 조건에 맞는 쿼리문을 작성하고, 조건에 맞는 검색 결과를 새로운DTO에 담아 json으로 보냄.
 
  <br><br>:necktie: 관리자 : 통계차트<br><br>
- >:dart: 원형 차트 : 넘어 오는 데이터는 의도한 대로 넘어 왔지만, script에서 값이 없어 차트가 보이지 않는 상황. (List<Object[]>형식으로 넘어가며, script는 JSON.parse() 로 변환.)
- > * JSON 문자열을 파싱해 주고 있었지만, 정작 직렬화해주지 않았다.
+ > :rotating_light: 원형 차트 : 넘어 오는 데이터는 의도한 대로 넘어 왔지만, script에서 값이 없어 차트가 보이지 않는 상황. (List<Object[]>형식으로 넘어가며, script는 JSON.parse() 로  변환.)
+ > * JSON 문자열을 파싱해 주고 있었지만, 직렬화하지 않았음.
  > * 내부 객체&데이터를 외부의 시스템에서도 사용할 수 있게 바이트 형태로 직렬화&역직렬화.
 
- >:dart: 열 차트 : 행차트를 구현하려 했지만, 템플릿과 맞지 않는 문제가 발생.
+ > :rotating_light: 열 차트 : 행차트를 구현하려 했지만, 템플릿과 맞지 않는 문제가 발생.
  > * 열 차트 구현으로 노선 변경. but 호텔 이름이 길어 겹치는 문제발생.
  > * 호텔이름 겹치는 문제는 크기를 키우고, 잘리는 문제는 상위 5로 조정.
 
- <br><br>:pinching_hand: URL에 허용되지 않는 값을 임의로 삽입시 오류처리 해야함
+ <br><br>:pinching_hand: URL에 허용되지 않는 값 오류처리
  > * url 데이터 누락 -> 파라미터 없음 & 파라미터에 값 없음.
  > * 날짜 임의 작성 -> 잘못된 날짜 데이터.
  > * 위의 두가지의 경우의 수를 잡아, alert 메세지와 바로 뒤로가는 동작을하는 페이지로 이동.
  > * 잘못된 컨트롤러 요청 -> error/404
+
+
+

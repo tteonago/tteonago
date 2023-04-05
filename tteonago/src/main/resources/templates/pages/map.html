@@ -24,19 +24,18 @@
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
 		
-		var arr = [ ];
+		var arr = [];
 		
-		var msg= /*[[${area.localPosition}]]*/ null;
-		var msg1 = JSON.parse(document.getElementById("map").getAttribute("data-hotels"));
+		var msg = JSON.parse(document.getElementById("map").getAttribute("data-hotels"));
 		
-		for(var i = 0; i < msg1.length; i++) {
-			var name = msg1[i].hotelName;
-			var hotelLat = msg1[i].hotelPosition.lat;
-			var hotelLng = msg1[i].hotelPosition.lng;
-			var hotelAddress = msg1[i].hotelAddress;
-			var phone = msg1[i].hotelPhone;
-			var img = msg1[i].address
-			var hotelId = msg1[i].hotelId
+		for(var i = 0; i < msg.length; i++) {
+			var name = msg[i].hotelName;
+			var hotelLat = msg[i].hotelPosition.lat;
+			var hotelLng = msg[i].hotelPosition.lng;
+			var hotelAddress = msg[i].hotelAddress;
+			var phone = msg[i].hotelPhone;
+			var img = msg[i].address
+			var hotelId = msg[i].hotelId
 			
 			arr.push({
 				  name: name,

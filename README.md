@@ -1,4 +1,4 @@
-# Spring Boot project: 나의 여행 비서, tteonago
+# Spring Boot project: 나의 여행 비서, tteonago조성환
 *프로젝트 한줄 설명을 적어주세요*
 <br/><br/>
 

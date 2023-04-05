@@ -62,6 +62,7 @@ Name|GitHub Address|
 호텔 이름 클릭 시 해당 호텔 세부정보 페이지로 이동합니다. <br/><br/>
 호텔 예약 재검색 기능으로 메인페이지에서 되돌아가 다시 호텔을 검색하지 않고 이미 호텔이 검색된 목록 페이지에서 동기 방식으로 재검색하여 검색조건에 맞는 호텔목록을 보여줍니다. <br/><br/>
 ![검색](https://user-images.githubusercontent.com/122413012/230009947-5d286592-7ab8-497e-9b5e-38a24ec94c4e.gif)
+<br/><br/>
 ![재검색](https://user-images.githubusercontent.com/122413012/230009921-7103cf78-3ed3-4d06-9fcf-72ee616f0e8d.gif)
 <br><br>
 

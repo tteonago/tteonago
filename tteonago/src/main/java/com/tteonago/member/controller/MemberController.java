@@ -50,7 +50,11 @@ public class MemberController {
 	}
 
 	@GetMapping(value = "/login")
-	public String login() {
+	public String login(HttpServletRequest request) {
+		String uri = request.getHeader("Referer");
+	    if (uri != null && !uri.contains("/login")) {
+	        request.getSession().setAttribute("prevPage", uri);
+	    }
 		return "pages/login";
 	}
 

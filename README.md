@@ -87,6 +87,8 @@ Name|GitHub Address|
 결제하기 버튼 클릭 시 KG이니시스 결제 API 사용하여 실제처럼 결제가 가능합니다. 사용자는 상세 페이지에서 입력받은 데이터를 토대로 결제 페이지에서 자신의 정보를 확인하고, 결제를 완료할 수 있게 됩니다. <br/><br/>
 결제 완료 시 마이페이지로 즉시 이동하여 구매내역 확인이 가능하고 취소 시 취소 알림창을 띄워 페이지 이동은 하지 않고 다시 결제 가능 및 홈으로 버튼 클릭 시 메인페이지로 이동합니다. <br/><br/>
 ![결제](https://user-images.githubusercontent.com/122413012/230001516-9fb6f90a-57c6-4649-999a-ad2dc88b85b2.gif)
+![재검색](https://user-images.githubusercontent.com/122413012/230009921-7103cf78-3ed3-4d06-9fcf-72ee616f0e8d.gif)
+![검색](https://user-images.githubusercontent.com/122413012/230009947-5d286592-7ab8-497e-9b5e-38a24ec94c4e.gif)
 
 
 ## :file_cabinet: 질문 게시판:cat2:

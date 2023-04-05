@@ -248,12 +248,12 @@ p { margin:100px 0px; }
         var data3 = google.visualization.arrayToDataTable(arr3);
         var data4 = google.visualization.arrayToDataTable(arr4);
         var options = {
-            title: 'Hotel profit',
+            title: '호텔 수익',
             width: 1400,
             height: 400,
             legend: { position: 'top', maxLines: 3 },
-            hAxis: { title: 'hoteName' },
-            vAxis: { title: 'profit' }
+            hAxis: { title: '호텔' },
+            vAxis: { title: '수익' }
         };
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
@@ -301,20 +301,20 @@ p { margin:100px 0px; }
 
     	 var preference = JSON.parse(document.getElementById("preference").getAttribute("data-preference"));
          var data = new google.visualization.DataTable();
-         data.addColumn('string', 'hoteName');
-         data.addColumn('number', 'preference');
+         data.addColumn('string', '호텔');
+         data.addColumn('number', '선호도');
 
          for (var i = 0; i < preference.length; i++) {
              data.addRow([preference[i][0],preference[i][1]]);
          }
          
         var options = {
-            title: 'hotel Preference',
+            title: '호텔 선호도',
             width: 1400,
             height: 400,
             legend: { position: 'top', maxLines: 3 },
-            hAxis: { title: 'hoteName' },
-            vAxis: { title: 'preference' }
+            hAxis: { title: '호텔' },
+            vAxis: { title: '선호도' }
         };
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div6'));
         chart.draw(data, options);

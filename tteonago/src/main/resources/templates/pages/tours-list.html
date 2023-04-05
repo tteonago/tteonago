@@ -30,10 +30,10 @@
 <div class="sub-banner">
     <div class="container">
         <div class="breadcrumb-area">
-            <h1>Tours List</h1>
+            <h1>호텔 목록</h1>
             <ul class="breadcrumbs">
                 <li><a href="/category">Home</a></li>
-                <li class="active">Tours List</li>
+                <li class="active">호텔 목록</li>
             </ul>
         </div>
     </div>
@@ -87,8 +87,8 @@
                           <div class="location">
                             <a th:href="@{#}" onclick="return false;">
                               <i class="flaticon-pin"></i>
-                              <span th:text="${hotel.hotelAddress}"></span>
                             </a>
+                              <span th:text="${hotel.hotelAddress}"></span>
                           </div>
                           <p th:text="${hotel.hotelInfo}"></p>
                           <br>

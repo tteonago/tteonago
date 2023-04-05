@@ -41,7 +41,12 @@ Name|GitHub Address|
 <br/><br/>
 
 # :gear: 주요 기능 
-* [:moneybag: 결제](#:moneybag:-결제)
+* [:moneybag: 결제](#moneybag-결제)
+<br><br>
+
+# :gear: 주요 기능 
+* [:world_map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
+* [:necktie: 관리자_통계차트](#necktie-관리자_통계차트)
 <br><br>
 
 # :gear: 주요 기능 

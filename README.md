@@ -52,8 +52,8 @@ Name|GitHub Address|
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)
 <br><br>
 
-
-
+## :necktie: 결제
+![최종 결제 움짤](https://user-images.githubusercontent.com/122413012/229988115-051ea139-bb5e-4810-a355-f666a5cd3c26.gif)
 
 <br/><br/>
 

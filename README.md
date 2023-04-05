@@ -80,7 +80,7 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :moneybag: 결제
-![최종 결제 움짤](https://user-images.githubusercontent.com/122413012/229999045-872c5b42-846b-4b20-bffc-d82e0a2ec93e.gif)
+![결제](https://user-images.githubusercontent.com/122413012/230001516-9fb6f90a-57c6-4649-999a-ad2dc88b85b2.gif)
 호텔 상세 페이지에서 방 리스트 탭에 최종 예약 날짜 선택 후 예약하기 버튼 클릭 시 결제 페이지로 이동합니다.
 <br/><br/>
 결제하기 버튼 클릭 시 KG이니시스 결제 API 사용하여 실제처럼 결제가 가능합니다. 사용자는 상세 페이지에서 입력받은 데이터를 토대로 결제 페이지에서 자신의 정보를 확인하고, 결제를 완료할 수 있게 됩니다.

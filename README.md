@@ -52,6 +52,28 @@ Name|GitHub Address|
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)
 <br><br>
 
+## :memo: 회원가입:cat2:
+<br><br>
+:cat2:
+
+<br><br>
+
+## :computer: 로그인/소셜 로그인:cat2:
+<br><br>
+:cat2:
+
+<br/><br/>
+
+## :shopping_cart: 찜 하기:cat2:
+<br><br>
+:cat2:
+
+<br/><br/>
+
+## :file_cabinet: 질문 게시판:cat2:
+<br><br>
+:cat2:
+
 <br/><br/>
 
 ## :face_with_head_bandage: Trouble Shooting

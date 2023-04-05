@@ -108,6 +108,12 @@
 	function doubleCheck() {
 		 const usernameInput = document.getElementById('username');
 		 const username = usernameInput.value;
+		 
+		  // 아이디 입력값이 비어 있을 경우 return
+		  if (username.trim() === '') {
+		    return;
+		  }
+		 
 		// 중복확인 버튼 클릭시 실행되는 함수 내부
 		  axios.post('http://localhost:80/doubleCheck', {}, {
 			  params: {

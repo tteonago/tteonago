@@ -42,8 +42,7 @@ Name|GitHub Address|
 
 # :gear: 주요 기능 
 * [:moneybag: 결제](#moneybag-결제)
-* [:mag_right: 조건 검색](#mag_right-검색방법 : 조건 검색)
-* [:mag_right: 조건 검색](#mag_right-조건 검색)
+* [:mag_right: 조건 검색](#mag_right-검색방법)
 <br><br>
 
 # :gear: 주요 기능 
@@ -58,7 +57,7 @@ Name|GitHub Address|
 ![검색_지도](https://user-images.githubusercontent.com/87034370/229581639-96dc01db-0aef-4355-9f1f-355e09aa2c56.gif)
 <br><br>
 
-## :mag_right: 조건 검색
+## <a name="mag_right-검색방법"></a>:mag_right: 조건 검색
 메인 페이지에서 검색 조건으로 해당 조건에 부합하는 호텔 리스트를 출력해줍니다.<br><br>
 호텔리스트페이지에서도 재검색이 가능합니다.<br><br>
 호텔리스트에서 호텔 클릭시 상세페이지로 이동합니다.<br><br>

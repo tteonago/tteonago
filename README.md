@@ -122,6 +122,13 @@ Name|GitHub Address|
 > :rotating_light:사진은 1번째 사진만 필요하고, HotelImage 테이블과 Hotel테이블의 정보가 필요하며, 기존의 area도 유지되어야함. 
 > * 조건에 맞는 쿼리문을 작성하고, 조건에 맞는 검색 결과를 새로운DTO에 담아 json으로 보냄.
 
+
+<br><br>:mag_right: 검색방법 : 조건 검색<br><br>
+>  :dart: 메인페이지 조건 검색시 해당 조건에 맞게 입력값 반환을 원하는 상황  →  null pointer Exception, Syntax Error발생
+> *  @param어노테이션의 이름과 변수명이 일치하지 않는 경우 오류 발생. 동일하게 수정 후 해결 <br>
+> *  Syntax Error 이 부분도 쿼리문에서 사용되는 테이블 및 칼럼 이름 확인하고 데이터베이스에서 정의된 이름과 동일하게 수정 후 해결<br>
+
+
  <br><br>:necktie: 관리자 : 통계차트<br><br>
  > :rotating_light: 원형 차트 : 넘어 오는 데이터는 의도한 대로 넘어 왔지만, script에서 값이 없어 차트가 보이지 않는 상황. (List<Object[]>형식으로 넘어가며, script는 JSON.parse() 로  변환.)
  > * JSON 문자열을 파싱해 주고 있었지만, 직렬화하지 않았음.

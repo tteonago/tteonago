@@ -9,15 +9,19 @@
 ![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
 ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
+![Eclipse IDE](https://img.shields.io/badge/Eclipse%20IDE-2C2255.svg?style=for-the-badge&logo=Eclipse%20IDE&logoColor=white)
+![VisualStudioCode](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC.svg?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white) 
+![Sourcetree](https://img.shields.io/badge/Sourcetree-0052CC.svg?style=for-the-badge&logo=Sourcetree&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032.svg?style=for-the-badge&logo=Git&logoColor=white)
 ![miro](https://img.shields.io/badge/miro-050038?style=for-the-badge&logo=miro&logoColor=white)
-![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
-![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br><br>
+[![Notion](https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white&link=https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)](https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)  
 <br/><br/>
 
 ## :runner: 참여 인원
@@ -33,7 +37,8 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :open_book: 프로젝트 요약
-*프로젝트 간단 요약을 적어주세요*
+최근 국가 간 여행 제한이 완화되면서 국내 여행 수요가 증가하고 있다는 추세를 파악하여, 저희는 한국 내 프리미엄 호텔 예약 웹페이지를 개발했습니다.<br> 
+여행에서 가장 중요한 숙소 예약을 원활하게 할 수 있도록 노력했습니다. '떠나고'를 통해 한국의 우수한 프리미엄 호텔을 더욱 편리하게 예약해보세요.
 <br/><br/>
 
 # :gear: 주요 기능 
@@ -48,6 +53,7 @@ Name|GitHub Address|
 ![검색_지도](https://user-images.githubusercontent.com/87034370/229581639-96dc01db-0aef-4355-9f1f-355e09aa2c56.gif)<br><br>
 메인 페이지의 이미지 카테고리(지역)을 조건으로 해당 지역의 호텔을 마커로 표시해줍니다.<br><br>
 마커를 클릭하면 호텔 정보 창이 출력되며, 바로가기를 클릭 시 상세페이지로 이동합니다.<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
 <br><br>
 
 ## <a name="mag_right-검색방법"></a>:mag_right: 호텔검색_조건 검색
@@ -65,7 +71,8 @@ Name|GitHub Address|
 
 ## :necktie: 관리자_통계차트
 ![관리자_차트](https://user-images.githubusercontent.com/87034370/229581658-75e2c170-8834-4263-a08f-bc448d60ec01.gif)<br><br>
-원형 차트는 지역별 총 매출, 열 차트는 가장 많이 찜을 받은 선호도 상위 호텔 5개를 조회 할 수 있습니다.
+원형 차트는 지역별 총 매출, 열 차트는 가장 많이 찜을 받은 선호도 상위 호텔 5개를 조회 할 수 있습니다.<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
 <br><br>
 
 ## :memo: 회원가입

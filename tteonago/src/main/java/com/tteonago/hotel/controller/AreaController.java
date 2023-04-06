@@ -13,6 +13,7 @@ import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.service.AreaService;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -28,7 +29,10 @@ public class AreaController {
 
 		return "pages/index";
 	}
-
+	
+	@ApiOperation(	
+		    value = "선택한 지역으로 이동",
+		    notes = "해당 지역의 areaId를 조건으로 map.html 접근")
 	@GetMapping("/map")
 	public String map(@RequestParam String area, Model model)throws JsonProcessingException {
 		AreaDTO areaDTO = areaService.getAreaById(area);

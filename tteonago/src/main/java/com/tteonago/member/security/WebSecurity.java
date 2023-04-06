@@ -86,6 +86,7 @@ public class WebSecurity {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/free").permitAll()
+                .antMatchers("/freeDetail").permitAll()
                 .anyRequest().authenticated() //모든 요청을 제어합니다
               .and()
               	.exceptionHandling()

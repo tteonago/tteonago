@@ -26,7 +26,7 @@ public class Comment {
 
     @NotNull
     @Column(name = "deleted")
-    private boolean deleted = false;
+    private boolean deleted;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

@@ -9,15 +9,33 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class FreeBoardService {
 
     private final FreeBoardRepository freeBoardRepository;
 
+    public Optional<Freeboard> findFreeboardById(String fId) {
+        return freeBoardRepository.findById(Long.parseLong(fId));
+    }
 
     public Page<Freeboard> getPageFreeBoard(int page, String keyword) {
         return freeBoardRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdDate")));
     }
+
+    public Freeboard saveFreeBoard(Freeboard freeboard) {
+        return freeBoardRepository.save(freeboard);
+    }
+
+    public Freeboard deleteFreeBoard(Freeboard freeboard){
+        return freeBoardRepository.delete(Freeboard);
+    }
+
+    // deleteFreeBoard
+    // repository.delete(entity);
+
 
 }

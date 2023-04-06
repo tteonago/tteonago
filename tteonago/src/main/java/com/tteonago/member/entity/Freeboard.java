@@ -1,6 +1,9 @@
 package com.tteonago.member.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,10 +13,12 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "freeboard")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Freeboard {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long fId; //pk
 

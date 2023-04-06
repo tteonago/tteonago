@@ -1,4 +1,6 @@
 # Spring Boot project: 나의 여행 비서, tteonago
+최근 국가 간 여행 제한이 완화되면서 국내 여행 수요가 증가하고 있다는 추세를 파악하여, 저희는 한국 내 프리미엄 호텔 예약 웹페이지를 개발했습니다.<br><br> 
+여행에서 가장 중요한 숙소 예약을 원활하게 할 수 있도록 노력했습니다. '떠나고'를 통해 한국의 우수한 프리미엄 호텔을 더욱 편리하게 예약해보세요.
 <br/><br/>
 
 ## :hourglass: 개발 기간
@@ -21,7 +23,8 @@
 ![Git](https://img.shields.io/badge/Git-F05032.svg?style=for-the-badge&logo=Git&logoColor=white)
 ![miro](https://img.shields.io/badge/miro-050038?style=for-the-badge&logo=miro&logoColor=white)
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br><br>
-[![Notion](https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white&link=https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)](https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)  
+[![Notion](https://img.shields.io/badge/MOM-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white&link=https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)](https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)  
+<br/><br/> 
 <br/><br/>
 
 ## :runner: 참여 인원
@@ -36,10 +39,12 @@ Name|GitHub Address|
 
 <br/><br/>
 
-## :open_book: 프로젝트 요약
-최근 국가 간 여행 제한이 완화되면서 국내 여행 수요가 증가하고 있다는 추세를 파악하여, 저희는 한국 내 프리미엄 호텔 예약 웹페이지를 개발했습니다.<br> 
-여행에서 가장 중요한 숙소 예약을 원활하게 할 수 있도록 노력했습니다. '떠나고'를 통해 한국의 우수한 프리미엄 호텔을 더욱 편리하게 예약해보세요.
+## :books: ERD
 <br/><br/>
+
+## :railway_track: 순서도
+![순서도](https://user-images.githubusercontent.com/87034370/230443904-2f771f10-3a85-4a58-bfd6-9ea09d466a9c.png)<br><br>
+<br><br>
 
 # :gear: 주요 기능 
 * [:world_map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
@@ -160,8 +165,9 @@ Name|GitHub Address|
 > * 호텔 entity에 @Embedded로 선언된 필드에있는 위경도 값을 사용한다.
 > * 가져온 hotel객체에서 대부분의 정보를 사용할 수 있다.
 
-> :rotating_light:사진은 1번째 사진만 필요하고, HotelImage 테이블과 Hotel테이블의 정보가 필요하며, 기존의 area도 유지되어야함. 
-> * 조건에 맞는 쿼리문을 작성하고, 조건에 맞는 검색 결과를 새로운DTO에 담아 json으로 보냄.
+> :rotating_light:마커 클릭으로 출력되는 인포윈도우에 담을 정보 중에, 사진은 첫번째 사진 한장만 나오게 변경해야한다. 
+> * 조건에 맞는 쿼리문을 작성.
+> * -> 해당 지역의 호텔 사진 중 첫번째 사진은 마지막이름이 1번이다. like연산자를 통해 첫번째 이미지만 불러온다.
 
 
 <br><br>:mag_right: 검색방법 : 조건 검색<br><br>

@@ -166,6 +166,9 @@ Name|GitHub Address|
  > * 날짜 임의 작성 -> 잘못된 날짜 데이터.
  > * 위의 두가지의 경우의 수를 잡아, alert 메세지와 바로 뒤로가는 동작을하는 페이지로 이동.
  > * 잘못된 컨트롤러 요청 -> error/404
-
+ 
+ <br><br>:moneybag: 결제<br><br>
+ > :rotating_light: 호텔 상세보기 페이지단에 방 리스트 탭 및 결제 페이지에서 1박 가격 값이 천(1000) 단위마다 콤마가 적용 안되서 숫자 데이터 가독성 문제점 발생 
+ > * Thymeleaf 문법 함수 #numbers.formatInteger 적용해서 문제점 해결
 
 

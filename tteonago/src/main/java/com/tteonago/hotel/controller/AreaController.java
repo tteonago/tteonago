@@ -13,7 +13,6 @@ import com.tteonago.hotel.dto.AreaDTO;
 import com.tteonago.hotel.dto.HotelMapDTO;
 import com.tteonago.hotel.service.AreaService;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 

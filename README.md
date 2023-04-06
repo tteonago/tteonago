@@ -127,7 +127,11 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :face_with_head_bandage: Trouble Shooting
- :world_map: 검색방법 : 지도<br><br>
+:page_facing_up: 메인 페이지<br><br>
+> :rotating_light: 메인 페이지에서 스크롤 시 크롬 웹 브라우저 관리자 도구에서 네트워크 탭에 이미지 로고 파일이 스크롤 시 마다 이미지가 로드 되는 문제 발생 -> 스크롤 시 렉 유발 발                    생
+> * 메인 페이지에서 스크롤 시 자바 스크립트 단에 스크롤 이벤트 함수가 발생되어 적용되어 있는데 그 함수에 스크롤 시 마다 로고 이미지 파일이 로드 되는 코드를 발견하여 해당 코드 삭제     하여 문제 해결
+
+ <br><br>:world_map: 검색방법 : 지도<br><br>
  
 > :rotating_light:이미지 카테고리에 onclick속성을 이용해 해당 지역 위도와 경도값을 map.html로 넘겨 주는 스크립트 함수를 구현해 위도와 경도 값을 포함하는url을 구성  → url encoding 문제에 봉착.
 > * 기존 위도와 경도 값을 사용하는 코드 폐기, Thymeleaf 반복문으로 프로젝트 내부의 지역 사진을 가져오고 있는 코드를 수정하는 방향 선정.

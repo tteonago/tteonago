@@ -30,12 +30,8 @@ public class FreeBoardService {
         return freeBoardRepository.save(freeboard);
     }
 
-    public Freeboard deleteFreeBoard(Freeboard freeboard){
-        return freeBoardRepository.delete(Freeboard);
+    public void deleteFreeBoard(Freeboard freeboard){
+        freeBoardRepository.delete(freeboard);
     }
-
-    // deleteFreeBoard
-    // repository.delete(entity);
-
 
 }

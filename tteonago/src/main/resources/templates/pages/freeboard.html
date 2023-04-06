@@ -23,7 +23,7 @@
 <style>
 p { margin:20px 0px; }
 </style>
-    
+
 </head>
 
 <body id="top">
@@ -121,6 +121,9 @@ p { margin:20px 0px; }
 						<input type="text" class="form-control" style="display: inline-block;width: 40%;" name="keyword"
 							   th:value="${param.get('keyword')}">
 						<input type="hidden" name="page" th:value="${param.get('page')}"/>
+						<button style="float: right;" type="button" class="btn btn-primary" data-target="#freeboard">
+							검색
+						</button>
 					</form>
 				</div>
 				<!-- 글쓰기 modal start -->
@@ -151,7 +154,6 @@ p { margin:20px 0px; }
 												<textarea rows="10" class="form-control" id="content" name="contents"></textarea>
 											</div>
 										</div>
-
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 											<button type="submit" class="btn btn-success">작성</button>

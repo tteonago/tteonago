@@ -47,6 +47,7 @@ public class FreeBoardController {
             freeBoardService.deleteFreeBoard(freeboard);
 
 
+        }
         return "pages/freeboard";
     }
 

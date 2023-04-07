@@ -60,56 +60,38 @@ public class DetailController {
 
 	@GetMapping("/mapdetail")
 	public String hotelMapDetail(@RequestParam String hotelId, Authentication authentication, Model model) {
-		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
-		addReviewAndHotelToModel(model, hotelId, hotel);
-
-		String dates = generateDefaultDates();
-		
-		String checkIn = LocalDate.now().toString();
-		LocalDate checkOut = LocalDate.now();
-		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
-		String checkout = twentyAfterLocalDate.toString();
-		    
-		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
-		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
-		
-		boolean exist = false;
-	    if(authentication != null) {
-	    	exist = userService.findWishlist(authentication.getName(), hotelId);
-	    }
-	    
-	    model.addAttribute("exist", exist);
-		model.addAttribute("available", available);
-		model.addAttribute("dates", dates);
-
-		return "pages/tours-detail";
+		return processDetailRequest(hotelId, authentication, model);
 	}
 	
 	@GetMapping("/wishlistdetail")
 	public String wishlistDetail(@RequestParam String hotelId, Authentication authentication, Model model) {
-		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
-		addReviewAndHotelToModel(model, hotelId, hotel);
-		
-		String dates = generateDefaultDates();
-		
-		String checkIn = LocalDate.now().toString();
-		LocalDate checkOut = LocalDate.now();
-		LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
-		String checkout = twentyAfterLocalDate.toString();
-		    
-		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
-		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
-		
-		boolean exist = false;
+		return processDetailRequest(hotelId, authentication, model);
+	}
+	
+	private String processDetailRequest(String hotelId, Authentication authentication, Model model) {
+	    HotelDTO hotel = getHotelByIdOrThrow(hotelId);
+	    addReviewAndHotelToModel(model, hotelId, hotel);
+
+	    String dates = generateDefaultDates();
+
+	    String checkIn = LocalDate.now().toString();
+	    LocalDate checkOut = LocalDate.now();
+	    LocalDate twentyAfterLocalDate = checkOut.plusDays(1);
+	    String checkout = twentyAfterLocalDate.toString();
+
+	    List<Room> roomList = roomService.getRoomByHotelId(hotelId);
+	    List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
+
+	    boolean exist = false;
 	    if(authentication != null) {
-	    	exist = userService.findWishlist(authentication.getName(), hotelId);
+	        exist = userService.findWishlist(authentication.getName(), hotelId);
 	    }
-	    
+
 	    model.addAttribute("exist", exist);
-		model.addAttribute("available", available);
-		model.addAttribute("dates", dates);
-		
-		return "pages/tours-detail";
+	    model.addAttribute("available", available);
+	    model.addAttribute("dates", dates);
+
+	    return "pages/tours-detail";
 	}
 	
 	private HotelDTO getHotelByIdOrThrow(String hotelId) {

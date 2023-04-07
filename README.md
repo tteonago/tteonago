@@ -51,6 +51,7 @@ Name|GitHub Address|
 * [:mag_right: 호텔검색_조건 검색](#mag_right-검색방법)
 * [:necktie: 관리자_통계차트](#necktie-관리자_통계차트)
 * [:moneybag: 결제](#moneybag-결제)
+* [:pencil2: 리뷰쓰기](#pencil2-리뷰쓰기)
 * [:face_with_head_bandage: Trouble Shooting](#face_with_head_bandage-trouble-shooting)
 <br><br>
 
@@ -144,6 +145,14 @@ Name|GitHub Address|
 <br><br>
 [:gear: 주요 기능](#gear-주요-기능)
 <br/><br/>
+
+## :pencil2: 리뷰쓰기
+<img srt="">
+* 머물렀던 호텔에 대해서 리뷰를 쓸 수 있고, 한 번 리뷰를 작성하면 중복해서 작성할 수 없습니다.
+* 내가 쓴 리뷰를 다른 유저들이 호텔을 선택할 때, 디테일 페이지에서 확인할 수 있습니다. 
+<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
+<br><br>
 
 ## :face_with_head_bandage: Trouble Shooting
 :page_facing_up: 메인 페이지<br><br>

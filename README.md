@@ -24,7 +24,6 @@
 ![miro](https://img.shields.io/badge/miro-050038?style=for-the-badge&logo=miro&logoColor=white)
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br><br>
 [![Notion](https://img.shields.io/badge/MOM-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white&link=https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)](https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)  
-<br/><br/> 
 <br/><br/>
 
 ## :runner: 참여 인원
@@ -43,7 +42,7 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :railway_track: 순서도
-![순서도](https://user-images.githubusercontent.com/87034370/230520105-3940c755-a2cc-411b-b315-4905bdd8b170.png)<br><br>
+![순서도](https://user-images.githubusercontent.com/87034370/230532625-b0f0fa81-fd59-4f07-a861-4420c0771654.png)
 <br><br>
 
 # :gear: 주요 기능 

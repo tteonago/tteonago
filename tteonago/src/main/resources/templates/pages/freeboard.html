@@ -65,7 +65,7 @@ p { margin:20px 0px; }
 					<col width="20%">
 				</colgroup>
 				<thead>
-				<tr style="text-align: center">
+				<tr style="text-align: left">
 					<td>번호</td>
 					<td>제목</td>
 					<td>작성자</td>
@@ -118,17 +118,17 @@ p { margin:20px 0px; }
 							<option value="T" th:selected="${param.get('type') eq 'T'}">제목</option>
 							<option value="C" th:selected="${param.get('type') eq 'C'}">내용</option>
 						</select>
-						<input type="text" class="form-control" style="display: inline-block;width: 40%;" name="keyword"
+						<input id="keyword" type="text" class="form-control" style="display: inline-block;width: 40%;" name="keyword"
 							   th:value="${param.get('keyword')}">
 						<input type="hidden" name="page" th:value="${param.get('page')}"/>
-						<button style="float: right;" type="button" class="btn btn-primary" data-target="#freeboard">
+						<button id="btnSearch" type="button" class="btn btn-primary">
 							검색
 						</button>
 					</form>
 				</div>
 				<!-- 글쓰기 modal start -->
 				<div class="col-md-4"
-					 sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_SOCIAL', 'ROLE_ADMIN')">
+					 sec:authorize="isAuthenticated()">
 					<button style="float: right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeModal">
 						글쓰기
 					</button>
@@ -170,6 +170,22 @@ p { margin:20px 0px; }
 </div>
 <script>
 	$(() => {
+
+		$("#btnSearch").on("click", function (e) {
+			e.preventDefault();
+			const actionForm = $("#actionForm");
+			actionForm.find("input[name='page']").val(1);
+			actionForm.submit();
+		});
+
+		$("#keyword").on("keypress", function (e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				const actionForm = $("#actionForm");
+				actionForm.find("input[name='page']").val(1);
+				actionForm.submit();
+			}
+		});
 
 		// 페이지네이션 클릭 이벤트
 		$(".pagination a").on('click', function (e) {

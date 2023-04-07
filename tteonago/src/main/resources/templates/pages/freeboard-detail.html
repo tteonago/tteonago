@@ -53,47 +53,109 @@ p { margin:20px 0px; }
     <div class="container">
 
 		<div class="col-md-12">
-            <div class="row">
+            <div class="row" style="margin-bottom: 50px;">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="form-group">
+                        <div class="panel-body row">
+                            <h1 class="col-12" th:text="${board.title}"></h1>
+                            <div class="form-group col-3">
                                 <label>번호</label>
                                 <div th:text="${board.fId}"></div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-3">
                                 <label>작성자</label>
                                 <div th:text="${board.member.getName()}"></div>
                             </div>
-                            <div class="form-group">
-                                <label>제목</label>
-                                <input name="title" class="form-control" th:value="${board.title}" readonly="readonly">
+                            <div class="form-group col-3">
+                                <label>작성일</label>
+                                <div th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></div>
                             </div>
-                            <div class="form-group">
-                                <label>내용</label>
-                                <textarea name="content" class="form-control" readonly="readonly" th:text="${board.contents}"></textarea>
+                            <div class="form-group col-3">
+                                <label>수정일</label>
+                                <div th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}"></div>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="panel-body row" style="margin-bottom: 30px;">
+                                <div class="col-12" th:utext="${board.contents.replaceAll('\n', '<br>')}"></div>
+                            </div>
+                        </div>
                             <button id="btnList" class="btn btn-info" style="float: right" onclick="history.back()">목록</button>
-                            <button id="btnModify" class="btn btn-warning" style="float: right" data-toggle="modal" data-target="#modifyModal">수정</button>
-                            <button id="btnDelet" class="btn btn-warning" style="float: left" data-toggle="modal" data-target="#deletModal">삭제</button>
+
+                            <button id="btnModify"
+                                    style="margin-right: 5px; float:right"
+                                    sec:authorize="isAuthenticated()"
+                                    th:if="${#strings.equals(board.member.name, #authentication.principal.username)}"
+                                    class="btn btn-warning"data-toggle="modal" data-target="#modifyModal">수정</button>
+                            <button id="btnDelete"
+                                    sec:authorize="isAuthenticated()"
+                                    th:if="${#strings.equals(board.member.name, #authentication.principal.username)}"
+                                    th:data-id="${board.fId}"
+                                    class="btn btn-danger">삭제</button>
                         </div>
                     </div>
                 </div>
             </div>
 		</div>
+
+        <!-- 수정 modal start -->
+        <div class="col-md-4"
+             sec:authorize="isAuthenticated()"
+             th:if="${  #strings.equals(board.member.name, #authentication.principal.username)}">
+            <div class="container">
+                <div class="modal fade" id="modifyModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <form id="writeForm" action="/freeModify" method="post">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">수정</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <input type="hidden" name="fId" th:value="${board.fId}">
+                                    <div class="form-group">
+                                        <label for="title">제목</label>
+                                        <input type="text" class="form-control" id="title"
+                                               name="title"
+                                               th:value="${board.title}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content">내용</label>
+                                        <textarea rows="10" class="form-control" id="content"
+                                                  name="contents" th:text="${board.contents}"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                                    <button type="submit" class="btn btn-success">수정</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 <script>
 	$(() => {
 
-		// 페이지네이션 클릭 이벤트
-		$(".pagination a").on('click', function (e) {
-			e.preventDefault();
-
-			const actionForm = $("#actionForm");
-			actionForm.find("input[name='page']").val($(this).attr('href'));
-			actionForm.submit();
-		});
+        $("#btnDelete").on("click", function () {
+            const fId = $(this).data("id");
+            $.ajax({
+                url: `/free/${fId}`,
+                method: "DELETE",
+                success: () => location.href = "/free",
+                error: (e) => {
+                    console.error(e);
+                    alert("삭제 중 오류가 발생하였습니다.");
+                },
+            })
+        });
 
 	});
 </script>

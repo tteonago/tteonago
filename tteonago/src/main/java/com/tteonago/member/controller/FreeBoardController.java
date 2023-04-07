@@ -5,6 +5,7 @@ import com.tteonago.member.entity.Member;
 import com.tteonago.member.service.FreeBoardService;
 import com.tteonago.member.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,10 @@ public class FreeBoardController {
     @GetMapping("/free")
     public String freeBoardHome(Model model,
                                 @RequestParam(defaultValue = "1") int page,
-                                @RequestParam(defaultValue = "") String keyword) {
+                                @RequestParam(defaultValue = "") String keyword,
+                                @RequestParam(defaultValue = "A") String type) {
 
-        model.addAttribute("pages", freeBoardService.getPageFreeBoard(--page, keyword));
+        model.addAttribute("pages", freeBoardService.getPageFreeBoard(--page, keyword, type));
 
         return "pages/freeboard";
     }
@@ -37,22 +39,28 @@ public class FreeBoardController {
         return "pages/freeboard-detail";
     }
 
-    @PostMapping("/freeDelete")
-    public String deleteFreeBoard(Authentication authentication, String fId) {
+    @DeleteMapping("/free/{fId}")
+    @ResponseBody
+    public ResponseEntity<Object> deleteFreeBoard(Authentication authentication, @PathVariable String fId) {
         Freeboard freeboard = freeBoardService.findFreeboardById(fId).get();
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String userName = userDetails.getUsername();
-        if (userName.equals(freeboard.getMember().getUsername())) {
-            freeBoardService.deleteFreeBoard(freeboard);
-
-
+        try {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            if (userName.equals(freeboard.getMember().getUsername())) {
+                freeBoardService.deleteFreeBoard(freeboard);
+            }
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
-        return "pages/freeboard";
     }
 
     @PostMapping("/freeModify")
-    public String modifyFreeBoard(Authentication authentication, String fId, String title, String contents) {
+    public String modifyFreeBoard(Authentication authentication,
+                                  @RequestParam String fId,
+                                  @RequestParam String title,
+                                  @RequestParam String contents) {
 
         Freeboard freeboard = freeBoardService.findFreeboardById(fId).get();
 
@@ -67,7 +75,7 @@ public class FreeBoardController {
             freeBoardService.saveFreeBoard(freeboard);
         }
 
-        return "pages/freeboard";
+        return "redirect:/freeDetail?fId=" + fId;
     }
 
     @PostMapping("/free")

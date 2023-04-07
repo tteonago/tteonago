@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FreeBoardRepository extends JpaRepository<Freeboard, Long> {
     Page<Freeboard> findAllByDeletedIsFalse(Pageable pageable);
+
+    Page<Freeboard> findByTitleContaining(String title, Pageable pageable);
 }

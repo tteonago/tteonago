@@ -43,7 +43,7 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :railway_track: 순서도
-![순서도](https://user-images.githubusercontent.com/87034370/230443904-2f771f10-3a85-4a58-bfd6-9ea09d466a9c.png)<br><br>
+![순서도](https://user-images.githubusercontent.com/87034370/230519538-61546fc6-bc74-4d26-b93f-e6a8002b4ca2.png)<br><br>
 <br><br>
 
 # :gear: 주요 기능 

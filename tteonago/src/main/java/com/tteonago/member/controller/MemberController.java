@@ -44,13 +44,17 @@ public class MemberController {
 	public String join(@RequestParam(value = "username") String userName,
 			@RequestParam(value = "password") String password, @RequestParam(value = "name") String name,
 			@RequestParam(value = "email") String email) {
-
+		System.out.println("join");
 		userService.join(userName, password, name, email, "ROLE_USER");
 		return "pages/index";
 	}
 
 	@GetMapping(value = "/login")
-	public String login() {
+	public String login(HttpServletRequest request) {
+		String uri = request.getHeader("Referer");
+	    if (uri != null && !uri.contains("/login")) {
+	        request.getSession().setAttribute("prevPage", uri);
+	    }
 		return "pages/login";
 	}
 

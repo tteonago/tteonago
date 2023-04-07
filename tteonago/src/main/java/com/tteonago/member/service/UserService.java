@@ -101,5 +101,18 @@ public class UserService {
         } else {
             wishlistRepository.deleteByHotel(member, hotel);
         }
-    }	
+    }
+	
+	public boolean findWishlist(String username, String hotelId) {
+		Member member = memberRepository.findById(username).orElseThrow(AppException::new);
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(AppException::new);
+		
+        Wishlist exist = wishlistRepository.findByMemberAndHotel(member, hotel);
+        
+        if (exist == null) {
+        	return false;
+        }else {
+        	return true;
+        }
+	}
 }

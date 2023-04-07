@@ -17,6 +17,10 @@
     <!-- Custom Stylesheet -->
     <link type="text/css" rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" type="text/css" id="style_sheet" href="/assets/css/skins/default.css">
+    
+    <!-- signup.html 필수 axios -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
 </head>
 
 <body id="top">
@@ -35,10 +39,8 @@
 	                <div class="form-content-box">
 	                
 	                    <!-- Logo -->
-	                    <a href="index.html">
-
-	                        <img src="images/logo_small.jpg" class="cm-logo" alt="logo">
-
+	                    <a href="category">
+	                        <img src="assets/img/logos/logo.png">
 	                    </a>
 	                    
 	                    <!-- details -->
@@ -49,42 +51,37 @@
 	                        
 	                        <!-- Form start -->
 	                        <form id="login-form" action="/join" method="post">
+	                        	<div style="text-align: left;">아이디</div>
 	                           	<div class="form-group2">
-									<input type="text" class="form-control" name="username" placeholder="아이디" required>
+									<input type="text" class="form-control" id="username" name="username" placeholder="아이디를 입력해주세요" required><br>
+									<button type="button" class="btn btn-color btn-md btn-block" onclick="doubleCheck()">중복확인</button>
+								</div>
+								<div style="text-align: left;">비밀번호</div>
+								<div class="form-group2">
+									<input type="Password" class="form-control" name="password" id="password" placeholder="비밀번호를 입력해주세요" required>
 								</div>
 								<div class="form-group2">
-									<input type="Password" class="form-control" name="password" placeholder="비밀번호" required>
+									<input type="password" class="form-control" id="confirm-password" placeholder="비밀번호를 다시 입력해주세요" required>
+									<div id="password-mismatch" style="display: none; color: red;">비밀번호가 일치하지 않습니다.</div>
 								</div>
+								<div style="text-align: left;">이름</div>
 								<div class="form-group2">
-									<input type="text" class="form-control" name="name" placeholder="이름" required>
+									<input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요" required>
 								</div>
+								<div style="text-align: left;">이메일</div>
 								<div class="form-group2">
-									<input type="text" class="form-control" name="email" placeholder="email" required>
+									<input type="text" class="form-control" name="email" placeholder="email을 입력해주세요" required>
 								</div>
 
-<!--	                            <div class="checkboxs form-group">-->
-<!--	                                <a href="home" class="link-not-important pull-right">비밀번호 찾기</a>-->
-<!--	                                <div class="clearfix"></div>-->
-<!--	                            </div>-->
-<!--								-->
 	                            <div class="form-group mb-0">
-	                                <button type="submit" class="btn btn-color btn-md btn-block">join</button>
+	                                <button type="submit" class="btn btn-color btn-md btn-block" id="signup-button" disabled>회원가입</button>
 	                            </div>
 	                        </form>
 	                        <!-- Form end -->
 	                        
 	                        <br>
 	                        
-<!--	                        <div>-->
-<!--	                        	<a href="/oauth2/authorization/kakao">카카오 소셜 로그인</a>-->
-<!--	                        </div>-->
-	                        
 	                    </div>
-	                    
-<!--	                    &lt;!&ndash; Sub Footer &ndash;&gt;-->
-<!--	                    <div class="sub-footer">-->
-<!--	                        <span>계정이 이미 있으신가요? <a href="login">로그인</a></span>-->
-<!--	                    </div>-->
 	                    
 	                </div>
 	            </div>
@@ -92,7 +89,55 @@
 	    </div>
 	</div>
 	<!-- Bg img end -->
-
+<script>
+	const confirmPassword = document.getElementById("confirm-password");
+	const password = document.getElementById("password");
+	const passwordMismatch = document.getElementById("password-mismatch");
+	const submitBtn = document.getElementById("signup-button");
+	
+	confirmPassword.addEventListener("input", function() {
+	  if (confirmPassword.value !== password.value) {
+	    passwordMismatch.style.display = "block";
+	    submitBtn.disabled = true;
+	  } else {
+	    passwordMismatch.style.display = "none";
+	    submitBtn.disabled = false;
+	  }
+	});
+	
+	function doubleCheck() {
+		 const usernameInput = document.getElementById('username');
+		 const username = usernameInput.value;
+		 
+		  // 아이디 입력값이 비어 있을 경우 return
+		  if (username.trim() === '') {
+		    return;
+		  }
+		 
+		// 중복확인 버튼 클릭시 실행되는 함수 내부
+		  axios.post('http://localhost:80/doubleCheck', {}, {
+			  params: {
+			    username: username
+			  }
+			})
+		  .then(response => {
+		    if (response.data === true) {
+		      // 중복되는 아이디가 있을 경우
+		      alert('이미 사용중인 아이디 입니다.');
+		    } else {
+		      // 중복되는 아이디가 없을 경우
+		      alert('사용 가능한 아이디입니다.');
+		      const usernameInput = document.getElementById('username');
+		      const checkButton = document.querySelector('button[onclick="doubleCheck()"]');
+		      usernameInput.readOnly = true;
+		      checkButton.disabled = true;
+		    }
+		  })
+		  .catch(error => {
+		    console.error(error);
+		  });
+	}
+</script>
 
 
 <!-- External JS libraries -->

@@ -110,7 +110,8 @@ $(function() {
 		autoUpdateInput: false,
 		locale: {
 			cancelLabel: 'Clear'
-		}
+		},
+		minDate: moment().startOf('day') 
 	});
 
 	$('.datetimes-left').daterangepicker({
@@ -118,7 +119,8 @@ $(function() {
 		autoUpdateInput: false,
 		locale: {
 			cancelLabel: 'Clear'
-		}
+		},
+		minDate: moment().startOf('day') 
 	});
 
 	$('.datetimes-left, .datetimes').on('apply.daterangepicker', function(ev, picker) {

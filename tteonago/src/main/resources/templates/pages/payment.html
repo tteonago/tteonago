@@ -236,11 +236,11 @@ span.price {
   </div>
   <div class="col-25">
     <div class="container">
-      <h4>Price Summary<span class="price" style="color:black"> <b></b></span></h4>
+      <h4>결제 정보<span class="price" style="color:black"> <b></b></span></h4>
       <p>1박 가격<span class="price"  th:text="${#numbers.formatInteger(room.Price, 0, 'COMMA')} + '원'"></span></p>  
       <p>숙박 일수<span class="price" th:text="${days} + '박'"></span></p><br>
       <hr>
-      <p>Total Price <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
+      <p>총 가격 <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
      
     </div>
   	<div class="container">

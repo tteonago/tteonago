@@ -24,7 +24,6 @@
 ![miro](https://img.shields.io/badge/miro-050038?style=for-the-badge&logo=miro&logoColor=white)
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br><br>
 [![Notion](https://img.shields.io/badge/MOM-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white&link=https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)](https://www.notion.so/Project-tteonago-509553f79ea542a6a743746741247d80?pvs=4)  
-<br/><br/> 
 <br/><br/>
 
 ## :runner: 참여 인원
@@ -43,14 +42,19 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :railway_track: 순서도
-![순서도](https://user-images.githubusercontent.com/87034370/230520105-3940c755-a2cc-411b-b315-4905bdd8b170.png)<br><br>
+![순서도](https://user-images.githubusercontent.com/87034370/230532625-b0f0fa81-fd59-4f07-a861-4420c0771654.png)
 <br><br>
 
 # :gear: 주요 기능 
 * [:world_map: 호텔검색_지도](#world_map-호텔검색_지도)<br>
 * [:mag_right: 호텔검색_조건 검색](#mag_right-검색방법)
 * [:necktie: 관리자_통계차트](#necktie-관리자_통계차트)
+* [:memo: 회원가입](#memo-회원가입)
+* [:computer: 로그인/소셜 로그인](#computer-로그인_소셜-로그인)
+* [:shopping_cart: 찜 하기](#shopping_cart-찜-하기)
 * [:moneybag: 결제](#moneybag-결제)
+* [:file_cabinet: 질문 게시판](#file_cabinet-질문-게시판)
+* [:pencil2: 리뷰쓰기](#pencil2-리뷰쓰기)
 * [:face_with_head_bandage: Trouble Shooting](#face_with_head_bandage-trouble-shooting)
 <br><br>
 
@@ -98,7 +102,7 @@ Name|GitHub Address|
 [:gear: 주요 기능](#gear-주요-기능)
 <br/><br/>
 
-## :computer: 로그인/소셜 로그인
+## :computer: 로그인_소셜 로그인
 <img src="https://user-images.githubusercontent.com/116073413/230076109-5a7a08f2-5836-470c-8ae6-90245915a893.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
 <br>
 
@@ -144,6 +148,16 @@ Name|GitHub Address|
 <br><br>
 [:gear: 주요 기능](#gear-주요-기능)
 <br/><br/>
+
+## :pencil2: 리뷰쓰기
+![review](https://user-images.githubusercontent.com/117890994/230530249-3b9011a2-8163-4fc3-af43-87cb114ecc34.gif)
+<br>
+
+* 머물렀던 호텔에 대해서 리뷰를 쓸 수 있고, 한 번 리뷰를 작성하면 중복해서 작성할 수 없습니다.
+* 내가 쓴 리뷰를 다른 유저들이 호텔을 선택할 때, 디테일 페이지에서 확인할 수 있습니다. 
+<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
+<br><br>
 
 ## :face_with_head_bandage: Trouble Shooting
 :page_facing_up: 메인 페이지<br><br>

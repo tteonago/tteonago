@@ -188,7 +188,7 @@ p { margin:20px 0px; }
 			<button sec:authorize="hasRole('ROLE_USER')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">문의 하기</button>
 		</div>
 		
-		
+			
 			<!-- 문의 작성 modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-lg" role="document">
@@ -201,7 +201,7 @@ p { margin:20px 0px; }
 			      </div>
 			      <div class="modal-body">
 			      
-			        <form action="/question" method="post" >
+			        <form action="/question" method="post" onsubmit="return checkEmptyFields()">
 			        
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label">질문자 아이디</label>
@@ -228,6 +228,18 @@ p { margin:20px 0px; }
 			    </div>
 			  </div>
 			</div>	
+
+      <script>
+        function checkEmptyFields() {
+          var title = document.getElementsByName('title')[0].value.trim();
+          var content = document.getElementsByName('content')[0].value.trim();
+          if (title === '' || content === '') {
+            alert('제목과 내용은 필수 입력 항목입니다.');
+            return false;
+          }
+          return true;
+        }
+      </script>
 			
 		
     </div>
@@ -246,41 +258,6 @@ p { margin:20px 0px; }
 	</script>
 
 <!-- Footer-6 start -->
-	<footer class="footer-2">
-		<div class="container footer-inner">
-			<div class="row">
-				<div class="col-12">
-					<div class="footer-logo">
-						<img src="assets/img/logos/logo.png" alt="logo">
-					</div>
-					<ul class="social-list clearfix">
-						<li><a href="#" class="facebook"><i
-								class="fa fa-facebook"></i></a></li>
-						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#" class="google"><i
-								class="fa fa-google-plus"></i></a></li>
-						<li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
-						<li><a href="#" class="linkedin"><i
-								class="fa fa-linkedin"></i></a></li>
-					</ul>
-					<div class="nav-inline">
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Tours</a></li>
-							<li><a href="#">Destinations</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Blog</a></li>
-						</ul>
-					</div>
-					<p class="copy">
-						© 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the
-						property of their respective owners.
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
 <!-- Footer-6 end -->
 
 <!-- Full page search -->

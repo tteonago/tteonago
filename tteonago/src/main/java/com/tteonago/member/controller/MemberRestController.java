@@ -17,11 +17,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tteonago.member.entity.Member;
+import com.tteonago.member.service.UserService;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
 public class MemberRestController {
+	
+	private final UserService userService;
 		
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
@@ -65,4 +70,13 @@ public class MemberRestController {
         message.setText("인증 번호: " + authenticationCode);
         return message;
     }
+	
+	@PostMapping("/doubleCheck")
+	public boolean doubleCheck(@RequestParam(value = "username") String username) {
+		Member member = userService.findById(username);
+		if(member != null) {
+			return true;
+		}
+		return false;
+	}
 }

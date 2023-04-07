@@ -61,6 +61,7 @@ public class WebSecurity {
                 .antMatchers("/mapdetail").permitAll()  //DetailC. 
                 .antMatchers("/hotelsearch").permitAll()  //SearchC. 
                 .antMatchers("/home").permitAll()  //MemberC. 
+                .antMatchers("/doubleCheck").permitAll()  //MemberC. 
                 .antMatchers("/signup").permitAll()  //MemberC. 
                 .antMatchers("/join").anonymous()  //MemberC. 
                 .antMatchers("/admin").hasAnyRole("ADMIN")  //AdminC. 
@@ -87,6 +88,8 @@ public class WebSecurity {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/free").permitAll()
                 .antMatchers("/freeDetail").permitAll()
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**").permitAll()
+               
                 .anyRequest().authenticated() //모든 요청을 제어합니다
               .and()
               	.exceptionHandling()

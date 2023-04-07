@@ -50,6 +50,7 @@ dependencies {
 	//chatgpt
 	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.0'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'   
 }
 
 tasks.named('test') {

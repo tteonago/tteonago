@@ -30,10 +30,10 @@
 <div class="sub-banner">
     <div class="container">
         <div class="breadcrumb-area">
-            <h1>Tours List</h1>
+            <h1>호텔 목록</h1>
             <ul class="breadcrumbs">
                 <li><a href="/category">Home</a></li>
-                <li class="active">Tours List</li>
+                <li class="active">호텔 목록</li>
             </ul>
         </div>
     </div>
@@ -67,11 +67,11 @@
                     </div>
                 </div>
                 
-                <div th:each="hotel : ${hotellist}" class="tour-item-3">
+                <div th:each="hotel, iterStat : ${hotellist}" class="tour-item-3">
                     <div class="row">
                       <div class="col-lg-5 col-md-5 col-pad">
                         <div class="item-thumbnail">
-                          <a th:href="@{${hotel.images[0].address}}" class="item-img" data-lightbox="example-set">                          
+                          <a th:href="@{${hotel.images[0].address}}" class="item-img" th:data-lightbox="${'hotel' + iterStat.index}">                          
                             <div class="tag">확대</div>
 
                             <img th:src="@{${hotel.images[0].address}}" alt="tours-list" class="img-fluid" />                                                     
@@ -87,8 +87,8 @@
                           <div class="location">
                             <a th:href="@{#}" onclick="return false;">
                               <i class="flaticon-pin"></i>
-                              <span th:text="${hotel.hotelAddress}"></span>
                             </a>
+                              <span th:text="${hotel.hotelAddress}"></span>
                           </div>
                           <p th:text="${hotel.hotelInfo}"></p>
                           <br>

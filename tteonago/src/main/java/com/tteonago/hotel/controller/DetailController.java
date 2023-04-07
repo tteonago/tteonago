@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.tteonago.hotel.entity.Room;
 import com.tteonago.hotel.service.HotelService;
 import com.tteonago.hotel.service.RoomService;
 import com.tteonago.member.entity.Member;
+import com.tteonago.member.service.UserService;
 import com.tteonago.reservation.entity.Review;
 import com.tteonago.reservation.service.ReservationService;
 import com.tteonago.reservation.service.ReviewService;
@@ -29,10 +31,11 @@ public class DetailController {
 	private final ReservationService reservationService;
 	private final ReviewService reviewService;
 	private final RoomService roomService;
+	private final UserService userService;
 
 	@GetMapping("/detail")
 	public String hotelDetail(@RequestParam String hotelId, @RequestParam("dates") String dates,
-			@RequestParam String checkIn, @RequestParam String checkOut, Model model) {
+			@RequestParam String checkIn, @RequestParam String checkOut, Authentication authentication, Model model) {
 
 		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
 		addReviewAndHotelToModel(model, hotelId, hotel);
@@ -41,6 +44,12 @@ public class DetailController {
 	    
 	    List<Integer> available = reservationService.findReservationDate(checkIn, checkOut, roomList);
 	    
+	    boolean exist = false;
+	    if(authentication != null) {
+	    	exist = userService.findWishlist(authentication.getName(), hotelId);
+	    }
+	    
+	    model.addAttribute("exist", exist);
 	    model.addAttribute("available", available);
 		model.addAttribute("dates", dates);
 		model.addAttribute("checkIn", checkIn);
@@ -50,7 +59,7 @@ public class DetailController {
 	}
 
 	@GetMapping("/mapdetail")
-	public String hotelMapDetail(@RequestParam String hotelId, Model model) {
+	public String hotelMapDetail(@RequestParam String hotelId, Authentication authentication, Model model) {
 		HotelDTO hotel = getHotelByIdOrThrow(hotelId);
 		addReviewAndHotelToModel(model, hotelId, hotel);
 
@@ -63,7 +72,13 @@ public class DetailController {
 		    
 		List<Room> roomList = roomService.getRoomByHotelId(hotelId);
 		List<Integer> available = reservationService.findReservationDate(checkIn, checkout, roomList);
-		    
+		
+		boolean exist = false;
+	    if(authentication != null) {
+	    	exist = userService.findWishlist(authentication.getName(), hotelId);
+	    }
+	    
+	    model.addAttribute("exist", exist);
 		model.addAttribute("available", available);
 		model.addAttribute("dates", dates);
 

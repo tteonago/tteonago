@@ -37,3 +37,10 @@ spring:
 jwt:
    token: 
      secret: "this.is.secret.ss"
+---
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    
+  

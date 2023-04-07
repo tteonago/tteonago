@@ -147,7 +147,8 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :pencil2: 리뷰쓰기
-<img srt="https://user-images.githubusercontent.com/117890994/230529358-29e8d7bf-3038-42d9-8d1b-35cd8d162629.gif" width="50%" height="40%">
+<img srt="https://user-images.githubusercontent.com/117890994/230529358-29e8d7bf-3038-42d9-8d1b-35cd8d162629.gif" width="100%" height="90%" title="px(픽셀) 크기 설정" >
+<br>
 
 * 머물렀던 호텔에 대해서 리뷰를 쓸 수 있고, 한 번 리뷰를 작성하면 중복해서 작성할 수 없습니다.
 * 내가 쓴 리뷰를 다른 유저들이 호텔을 선택할 때, 디테일 페이지에서 확인할 수 있습니다. 

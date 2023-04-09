@@ -131,6 +131,23 @@ $(function() {
 		$(this).val('');
 	});
 
+	$('.datetimes-left').on('apply.daterangepicker', function(ev, picker) {
+    ev.preventDefault(); // 기본 동작 막기
+    
+    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+
+    // 데이터 전송
+    var dates = $(this).val();
+    var hotelId = document.getElementById("hotelId").value;
+    var checkIn = picker.startDate.format('YYYY-MM-DD');
+    var checkOut = picker.endDate.format('YYYY-MM-DD');
+ 	// 파라미터 조합
+    var url = '/detail?dates=' + dates + '&hotelId=' + hotelId + '&checkIn=' + checkIn + '&checkOut=' + checkOut;
+    
+    // 페이지 이동
+    window.location.href = url;
+    });
+
 	// Banner slider
 	//Function to animate slider captions
 	function doAnimations(elems) {

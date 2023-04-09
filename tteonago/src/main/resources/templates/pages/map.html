@@ -55,9 +55,9 @@
 
 			temp.setMap(map);
 
-			var iwContent = '<div style="padding:10px; color:green;">' + arr[i].name 
+			var iwContent = '<div style="padding:5px; color:green;">' + arr[i].name 
 					      + '</div><hr><br>' 
-					      + '<div style="padding:5px;"> <img width="100%" height="50%" src=" ' + arr[i].img 
+					      + '<img width="100%" src=" ' + arr[i].img 
 					      + '" </div>'
 					      + '<div style="padding:5px; font-size:20px;"> 주소: ' + arr[i].address
 					      + '</div>'
@@ -69,7 +69,7 @@
 
 			var infowindow = new kakao.maps.InfoWindow({
 				content : iwContent,
-				removable : iwRemoveable
+				removable : iwRemoveable,
 			});
 	      
 			kakao.maps.event.addListener(temp, 'click', makeOverListener(map,
@@ -84,6 +84,11 @@
         		}
         		infowindow.open(map, temp);
         		openedInfowindow = infowindow;
+        		
+        		kakao.maps.event.addListener(map, 'click', function() {
+        	    	infowindow.close();
+        	    });
+        		
     			};
 		}
 		

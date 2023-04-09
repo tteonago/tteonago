@@ -15,5 +15,5 @@ public interface FreeBoardRepository extends JpaRepository<Freeboard, Long> {
 
     Page<Freeboard> findByContentsContaining(String contents, Pageable pageable);
 
-    Page<Freeboard> findByTitleContainingOrContentsContaining(String keyword, Pageable pageable);
+    Page<Freeboard> findByTitleContainingOrContentsContaining(String title, String contents, Pageable pageable);
 }

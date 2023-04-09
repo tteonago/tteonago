@@ -39,6 +39,7 @@ Name|GitHub Address|
 <br/><br/>
 
 ## :books: ERD
+![ERD](https://user-images.githubusercontent.com/87034370/230785760-1096ddb6-af06-4308-95b2-3ae6d3bc9b70.png)
 <br/><br/>
 
 ## :railway_track: 순서도

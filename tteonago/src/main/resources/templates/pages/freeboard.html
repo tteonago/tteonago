@@ -196,6 +196,18 @@ p { margin:20px 0px; }
 			actionForm.submit();
 		});
 
+		$("#writeForm").on("submit", function (e) {
+			e.preventDefault();
+			const title = $(this).find("input[name=title]").val();
+			const contents = $(this).find("#content").val();
+
+			if (!title || !contents) {
+				alert("제목 또는 내용을 입력해주세요.");
+			} else {
+				$(this)[0].submit();
+			}
+		});
+
 	});
 </script>
 

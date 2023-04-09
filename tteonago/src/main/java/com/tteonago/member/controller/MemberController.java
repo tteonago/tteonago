@@ -46,7 +46,7 @@ public class MemberController {
 			@RequestParam(value = "email") String email) {
 		System.out.println("join");
 		userService.join(userName, password, name, email, "ROLE_USER");
-		return "pages/index";
+		return "pages/login";
 	}
 
 	@GetMapping(value = "/login")

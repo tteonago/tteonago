@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.tteonago.terms.entity.Terms;
 
 @Repository
-public interface Termsrepository extends JpaRepository<Terms, Long> {
+public interface Termsrepository extends  JpaRepository<Terms, Long> {
 }

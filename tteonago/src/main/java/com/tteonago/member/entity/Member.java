@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +24,7 @@ public class Member {
 	private String username;
 	
 	@NonNull
+	@JsonIgnore
 	@Column(name = "password")
 	private String password;
 	

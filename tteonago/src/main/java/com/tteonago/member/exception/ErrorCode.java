@@ -15,5 +15,6 @@ public enum ErrorCode {
 	NO_VALIDATION(HttpStatus.UNAUTHORIZED, "");
 	
 	private HttpStatus httpStatus;
+	
 	private String message;
 }

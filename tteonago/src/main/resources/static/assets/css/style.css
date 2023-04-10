@@ -40,7 +40,7 @@ Version:    1.1.0
 
 body {
     font-family: 'Raleway', sans-serif;
-    color: #656565;
+    color: black;
 }
 
 .img-fluid {
@@ -76,7 +76,7 @@ ul {
 }
 
 a {
-    color: #37404d;
+    color: black;
     text-decoration: none;
 }
 
@@ -93,11 +93,11 @@ p {
     font-size: 15px;
     font-weight: 500;
     line-height: 27px;
-    color: #656565;
+    color: black;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    color: #37404d;
+    color: black;
 }
 
 .heading-2 {
@@ -1371,7 +1371,7 @@ a {
 .option-bar .heading {
     font-size: 17px;
     font-weight: 600;
-    color: #37404d;
+    color: black;
 }
 
 .change-view-btn {
@@ -1540,7 +1540,7 @@ a {
 
 .tour-item .detail .location a {
     font-size: 15px;
-    color: #656565;
+    color: black;
     font-weight: 500;
 }
 
@@ -1856,7 +1856,7 @@ a {
 
 .tour-item-3 .detail .location a {
     font-size: 15px;
-    color: #656565;
+    color: black;
     font-weight: 500;
 }
 
@@ -3944,7 +3944,7 @@ a {
 .comment-meta {
     margin-bottom: 10px;
     font-size: 13px;
-    color: #535353;
+    color: black;
     font-weight: 500;
 }
 
@@ -5668,7 +5668,7 @@ body.off-canvas-sidebar-open {
     background: #fff;
     outline: 0;
     font-weight: 500;
-    color: #888;
+    color: black;
     height: 52px;
     border-radius: 0;
 }
@@ -5718,7 +5718,7 @@ button:focus {
     padding: 12px 15px;
     font-size: 15px;
     outline: 0;
-    color: #888;
+    color: black;
     border-radius: 50px;
     font-weight: 500;
     height: 45px;
@@ -5737,7 +5737,7 @@ button:focus {
 .b3 .search-area .selectBox-dropdown .selectBox-label {
     padding: 0;
     font-size: 15px;
-    color: #888;
+    color: black;
 }
 
 .b3 .inline-search-area .search-col {
@@ -7161,3 +7161,6 @@ button:focus {
     }
 }
 
+input::placeholder {
+    color: red;
+  }

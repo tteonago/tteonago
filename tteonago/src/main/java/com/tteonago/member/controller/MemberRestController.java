@@ -2,8 +2,10 @@ package com.tteonago.member.controller;
 
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -15,46 +17,66 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tteonago.member.entity.Member;
+import com.tteonago.member.service.UserService;
+
 import lombok.RequiredArgsConstructor;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class MemberRestController {
+	
+	private final UserService userService;
 		
 	@Value("${jwt.token.secret}")
 	private String SecretKey;
 
 	@PostMapping(value = "/auth")
-	public void auth(@RequestParam(value = "email") String email, Authentication authentication) {
-		
+	public void auth(@RequestParam(value = "email") String email, Authentication authentication) {		
 		final String username = "sh72551326@gmail.com";
 		final String password = "ipyavftkxwzgmrtc";
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+		Properties props = createEmailProperties();
 
 		String authenticationCode = "56";
-
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-				return new javax.mail.PasswordAuthentication(username, password);
-			}
-		});
+	
+		Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
 
 		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("sh72551326@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("즐거운 여행 tteonago 이메일 인증 번호");
-			message.setText("인증 번호: " + authenticationCode);
+			Message message = createEmailMessage(session, email, username, authenticationCode);
 			Transport.send(message);
-
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
-
+	
+	private Properties createEmailProperties() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        return props;
+    }
+	
+	private Message createEmailMessage(Session session, String email, String username, String authenticationCode) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+        message.setSubject("즐거운 여행 tteonago 이메일 인증 번호");
+        message.setText("인증 번호: " + authenticationCode);
+        return message;
+    }
+	
+	@PostMapping("/doubleCheck")
+	public boolean doubleCheck(@RequestParam(value = "username") String username) {
+		Member member = userService.findById(username);
+		if(member != null) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content"
+>
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PDTWJ3Z');</script>
+  <!-- End Google Tag Manager -->
+  <title>Trego - Travel Tour HTML Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <!-- External CSS libraries -->
+  <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/jquery.selectBox.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/dropzone.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/slick.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/rangeslider.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/animate.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/daterangepicker.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/leaflet.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/map.css">
+  <link type="text/css" rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+  <link type="text/css" rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" type="text/css" href="assets/fonts/linearicons/style.css">
+
+  <!-- Favicon icon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
+
+  <!-- Google fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+
+  <!-- Custom Stylesheet -->
+  <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" id="style_sheet" href="assets/css/skins/default.css">
+
+</head>
+<body id="top">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader"></div>
+
+<!-- main header start -->
+
+<!-- main header end -->
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+  <div class="container">
+    <div class="breadcrumb-area">
+      <h1>Terms of Use</h1>
+      <ul class="breadcrumbs">
+        <li><a href="/faq">Faq</a></li>
+        <li class="active">Terms of Use</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- Terms of Use start -->
+<div class="Terms of Use content-area-2">
+    <div class="container">
+        <h4 class="heading-5">본 이용약관은 웹사이트와 정보에 대한 접근을 제공하는 tteonago Pty Ltd (저희, 저희의 혹은 당사)에 관한 사항을 명시합니다.</h4>
+            <br><hr><br>
+            <section>
+                <p><b class="term">1 정의</b></p>
+                  <p>정보는 다음과 같이 웹 사이트에서 이용할 수 있는 모든 정보를 의미합니다.<br><br>
+                    a. 호텔 객실 이용 가능 여부<br>
+                    b. 호텔 객실 요금<br>
+                    c. 호텔 설명 및 사진<br>
+                    d. 고객 후기<br>
+                    e. 호텔 객실 요금<br>
+                  </p>
+                  <br>
+                <p>허용된 목적은 여행 계획 및/또는 예약과 관련한 호텔 숙박료와 서비스를 비교하는 목적을 뜻하며 어떠한 전자적 수단으로 소비자에게 정보 또는 정보의 일부를 재생산하거나 재공급하는 것은 모두 제외됩니다.<br>
+                 제삼자 제공은 제삼자가 판매 목적으로 제공하는 서비스와 상품을 말합니다.<br>
+                 웹사이트는 www.tteonago.co.kr에 위치한 웹사이트를 뜻합니다.
+                </p>
+                  <br>
+                  <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">2 엑세스</b></p>
+                  <p>웹사이트에 접속함으로써 다음과 같이 동의합니다.<br><br>
+                    a. 본 이용약관 준수<br>
+                    b. 18세 이상 사용자
+                  </p>
+                    <br>
+                    <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">3 금지행위</b></p>
+                  <p>다음과 같은 행위는 금지됩니다.<br><br>
+                      a. 허용된 목적 이외 다른 용도로 정보 또는 정보의 일부를 각색하거나 구체적인 형태로 재생산, 출간, 실행, 유포하는 행위.<br>
+                      b. 사전 서면 동의없이 다른 로봇, 스파이더, 스크래이퍼, 기타자동화된 수단을 이용하여 정보 또는 정보의 일부를 접근하거나 감시하는 행위.<br>
+                      c. 웹사이트 접근을 차단하거나 제한하기 위해 사용된 모든 방법을 우회 또는 회피하거나 웹사이트의 모든 로봇 배제 헤더 제한을 침해하는 행위.<br>
+                      d. 당해 하부구조에 부적절하거나 어울리지 않게 큰 부하를 부과하거나 부과할 수 있는 모든 행위.<br>
+                      e. 웹사이트와 관련하여 당사가 사용하는 모든 소프트웨어 프로그램을 수정, 해석, 개작, 편집, 분석, 해체, 역설계하려는 시도.
+                  </p>
+                    <br>
+                    <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">4 배상</b></p>
+                <p>사용자는 허용된 목적 이외 다른 목적으로 정보 또는 정보의 일부를 사용하여 비용, 민원, 청구, 채무, 비용, 손해, 손실을 야기하는 경우에 이에 대해 배상해야 합니다.</p>
+                <br>
+                <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">5 정보 확인 및 위험 인수</b></p>
+                <p><b class="term">5.1 정보의 확인</b></p>
+                <P>제삼자 제공을 수용하거나 사용하기 전에 정보의 정확성을 확인해야 합니다.</P>
+                <p><b class="term">5.2 위험 인수</b></p>
+                <P>다음과 같은 경우에 관련된 모든 위험을 인수합니다.<br><br>
+                a. 본 웹 사이트와 해당 정보를 이용하는 경우<br>
+                b. 제삼자가 제공한 정보를 수용하고 사용하는 경우</P>
+                <br>
+                <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">6 무보증</b></p>
+                <p>다음과 같은 사항은 보증하지 않습니다.<br><br>
+                    a. 정확성, 품질, 완전성 또는 웹 사이트의 법적인 책임, 정보 그리고 제삼자가 제공하는 모든 것<br>
+                    b. 웹사이트와 잘못된 정보, 가격차이, 바이러스, 오류 및 이용관련 문제나 해커에 관하여 보증하지 않습니다.
+                </p>
+                <br>
+                <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">7 책임보험</b></p>
+                <p><b class="term">7.1 책임의 제한</b></p>
+                <p>해당 조항의 위반에 대한 저희의 책임은 공정거래법(Trade Practices Act) 1974 (Cth)에 의거 저희가 제공하는 서비스에 적용되는 한도 내에서 서비스의 재공급 또는 해당 비용을 지불하는 것으로 제한됩니다.</p>
+                <p><b class="term">7.2 제외</b></p>
+                <p>법률에 의거 제외할 수 없는 조항 이외에 본 이용약관에 명시적으로 포함되지 않는 사항은 모두 제외됩니다.</p>
+                <p><b class="term">7.3 책임의 한도</b></p>
+                <p>상기 7.1항에 의거 사용자에 대한 최대 책임 총액은 호주 달러 $100로 제한됩니다.</p>
+                <p><b class="term">7.4 책임의 면제</b></p>
+                <p>저희는 본 이용약관으로 인해 발행할 수 있는 이익의 손실을 비롯하여 모든 인과, 특별, 우연, 간접 손실 또는 손해에 대해 (계약, 불법행위, 또는기타 여부에 상관없이) 어떠한 책임도 지지 않습니다.</p>
+                <br>
+                <hr>
+            </section>
+              <br>
+            <section>
+                <p><b class="term">8 일반</b></p>
+                <p><b class="term">8.1 완전 합의</b></p>
+                <p>본 이용약관은 당사자 간의 전체적인 이해를 포함하고 있으며, 당사자 간의 사전 커뮤니케이션을 대체합니다.</p>
+                <p><b class="term">8.2 수정 및 변경</b></p>
+                <p>이용자에게 통지하지 않고 본 이용약관을 언제라도 수정할 수 있습니다.</p>
+                <p><b class="term">8.3 준거법 및 재판권</b></p>
+                <p>본 이용약관은 뉴사우스웨일스 주 법률을 준수하며 그에 따라 해석해야합니다. 이용약관과 관련하거나 그로 인해 발생하는 모든 문제에 대해서는 뉴사우스웨일스 주와 호주 연방 재판 관할 법원에 제기해야 합니다.</p>
+            </section>
+    </div>
+</div>
+<!-- Terms-of-Use end -->
+
+<!-- Footer start -->
+<footer class="footer-2">
+  <div class="container footer-inner">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer-logo">
+          <img src="assets/img/logos/logo.png" alt="logo">
+        </div>
+        <ul class="social-list clearfix">
+          <li><a href="#" class="facebook"><i
+                  class="fa fa-facebook"></i></a></li>
+          <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#" class="google"><i
+                  class="fa fa-google-plus"></i></a></li>
+          <li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
+          <li><a href="#" class="linkedin"><i
+                  class="fa fa-linkedin"></i></a></li>
+        </ul>
+        <div class="nav-inline">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tours</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <p class="copy">
+          © 2020 <a href="#">Theme Vessel</a> Trademarks and brands are the
+          property of their respective owners.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer end -->
+
+<!-- Full page search -->
+<div id="full-page-search">
+  <button type="button" class="close">×</button>
+  <form action="#">
+    <input type="search" value="" placeholder="type keyword(s) here" />
+    <button type="submit" class="btn btn-sm btn-color">Search</button>
+  </form>
+</div>
+
+<!-- External JS libraries -->
+<script src="assets/js/jquery-2.2.0.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.selectBox.js"></script>
+<script src="assets/js/rangeslider.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.filterizr.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/daterangepicker.min.js"></script>
+<script src="assets/js/backstretch.js"></script>
+<script src="assets/js/jquery.countdown.js"></script>
+<script src="assets/js/jquery.scrollUp.js"></script>
+<script src="assets/js/particles.min.js"></script>
+<script src="assets/js/typed.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/dropzone.js"></script>
+<script src="assets/js/jquery.mb.YTPlayer.js"></script>
+<script src="assets/js/leaflet.js"></script>
+<script src="assets/js/leaflet-providers.js"></script>
+<script src="assets/js/leaflet.markercluster.js"></script>
+<script src="assets/js/maps.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+<script src="assets/js/ie-emulation-modes-warning.js"></script>
+<!-- Custom JS Script -->
+<script  src="assets/js/app.js"></script>
+
+</body>
+</html>

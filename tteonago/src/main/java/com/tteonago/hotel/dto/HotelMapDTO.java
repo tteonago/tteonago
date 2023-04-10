@@ -17,7 +17,6 @@ import lombok.ToString;
 @ToString
 @Builder
 public class HotelMapDTO {
-	
 	private String hotelId;
 	
 	private String hotelName;
@@ -29,5 +28,4 @@ public class HotelMapDTO {
 	private Position hotelPosition;
 	
 	private String address;
-
 }

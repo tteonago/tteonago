@@ -5,18 +5,27 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ChatGptRequest implements Serializable{
+@AllArgsConstructor
+
+@Setter
+@Getter
+@ToString
+public class ChatGptRequest implements Serializable {
 	private String model;
+	
 	private String prompt;
+	
 	@JsonProperty("max_tokens")
 	private Integer maxTokens;
+	
 	private Double temperature;
+	
 	@JsonProperty("top_p")
 	private Double topP;
 }

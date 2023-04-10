@@ -29,5 +29,4 @@ public class Position {
 	@NonNull
 	@Column(name = "lng", precision = 10, scale = 6)
 	private BigDecimal lng;
-
 }

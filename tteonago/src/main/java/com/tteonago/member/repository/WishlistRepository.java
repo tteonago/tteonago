@@ -14,12 +14,13 @@ import com.tteonago.reservation.entity.Wishlist;
 
 @Repository
 public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
-
-	@Query("select w.hotel, w.member, h.address from Wishlist w, HotelImage h where w.hotel=h.hotel and substr(h.address , -5) = '1.jpg' and w.member = :member")
-	public List<Object[]> findByMember(@Param("member") Member member);
-	
 	@Modifying
 	@Query("delete from Wishlist w where w.member = :member and w.hotel = :hotel")
 	public void deleteByHotel(@Param("member") Member member, @Param("hotel") Hotel hotel);
-
+	
+	@Query("select w.hotel, w.member, h.address from Wishlist w, HotelImage h where w.hotel=h.hotel and substr(h.address , -5) = '1.jpg' and w.member = :member")
+	public List<Object[]> findByMember(@Param("member") Member member);
+		
+	@Query("select w from Wishlist w where w.member = :member and w.hotel = :hotel")
+	public Wishlist findByMemberAndHotel(@Param("member") Member member, @Param("hotel") Hotel hotel);
 }

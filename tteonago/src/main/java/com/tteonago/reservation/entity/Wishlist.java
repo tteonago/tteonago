@@ -20,16 +20,17 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+
+@Setter
+@Getter
 @ToString
 @Builder
-@Getter
-@Setter
+
 @Entity
 @Table(name="wishlist")
 public class Wishlist {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wishindex")

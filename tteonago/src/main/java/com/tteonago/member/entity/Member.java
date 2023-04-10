@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,18 +14,17 @@ import lombok.*;
 
 @Setter
 @Getter
-
 @ToString
 
 @Entity
 @Table(name="member")
-public class Member {
-	
+public class Member {	
 	@Id
 	@Column(name = "username")
 	private String username;
 	
 	@NonNull
+	@JsonIgnore
 	@Column(name = "password")
 	private String password;
 	

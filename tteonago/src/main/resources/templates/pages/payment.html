@@ -119,8 +119,7 @@ span.price {
 </head>
 <body>
 
-<h2>Responsive Checkout Form</h2>
-<p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other.</p>
+<h2>결제 페이지</h2>
 <div class="row">
   <div class="col-75">
     <div class="container">
@@ -128,7 +127,7 @@ span.price {
      
         <div class="row">
           <div class="col-50">
-            <h2>예 약 정 보</h2>
+            <h2>예 약 자 정 보</h2>
             
             <label for="fname"><i class="fa fa-user"></i></label>
             <input type="text" id="fname" name="firstname" th:value="${member.username}" readonly>
@@ -144,8 +143,8 @@ span.price {
           </div>
 
           <div class="col-50">
-            <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
+            <h2>호 텔 예 약</h2>
+            <label for="fname"></label>
             <div class="icon-container">
               <!-- <i class="fa fa-cc-visa" style="color:navy;"></i>
               <i class="fa fa-cc-amex" style="color:blue;"></i>
@@ -181,14 +180,14 @@ span.price {
       <script th:inline="javascript">
         $("#check_module").click(function () {
                var IMP = window.IMP; // 생략가능
-               IMP.init("imp55078373"); 
+               IMP.init("imp20772521"); 
                // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
                // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
                              
-               var hotelName = /*[[${room.hotel.hotelName}]]*/
-               var totPrice = /*[[${room.price * days}]]*/      //변수 타입에 빨간 밑줄 무시 상관없음 에러아님
-               var useremail = /*[[${member.email}]]*/
-               var username = /*[[${member.username}]]*/
+               var hotelName = /*[[${room.hotel.hotelName}]]*/null;
+        
+               var useremail = /*[[${member.email}]]*/null;
+               var username = /*[[${member.username}]]*/null;
             
                IMP.request_pay({
                 pg : 'html5_inicis',
@@ -198,7 +197,7 @@ span.price {
                 name: hotelName,
                 buyer_email: useremail,
                 buyer_name: username,
-                buyer_tel: "010-4753-7397",  //본인 휴대폰번호 넣기 테스트번호X        
+                buyer_tel: "010-0000-0000",  //본인 휴대폰번호 넣기 테스트번호X        
                 buyer_postcode : '123-456'                       
               }, function (rsp) { // callback
                   if (rsp.success) {
@@ -218,14 +217,15 @@ span.price {
                               checkOut: $('#checkOut').val(),
                               totPrice: $('#totPrice').val()
                           }),
-                    }).done(function(data){
-                      location.href='${pageContext.request.contextPath}/reservation/reservationList'+data
+                    }).done(function(data){                      
+                      location.replace("/mypages");                                      
                     })
                   } else {
                     // 결제 실패 시 로직
                     var msg = '결제에 실패하였습니다.';
                     msg += '\n에러 내용 : ' + rsp.error_msg;
                     alert(msg);
+                    document.location.href = document.location.href;
                   }
           });
   });
@@ -236,18 +236,21 @@ span.price {
   </div>
   <div class="col-25">
     <div class="container">
-      <h4>Price Summary<span class="price" style="color:black"> <b></b></span></h4>
+      <h4>결제 정보<span class="price" style="color:black"> <b></b></span></h4>
       <p>1박 가격<span class="price"  th:text="${#numbers.formatInteger(room.Price, 0, 'COMMA')} + '원'"></span></p>  
       <p>숙박 일수<span class="price" th:text="${days} + '박'"></span></p><br>
       <hr>
-      <p>Total Price <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
+      <p>총 가격 <span class="price" style="color:black"  th:text="${#numbers.formatInteger(room.price * days, 0, 'COMMA')} + '원'" ><b></b></span></p>
      
     </div>
   	<div class="container">
   		<h4>중요 안내</h4>
   		<h5> * 체크인 시간 14:00~00:00(다음날) 사이, 체크아웃 시간 : 12:00 이전, 투숙객은 체크인& 체크아웃시간을 준수해주시길 바랍니다</h5>
   </div>
+  <br><hr><br>
+  <button onclick="window.location.href='/category'">홈으로</button>
   </div>
+  
 
 </div>
 

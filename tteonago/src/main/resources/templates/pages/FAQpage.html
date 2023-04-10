@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/defaultLayout}"
+      layout:fragment="Content"
+>
+<head>
+    <!-- Google Tag Manager -->
+    <!-- External CSS libraries -->
+    <!-- Favicon icon -->
+    <!-- Google fonts -->
+    <!-- Custom Stylesheet -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body id="top">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page_loader"></div>
+
+<!-- main header start -->
+
+<!-- main header end -->
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>FAQ</h1>
+            <ul class="breadcrumbs">
+                <li><a href="/category">Home</a></li>
+                <li class="active">FAQ</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- faq start -->
+<div class="faq content-area-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="heading-2">자주 하는 질문</h3>
+                <div id="faq" class="faq-accordion mb-5">
+                    <div class="card m-b-0">
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq" href="#collapse1" style="font-weight:bold; font-size:1.2em;">
+                               Q. 예약을 변경/취소하고 싶습니다.
+                            </a>
+                        </div>
+                        <div id="collapse1" class="card-block collapse">
+                            <p>떠나고는 가격 비교 서비스만 제공해 드리며, 각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 예약을 관리하지 않습니다.
+								예약 변경/취소는 저희 사이트가 아닌 실제 예약이 진행된 사이트를 통해서만 가능하며, 받으신 예약메일 상에서 변경/취소 처리하시거나 해당 사이트의 고객센터 로 문의하시는 방법이 있습니다.
+								항상 최종 예약을 진행하신 예약 사이트의 취소 규정이 적용되며, 취소 전 무료 취소 및 환불이 가능한지 취소 규정을 확인해 주십시오.</p>
+                            <hr>
+                        </div>
+
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq" href="#collapse2" style="font-weight:bold; font-size:1.2em;">
+                              Q. 예약 확인은 어떻게 하나요?
+                            </a>
+                        </div>
+                        <div id="collapse2" class="card-block collapse">
+							<p>떠나고는 예약 사이트들의 가격을 비교하여 최저가를 찾아드리는 검색 엔진 입니다.
+								각 사이트로 연결된 후에는 예약과 결제에 직접 관여하지 않기 때문에 전체 예약을 조회/관리하는 마이페이지 기능이 없습니다.
+								예약 확인은 실제 예약한 사이트에서 가능합니다. 예약 24시간 후에도 예약 확인서를 받지 못했다면 예약을 진행한 사이트로 문의 및 재발송 요청을 주셔야 합니다. 스팸 메일함도 함께 확인해 주십시오.</p>
+                            <hr>
+                        </div>
+
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq" href="#collapse3" style="font-weight:bold; font-size:1.2em;">
+                               Q. 정해진 체크인 시간 외에 도착할 것 같습니다. 체크인이 가능할까요?
+                            </a>
+                        </div>
+                        <div id="collapse3" class="card-block collapse">
+                        	<p>이는 숙소 재량에 맡겨진 것으로 반드시 보장되지는 않습니다. 이와 관련해 다음의 조치를 취하실 수 있습니다.</p>
+                            <hr>
+                        </div>
+                        
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq" href="#collapse4" style="font-weight:bold; font-size:1.2em;">
+                                Q.예약 확인 이메일을 찾을 수가 없습니다. 어떻게 해야하나요?
+                            </a>
+                        </div>
+                        <div id="collapse4" class="card-block collapse">
+                        	<p>메일함과 스팸함을 모두 확인해주시기 바랍니다. 예약 확인서를 찾을 수 없을 경우 tteonago.com/문의하기를 방문하시면 다시 전송을 받으실 수 있습니다.</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>  
+              <h3 class="heading-2"></h3>
+                <div id="faq2" class="faq-accordion">
+                    <div class="card m-b-0">
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq2" href="#collapse5" style="font-weight:bold; font-size:1.2em;">
+                              Q. 호텔 체크인, 체크아웃 시간은 언제인가요?
+                            </a>
+                        </div>
+                        <div id="collapse5" class="card-block collapse">
+                       	 <p>일반적으로 체크인은 14:00이후, 체크아웃은 11:00 ~12;00 입니다
+							호텔마다, 지역마다 차이가 있으며 일본지역은 체크아웃 시간이 오전10~11시로 다른지역에 비해서 빠른 편입니다.
+							늦게 체크인(21:00이후)하는 경우에는 호텔측에 도착예정시간과 LATE CHECK-IN 정보를 통보해주셔야 됩니다.
+							EARLY CHECK-IN, LATE CHECK-OUT은 호텔객실사정에 따라 배정되는 관계로 현지에서 직접 요청하셔야 됩니다.</p>
+                            <hr>
+                        </div>
+
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq2" href="#collapse6" style="font-weight:bold; font-size:1.2em;">
+                              Q. 체크인하는 방법을 자세히 알고 싶습니다
+                            </a>
+                        </div>
+                        <div id="collapse6" class="card-block collapse">
+	                        <p>결제완료 후 호텔바우처를 출력하셔서,
+								체크인 하실때 호텔프론트에 여권과 함께 바우처를 제시하시면 체크인이 가능합니다.
+								부득이하게 바우처를 가져가지 못하실 경우에는 사전에 모두투어 호텔팀으로 바우처 없이 체크인 (No voucher) 처리를 부탁하시면 호텔로 전달이 되므로 보다 원활한 체크인이 가능합니다</p>
+                            <hr>
+                        </div>
+                        
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq2" href="#collapse7" style="font-weight:bold; font-size:1.2em;">
+                              Q. 결제를 해야만 예약이 가능한가요 ?
+                            </a>
+                        </div>
+                        <div id="collapse7" class="card-block collapse">
+                        	<p>호텔 비용은 예약과 동시에 결제가 완료 되어야 합니다
+								"취소불가 " 를 선택하셨다면 예약 후 전액 환불이 불가합니다
+								ex)2019.11,30무료취소 ---> 선택을 하셨다면 해당 기간까지는 무료 취소가 가능한 예약입니다
+								
+								저희가 판매하고 있는 호텔 요금은 모두투어에 선지불조건으로 특별히 할인 받은 요금이며, 결제 후 발행해 드리는 숙박권(voucher) 으로 호텔에 체크인 하시면 됩니다.
+								일반적으로 호텔로 직접 지불은 불가하며, 또한 호텔에서 제공하는 호텔 영수증을 받으실 수 없습니다.</p>
+                            <hr>
+                        </div>
+                        
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#faq2" href="#collapse8" style="font-weight:bold; font-size:1.2em;">
+                              Q. 객실요금은 1인당 가격인가요?
+                            </a>
+                        </div>
+                        <div id="collapse8" class="card-block collapse">
+							<p>저희 웹사이트의 판매 요금은 조회하신 객실의 총요금으로, 세금+봉사료가 기본적으로 포함된 가격입니다.
+							조식 포함여부는 지역, 호텔등에 따라 달리 표시되어 있습니다.
+							
+							*싱글 (1인실)
+							*트윈/더블 ( 2인실)
+							*트리플 ( 3인실) / (3인실을 예약하여도 3인 조식 및 엑스트라 베드가 제공 되지 않을수도 있습니다 )</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <br><hr><br>
+                <a class="nav-link" href="board">그 외 궁금한 사항은 문의하기를 클릭해주세요.</a>
+                <br>
+                <script>
+                    $(function () {
+                        $.get("/terms")
+                            .then(function (terms) {
+                                console.log(terms);
+                                const contents = terms.contents;
+                                $("#terms1").html(contents);
+                            });
+                        });
+                </script>
+
+                <div id="terms" class="faq-accordion">
+                    <div class="card m-b-0">
+                        <div class="card-header">
+                            <a class="card-title collapsed" data-toggle="collapse" data-parent="#terms" href="#terms1" style="font-weight:bold; font-size:1.2em;">
+                                이용약관
+                            </a>
+                        </div>
+                            <div id="terms1" class="card-block collapse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- faq end -->
+
+<!-- Footer start -->
+
+<!-- Footer end -->
+
+
+<!-- External JS libraries -->
+<!-- Custom JS Script -->
+
+</body>
+</html>

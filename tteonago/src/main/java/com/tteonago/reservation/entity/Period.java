@@ -14,23 +14,22 @@ import lombok.ToString;
 
 @Setter
 @Getter
-
 @ToString
-public class Period { // 03/24 LocalDateTime -> LocalDate 타입으로 변경
+public class Period {
 	@NonNull
 	@Column(name = "checkIn")
 	private LocalDate checkIn;
-	
+
 	@NonNull
 	@Column(name = "checkOut")
 	private LocalDate checkOut;
-	
-	protected Period(){
 
-    	}
+	protected Period() {
 
-    	public Period(LocalDate checkIn,LocalDate checkOut){
-        	this.checkIn = checkIn;
-        	this.checkOut = checkOut;
-    	}
+	}
+
+	public Period(LocalDate checkIn, LocalDate checkOut) {
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+	}
 }

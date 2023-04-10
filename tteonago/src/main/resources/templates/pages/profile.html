@@ -160,20 +160,19 @@ p { margin:20px 0px; }
 					    <th>결제일</th>
 					    <th>리뷰 쓰기</th>
 					  </tr>
-					  <tr th:each="res : ${reservation}">
+					 <tr th:each="res : ${reservation}">
 						<td th:text="${res.value.resIndex}"></td>
 						<td th:text="${res.value.totPrice}"></td>
 						<td th:text="${res.key}"></td>
 						<td th:text="${res.value.period.checkIn}"></td>
 						<td th:text="${res.value.period.checkOut}"></td>
 						<td th:text="${res.value.payDate}"></td>
-						<td th:unless="${#lists.contains(resIndex, res.value.resIndex)}" >
-							<div class="w3-container">
-								<button onclick="document.getElementById('id01').style.display='block'"
-										class="w3-button w3-black w3-round-large">리뷰쓰기
-								</button>
-							</div>
-
+						<td th:if="${#lists.contains(resIndex, res.value.resIndex)}">
+						</td>
+						<td th:unless="${#lists.contains(resIndex, res.value.resIndex)}">
+							
+							<button class="w3-button w3-black w3-round-large" th:attr="onclick='openModal(\'' + ${res.value.resIndex} + '\')'">리뷰쓰기</button>
+							
 							<div id="id01" class="w3-modal">
 								<div class="w3-modal-content">
 									<form action="review/new" method="post">
@@ -205,7 +204,6 @@ p { margin:20px 0px; }
 									</form>
 								</div>
 							</div>
-
 						</td>
 					  </tr>
 					</table>
@@ -217,7 +215,12 @@ p { margin:20px 0px; }
     </div>
 </div>
 <!-- Destination end -->
-
+<script>
+  function openModal(resIndex) {
+	document.getElementById('reservation').value = resIndex;
+    document.getElementById('id01').style.display='block';
+  }
+</script>
 <!-- Footer-6 start -->
 <!-- Footer-6 end -->
 

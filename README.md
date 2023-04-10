@@ -56,6 +56,8 @@ Name|GitHub Address|
 * [:moneybag: 결제](#moneybag-결제)
 * [:file_cabinet: 질문 게시판](#file_cabinet-질문-게시판)
 * [:pencil2: 리뷰쓰기](#pencil2-리뷰쓰기)
+* [:memo: 이용약관](#memo-이용약관)
+* [:clipboard: 자유게시판](#clipboard-자유게시판)
 * [:face_with_head_bandage: Trouble Shooting](#face_with_head_bandage-trouble-shooting)
 <br><br>
 
@@ -156,6 +158,25 @@ Name|GitHub Address|
 
 * 머물렀던 호텔에 대해서 리뷰를 쓸 수 있고, 한 번 리뷰를 작성하면 중복해서 작성할 수 없습니다.
 * 내가 쓴 리뷰를 다른 유저들이 호텔을 선택할 때, 디테일 페이지에서 확인할 수 있습니다. 
+<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
+<br><br>
+
+## :memo: 이용약관
+![Terms](https://user-images.githubusercontent.com/124442373/230892456-6d98da76-b4c9-46a8-8bd4-576ffbb41a01.gif)
+<br>
+
+* 상단 FAQ 페이지에서 tteonago 이용약관을 확인 하실 수 있습니다.
+<br><br>
+[:gear: 주요 기능](#gear-주요-기능)
+<br><br>
+
+## :clipboard: 자유게시판
+![FreeBoard](https://user-images.githubusercontent.com/124442373/230892618-199fba12-e977-47af-891f-7878452daf0d.gif)
+<br>
+
+* 비회원은 게시글에 대한 조회가 가능하지만 회원으로 접근하게 되면 게시글을 작성할 수 있는 글쓰기 버튼이 활성화가 되며 작성자는 수정 및 삭제가 가능합니다.
+* 검색 기능은 검색하고자 하는 전체, 제목, 내용 선택후 keywoad를 통해 원하는 게시글 조회가 가능합니다.
 <br><br>
 [:gear: 주요 기능](#gear-주요-기능)
 <br><br>

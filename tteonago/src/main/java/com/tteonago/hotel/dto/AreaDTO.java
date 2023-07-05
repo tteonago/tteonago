@@ -6,13 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Setter
 @Getter
 @ToString
-public class AreaDTO {
+public class AreaDTO implements Serializable {
 	private String aId;
 	
 	private String aName;

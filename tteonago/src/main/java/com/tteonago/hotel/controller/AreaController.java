@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,6 +40,7 @@ public class AreaController {
 		if (areaDTOs == null) {
 			areaDTOs = areaService.getAllAreas();
 			areaRedisTemplate.opsForValue().set("areas", areaDTOs);
+			areaRedisTemplate.expire("areas", 600, TimeUnit.SECONDS);
 		}
 
 		model.addAttribute("areas", areaDTOs);

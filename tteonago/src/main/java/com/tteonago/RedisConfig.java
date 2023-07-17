@@ -2,7 +2,6 @@ package com.tteonago;
 
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.tteonago.hotel.dto.AreaDTO;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -13,7 +12,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.util.List;
 
 @Configuration
-@EnableCaching
 public class RedisConfig {
 
     @Bean

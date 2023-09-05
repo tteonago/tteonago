@@ -12,9 +12,5 @@
         <module name="tteonago.tteonago.main~1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="tteonago.tteonago.main" target="11" />
-      <module name="tteonago.tteonago.test" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

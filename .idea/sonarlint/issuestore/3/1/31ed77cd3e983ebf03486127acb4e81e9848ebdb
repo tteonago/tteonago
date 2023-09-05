@@ -1,0 +1,5 @@
+
+g	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8É ¾¢¦1
+p	java:S116 "TRename this field "SecretKey" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èîª8Ò¡¾¢¦1
+^
+java:S1126M"AReplace this if-then-else statement by a single return statement.(¥«ã8Â¢¾¢¦1

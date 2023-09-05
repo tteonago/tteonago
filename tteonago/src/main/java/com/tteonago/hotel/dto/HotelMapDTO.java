@@ -1,13 +1,8 @@
 package com.tteonago.hotel.dto;
 
-import com.tteonago.hotel.entity.Position;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -16,7 +11,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Builder
-public class HotelMapDTO {
+public class HotelMapDTO implements Serializable {
 	private String hotelId;
 	
 	private String hotelName;
@@ -25,7 +20,7 @@ public class HotelMapDTO {
 	
 	private String hotelPhone;
 	
-	private Position hotelPosition;
+	private PositionDTO hotelPosition;
 	
 	private String address;
 }

@@ -1,0 +1,7 @@
+
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Œã†íûÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œò‡Ø
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÞÿÍ¾
+<
+java:S1452"&Remove usage of generic wildcard type.(ÞÿÍ¾
